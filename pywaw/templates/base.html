@@ -1,9 +1,30 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>PyWaw - Python Warsaw User Group</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>PyWaw - Python Warsaw Users Group</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="{% url 'misc:home' %}">PyWaw</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="">Spotkania</a></li>
+                        <li><a href="">Miejsce</a></li>
+                        <li><a href="">Sponsoring</a></li>
+                        <li><a href="">Poradnik prelegenta</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>
