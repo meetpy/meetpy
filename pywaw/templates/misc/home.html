@@ -6,4 +6,9 @@
     przygodę z Pythonem dopiero zaczynają. Celem naszych spotkań jest wymiana doświadczenia pomiędzy programistami, 
     integracja pythonowego środowiska Warszawy oraz propagowanie Pythona jako uniwersalnego języka programowania. 
     Spotkania PyWaw odbywają się w każdy drugi lub trzeci poniedziałek miesiąca.</p>
+    {% if upcoming_meetup %}
+    <h2>Nadchodzące spotkanie: <a href="{{ upcoming_meetup.get_absolute_url }}">{{ upcoming_meetup.name }}</a></h2>
+    {% else %}
+    <p>Informacje o nadchodzącym spotkaniu pojawią się niebawem</p>
+    {% endif %}
 {% endblock %}

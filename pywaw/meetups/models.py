@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -5,7 +6,8 @@ from django.conf import settings
 
 class MeetupManager(models.Manager):
 
-    def get_upcomming(self, date):
+    def get_upcomming(self, date=None):
+        date = date or datetime.now()
         try:
             return self.filter(date__gte=date).order_by('date')[0]
         except IndexError:
