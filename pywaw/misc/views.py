@@ -8,7 +8,7 @@ class HomeView(generic.TemplateView):
     def get_context_data(self):
         context = super().get_context_data()
         try:
-            context['upcoming_meetup'] = meetups_models.Meetup.objects.get_upcomming()
+            context['upcoming_meetup'] = meetups_models.Meetup.objects.get_upcoming()
         except meetups_models.Meetup.DoesNotExist:
             context['upcoming_meetup'] = None
         return context

@@ -17,10 +17,10 @@ class MeetupManagerTest(TestCase):
         previous_meetup = MeetupFactory(date=datetime(2000, 1, 1))
         next_meetup = MeetupFactory(date=datetime(2000, 2, 1))
 
-        upcoming_meetup = models.Meetup.objects.get_upcomming(date=datetime(2000, 1, 15))
+        upcoming_meetup = models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))
 
         self.assertEqual(next_meetup, upcoming_meetup)
 
     def test_upcoming_if_not_exists(self):
         with self.assertRaises(models.Meetup.DoesNotExist):
-            upcoming_meetup = models.Meetup.objects.get_upcomming(date=datetime(2000, 1, 15))
+            upcoming_meetup = models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))
