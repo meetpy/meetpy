@@ -14,9 +14,11 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li><a href="{% url 'meetups:list' %}">Spotkania</a></li>
-                        <li><a href="">Miejsce</a></li>
-                        <li><a href="">Sponsoring</a></li>
-                        <li><a href="">Poradnik prelegenta</a></li>
+                        {% load flatpages %}
+                        {% get_flatpages as flatpages %}
+                        {% for page in flatpages %}
+                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
