@@ -1,0 +1,5 @@
+<ul>
+    {% for talk in obj.talks.all %}
+    <li>{{ talk.title }} - {{ talk.speaker }}</li>
+    {% endfor %}
+</ul>
