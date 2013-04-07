@@ -1,16 +1,26 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
+import factory
+from datetime import datetime
 from django.test import TestCase
+from . import models
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class MeetupFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = models.Meetup
+    FACTORY_DJANGO_GET_OR_CREATE = ('name', 'date')
+
+    name = factory.Sequence(lambda n: 'Meetup #{0}'.format(n))
+
+
+class MeetupManagerTest(TestCase):
+
+    def test_upcoming_if_exists(self):
+        previous_meetup = MeetupFactory(date=datetime(2000, 1, 1))
+        next_meetup = MeetupFactory(date=datetime(2000, 2, 1))
+
+        upcoming_meetup = models.Meetup.objects.get_upcomming(date=datetime(2000, 1, 15))
+
+        self.assertEqual(next_meetup, upcoming_meetup)
+
+    def test_upcoming_if_not_exists(self):
+        with self.assertRaises(models.Meetup.DoesNotExist):
+            upcoming_meetup = models.Meetup.objects.get_upcomming(date=datetime(2000, 1, 15))

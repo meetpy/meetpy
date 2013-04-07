@@ -3,9 +3,21 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 
 
+class MeetupManager(models.Manager):
+
+    def get_upcomming(self, date):
+        try:
+            return self.filter(date__gte=date).order_by('date')[0]
+        except IndexError:
+            raise self.model.DoesNotExist
+
+
+
 class Meetup(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateTimeField()
+
+    objects = MeetupManager()
 
     class Meta:
         ordering = ['-date']
