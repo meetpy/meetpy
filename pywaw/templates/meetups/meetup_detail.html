@@ -2,4 +2,8 @@
 
 {% block content %}
 <h1>{{ object.name }}</h1>
+{% for talk in object.talks.all %}
+<h2>{{ talk.time|time:"H:i" }} - {{ talk.title }} - {% if talk.speaker.website %}<a href="{{ talk.speaker.website }}">{{ talk.speaker }}</a>{% else %}{{ talk.speaker }}{% endif %}</h2>
+<p>{{ talk.description }}</p>
+{% endfor %}
 {% endblock %}

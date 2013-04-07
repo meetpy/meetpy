@@ -3,7 +3,7 @@
 {% block content %}
 <ul>
     {% for meetup in object_list %}
-    <li><a href="{{ meetup.get_absolute_url }}">{{ meetup.name }}</a></li>
+    <li>{{ meetup.date|date:"d M Y" }} - <a href="{{ meetup.get_absolute_url }}">{{ meetup.name }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
