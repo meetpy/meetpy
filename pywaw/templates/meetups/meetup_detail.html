@@ -6,4 +6,9 @@
 <h2>{{ talk.time|time:"H:i" }} - {{ talk.title }} - {% if talk.speaker.website %}<a href="{{ talk.speaker.website }}">{{ talk.speaker }}</a>{% else %}{{ talk.speaker }}{% endif %}</h2>
 <p>{{ talk.description }}</p>
 {% endfor %}
+<h2>Sponsorzy</h2>
+{% for sponsorship in object.sponsorship_set.all %}
+<a href="{{ sponsorship.sponsor.website }}"><img width="200" src="{{ sponsorship.sponsor.logo.url }}"></a>
+<p>{{ sponsorship.sponsor.description }}</p>
+{% endfor %}
 {% endblock %}

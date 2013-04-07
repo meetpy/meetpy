@@ -3,3 +3,4 @@ syntax: glob
 sqlite.db
 *.pyc
 *.swp
+pywaw/media

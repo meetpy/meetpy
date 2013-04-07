@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 
 class Meetup(models.Model):
@@ -37,3 +38,21 @@ class Talk(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.title, self.speaker)
+
+
+class Sponsor(models.Model):
+    name = models.CharField(max_length=100)
+    website = models.URLField()
+    logo = models.ImageField(upload_to=settings.SPONSOR_LOGOS_DIR)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Sponsorship(models.Model):
+    sponsor = models.ForeignKey(Sponsor)
+    meetup = models.ForeignKey(Meetup)
+
+    def __str__(self):
+        return '{} - {}'.format(self.meetup, self.sponsor)
