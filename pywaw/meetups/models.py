@@ -12,7 +12,6 @@ class MeetupManager(models.Manager):
             raise self.model.DoesNotExist
 
 
-
 class Meetup(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateTimeField()
