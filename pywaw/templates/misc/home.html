@@ -1,14 +1,45 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block content %}
-    <p>PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic. Projekt ten skierowany 
-    jest zarówno do studentów stołecznych uczelni, profesjonalnych deweloperów oraz wszystkich tych, którzy swoją 
-    przygodę z Pythonem dopiero zaczynają. Celem naszych spotkań jest wymiana doświadczenia pomiędzy programistami, 
-    integracja pythonowego środowiska Warszawy oraz propagowanie Pythona jako uniwersalnego języka programowania. 
-    Spotkania PyWaw odbywają się w każdy drugi lub trzeci poniedziałek miesiąca.</p>
-    {% if upcoming_meetup %}
-    <h2>Nadchodzące spotkanie: <a href="{{ upcoming_meetup.get_absolute_url }}">{{ upcoming_meetup.name }}</a></h2>
-    {% else %}
-    <p>Informacje o nadchodzącym spotkaniu pojawią się niebawem</p>
-    {% endif %}
+    <div class="hero-unit">
+        <img src="{% static 'img/logo.png' %}" class="logo pull-left">
+        <p><b>PyWaw</b> to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic. Projekt ten skierowany 
+        jest zarówno do studentów stołecznych uczelni, profesjonalnych deweloperów oraz wszystkich tych, którzy swoją 
+        przygodę z Pythonem dopiero zaczynają. Celem naszych spotkań jest wymiana doświadczenia pomiędzy programistami, 
+        integracja pythonowego środowiska Warszawy oraz propagowanie Pythona jako uniwersalnego języka programowania. 
+        Spotkania PyWaw odbywają się w każdy drugi lub trzeci poniedziałek miesiąca.</p>
+    </div>
+    <div class="row">
+        <div class="span8">
+            <h2><a href="{{ upcoming_meetup.get_absolute_url }}">{{ upcoming_meetup.name }}</a> - {{ upcoming_meetup.date }}</h2>
+            <h3>Agenda</h3>
+            <ul>
+                {% for talk in upcoming_meetup.talks.all %}
+                <li><em>{{ talk.title }}</em> - 
+                {% for speaker in talk.speakers.all %}
+                    {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+            <h3>Miejsce</h3>
+            <p>{{ upcoming_meetup.venue.name }} - {{ upcoming_meetup.venue.address }}</p>
+            <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}">
+                <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}&sensor=false" class="img-rounded">
+            </a>
+        </div>
+        <div class="span4 sponsors">
+            <div class="well">
+                <h3 class="text-center">Sponsorzy:</h3>
+                <ul class="media-list">
+                    {% for sponsor in upcoming_meetup.sponsors.all %}
+                    <li><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}"></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
