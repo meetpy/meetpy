@@ -42,7 +42,7 @@ class Speaker(models.Model):
 class Talk(models.Model):
     title = models.CharField(max_length=1000)
     description = models.TextField(blank=True)
-    speaker = models.ForeignKey(Speaker, related_name='speakers')
+    speakers = models.ManyToManyField(Speaker, related_name='talks')
     meetup = models.ForeignKey(Meetup, related_name='talks')
     time = models.TimeField()
 
@@ -50,7 +50,7 @@ class Talk(models.Model):
         ordering = ['time']
 
     def __str__(self):
-        return '{} - {}'.format(self.title, self.speaker)
+        return '{} ({})'.format(self.title, self.meetup)
 
 
 class Sponsor(models.Model):
