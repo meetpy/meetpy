@@ -11,8 +11,8 @@
 <p>{{ talk.description }}</p>
 {% endfor %}
 <h2>Sponsorzy</h2>
-{% for sponsorship in object.sponsorship_set.all %}
-<a href="{{ sponsorship.sponsor.website }}"><img width="200" src="{{ sponsorship.sponsor.logo.url }}"></a>
-<p>{{ sponsorship.sponsor.description }}</p>
+{% for sponsor in object.sponsors.all %}
+<a href="{{ sponsor.website }}"><img width="200" src="{{ sponsor.logo.url }}"></a>
+<p>{{ sponsor.description }}</p>
 {% endfor %}
 {% endblock %}
