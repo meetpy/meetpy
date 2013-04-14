@@ -1,5 +1,12 @@
 import os
 from django.conf import global_settings
+from django.core.exceptions import ImproperlyConfigured
+
+def get_env_var(name):
+    try:
+        return os.environ[name]
+    except KeyError:
+        raise ImproperlyConfigured('Set the {} environment variable.'.format(name))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -82,7 +89,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'tmd*gq6st7)@&5q)4c6s%z!rrgw2qr5wwud9ocejy4uw_*1n$p'
+SECRET_KEY = get_env_var('SECRET_KEY')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
