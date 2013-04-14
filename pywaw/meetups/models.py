@@ -14,6 +14,16 @@ class Sponsor(models.Model):
         return self.name
 
 
+class Venue(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+
+    def __str__(self):
+        return self.name
+
+
 class MeetupManager(models.Manager):
 
     def get_upcoming(self, date=None):
@@ -28,6 +38,7 @@ class Meetup(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateTimeField()
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups')
+    venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
 
     objects = MeetupManager()
 
