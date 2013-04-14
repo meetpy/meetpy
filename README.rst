@@ -4,3 +4,6 @@ http://pywaw.org
 
 To run this project you need to setup few environment variables:
  * ``SECRET_KEY``
+ * ``DB_NAME``
+ * ``DB_USER``
+ * ``DB_PASSWORD``
