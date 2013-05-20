@@ -4,3 +4,4 @@ sqlite.db
 *.pyc
 *.swp
 pywaw/media
+.idea
