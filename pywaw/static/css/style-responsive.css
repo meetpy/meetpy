@@ -1,0 +1,107 @@
+@media (max-width: 979px) {
+	.lb-outerContainer{width:96% !important;height:auto !important}
+	.lb-dataContainer{width:96% !important}
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	body{font-size:12px}
+	
+	#top .span8{width:460px}
+	#top .span2{width:120px}
+	
+	.menu-top li{margin:0 20px 0 0}
+	.menu-top li a, .menu-top li a:visited{padding-right:0;font-size:14px}
+	
+	h1,h2{font-size:28px;margin-bottom:20px}
+	h5{font-size:14px;margin-bottom:3px}
+	p{font-size:12px;line-height:20px}
+	.text-smaller{font-size:11px;line-height:16px}
+	ul li{line-height:22px}
+	.text-number{margin:0 0 20px}
+	
+	.list-caption .span2{width:140px}
+	
+	.day{display:none}
+}
+
+@media (max-width: 767px) {
+	body{font-size:13px}
+	#logo{float:left;width:80px;margin-right:20px;position:relative;z-index:15}
+	#top .span2{position:absolute;top:10px;right:20px;z-index:10}
+	#top .span8{float:left;width:80%;margin-top:30px}
+	.menu-top li{margin:0 25px 0 0}
+	.menu-top li a, .menu-top li a:visited{padding-right:5px;font-size:14px}
+	
+	.img-tip, #push{display:none}
+	
+	h1,h2{font-size:28px;line-height:36px;margin-bottom:15px}
+	h4{font-size:18px}
+	p{font-size:13px;line-height:22px}
+	
+	.box-users .row:first-child{margin-top:20px}
+	.box-users .span1{width:60px;margin-right:10px;float:left}
+	.box-users .span4{clear:right}
+	
+	.map{margin: 0 auto}
+	.box-home{padding:15px 10px}
+	
+	.sponsors img{margin:10px 6px}
+	
+	.list-caption .text-number{float:left;margin:0 0 20px;line-height:26px}
+	.list-caption .span2{float:left;width:auto;display:inline;margin-left:20px}
+	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 10px}
+	
+	.media .pull-left, .media .pull-right{float:left}
+	.back{float:right;width:120px;margin-top:-50px;margin-bottom:20px}
+	
+	.imageRow .span2{width:25%;float:left}
+	
+	.more{width:50%;margin:20px auto 0}
+	
+	#wrapper{margin-bottom:0}
+	footer{padding:0 10px 15px;height:auto}
+	footer .span2, footer .span4, footer .powered{float:left;width:25%}
+	footer h5{margin-top:15px}
+	footer ul li a{font-size:12px}
+}
+
+@media (max-width: 670px) {
+	.menu-top li{margin:0 15px 0 0}
+	.menu-top li a, .menu-top li a:visited{padding-right:0;font-size:14px}
+}
+
+@media (max-width: 600px) {
+	#logo{float:none}
+	#top .span8{float:none;width:100%}
+	.menu-top li{float:none}
+
+	.imageRow .span2{width:33%}
+	
+	.day{display:inline}
+	
+	footer{padding:0}
+	footer .span2, footer .span4{float:left;width:30%;margin-left:1.5%;margin-right:1.5%}
+	footer .powered{display:none}
+	footer .powered-mobile{display:block;background:#000;margin-top:15px}
+	footer .powered-mobile p{color:#fff;margin:0;padding:5px 1.5%;font-size:12px}
+	footer .powered-mobile a{color:#fff}
+}
+
+@media (max-width: 480px) {	
+	header{margin:10px 0 20px}
+	.imageRow .span2{width:50%}
+	.list-caption .span2{margin-left:10px}
+	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 8px;font-size:13px}
+	.date-small{line-height:28px}
+	.more{width:auto}
+	
+	.day{display:none}
+	.back{margin-top:-95px}
+	
+	footer .span2, footer .span4{float:none;width:94%;margin-left:3%;margin-right:3%}
+	footer .powered-mobile p{padding:5px 3%}
+}
+
+@media (max-width: 380px) {
+	#top .span8{margin-bottom:30px}	
+}

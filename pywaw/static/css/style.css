@@ -1,1 +1,114 @@
-body {padding-top: 60px;}
+
+
+/********************** 1. BASE **********************************/
+/********************** 1.1 Default Styles ***********************/
+
+html{height:100%}
+body{background:#fff;color:#828282;font-weight:400;font-size:14px;font-family:'Merriweather Sans', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;height:100%}
+h1,h2,h3,h4,h5,h6{color:#4d4d4d;font-weight:400;font-family:'Merriweather Sans';margin:0}
+
+h1, h2{font-size:36px;line-height:26px;margin-bottom:30px}
+h3{font-size:24px;line-height:24px;margin-bottom:10px}
+h4{font-weight:700;font-size:20px;line-height:18px;margin-bottom:10px}
+h5{font-weight:700;font-size:15px;line-height:16px;margin-bottom:5px}
+p{font-size:14px;line-height:24px;font-weight:400;font-family:'Merriweather Sans'}
+a, a:visited{color:#4790c3;text-decoration:none}
+a:hover, a:active{color:#4790c3;text-decoration:underline}
+strong{color:#4d4d4d}
+
+
+/********************** 2. CLASSES **********************************/
+/********************** 2.1 Common **********************************/
+
+.margin-top-mini{margin-top:5px}
+.margin-top-small{margin-top:10px}
+.margin-top-normal{margin-top:20px}
+.margin-top-big{margin-top:30px}
+.margin-bottom-large{margin-bottom:40px}
+
+.date, .date-small{background:#4d4d4d;color:#fff;min-height:30px;line-height:30px;display:block;margin:0;padding:0 8px;-moz-box-sizing:border-box;box-sizing:border-box}
+.date-small{text-align:center;line-height:24px}
+
+.location{margin:10px 0}
+
+.button, .button:visited{font-size:16px;font-weight:700;line-height:30px;font-family:'Merriweather Sans';min-height:30px;background:#4790c3;color:#fff}
+.button:hover, .button:active{background:#4790c3;color:#fff;text-decoration:none}
+.button-block{display:block;text-align:center}
+
+.line-orange{background:#ffd34a;height:5px;width:80px;display:block}
+
+.map{-moz-box-sizing:border-box;box-sizing:border-box;border:3px solid #ececee}
+
+iframe{width:100%;-moz-box-sizing:border-box;box-sizing:border-box;border:3px solid #ececee;filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");-webkit-filter:grayscale(100%);filter:gray}
+
+.icon-clock{width:16px;height:16px;margin-top:5px;background:url("../img/clock.png") 0 0 no-repeat}
+
+.box-home{margin-top:30px;padding:50px 0;background:#ececee url("../img/bg.jpg") center center no-repeat}
+.box-home p{color:#4d4d4d}
+.box-home strong{background:#4d4d4d;color:#fff;padding:0 1px}
+
+
+/********************** 2.2 Typography ******************************/
+
+.text-smaller{line-height:18px}
+.text-number{margin:0 0 30px 0;float:left}
+
+
+/********************** 2.3 Lists ***********************************/
+
+ul li{line-height:24px}
+
+.menu-top{margin:0;padding:0}
+.menu-top li{float:left;list-style:none;margin:0 40px 0 0;padding:0}
+.menu-top li a, .menu-top li a:visited{font-weight:700;font-size:15px;font-family:'Merriweather Sans';line-height:30px;padding-right:10px;display:block}
+.menu-top li a:hover, .menu-top li a:active, .menu-top li.active a{color:#4d4d4d;text-decoration:none}
+
+
+/********************** 3. COMPONENTS *******************************/
+/********************** 3.1 Lightbox ******************************/
+
+.gallery .span2 img{border:3px solid #ececee;margin-bottom:20px}
+
+
+/********************** 4. STRUCTURE ********************************/
+/********************** 4.1 Header **********************************/
+
+header{margin:10px 0 40px}
+
+#top{margin:20px 0 0 0}
+
+.top-links{float:right}
+.facebook, .twitter, .youtube, .rss{width:30px;height:30px;display:block;float:left}
+.facebook{background:url("../img/icon-facebook.jpg") 0 0 no-repeat}
+.twitter{background:url("../img/icon-twitter.jpg") 0 0 no-repeat}
+.youtube{background:url("../img/icon-youtube.jpg") 0 0 no-repeat}
+.rss{background:url("../img/icon-rss.jpg") 0 0 no-repeat}
+
+
+/********************** 4.2 Content *********************************/
+
+#wrapper{min-height:100%;height:auto !important;height:100%;margin-bottom:-300px}
+#push{clear:both;height:300px}
+
+
+/********************** 4.3 Footer **********************************/
+
+footer{clear:both;height:300px;background:#2e2e2e}
+footer .line-orange{margin-top:50px}
+footer h5{color:#ffd34a;margin-top:50px}
+footer ul{margin:10px 0 0 0;padding:0}
+footer ul li{list-style:none}
+
+
+/********************** 5. PAGES ************************************/
+/********************** 5.1 Home ************************************/
+
+.sponsors{float:left}
+.sponsors img{margin:0 6px}
+.text-sponsors{line-height:27px;margin-right:10px}
+
+.img-user{margin-bottom:15px}
+
+
+
+

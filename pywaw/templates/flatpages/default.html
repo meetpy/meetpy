@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ flatpage.content }}
+<div class="container">
+<div class="row">
+    <div class="span2 img-tip">
+        <div class="line-orange"></div>
+    </div>
+    <div class="span10 margin-bottom-large">
+    {{ flatpage.content }}
+    </div>
+</div>
+</div>
 {% endblock %}

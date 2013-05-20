@@ -3,43 +3,77 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="hero-unit">
-        <img src="{% static 'img/logo.png' %}" class="logo pull-left">
-        <p><b>PyWaw</b> to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic. Projekt ten skierowany 
-        jest zarówno do studentów stołecznych uczelni, profesjonalnych deweloperów oraz wszystkich tych, którzy swoją 
-        przygodę z Pythonem dopiero zaczynają. Celem naszych spotkań jest wymiana doświadczenia pomiędzy programistami, 
-        integracja pythonowego środowiska Warszawy oraz propagowanie Pythona jako uniwersalnego języka programowania. 
-        Spotkania PyWaw odbywają się w każdy drugi lub trzeci poniedziałek miesiąca.</p>
+<div class="container">
+    <div class="row">
+        <div class="span2 img-tip">
+            <div class="line-orange"></div>
+        </div>
+        <div class="span10">
+            <h1>Następne spotkanie</h1>
+        </div>
     </div>
     <div class="row">
-        <div class="span8">
-            <h2><a href="{{ upcoming_meetup.get_absolute_url }}">{{ upcoming_meetup.name }}</a> - {{ upcoming_meetup.date }}</h2>
-            <h3>Agenda</h3>
-            <ul>
-                {% for talk in upcoming_meetup.talks.all %}
-                <li><em>{{ talk.title }}</em> - 
-                {% for speaker in talk.speakers.all %}
-                    {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}
-                    {% if not forloop.last %}, {% endif %}
-                {% endfor %}
-                </li>
-                {% endfor %}
-            </ul>
-            <h3>Miejsce</h3>
-            <p>{{ upcoming_meetup.venue.name }} - {{ upcoming_meetup.venue.address }}</p>
-            <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}">
-                <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}&sensor=false" class="img-rounded">
-            </a>
+        <div class="span5 offset2">
+            <h4 class="date"><span class="day">{{ upcoming_meetup.date|date:"l" }}, </span>{{ upcoming_meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ upcoming_meetup.date|date:"H:i" }}</span></h4>
+            <h5 class="location"><i class="icon-map-marker"></i> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
+            <div class="text-center">
+                <div class="clearfix">
+                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}">
+                        <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=460x189&maptype=roadmap&markers=color:blue%7C{{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}&sensor=false">
+                    </a>
+                </div>
+                <a href="{% url 'meetups:detail' pk=upcoming_meetup.pk %}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
+            </div>
         </div>
-        <div class="span4 sponsors">
-            <div class="well">
-                <h3 class="text-center">Sponsorzy:</h3>
-                <ul class="media-list">
-                    {% for sponsor in upcoming_meetup.sponsors.all %}
-                    <li><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}"></a></li>
+        <div class="span5 box-users">
+            {% for talk in upcoming_meetup.talks.all %}
+            <div class="row">
+                <div class="span1">
+                    {% for speaker in talk.speakers.all %}
+                    <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user">
                     {% endfor %}
-                </ul>
+                </div>
+                <div class="span4">
+                    <h5>
+                    {% for speaker in talk.speakers.all %}
+                        {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </h5>
+                    <p class="text-smaller">{{ talk.title }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10 offset2 margin-top-normal">
+            <h5 class="pull-left text-sponsors">SPONSORZY</h5>
+            <div class="sponsors">
+                {% for sponsor in upcoming_meetup.sponsors.all %}
+                <a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                {% endfor %}
             </div>
         </div>
     </div>
+</div>
+<div class="box-home">
+    <div class="container">
+        <div class="row">
+            <div class="span2 img-tip">
+                <img src="{% static 'img/question.jpg' %}" alt="Informacje">
+            </div>
+            <div class="span10">
+                <h2>Warszawska grupa użytkowników Pythona</h2>
+                <div class="row">
+                    <div class="span5">
+                        <p><strong>PL</strong> PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic. Projekt ten skierowany jest zarówno do studentów stołecznych uczelni, profesjonalnych deweloperów oraz wszystkich tych, którzy swoją przygodę z Pythonem dopiero zaczynają. Celem naszych spotkań jest wymiana doświadczenia pomiędzy programistami, integracja pythonowego środowiska Warszawy oraz propagowanie Pythona jako uniwersalnego języka programowania. Spotkania PyWaw odbywają się w każdy drugi lub trzeci poniedziałek miesiąca.</p>
+                    </div>
+                    <div class="span5">
+                        <p><strong>EN</strong> PyWaw is a Python community in Warsaw. We meet every month to share experience, discuss issues from the IT world and have a great time. Whether you are a student, a professional developer or you just wrote your first Hello World - come and join us!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

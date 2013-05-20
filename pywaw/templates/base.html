@@ -1,36 +1,99 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>PyWaw - Python Warsaw Users Group</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>PyWaw</title>
+	<link href="{% static 'img/fav.png' %}" rel="shortcut icon">
+	<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+	<!--[if lt IE 9]>
+   	<script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.src.js' %}"></script>
+    <![endif]-->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="{% url 'misc:home' %}">PyWaw</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li><a href="{% url 'meetups:list' %}">Spotkania</a></li>
-                        {% load flatpages %}
-                        {% get_flatpages as flatpages %}
+	<div id="wrapper">
+		<header>
+			<div class="container">
+				<div class="row">
+					<div id="logo" class="span2">
+						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="PyWaw" class="logo"></a>
+					</div>
+					<div id="top">
+						<div class="span8">
+							<ul class="menu-top">
+								<li><a href="{% url 'meetups:list' %}">Spotkania</a></li>
+                                {% load flatpages %}
+                                {% get_flatpages as flatpages %}
+                                {% for page in flatpages %}
+                                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                                {% endfor %}
+							</ul>
+						</div>
+						<div class="span2">
+							<div class="top-links">
+								<a href="https://www.facebook.com/PyWaw" class="facebook"></a>
+								<a href="https://twitter.com/PyWaw" class="twitter"></a>
+								<a href="http://www.youtube.com/user/PyWaw" class="youtube"></a>
+								<a href="{% url 'meetups:rss_feed' %}" class="rss"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+        {% block content %}
+        {%  endblock %}
+		<div id="push"></div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="span2 img-tip">
+					<div class="line-orange"></div>
+				</div>
+				<div class="span2">
+					<h5>Mapa witryny</h5>
+					<ul>
+						<li><a href="{% url 'meetups:list' %}">Spotkania</a></li>
                         {% for page in flatpages %}
                         <li><a href="{{ page.url }}">{{ page.title }}</a></li>
                         {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <div class="container">
-        <p class="text-center muted credit">Python {{ system.python }} | Django {{ system.django }}</p>
-    </div>
+					</ul>
+				</div>
+				<div class="span2">
+					<h5>Jesteśmy na</h5>
+					<ul>
+						<li><a href="https://www.facebook.com/PyWaw">Facebook</a></li>
+						<li><a href="https://twitter.com/PyWaw">Twitter</a></li>
+						<li><a href="http://www.youtube.com/user/PyWaw">YouTube</a></li>
+					</ul>
+				</div>
+				<div class="span4">
+					<h5>Python w Polsce</h5>
+					<ul>
+						<li><a href="http://pl.python.org/">Polish Python Coders Group</a></li>
+						<li><a href="http://pl.pycon.org/">PyCon PL</a></li>
+						<li><a href="http://blog.pykonik.org/">Pykonik</a></li>
+						<li><a href="http://pysilesia.org/">PySilesia</a></li>
+						<li><a href="http://pycircle.org/">PyCircle</a></li>
+					</ul>
+				</div>
+				<div class="span2 powered">
+					<a href="http://sunscrapers.com"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS" class="pull-right"></a>
+				</div>
+			</div>
+			<div class="powered-mobile hide">
+				<p>Powered by <a href="http://sunscrapers.com">SUNSCRAPERS</a></p>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

@@ -1,18 +1,91 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block content %}
-<h1>{{ object.name }}</h1>
-{% for talk in object.talks.all %}
-<h2>{{ talk.time|time:"H:i" }} - {{ talk.title }} - 
-    {% for speaker in talk.speakers.all %}
-        {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}
-        {% if not forloop.last %}, {% endif %}
-    {% endfor %}</h2>
-<p>{{ talk.description }}</p>
-{% endfor %}
-<h2>Sponsorzy</h2>
-{% for sponsor in object.sponsors.all %}
-<a href="{{ sponsor.website }}"><img width="200" src="{{ sponsor.logo.url }}"></a>
-<p>{{ sponsor.description }}</p>
-{% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="span2 img-tip">
+            <div class="line-orange"></div>
+        </div>
+        <div class="span8">
+            <h1>{{ object.name }}</h1>
+        </div>
+        <div class="span2 margin-top-mini"><a href="{% url 'meetups:list' %}" class="button button-block back">POWRÓT</a></div>
+    </div>
+    <div class="row">
+        <div class="span5 offset2">
+            <h4 class="date"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10 offset2 margin-top-normal">
+            {% for talk in meetup.talks.all %}
+            <div class="media">
+                {% for speaker in talk.speakers.all %}
+                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user pull-left">
+                {% endfor %}
+                <div class="media-body">
+                    <h5>
+                        {% for speaker in talk.speakers.all %}
+                        {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </h5>
+                    <h3>{{ talk.title }} <a href=""><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a></h3>
+                    <p>{{ talk.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if object.photos.exists %}
+    <div class="row margin-top-big">
+        <div class="span2 img-tip">
+            <img src="{% static 'img/gallery.jpg' %}" alt="Galeria">
+        </div>
+        <div class="span10 gallery">
+            <h1>Galeria</h1>
+            <div class="imageRow">
+                <div class="set row">
+                    {% for photo in object.photos.all %}
+                    <div class="span2">
+                        <a href="{{ photo.image.url }}" title="Zdjęcie {{ forloop.counter }}"><img src="{{ photo.image.url }}" alt="Zdjęcie {{ forloop.counter }}"></a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row margin-top-big">
+        <div class="span2 img-tip">
+            <img src="{% static 'img/sponsors.jpg' %}" alt="Sponsorzy">
+        </div>
+        <div class="span10">
+            <h1>Sponsorzy</h1>
+            <div class="row">
+                {% for sponsor in object.sponsors.all %}
+                <div class="span5">
+                    <a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                    <p>{{ sponsor.description }}</p>
+                    <p><a href="{{ sponsor.website }}">{{ sponsor.website }}</a></p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top-big margin-bottom-large">
+        <div class="span2 img-tip">
+            <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">
+        </div>
+        <div class="span10">
+            <h1>Jak trafić?</h1>
+            <h4 class="margin-top-small"><i class="icon-map-marker"></i> {{ object.venue.name }}, {{ object.venue.address }}</h4>
+            <a href="https://maps.google.com/maps?q={{ object.venue.longitude }},{{ object.venue.latitude }}">
+                <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=780x240&maptype=roadmap&markers=color:blue%7C{{ object.venue.longitude }},{{ object.venue.latitude }}&sensor=false">
+            </a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
