@@ -56,6 +56,7 @@ class Speaker(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     website = models.URLField(blank=True)
+    photo = models.ImageField(upload_to=settings.SPEAKER_PHOTOS_DIR)
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -73,4 +74,9 @@ class Talk(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.meetup)
+
+
+class Photo(models.Model):
+    meetup = models.ForeignKey(Meetup, related_name='photos')
+    image = models.ImageField(upload_to=settings.MEETUP_PHOTOS_DIR)
 

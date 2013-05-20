@@ -46,6 +46,8 @@ USE_TZ = False
 MEDIA_ROOT = os.path.abspath('media')
 
 SPONSOR_LOGOS_DIR = 'sponsors'
+MEETUP_PHOTOS_DIR = 'meetup_photos'
+SPEAKER_PHOTOS_DIR = 'speakers'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
