@@ -40,6 +40,7 @@
             {% endfor %}
         </div>
     </div>
+    {% if object.has_videos %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
             <img src="{% static 'img/video.jpg' %}" alt="Wideo">
@@ -47,14 +48,15 @@
         <div class="span10 gallery">
             <h2>Wideo</h2>
             <div class="row">
-                {% for photo in object.photos.all %}
+                {% for talk in meetup.talks.all %}
                 <div class="span2">
-                    <a href="{{ photo.image.url }}" title="Wideo {{ forloop.counter }}"><img src="{{ photo.image.url }}" alt="Wideo {{ forloop.counter }}"></a>
+                    <iframe width="420" height="315" src="{{ talk.video }}" frameborder="0" allowfullscreen></iframe>
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+    {% endif %}
     {% if object.photos.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
@@ -74,6 +76,7 @@
         </div>
     </div>
     {% endif %}
+    {% if object.sponsors.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
             <img src="{% static 'img/sponsors.jpg' %}" alt="Sponsorzy">
@@ -91,6 +94,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     <div class="row margin-top-big margin-bottom-large">
         <div class="span2 img-tip">
             <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">

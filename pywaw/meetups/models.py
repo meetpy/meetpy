@@ -37,7 +37,7 @@ class MeetupManager(models.Manager):
 class Meetup(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateTimeField()
-    sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups')
+    sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
     is_ready = models.BooleanField()
 
@@ -52,12 +52,15 @@ class Meetup(models.Model):
     def get_absolute_url(self):
         return reverse('meetups:detail', kwargs={'pk': self.id})
 
+    def has_videos(self):
+        return self.talks.exclude(video='').exclude(video__isnull=True).exists()
+
 
 class Speaker(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     website = models.URLField(blank=True)
-    photo = models.ImageField(upload_to=settings.SPEAKER_PHOTOS_DIR)
+    photo = models.ImageField(upload_to=settings.SPEAKER_PHOTOS_DIR, blank=True)
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -69,6 +72,7 @@ class Talk(models.Model):
     speakers = models.ManyToManyField(Speaker, related_name='talks')
     meetup = models.ForeignKey(Meetup, related_name='talks')
     time = models.TimeField()
+    video = models.URLField(blank=True)
 
     class Meta:
         ordering = ['time']
