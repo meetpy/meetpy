@@ -114,8 +114,8 @@ footer ul li{list-style:none}
 .img-user{margin:0 20px 15px 0 !important}
 .img-users .img-user{margin:0 0 15px 0 !important}
 
-.box-users-gray .well{min-height:160px}
-.box-users-gray .well h3{text-align:center;color:#ccc}
+.more-info{width:100%;border:3px solid #ededed;-moz-box-sizing:border-box;box-sizing:border-box}
+.more-info h3{text-align:center;color:#e4e4e4;margin:0;font-weight:700;font-size:28px;line-height:54px}
 
 
 
