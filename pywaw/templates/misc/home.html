@@ -51,9 +51,11 @@
                 </div>
             </div>
             {% endfor %}
+            {% if not upcoming_meetup.is_ready %}
             <div class="more-info">
-            	<h3>więcej info wkrótce</h3>
+            	<h3>agenda w przygotowaniu</h3>
             </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">
