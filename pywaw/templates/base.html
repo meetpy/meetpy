@@ -65,35 +65,55 @@
 				<div class="span2 img-tip">
 					<div class="line-orange"></div>
 				</div>
-				<div class="span2">
-					<h5>Mapa witryny</h5>
-					<ul>
-						<li><a href="{% url 'meetups:list' %}">Spotkania</a></li>
-                        {% for page in flatpages %}
-                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                        {% endfor %}
-					</ul>
-				</div>
-				<div class="span2">
-					<h5>Jesteśmy na</h5>
-					<ul>
-						<li><a href="https://www.facebook.com/PyWaw">Facebook</a></li>
-						<li><a href="https://twitter.com/PyWaw">Twitter</a></li>
-						<li><a href="http://www.youtube.com/user/PyWaw">YouTube</a></li>
-					</ul>
-				</div>
-				<div class="span4">
-					<h5>Python w Polsce</h5>
-					<ul>
-						<li><a href="http://pl.python.org/">Polish Python Coders Group</a></li>
-						<li><a href="http://pl.pycon.org/">PyCon PL</a></li>
-						<li><a href="http://blog.pykonik.org/">Pykonik</a></li>
-						<li><a href="http://pysilesia.org/">PySilesia</a></li>
-						<li><a href="http://pycircle.org/">PyCircle</a></li>
-					</ul>
-				</div>
-				<div class="span2 powered">
-					<a href="http://sunscrapers.com"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS" class="pull-right"></a>
+				<div class="span10">
+					<div class="row margin-bottom-large">
+						<div class="span2">
+							<h5>Mapa witryny</h5>
+							<ul>
+								<li><a href="{% url 'meetups:list' %}">Spotkania</a></li>
+		                        {% for page in flatpages %}
+		                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+		                        {% endfor %}
+							</ul>
+						</div>
+						<div class="span2">
+							<h5>Jesteśmy na</h5>
+							<ul>
+								<li><a href="https://www.facebook.com/PyWaw">Facebook</a></li>
+								<li><a href="https://twitter.com/PyWaw">Twitter</a></li>
+								<li><a href="http://www.youtube.com/user/PyWaw">YouTube</a></li>
+							</ul>
+						</div>
+						<div class="span4">
+							<h5>Python w Polsce</h5>
+							<ul>
+								<li><a href="http://pl.python.org/">Polish Python Coders Group</a></li>
+								<li><a href="http://pl.pycon.org/">PyCon PL</a></li>
+								<li><a href="http://blog.pykonik.org/">Pykonik</a></li>
+								<li><a href="http://pysilesia.org/">PySilesia</a></li>
+								<li><a href="http://pycircle.org/">PyCircle</a></li>
+							</ul>
+						</div>
+						<div class="span2 powered">
+							<a href="http://sunscrapers.com"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS" class="pull-right"></a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span10">
+							<div class="pull-left statistics">
+								<h5 class="pull-left">Statystyki</h5>
+								<p class="pull-left">
+									Spotkania: <span>24</span>
+									&bull; Prelegenci: <span>34</span>
+									&bull; Prezentacje: <span>24</span>
+								</p>
+							</div>
+							<div class="pull-left stack">
+								<h5 class="pull-left">Stack</h5>
+								<p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }}</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="powered-mobile hide">

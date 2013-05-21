@@ -19,9 +19,15 @@
 	ul li{line-height:22px}
 	.text-number{margin:0 0 20px}
 	
+	.more-info h3{font-size:24px}
+	
 	.list-caption .span2{width:140px}
 	
 	.day{display:none}
+	
+	.stack{margin-left:20px}
+	.statistics h5, .stack h5{line-height:22px;margin-top:0;margin-right:10px}
+	.statistics p, .stack p{line-height:22px}
 }
 
 @media (max-width: 767px) {
@@ -63,6 +69,9 @@
 	footer .span2, footer .span4, footer .powered{float:left;width:25%}
 	footer h5{margin-top:15px}
 	footer ul li a{font-size:12px}
+	
+	.statistics, .stack{width:100%;float:none;clear:both}
+	.stack{margin-left:0}
 }
 
 @media (max-width: 670px) {
@@ -85,6 +94,8 @@
 	footer .powered-mobile{display:block;background:#000;margin-top:15px}
 	footer .powered-mobile p{color:#fff;margin:0;padding:5px 1.5%;font-size:12px}
 	footer .powered-mobile a{color:#fff}
+	
+	.statistics, .stack{width:97%;margin-left:1.5%;margin-right:1.5%}
 }
 
 @media (max-width: 480px) {	
@@ -102,6 +113,10 @@
 	
 	footer .span2, footer .span4{float:none;width:94%;margin-left:3%;margin-right:3%}
 	footer .powered-mobile p{padding:5px 3%}
+	
+	.statistics, .stack{width:94%;margin-left:3%;margin-right:3%}
+	.statistics h5, .stack h5, .statistics p, .stack p{float:none}
+	.stack{margin-top:20px}
 }
 
 @media (max-width: 380px) {
