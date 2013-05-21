@@ -153,4 +153,5 @@ LOGGING = {
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'misc.context_processors.system_info',
+    'meetups.context_processors.stats',
 )
