@@ -42,7 +42,7 @@
 	.box-users .span1{width:60px;margin-right:10px;float:left}
 	.box-users .span4{clear:right}
 	
-	.map{margin: 0 auto}
+	.map{margin: 0 auto;width:70%}
 	.box-home{padding:15px 10px}
 	
 	.sponsors img{margin:10px 6px}
@@ -74,7 +74,7 @@
 	#logo{float:none}
 	#top .span8{float:none;width:100%}
 	.menu-top li{float:none}
-
+	.map{width:80%}
 	.imageRow .span2{width:33%}
 	
 	.day{display:inline}
@@ -94,6 +94,8 @@
 	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 8px;font-size:13px}
 	.date-small{line-height:28px}
 	.more{width:auto}
+		
+	.map{width:100%}
 	
 	.day{display:none}
 	.back{margin-top:-95px}

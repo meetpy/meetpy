@@ -42,7 +42,13 @@
 								<a href="https://www.facebook.com/PyWaw" class="facebook"></a>
 								<a href="https://twitter.com/PyWaw" class="twitter"></a>
 								<a href="http://www.youtube.com/user/PyWaw" class="youtube"></a>
-								<a href="{% url 'meetups:rss_feed' %}" class="rss"></a>
+								<div class="dropdown pull-right">
+								    <a href="#" data-toggle="dropdown" class="dropdown-toggle rss" role="button" id="drop1"></a>
+								    <ul aria-labelledby="drop1" role="menu" class="dropdown-menu">
+			                            <li role="presentation"><a href="{% url 'meetups:rss_feed' %}" tabindex="-1" role="menuitem">RSS</a></li>
+			                            <li role="presentation"><a href="" tabindex="-1" role="menuitem">RSS Atom</a></li>
+			                        </ul>
+			                    </div>
 							</div>
 						</div>
 					</div>

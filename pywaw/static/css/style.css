@@ -37,9 +37,8 @@ strong{color:#4d4d4d}
 
 .line-orange{background:#ffd34a;height:5px;width:80px;display:block}
 
-.map{-moz-box-sizing:border-box;box-sizing:border-box;border:3px solid #ececee}
-
-iframe{width:100%;-moz-box-sizing:border-box;box-sizing:border-box;border:3px solid #ececee;filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");-webkit-filter:grayscale(100%);filter:gray}
+.map{width:100%}
+.gray{-moz-box-sizing:border-box;box-sizing:border-box;border:3px solid #ececee;filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");-webkit-filter:grayscale(100%);filter:gray}
 
 .icon-clock{width:16px;height:16px;margin-top:5px;background:url("../img/clock.png") 0 0 no-repeat}
 
@@ -78,11 +77,15 @@ header{margin:10px 0 40px}
 #top{margin:20px 0 0 0}
 
 .top-links{float:right}
-.facebook, .twitter, .youtube, .rss{width:30px;height:30px;display:block;float:left}
+.facebook, .twitter, .youtube, .rss, .dropdown{width:30px;height:30px;display:block;float:left}
 .facebook{background:url("../img/icon-facebook.jpg") 0 0 no-repeat}
 .twitter{background:url("../img/icon-twitter.jpg") 0 0 no-repeat}
 .youtube{background:url("../img/icon-youtube.jpg") 0 0 no-repeat}
 .rss{background:url("../img/icon-rss.jpg") 0 0 no-repeat}
+
+.pull-right .dropdown-menu{min-width:120px}
+.pull-right .dropdown-menu:after{position:absolute;top:-6px;left:auto;right:8px;display:inline-block;border-right:6px solid transparent;border-bottom:6px solid #ffffff;border-left:6px solid transparent;content:''}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:active, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:hover > a:visited, .dropdown-submenu:focus > a, .dropdown-submenu:focus > a:visited{background:#4790C3}
 
 
 /********************** 4.2 Content *********************************/
@@ -107,8 +110,12 @@ footer ul li{list-style:none}
 .sponsors img{margin:0 6px}
 .text-sponsors{line-height:27px;margin-right:10px}
 
-.img-user{margin-bottom:15px}
+.media .img-users{margin:0 20px 15px 0 !important}
+.img-user{margin:0 20px 15px 0 !important}
+.img-users .img-user{margin:0 0 15px 0 !important}
 
+.box-users-gray .well{min-height:160px}
+.box-users-gray .well h3{text-align:center;color:#ccc}
 
 
 

@@ -22,9 +22,11 @@
         <div class="span10 offset2 margin-top-normal">
             {% for talk in meetup.talks.all %}
             <div class="media">
-                {% for speaker in talk.speakers.all %}
-                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user pull-left">
-                {% endfor %}
+            	<div class="pull-left img-users">
+	                {% for speaker in talk.speakers.all %}
+	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user"><br>
+	                {% endfor %}
+                </div>
                 <div class="media-body">
                     <h5>
                         {% for speaker in talk.speakers.all %}
@@ -38,13 +40,28 @@
             {% endfor %}
         </div>
     </div>
+    <div class="row margin-top-big">
+        <div class="span2 img-tip">
+            <img src="{% static 'img/video.jpg' %}" alt="Wideo">
+        </div>
+        <div class="span10 gallery">
+            <h2>Wideo</h2>
+            <div class="row">
+                {% for photo in object.photos.all %}
+                <div class="span2">
+                    <a href="{{ photo.image.url }}" title="Wideo {{ forloop.counter }}"><img src="{{ photo.image.url }}" alt="Wideo {{ forloop.counter }}"></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     {% if object.photos.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
             <img src="{% static 'img/gallery.jpg' %}" alt="Galeria">
         </div>
         <div class="span10 gallery">
-            <h1>Galeria</h1>
+            <h2>Galeria</h2>
             <div class="imageRow">
                 <div class="set row">
                     {% for photo in object.photos.all %}
@@ -62,7 +79,7 @@
             <img src="{% static 'img/sponsors.jpg' %}" alt="Sponsorzy">
         </div>
         <div class="span10">
-            <h1>Sponsorzy</h1>
+            <h2>Sponsorzy</h2>
             <div class="row">
                 {% for sponsor in object.sponsors.all %}
                 <div class="span5">
@@ -79,10 +96,10 @@
             <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">
         </div>
         <div class="span10">
-            <h1>Jak trafić?</h1>
-            <h4 class="margin-top-small"><i class="icon-map-marker"></i> {{ object.venue.name }}, {{ object.venue.address }}</h4>
+            <h2>Jak trafić?</h2>
+            <h4><i class="icon-map-marker"></i> {{ object.venue.name }}, {{ object.venue.address }}</h4>
             <a href="https://maps.google.com/maps?q={{ object.venue.longitude }},{{ object.venue.latitude }}">
-                <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=780x240&maptype=roadmap&markers=color:blue%7C{{ object.venue.longitude }},{{ object.venue.latitude }}&sensor=false">
+                <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=780x240&maptype=roadmap&markers=color:blue%7C{{ object.venue.longitude }},{{ object.venue.latitude }}&sensor=false" alt="Mapa">
             </a>
         </div>
     </div>
