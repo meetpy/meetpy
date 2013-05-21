@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="container">
+    {% if upcoming_meetup %}
     <div class="row">
         <div class="span2 img-tip">
             <div class="line-orange"></div>
@@ -68,6 +69,11 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <div class="more-info">
+        <h3>spotkanie w przygotowaniu</h3>
+    </div>
+    {% endif %}
 </div>
 <div class="box-home">
     <div class="container">
