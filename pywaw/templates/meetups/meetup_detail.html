@@ -2,6 +2,27 @@
 
 {% load staticfiles %}
 
+{% block js %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhNca45HD9Q_OMp-g2qNlSLwmOqaKCwXs&sensor=false"></script>
+<script type="text/javascript">
+    function initialize() {
+        var venue = new google.maps.LatLng({{ object.venue.latitude }}, {{ object.venue.longitude }});
+        var mapOptions = {
+            center: venue,
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: venue,
+            title: "Hello World!"
+        });
+        marker.setMap(map);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -34,7 +55,7 @@
                         {% endfor %}
                     </h5>
                     <h3>
-	                    {{ talk.title }} 
+	                    {{ talk.title }}
 	                    <a href="" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
 	                    {% if talk.video %}
 	                    <a href="{{ talk.video }}" target="_blank"><img src="{% static 'img/video.png' %}" alt="Link do wideo"></a>
@@ -92,9 +113,7 @@
             <h2>Lokalizacja</h2>
             <h4><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> {{ object.venue.name }}, {{ object.venue.address }}</h4>
             <div class="margin-top-normal">
-	            <a href="https://maps.google.com/maps?q={{ object.venue.longitude }},{{ object.venue.latitude }}" target="_blank">
-	                <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=780x240&amp;maptype=roadmap&amp;markers=color:blue%7C{{ object.venue.longitude }},{{ object.venue.latitude }}&amp;sensor=false" alt="Mapa">
-	            </a>
+	            <div id="map-canvas"></div>
             </div>
         </div>
     </div>
