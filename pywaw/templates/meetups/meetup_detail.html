@@ -24,39 +24,28 @@
             <div class="media">
             	<div class="pull-left img-users">
 	                {% for speaker in talk.speakers.all %}
-	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user"><br>
+	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
 	                {% endfor %}
                 </div>
                 <div class="media-body">
                     <h5>
                         {% for speaker in talk.speakers.all %}
-                        {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
+                        {% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </h5>
-                    <h3>{{ talk.title }} <a href=""><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a></h3>
+                    <h3>
+	                    {{ talk.title }} 
+	                    <a href="" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
+	                    {% if talk.video %}
+	                    <a href="{{ talk.video }}" target="_blank"><img src="{% static 'img/video.png' %}" alt="Link do wideo"></a>
+	                    {% endif %}
+                    </h3>
                     <p>{{ talk.description }}</p>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
-    {% if object.has_videos %}
-    <div class="row margin-top-big">
-        <div class="span2 img-tip">
-            <img src="{% static 'img/video.jpg' %}" alt="Wideo">
-        </div>
-        <div class="span10 gallery">
-            <h2>Wideo</h2>
-            <div class="row">
-                {% for talk in meetup.talks.all %}
-                <div class="span2">
-                    <iframe width="420" height="315" src="{{ talk.video }}" frameborder="0" allowfullscreen></iframe>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% endif %}
     {% if object.photos.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
@@ -86,9 +75,9 @@
             <div class="row">
                 {% for sponsor in object.sponsors.all %}
                 <div class="span5">
-                    <a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                    <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                     <p>{{ sponsor.description }}</p>
-                    <p><a href="{{ sponsor.website }}">{{ sponsor.website }}</a></p>
+                    <p><a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a></p>
                 </div>
                 {% endfor %}
             </div>
@@ -100,9 +89,9 @@
             <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">
         </div>
         <div class="span10">
-            <h2>Jak trafić?</h2>
+            <h2>Lokalizacja</h2>
             <h4><i class="icon-map-marker"></i> {{ object.venue.name }}, {{ object.venue.address }}</h4>
-            <a href="https://maps.google.com/maps?q={{ object.venue.longitude }},{{ object.venue.latitude }}">
+            <a href="https://maps.google.com/maps?q={{ object.venue.longitude }},{{ object.venue.latitude }}" target="_blank">
                 <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=780x240&amp;maptype=roadmap&amp;markers=color:blue%7C{{ object.venue.longitude }},{{ object.venue.latitude }}&amp;sensor=false" alt="Mapa">
             </a>
         </div>

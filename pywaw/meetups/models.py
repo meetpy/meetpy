@@ -52,9 +52,6 @@ class Meetup(models.Model):
     def get_absolute_url(self):
         return reverse('meetups:detail', kwargs={'pk': self.id})
 
-    def has_videos(self):
-        return self.talks.exclude(video='').exclude(video__isnull=True).exists()
-
 
 class Speaker(models.Model):
     first_name = models.CharField(max_length=30)

@@ -19,7 +19,7 @@
             <h5 class="location"><i class="icon-map-marker"></i> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
             <div class="text-center">
                 <div class="clearfix">
-                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}">
+                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}" target="_blank">
                         <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}&amp;sensor=false" class="map" alt="Mapa">
                     </a>
                 </div>
@@ -31,12 +31,12 @@
             <div class="row">
                 <div class="span1">
                 	{% if talk.speakers.count == 1 %}
-                	<img src="{% if talk.speakers.get.photo %}{{ talk.speakers.get.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user">
+                	<img src="{% if talk.speakers.get.photo %}{{ talk.speakers.get.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjęcie {{ speaker }}" class="img-user">
                 	{% else %}
                 	<div class="carousel slide" id="myCarousel">
                 		<div class="carousel-inner">
 	                    {% for speaker in talk.speakers.all %}
-	                    <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Prelegent" class="img-user item">
+	                    <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjęcie {{ speaker }}" class="img-user item">
 	                    {% endfor %}
 	                    </div>
 	                </div>
@@ -45,7 +45,7 @@
                 <div class="span4">
                     <h5>
                     {% for speaker in talk.speakers.all %}
-                        {% if speaker.website %}<a href="{{ speaker.website }}">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
+                        {% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     </h5>
                     <p class="text-smaller">{{ talk.title }}</p>
@@ -64,7 +64,7 @@
             <h5 class="pull-left text-sponsors">SPONSORZY</h5>
             <div class="sponsors">
                 {% for sponsor in upcoming_meetup.sponsors.all %}
-                <a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                 {% endfor %}
             </div>
         </div>
