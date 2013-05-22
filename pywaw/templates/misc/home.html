@@ -59,6 +59,7 @@
             {% endif %}
         </div>
     </div>
+    {% if upcoming_meetup.sponsors.exists %}
     <div class="row">
         <div class="span10 offset2 margin-top-normal">
             <h5 class="pull-left text-sponsors">SPONSORZY</h5>
@@ -69,6 +70,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     {% else %}
     <div class="more-info">
         <h3>spotkanie w przygotowaniu</h3>
