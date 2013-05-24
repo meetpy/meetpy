@@ -2,7 +2,13 @@
 
 {% load staticfiles %}
 
+{% block css %}
+<link href="{% static 'css/bootstrap-image-gallery.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block js %}
+<script type="text/javascript" src="{% static 'js/load-image.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap-image-gallery.js' %}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhNca45HD9Q_OMp-g2qNlSLwmOqaKCwXs&sensor=false"></script>
 <script type="text/javascript">
     function initialize() {
@@ -75,10 +81,10 @@
         <div class="span10 gallery">
             <h2>Galeria</h2>
             <div class="imageRow">
-                <div class="set row">
+                <div id="gallery" class="set row" data-toggle="modal-gallery" data-target="#modal-gallery">
                     {% for photo in object.photos.all %}
                     <div class="span2">
-                        <a href="{{ photo.image.url }}" title="Zdjęcie {{ forloop.counter }}"><img src="{{ photo.image.url }}" alt="Zdjęcie {{ forloop.counter }}"></a>
+                        <a href="{{ photo.image.url }}" data-gallery="gallery" title="Zdjęcie {{ forloop.counter }}"><img src="{{ photo.image.url }}" alt="Zdjęcie {{ forloop.counter }}"></a>
                     </div>
                     {% endfor %}
                 </div>
@@ -117,6 +123,14 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="modal-gallery" class="modal modal-gallery hide fade" data-animation="false" tabindex="-1">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
 </div>
 
 {% endblock %}
