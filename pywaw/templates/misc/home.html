@@ -19,7 +19,7 @@
             <h5 class="location"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location-home"> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
             <div class="text-center">
                 <div class="clearfix">
-                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.longitude }},{{ upcoming_meetup.venue.latitude }}" target="_blank">
+                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}" target="_blank">
                         <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}&amp;sensor=false" class="map" alt="Mapa">
                     </a>
                 </div>
