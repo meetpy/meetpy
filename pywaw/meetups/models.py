@@ -69,7 +69,9 @@ class Talk(models.Model):
     speakers = models.ManyToManyField(Speaker, related_name='talks')
     meetup = models.ForeignKey(Meetup, related_name='talks')
     time = models.TimeField()
-    video = models.URLField(blank=True)
+    slides_file = models.FileField(upload_to=settings.SLIDES_FILES_DIR, blank=True)
+    slides_url = models.URLField(blank=True)
+    video_url = models.URLField(blank=True)
 
     class Meta:
         ordering = ['time']
