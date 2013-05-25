@@ -5,3 +5,5 @@ sqlite.db
 *.swp
 pywaw/media
 .idea
+.project
+.pydevproject
