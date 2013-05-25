@@ -20,7 +20,7 @@ class MeetupsRssFeed(syndication_views.Feed):
     description_template = models.Meetup._meta.app_label + '/feed/meetup_description.html'
 
     def items(self):
-        return models.Meetup.objects.all()
+        return models.Meetup.objects.filter(is_ready=True)
 
 
 class MeetupsAtomFeed(MeetupsRssFeed):

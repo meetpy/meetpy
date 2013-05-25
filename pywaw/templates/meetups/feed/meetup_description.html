@@ -1,5 +1,27 @@
+<h1>{{ obj.name }} - {{ obj.date|date:"H:i, l, d.m.Y"|lower }}</h1>
+
+<h2>Miejsce</h2>
+
+<p>{{ obj.venue.name }}, {{ obj.venue.address }}</p>
+
+<h2>Agenda</h2>
+
 <ul>
     {% for talk in obj.talks.all %}
-    <li>{{ talk.title }} - {{ talk.speaker }}</li>
+    <li>
+        <h3>{{ talk.title }} - {% for speaker in talk.speakers.all %}{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}</h3>
+        <p>{{ talk.description }}</p>
+    </li>
     {% endfor %}
 </ul>
+
+{% if obj.sponsors.exists %}
+<h2>Sponsorzy</h2>
+<ul>
+    {% for sponsor in obj.sponsors.all %}
+    <li><a href="{{ sponsor.website }}" target="_blank">{{ sponsor.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<p>Podstrona spotkania: <a href="{{ obj.get_absolute_url }}">{{ obj.get_absolute_url }}</a></p>
