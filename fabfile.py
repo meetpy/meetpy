@@ -20,7 +20,7 @@ def deploy(settings='staging'):
         abort('Invalid settings.')
     if settings in env.hot_settings and not confirm('Do you really want to deploy?'):
         abort('Aborting!')
-    with prefix('source ~/apps/{0}_{1}/env/bin/activate'.format(env.project_name, settings)):
+    with prefix('source ~/apps/{0}_{1}/.environment'.format(env.project_name, settings)):
         with cd('~/apps/{0}_{1}/repo/'.format(env.project_name, settings)):
             run('hg pull')
             run('hg update --clean {0}'.format(env.branches[settings]))
