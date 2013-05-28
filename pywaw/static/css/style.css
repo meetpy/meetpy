@@ -69,7 +69,8 @@ ul li{line-height:24px}
 /********************** 3. COMPONENTS *******************************/
 /********************** 3.1 Lightbox ******************************/
 
-.gallery .span2 img{border:3px solid #ececee;margin-bottom:20px}
+.gallery .span2 img{border:3px solid #ececee;margin-bottom:20px;display:block;min-height:50px;text-align:center}
+.modal-gallery .modal-image:before, .modal-gallery .modal-image:after{font-size:48px !important;line-height:34px !important}
 
 
 /********************** 4. STRUCTURE ********************************/
