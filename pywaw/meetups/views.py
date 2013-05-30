@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.contrib.syndication import views as syndication_views
 from django.core.urlresolvers import reverse_lazy
@@ -11,6 +12,15 @@ class MeetupsListView(generic.ListView):
 
 class MeetupDetailView(generic.DetailView):
     model = models.Meetup
+
+
+class MeetupDateRedirectView(generic.RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, **kwargs):
+        date_lookup = {'date__' + k: v for k, v in kwargs.items()}
+        meetup = get_object_or_404(models.Meetup, **date_lookup)
+        return meetup.get_absolute_url()
 
 
 class MeetupsRssFeed(syndication_views.Feed):
