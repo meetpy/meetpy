@@ -12,6 +12,7 @@ class MeetupsListView(generic.ListView):
 
 class MeetupDetailView(generic.DetailView):
     model = models.Meetup
+    slug_url_kwarg = slug_field = 'number'
 
 
 class MeetupDateRedirectView(generic.RedirectView):

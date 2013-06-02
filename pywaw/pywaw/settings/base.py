@@ -7,7 +7,7 @@ def get_env_var(name):
         return os.environ[name]
     except KeyError:
         raise ImproperlyConfigured('Set the {} environment variable.'.format(name))
-    
+
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 
 ADMINS = (
@@ -160,3 +160,5 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'misc.context_processors.system_info',
     'meetups.context_processors.stats',
 )
+
+MEETUP_NAME = 'PyWaw'

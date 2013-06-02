@@ -23,7 +23,7 @@
                         <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}&amp;sensor=false" class="map" alt="Mapa">
                     </a>
                 </div>
-                <a href="{% url 'meetups:detail' pk=upcoming_meetup.pk %}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
+                <a href="{% url 'meetups:detail' number=upcoming_meetup.number %}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
             </div>
         </div>
         <div class="span5 box-users">

@@ -35,7 +35,7 @@ class MeetupManager(models.Manager):
 
 
 class Meetup(models.Model):
-    name = models.CharField(max_length=100)
+    number = models.PositiveIntegerField(unique=True)
     date = models.DateTimeField()
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
@@ -47,7 +47,7 @@ class Meetup(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        return self.name
+        return '{0} #{1}'.format(settings.MEETUP_NAME, self.number)
 
     def get_absolute_url(self):
         return reverse('meetups:detail', kwargs={'pk': self.id})

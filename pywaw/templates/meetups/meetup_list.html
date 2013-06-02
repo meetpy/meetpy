@@ -11,9 +11,9 @@
             <div class="margin-bottom-large">
                 <div class="row">
                     <div class="span10 list-caption">
-                        <h2 class="text-number">{{ meetup.name }}</h2>
+                        <h2 class="text-number">{{ meetup }}</h2>
                         <div class="span2"><h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4></div>
-                        <div class="span2"><a href="{% url 'meetups:detail' pk=meetup.pk %}" class="button button-block">SZCZEGÓŁY</a></div>
+                        <div class="span2"><a href="{% url 'meetups:detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a></div>
                     </div>
                 </div>
                 <ul class="unstyled">
