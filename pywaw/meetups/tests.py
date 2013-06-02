@@ -70,4 +70,3 @@ class SlugifyUploadToTest(TestCase):
         path = upload_to(speaker, 'bdfl.png')
 
         self.assertEqual(path, settings.SPEAKER_PHOTOS_DIR + '/guido-van-rossum.png')
-

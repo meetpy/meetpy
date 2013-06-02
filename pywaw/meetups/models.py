@@ -102,4 +102,3 @@ class Talk(models.Model):
 class Photo(models.Model):
     meetup = models.ForeignKey(Meetup, related_name='photos')
     image = models.ImageField(upload_to=slugify_upload_to(settings.MEETUP_PHOTOS_DIR, ['meetup', 'id']))
-

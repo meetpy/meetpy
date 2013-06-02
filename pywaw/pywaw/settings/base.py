@@ -2,6 +2,7 @@ import os
 from django.conf import global_settings
 from django.core.exceptions import ImproperlyConfigured
 
+
 def get_env_var(name):
     try:
         return os.environ[name]
