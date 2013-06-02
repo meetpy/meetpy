@@ -65,7 +65,7 @@
             <h5 class="pull-left text-sponsors">SPONSORZY</h5>
             <div class="sponsors">
                 {% for sponsor in upcoming_meetup.sponsors.all %}
-                <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                <a href="{{ sponsor.website }}" target="_blank"><img width="200" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                 {% endfor %}
             </div>
         </div>
