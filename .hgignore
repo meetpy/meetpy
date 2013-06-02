@@ -3,7 +3,7 @@ syntax: glob
 sqlite.db
 *.pyc
 *.swp
-pywaw/media
+upload/
 .idea
 .project
 .pydevproject
