@@ -1,7 +1,20 @@
+import os
 from datetime import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.utils.text import slugify
+
+
+def slugify_upload_to(path, fields):
+
+    def upload_to(instance, filename):
+        extension = filename.split('.')[-1]
+        slug = slugify(' '.join([str(getattr(instance, field)) for field in fields]))
+        new_filename = '{0}.{1}'.format(slug, extension)
+        return os.path.join(path, new_filename)
+
+    return upload_to
 
 
 class Sponsor(models.Model):
@@ -50,14 +63,17 @@ class Meetup(models.Model):
         return '{0} #{1}'.format(settings.MEETUP_NAME, self.number)
 
     def get_absolute_url(self):
-        return reverse('meetups:detail', kwargs={'pk': self.id})
+        return reverse('meetups:detail', kwargs={'number': self.number})
 
 
 class Speaker(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     website = models.URLField(blank=True)
-    photo = models.ImageField(upload_to=settings.SPEAKER_PHOTOS_DIR, blank=True)
+    photo = models.ImageField(
+        upload_to=slugify_upload_to(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name']),
+        blank=True,
+    )
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -69,7 +85,10 @@ class Talk(models.Model):
     speakers = models.ManyToManyField(Speaker, related_name='talks')
     meetup = models.ForeignKey(Meetup, related_name='talks')
     time = models.TimeField()
-    slides_file = models.FileField(upload_to=settings.SLIDES_FILES_DIR, blank=True)
+    slides_file = models.FileField(
+        upload_to=slugify_upload_to(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
+        blank=True,
+    )
     slides_url = models.URLField(blank=True)
     video_url = models.URLField(blank=True)
 
@@ -82,5 +101,5 @@ class Talk(models.Model):
 
 class Photo(models.Model):
     meetup = models.ForeignKey(Meetup, related_name='photos')
-    image = models.ImageField(upload_to=settings.MEETUP_PHOTOS_DIR)
+    image = models.ImageField(upload_to=slugify_upload_to(settings.MEETUP_PHOTOS_DIR, ['meetup', 'id']))
 

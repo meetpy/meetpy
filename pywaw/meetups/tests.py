@@ -3,14 +3,22 @@ from django.http import Http404, HttpResponseNotFound
 import factory
 from datetime import datetime
 from django.test import TestCase
+from django.conf import settings
 from . import models
 
 
 class MeetupFactory(factory.DjangoModelFactory):
     FACTORY_FOR = models.Meetup
-    FACTORY_DJANGO_GET_OR_CREATE = ('name', 'date')
+    FACTORY_DJANGO_GET_OR_CREATE = ('number', 'date')
 
-    name = factory.Sequence(lambda n: 'Meetup #{0}'.format(n))
+    number = factory.Sequence(lambda n: n)
+
+
+class SpeakerFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = models.Speaker
+
+    first_name = 'Guido'
+    last_name = 'Van Rossum'
 
 
 class MeetupManagerTest(TestCase):
@@ -51,3 +59,15 @@ class MeetupDateRedirectViewTest(TestCase):
         response = self.client.get(reverse('meetups:date_redirect', kwargs=data))
 
         self.assertEqual(response.status_code, HttpResponseNotFound.status_code)
+
+
+class SlugifyUploadToTest(TestCase):
+
+    def test_filename(self):
+        speaker = SpeakerFactory(first_name='Guido', last_name='Van Rossüm')
+        upload_to = models.slugify_upload_to(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name'])
+
+        path = upload_to(speaker, 'bdfl.png')
+
+        self.assertEqual(path, settings.SPEAKER_PHOTOS_DIR + '/guido-van-rossum.png')
+
