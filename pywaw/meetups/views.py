@@ -36,3 +36,7 @@ class MeetupsRssFeed(syndication_views.Feed):
 
 class MeetupsAtomFeed(MeetupsRssFeed):
     feed_type = feedgenerator.Atom1Feed
+
+
+class SponsorListView(generic.ListView):
+    model = models.Sponsor

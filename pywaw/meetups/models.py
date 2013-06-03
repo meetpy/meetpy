@@ -63,7 +63,7 @@ class Meetup(models.Model):
         return '{0} #{1}'.format(settings.MEETUP_NAME, self.number)
 
     def get_absolute_url(self):
-        return reverse('meetups:detail', kwargs={'number': self.number})
+        return reverse('meetups:meetup_detail', kwargs={'number': self.number})
 
 
 class Speaker(models.Model):
