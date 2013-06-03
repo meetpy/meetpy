@@ -40,3 +40,7 @@ class MeetupsAtomFeed(MeetupsRssFeed):
 
 class SponsorListView(generic.ListView):
     model = models.Sponsor
+
+
+class SpeakerListView(generic.ListView):
+    model = models.Speaker

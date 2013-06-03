@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^(?P<day>\d{2})-(?P<month>\d{2})-(?P<year>\d{4})/$', views.MeetupDateRedirectView.as_view(),
         name='date_redirect'),
     url(r'^sponsor/$', views.SponsorListView.as_view(), name='sponsor_list'),
+    url(r'^prelegent/$', views.SpeakerListView.as_view(), name='speaker_list'),
     url(r'^atom/$', views.MeetupsAtomFeed(), name='atom_feed'),
     url(r'^rss/$', views.MeetupsRssFeed(), name='rss_feed'),
 )
