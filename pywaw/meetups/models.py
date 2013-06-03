@@ -26,6 +26,9 @@ class Sponsor(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 
 class Venue(models.Model):
     name = models.CharField(max_length=100)
@@ -77,6 +80,9 @@ class Speaker(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+    class Meta:
+        ordering = ['first_name', 'last_name']
 
 
 class Talk(models.Model):
