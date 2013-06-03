@@ -1,31 +1,22 @@
-{% extends "base.html" %}
+{% extends "base_content.html" %}
 
-{% block content %}
-<div class="container">
+{% block subcontent %}
+{% for meetup in object_list %}
+<div class="margin-bottom-large">
     <div class="row">
-        <div class="span2 img-tip">
-            <div class="line-orange"></div>
-        </div>
-        <div class="span10">
-            {% for meetup in object_list %}
-            <div class="margin-bottom-large">
-                <div class="row">
-                    <div class="span10 list-caption">
-                        <h2 class="text-number">{{ meetup }}</h2>
-                        <div class="span2"><h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4></div>
-                        <div class="span2"><a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a></div>
-                    </div>
-                </div>
-                <ul class="unstyled">
-                    {% for talk in meetup.talks.all %}
-                    <li>
-                        {% for speaker in talk.speakers.all %}<strong>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: {{ talk.title }}
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endfor %}
+        <div class="span10 list-caption">
+            <h2 class="text-number">{{ meetup }}</h2>
+            <div class="span2"><h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4></div>
+            <div class="span2"><a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a></div>
         </div>
     </div>
+    <ul class="unstyled">
+        {% for talk in meetup.talks.all %}
+        <li>
+            {% for speaker in talk.speakers.all %}<strong>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: {{ talk.title }}
+        </li>
+        {% endfor %}
+    </ul>
 </div>
+{% endfor %}
 {% endblock %}
