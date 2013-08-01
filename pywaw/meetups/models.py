@@ -77,6 +77,8 @@ class Speaker(models.Model):
         upload_to=slugify_upload_to(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name']),
         blank=True,
     )
+    phone = models.CharField(max_length=30, blank=True)
+    email = models.EmailField(blank=True)
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -90,7 +92,7 @@ class Talk(models.Model):
     description = models.TextField(blank=True)
     speakers = models.ManyToManyField(Speaker, related_name='talks')
     meetup = models.ForeignKey(Meetup, related_name='talks')
-    time = models.TimeField()
+    order = models.PositiveSmallIntegerField()
     slides_file = models.FileField(
         upload_to=slugify_upload_to(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
         blank=True,
@@ -99,7 +101,7 @@ class Talk(models.Model):
     video_url = models.URLField(blank=True)
 
     class Meta:
-        ordering = ['time']
+        ordering = ['order']
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.meetup)
