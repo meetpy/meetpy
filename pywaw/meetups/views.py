@@ -26,7 +26,7 @@ class MeetupDateRedirectView(generic.RedirectView):
 
 class MeetupsRssFeed(syndication_views.Feed):
     title = constants.FEED_TITLE
-    link = reverse_lazy('meetups:list')
+    link = reverse_lazy('meetups:meetup_list')
     title_template = models.Meetup._meta.app_label + '/feed/meetup_title.txt'
     description_template = models.Meetup._meta.app_label + '/feed/meetup_description.html'
 
