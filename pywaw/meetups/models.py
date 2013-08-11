@@ -96,6 +96,7 @@ class Talk(models.Model):
     slides_file = models.FileField(
         upload_to=slugify_upload_to(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
         blank=True,
+        max_length=100,
     )
     slides_url = models.URLField(blank=True)
     video_url = models.URLField(blank=True)
