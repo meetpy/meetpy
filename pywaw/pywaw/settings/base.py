@@ -3,10 +3,12 @@ from django.conf import global_settings
 from django.core.exceptions import ImproperlyConfigured
 
 
-def get_env_var(name):
+def get_env_var(name, **kwargs):
     try:
         return os.environ[name]
     except KeyError:
+        if 'default' in kwargs:
+            return kwargs['default']
         raise ImproperlyConfigured('Set the {} environment variable.'.format(name))
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -86,7 +88,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = get_env_var('SECRET_KEY')
+SECRET_KEY = get_env_var('SECRET_KEY', default='secret')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
