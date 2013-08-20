@@ -132,4 +132,5 @@ footer ul li{list-style:none}
 /********************** 5.2 Meetup ************************************/
 
 #map-canvas{width: 100%;height: 240px}
+#map-canvas img{max-width: none;}
 
