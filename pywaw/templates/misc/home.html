@@ -64,11 +64,15 @@
     {% if upcoming_meetup.sponsors.exists %}
     <div class="row">
         <div class="span10 offset2 margin-top-normal">
-            <h5 class="pull-left text-sponsors">SPONSORZY</h5>
+            <h3 class="span10 text-sponsors text-center">Sponsorzy:</h3>
             <div class="sponsors">
-                {% for sponsor in upcoming_meetup.sponsors.all %}
-                <a href="{{ sponsor.website }}" target="_blank"><img width="200" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
-                {% endfor %}
+                <table class="span10 row-fluid">
+                    {% for sponsor in upcoming_meetup.sponsors.all %}
+                    <td class="span4">
+                        <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                        {% endfor %}
+                    </td>
+                </table>
             </div>
         </div>
     </div>
