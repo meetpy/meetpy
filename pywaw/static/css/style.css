@@ -126,14 +126,13 @@ footer ul li{list-style:none}
 /********************** 5. PAGES ************************************/
 /********************** 5.1 Home ************************************/
 
-.sponsors{line-height: 110px;}
-.sponsors td {margin-bottom: 20px;height:110px;text-align: center;position: relative;}
-.sponsors img{max-height:100% !important;max-width:85%;vertical-align: middle !important;}
-.sponsors img[alt="MegiTeam"]{margin-top:16px;}
-.sponsors img[alt="Webinterpret"]{margin-top:3px;}
+.sponsors{margin-top:50px; line-height: 110px;}
+.sponsors td {margin: 20px 0px;text-align: center;position: relative;border-bottom:1px #ffd34a solid;border-top:4px solid rgba(77,77,77,.8);}
+.sponsors td:hover{background:#ffd34a;}
+.sponsors img{max-height:90% !important;max-width:85%;vertical-align: middle !important;}
 .text-sponsors{line-height:27px;margin-right:10px;margin:10px 0px 0px 0px;}
 
-.media .img-users{margin:0 20px 15px 0 !important;}
+.media .img-users{margin:0 20px 15px 0 !important;width:60px;height:60px;}
 .img-user{margin:0 20px 15px 0 !important;}
 .img-users .img-user{margin:0 0 15px 0 !important;}
 
