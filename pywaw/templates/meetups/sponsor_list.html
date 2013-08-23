@@ -26,12 +26,15 @@
 <p>Wszystkie powyższe profity zostaną przedyskutowane indywidualnie z każdym sponsorem w zależności od zaproponowanej oferty sponsorskiej.</p>
 <p>Zakupione przez sponsora towary lub usługi muszą być przez niego bezpośrednio opłacone - PyWaw nie dysponuje własnym kontem bankowym. Możliwy jest sponsoring jednego lub wielu spotkań PyWaw. W zależności od zapotrzebowania comiesięczne spotkanie/inne wydarzenie może być sponsorowane przez wielu sponsorów.</p>
 <p>Wszelkie pytania w sprawie sponsorowania spotkań PyWaw należy kierować na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a>.</p>
-<h2>Nasi dotychczasowi sponsorzy</h2>
+<h2 class="margin-top-big">Nasi dotychczasowi sponsorzy</h2>
 {% for sponsor in object_list %}
-    <div>
-        <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
-        <p>{{ sponsor.description }}</p>
-        <p><a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a></p>
+    <div class="row-fluid sponsors-desc">
+        <div class="span10">
+            <a href="{{ sponsor.website }}" target="_blank"><img class="pull-left img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+            <p>{{ sponsor.description }}</p>
+            <p></p>
+            <a href="{{ sponsor.website }}" target="_blank">Strona sponsora: {{ sponsor.website }}</a>
+        </div>
     </div>
 {% endfor %}
 {% endblock %}

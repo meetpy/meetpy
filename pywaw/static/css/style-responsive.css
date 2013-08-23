@@ -11,14 +11,13 @@
 	
 	.menu-top li{margin:0 20px 0 0}
 	.menu-top li a, .menu-top li a:visited{padding-right:0;font-size:14px}
-	
+	.speakers-list li{width:25%;}
 	h1,h2{font-size:28px;margin-bottom:20px}
 	h5{font-size:14px;margin-bottom:3px}
 	p{font-size:12px;line-height:20px}
 	.text-smaller{font-size:11px;line-height:16px}
 	ul li{line-height:22px}
 	.text-number{margin:0 0 20px}
-	
 	.more-info h3{font-size:24px}
 	
 	.list-caption .span2{width:140px}
@@ -50,9 +49,9 @@
 	
 	.map{margin: 0 auto;width:70%}
 	.box-home{padding:15px 10px}
-	
+	.img-user{display:none;}
 	.sponsors img{margin:10px 6px}
-	
+	.speakers-list li{width:25%;}
 	.list-caption .text-number{float:left;margin:0 0 20px;line-height:26px}
 	.list-caption .span2{float:left;width:auto;display:inline;margin-left:20px}
 	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 10px}
@@ -76,7 +75,9 @@
 
 @media (max-width: 670px) {
 	.menu-top li{margin:0 15px 0 0}
+	.speakers-list img{max-width:120px; max-height:120px;}
 	.menu-top li a, .menu-top li a:visited{padding-right:0;font-size:14px}
+	.meeting-list{background:none;}
 }
 
 @media (max-width: 600px) {
@@ -85,9 +86,7 @@
 	.menu-top li{float:none}
 	.map{width:80%}
 	.imageRow .span2{width:33%}
-	
 	.day{display:inline}
-	
 	footer{padding:0}
 	footer .span2, footer .span4{float:left;width:30%;margin-left:1.5%;margin-right:1.5%}
 	footer .powered{display:none}
@@ -105,7 +104,8 @@
 	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 8px;font-size:13px}
 	.date-small{line-height:28px}
 	.more{width:auto}
-		
+	.speakers-list li{width:30.333;}
+	.speakers-list img{max-width:100px; max-height:100px;}
 	.map{width:100%}
 	
 	.day{display:none}

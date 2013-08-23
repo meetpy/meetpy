@@ -104,8 +104,8 @@
             <h2>Sponsorzy</h2>
             <div class="row">
                 {% for sponsor in object.sponsors.all %}
-                <div class="span5">
-                    <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                <div class="span10 sponsors-desc">
+                    <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors pull-left"src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                     <p>{{ sponsor.description }}</p>
                     <p><a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a></p>
                 </div>

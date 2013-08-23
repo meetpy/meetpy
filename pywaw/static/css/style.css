@@ -55,7 +55,12 @@ strong{color:#4d4d4d}
 .icon-location-home, .icon-location{vertical-align:text-top;width:11px;height:16px;line-height:16px;margin-top:3px}
 .icon-location-home{margin-top:0}
 
-.box-home{margin-top:30px;padding:50px 0;background:#ececee url("../img/bg.jpg") center center no-repeat}
+.box-home{margin-top:30px;padding:50px 0;background:#ececee url("../img/bg1.jpg") center center no-repeat;
+			-webkit-background-size: cover;
+  			-moz-background-size: cover; 
+  			-o-background-sizez: cover;
+  			background-size: cover;
+  			background-position: 0px -100px;}
 .box-home p{color:#4d4d4d}
 .box-home strong{background:#4d4d4d;color:#fff;padding:0 1px}
 
@@ -127,9 +132,8 @@ footer ul li{list-style:none}
 /********************** 5.1 Home ************************************/
 
 .sponsors{margin-top:50px; line-height: 110px;}
-.sponsors td {margin: 20px 0px;text-align: center;position: relative;border-bottom:1px #ffd34a solid;border-top:4px solid rgba(77,77,77,.8);}
-.sponsors td:hover{background:#ffd34a;}
-.sponsors img{max-height:90% !important;max-width:85%;vertical-align: middle !important;}
+.sponsors td {margin: 20px 0px;text-align: center;position: relative;}
+.sponsors img{max-height:150px;width:85%;vertical-align: middle !important;}
 .text-sponsors{line-height:27px;margin-right:10px;margin:10px 0px 0px 0px;}
 
 .media .img-users{margin:0 20px 15px 0 !important;width:60px;height:60px;}
@@ -148,8 +152,29 @@ footer ul li{list-style:none}
 #map-canvas img{max-width: none;}
 
 /********************** 5.3 Speakers ************************************/
-
-ul.speakers-list{list-style-type: none;width:100%;}
-.speakers-list li{line-height:18px;display:block;position:relative;text-align: center;margin:10px 0px;min-height:130px;}
-.speakers-list img{max-width: 60px;max-height: 60px;margin:5px 0px;border-radius: 1px;}
+.speakers-list{position: relative;}
+ul.speakers-list{list-style-type: none;}
+.speakers-list li{height:150px;margin-right:5% !important;margin-bottom: 50px !important;width:18%;float:left;line-height:18px;display:block;position:relative;text-align: center;margin:10px 0px;min-height:130px;}
+.speakers-list img{position: relative;width: 150px;height: 90%;margin:5px 0px;border-radius: 1px;}
 .speakers-list a:hover{text-decoration: none;color:#ffd34a;}
+
+.speakers-header{margin-top:20px;}
+
+/********************** 5.4 Sponsors ************************************/
+
+.sponsors-desc{margin-bottom:35px;}
+.img-sponsors{max-height:300px; max-width: 200px; margin:0px 20px 0px 0px;}
+
+/********************** 5.5 Meeting's ************************************/
+
+/*.meeting-list{background: url(../img/circle.png) no-repeat bottom right;background-position: 93% 0%; 
+				-webkit-transition:linear .3s all;
+	-moz-transition:linear .3s all;
+	-o-transition:linear .3s all;
+	-ms-transition:linear .3s all;
+	transition:linear .3s all;}
+.meeting-list:hover{background-position: 93% 20px; -webkit-transition:linear .3s all;
+	-moz-transition:linear .3s all;
+	-o-transition:linear .3s all;
+	-ms-transition:linear .3s all;
+	transition:linear .3s all; }*/

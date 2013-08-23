@@ -66,12 +66,22 @@
         <div class="span10 offset2 margin-top-normal">
             <h3 class="span10 text-sponsors text-left">Sponsorzy:</h3>
             <div class="sponsors">
-                <table>
+                <ul class="visible-phone">
+                    {% for sponsor in upcoming_meetup.sponsors.all %}
+                    <li>
+                        <a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <table class="hidden-phone">   
+                    <tr>
                         {% for sponsor in upcoming_meetup.sponsors.all %}
                         <td class="span6">
-                            <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
-                            {% endfor %}
+                            <a href="{{ sponsor.website }}" target="_blank"><img src="{{   sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                            </a>
+                        {% endfor %}
                         </td>
+                    </tr>
                 </table>
             </div>
         </div>

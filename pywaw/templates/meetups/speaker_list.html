@@ -28,10 +28,13 @@
 </ul>
 <p><strong>Prezentacje reklamujące komercyjne produkty</strong> nie są wpisywane do agendy. Wygłaszane są po głównych prezentacjach i krótkiej przerwie.</p>
 <p>Po prezentacji prosimy przesłać na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> slajdy oraz inne materiały pokazywane podczas wystąpienia. W miarę możliwości, umieścimy wszystko na podstronie spotkania.</p>
-<h2 class="margin-top-normal">Nasi dotychczasowi prelegenci</h2>
-<ul class="speakers-list">
+<h2 class="speakers-header">Nasi dotychczasowi prelegenci</h2>
+<div class="row-fluid">
+
+<ul class="speakers-list span12">
 {% for speaker in object_list %}
-    <li class="span2"><img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}"><br>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}</li>
+    <li><img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}"><br>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}</li>
 {% endfor %}
 </ul>
+</div>
 {% endblock %}
