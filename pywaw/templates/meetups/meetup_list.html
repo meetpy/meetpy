@@ -7,10 +7,14 @@
 <div class="margin-bottom-large meeting-list">
     <div class="row">
         <div class="span10 list-caption">
-            <h2 class="text-number">{{ meetup }}</h2>
+            <a href="{% url 'meetups:meetup_detail' number=meetup.number %}"><h2 class="text-number">{{ meetup }}</h2></a>
                 <div class="pull-right"> 
-                    <div class="span2"><h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4></div>
-                    <div class="span2"><a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a></div>
+                    <div class="span2">
+                        <h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4>
+                    </div>
+                    <div class="span2">
+                        <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a>
+                    </div>
                 </div>
 
         </div>

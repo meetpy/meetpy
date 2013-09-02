@@ -29,11 +29,17 @@
 <p><strong>Prezentacje reklamujące komercyjne produkty</strong> nie są wpisywane do agendy. Wygłaszane są po głównych prezentacjach i krótkiej przerwie.</p>
 <p>Po prezentacji prosimy przesłać na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> slajdy oraz inne materiały pokazywane podczas wystąpienia. W miarę możliwości, umieścimy wszystko na podstronie spotkania.</p>
 <h2 class="speakers-header">Nasi dotychczasowi prelegenci</h2>
-<div class="row-fluid">
-
-<ul class="speakers-list span12">
-{% for speaker in object_list %}
-    <li><img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}"><br>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}</li>
+<div class="row">
+    {% for speaker in object_list %}
+        {% if forloop.counter0|divisibleby:"5" %}
+            </ul>
+        </div>
+        <div class="row">
+            <ul class="speakers-list span10">
+        {% endif %}
+    <li class="span2">
+        <div class="speaker-img-wrapper"><a href="{{ speaker.website }}" target="_blank"><img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}"></a></div>
+        <br>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}</li>
 {% endfor %}
 </ul>
 </div>

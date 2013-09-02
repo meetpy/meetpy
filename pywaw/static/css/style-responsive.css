@@ -11,7 +11,9 @@
 	
 	.menu-top li{margin:0 20px 0 0}
 	.menu-top li a, .menu-top li a:visited{padding-right:0;font-size:14px}
-	.speakers-list li{width:25%;}
+	.speakers-list li{margin-right: 25px;width:17%;}
+	.speaker-img-wrapper{max-height: 95px;}
+	.speakers-list img{height:95px;}
 	h1,h2{font-size:28px;margin-bottom:20px}
 	h5{font-size:14px;margin-bottom:3px}
 	p{font-size:12px;line-height:20px}
@@ -93,7 +95,6 @@
 	footer .powered-mobile{display:block;background:#000;margin-top:15px}
 	footer .powered-mobile p{color:#fff;margin:0;padding:5px 1.5%;font-size:12px}
 	footer .powered-mobile a{color:#fff}
-	
 	.statistics, .stack{width:97%;margin-left:1.5%;margin-right:1.5%}
 }
 
@@ -104,7 +105,7 @@
 	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 8px;font-size:13px}
 	.date-small{line-height:28px}
 	.more{width:auto}
-	.speakers-list li{width:30.333;}
+	.speakers-list li{width:100%;}
 	.speakers-list img{max-width:100px; max-height:100px;}
 	.map{width:100%}
 	

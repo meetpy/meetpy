@@ -131,10 +131,12 @@ footer ul li{list-style:none}
 /********************** 5. PAGES ************************************/
 /********************** 5.1 Home ************************************/
 
-.sponsors{margin-top:50px; line-height: 110px;}
-.sponsors td {margin: 20px 0px;text-align: center;position: relative;}
+.sponsors{margin:4px 0px;}
+.sponsors ul {margin:15px 0 0 15px;}
+.sponsors ul li{float:left;list-style-type: none;border:1px solid #eee;}
+.sponsors ul li img{display:block;margin: 0 auto;max-width:200px;max-height: 50px;padding: 10px;}
 .sponsors img{max-height:150px;width:85%;vertical-align: middle !important;}
-.text-sponsors{line-height:27px;margin-right:10px;margin:10px 0px 0px 0px;}
+.text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 15px;font-size:14px;line-height:27px;}
 
 .media .img-users{margin:0 20px 15px 0 !important;width:60px;height:60px;}
 .img-user{margin:0 20px 15px 0 !important;}
@@ -152,13 +154,13 @@ footer ul li{list-style:none}
 #map-canvas img{max-width: none;}
 
 /********************** 5.3 Speakers ************************************/
-.speakers-list{position: relative;}
 ul.speakers-list{list-style-type: none;}
-.speakers-list li{height:150px;margin-right:5% !important;margin-bottom: 50px !important;width:18%;float:left;line-height:18px;display:block;position:relative;text-align: center;margin:10px 0px;min-height:130px;}
-.speakers-list img{position: relative;width: 150px;height: 90%;margin:5px 0px;border-radius: 1px;}
+.speakers-list li{margin-right:15px !important;height:auto;margin-bottom: 20px !important;float:left;line-height:18px;display:block;position:relative;text-align: center;margin:10px 0px;min-height:130px;}
+.speaker-img-wrapper {display:block;height:140px;}
+.speakers-list img{margin-bottom: 10px;position: relative;width:140px;height:140px;border-radius: 1px;}
 .speakers-list a:hover{text-decoration: none;color:#ffd34a;}
 
-.speakers-header{margin-top:20px;}
+.speakers-header, .sponsors-header{margin:50px 0px 30px 0px;font-size: 36px;line-height: 26px;}
 
 /********************** 5.4 Sponsors ************************************/
 
@@ -177,4 +179,13 @@ ul.speakers-list{list-style-type: none;}
 	-moz-transition:linear .3s all;
 	-o-transition:linear .3s all;
 	-ms-transition:linear .3s all;
-	transition:linear .3s all; }*/
+	transition:linear .3s all;}*/
+
+.meeting-list h2:hover {
+	opacity:0.7;
+	-webkit-transition:linear .3s all;
+	-moz-transition:linear .3s all;
+	-o-transition:linear .3s all;
+	-ms-transition:linear .3s all;
+	transition:linear .3s all;
+	}
