@@ -12,12 +12,7 @@ h3{font-size:24px;line-height:24px;margin-bottom:10px}
 h4{font-weight:700;font-size:20px;line-height:18px;margin-bottom:10px}
 h5{font-weight:700;font-size:15px;line-height:16px;margin-bottom:5px}
 p{font-size:14px;line-height:24px;font-weight:400;font-family:'Merriweather Sans'}
-a, a:visited{color:#4790c3;text-decoration:none;
-			-webkit-transition:ease .3s all;
-			-moz-transition:ease .3s all;
-			-o-transition:ease .3s all;
-			-ms-transition:ease .3s all;
-			transition:ease .3s all;}
+a, a:visited{color:#4790c3;text-decoration:none;}
 a:hover, a:active{color:#4790c3;text-decoration:underline;}
 strong{color:#4d4d4d}
 
