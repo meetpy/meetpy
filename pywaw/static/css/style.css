@@ -18,12 +18,7 @@ a, a:visited{color:#4790c3;text-decoration:none;
 			-o-transition:ease .3s all;
 			-ms-transition:ease .3s all;
 			transition:ease .3s all;}
-a:hover, a:active{color:#4790c3;text-decoration:underline;
-			-webkit-transition:ease .3s all;
-			-moz-transition:ease .3s all;
-			-o-transition:ease .3s all;
-			-ms-transition:ease .3s all;
-			transition:ease .3s all;}
+a:hover, a:active{color:#4790c3;text-decoration:underline;}
 strong{color:#4d4d4d}
 
 
@@ -57,7 +52,7 @@ strong{color:#4d4d4d}
 
 .box-home{margin-top:30px;padding:50px 0;background:#ececee url("../img/bg1.jpg") center center no-repeat;
 			-webkit-background-size: cover;
-  			-moz-background-size: cover; 
+  			-moz-background-size: cover;
   			-o-background-sizez: cover;
   			background-size: cover;
   			background-position: 0px -100px;}
@@ -160,32 +155,11 @@ ul.speakers-list{list-style-type: none;}
 .speakers-list img{margin-bottom: 10px;position: relative;width:140px;height:140px;border-radius: 1px;}
 .speakers-list a:hover{text-decoration: none;color:#ffd34a;}
 
-.speakers-header, .sponsors-header{margin:50px 0px 30px 0px;font-size: 36px;line-height: 26px;}
-
 /********************** 5.4 Sponsors ************************************/
 
 .sponsors-desc{margin-bottom:35px;}
-.img-sponsors{max-height:300px; max-width: 200px; margin:0px 20px 0px 0px;}
+.img-sponsors{max-height:300px; max-width: 200px; margin:0px 20px 20px 0px;}
 
 /********************** 5.5 Meeting's ************************************/
 
-/*.meeting-list{background: url(../img/circle.png) no-repeat bottom right;background-position: 93% 0%; 
-				-webkit-transition:linear .3s all;
-	-moz-transition:linear .3s all;
-	-o-transition:linear .3s all;
-	-ms-transition:linear .3s all;
-	transition:linear .3s all;}
-.meeting-list:hover{background-position: 93% 20px; -webkit-transition:linear .3s all;
-	-moz-transition:linear .3s all;
-	-o-transition:linear .3s all;
-	-ms-transition:linear .3s all;
-	transition:linear .3s all;}*/
-
-.meeting-list h2:hover {
-	opacity:0.7;
-	-webkit-transition:linear .3s all;
-	-moz-transition:linear .3s all;
-	-o-transition:linear .3s all;
-	-ms-transition:linear .3s all;
-	transition:linear .3s all;
-	}
+.meeting-list h2:hover {opacity:0.7;}

@@ -1,9 +1,20 @@
 {% extends "base_content.html" %}
 
-{% block title %}Dla sponsorów{% endblock %}
+{% block title %}Sponsorzy{% endblock %}
 
 {% block subcontent %}
-<h1>Dla sponsorów</h1>
+<h1>Nasi dotychczasowi sponsorzy</h1>
+{% for sponsor in object_list %}
+    <div class="row-fluid sponsors-desc">
+        <div class="span10">
+            <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+            <p>{{ sponsor.description }}</p>
+            <p></p>
+            <a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a>
+        </div>
+    </div>
+{% endfor %}
+<h2>Dla przyszłych sponsorów</h2>
 <p>PyWaw jest organizacją non-profit i jako taki nie posiada własnych funduszy. Możliwe jest jednak wsparcie naszej inicjatywy przez firmy, instytucje lub prywatne osoby.</p>
 <p>Pieniądze pozyskane w ten sposób mogą zostać przeznaczone na jeden z poniższych celów (w zależności od potrzeb):</p>
 <ul>
@@ -26,15 +37,4 @@
 <p>Wszystkie powyższe profity zostaną przedyskutowane indywidualnie z każdym sponsorem w zależności od zaproponowanej oferty sponsorskiej.</p>
 <p>Zakupione przez sponsora towary lub usługi muszą być przez niego bezpośrednio opłacone - PyWaw nie dysponuje własnym kontem bankowym. Możliwy jest sponsoring jednego lub wielu spotkań PyWaw. W zależności od zapotrzebowania comiesięczne spotkanie/inne wydarzenie może być sponsorowane przez wielu sponsorów.</p>
 <p>Wszelkie pytania w sprawie sponsorowania spotkań PyWaw należy kierować na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a>.</p>
-<h2 class="sponsors-header">Nasi dotychczasowi sponsorzy</h2>
-{% for sponsor in object_list %}
-    <div class="row-fluid sponsors-desc">
-        <div class="span10">
-            <a href="{{ sponsor.website }}" target="_blank"><img class="pull-left img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
-            <p>{{ sponsor.description }}</p>
-            <p></p>
-            <a href="{{ sponsor.website }}" target="_blank">Strona sponsora: {{ sponsor.website }}</a>
-        </div>
-    </div>
-{% endfor %}
 {% endblock %}
