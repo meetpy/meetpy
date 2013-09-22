@@ -16,7 +16,6 @@ class MeetupDetailView(generic.DetailView):
 
 
 class MeetupDateRedirectView(generic.RedirectView):
-    permanent = False
 
     def get_redirect_url(self, **kwargs):
         date_lookup = {'date__' + k: v for k, v in kwargs.items()}
