@@ -104,7 +104,7 @@
             <div class="row">
                 {% for sponsor in object.sponsors.all %}
                 <div class="span10 sponsors-desc">
-                    <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors"src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                    <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                     <p>{{ sponsor.description }}</p>
                     <p><a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a></p>
                 </div>
