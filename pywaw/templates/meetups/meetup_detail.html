@@ -75,22 +75,18 @@
             {% endfor %}
         </div>
     </div>
-    {% if object.photos.exists %}
+    {% if object.external_links.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
-            <img src="{% static 'img/gallery.jpg' %}" alt="Galeria">
+            <img src="{% static 'img/gallery.jpg' %}" alt="Linki">
         </div>
-        <div class="span10 gallery">
-            <h2>Galeria</h2>
-            <div class="imageRow">
-                <div id="gallery" class="set row" data-toggle="modal-gallery" data-target="#modal-gallery">
-                    {% for photo in object.photos.all %}
-                    <div class="span2">
-                        <a href="{{ photo.image.url }}" data-gallery="gallery" title="Zdjęcie {{ forloop.counter }}"><img src="{{ photo.image.url }}" alt="Zdjęcie {{ forloop.counter }}"></a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+        <div class="span10">
+            <h2>Linki</h2>
+            <ul>
+                {% for external_link in object.external_links.all %}
+                <li><a href="{{ external_link.url }}" target="_blank" class="{{ external_link.type }}">{{ external_link.url }}</a> - {{ external_link.description }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     {% endif %}

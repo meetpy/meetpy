@@ -73,11 +73,6 @@ ul li{line-height:24px}
 .menu-top li a.active{color: #4d4d4d;}
 
 /********************** 3. COMPONENTS *******************************/
-/********************** 3.1 Lightbox ******************************/
-
-.gallery .span2 img{border:3px solid #ececee;margin-bottom:20px;display:block;min-height:50px;text-align:center}
-.modal-gallery .modal-image:before, .modal-gallery .modal-image:after{font-size:48px !important;line-height:34px !important}
-
 
 /********************** 4. STRUCTURE ********************************/
 /********************** 4.1 Header **********************************/

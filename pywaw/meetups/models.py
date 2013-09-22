@@ -109,6 +109,14 @@ class Talk(models.Model):
         return '{} ({})'.format(self.title, self.meetup)
 
 
-class Photo(models.Model):
-    meetup = models.ForeignKey(Meetup, related_name='photos')
-    image = models.ImageField(upload_to=slugify_upload_to(settings.MEETUP_PHOTOS_DIR, ['meetup', 'id']))
+class ExternalLink(models.Model):
+    EXTERNAL_LINK_TYPES = (
+        ('photos', 'Photos'),
+        ('article', 'Article'),
+        ('other', 'Other'),
+    )
+
+    meetup = models.ForeignKey(Meetup, related_name='external_links')
+    url = models.URLField()
+    type = models.CharField(max_length=10, choices=EXTERNAL_LINK_TYPES)
+    description = models.TextField(blank=True)
