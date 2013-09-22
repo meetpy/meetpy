@@ -70,7 +70,7 @@ ul li{line-height:24px}
 .menu-top li{float:left;list-style:none;margin:0 40px 0 0;padding:0}
 .menu-top li a, .menu-top li a:visited{font-weight:700;font-size:15px;font-family:'Merriweather Sans';line-height:30px;padding-right:10px;display:block}
 .menu-top li a:hover, .menu-top li a:active, .menu-top li.active a{color:#4d4d4d;text-decoration:none}
-
+.menu-top li a.active{color: #4d4d4d;}
 
 /********************** 3. COMPONENTS *******************************/
 /********************** 3.1 Lightbox ******************************/
@@ -111,6 +111,7 @@ footer .line-orange{margin-top:50px}
 footer h5{color:#ffd34a;margin-top:50px}
 footer ul{margin:10px 0 0 0;padding:0}
 footer ul li{list-style:none}
+footer div .without-header{margin-top:66px;}
 
 .stack{margin-left:40px}
 .statistics h5, .stack h5{color:#c9c9c9;line-height:20px;margin-top:0;margin-right:20px}

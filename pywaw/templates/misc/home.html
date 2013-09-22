@@ -12,7 +12,7 @@
             <div class="line-orange"></div>
         </div>
         <div class="span10">
-            <h1>Następne spotkanie</h1>
+            <h1><a href="{{ upcoming_meetup.get_absolute_url }}">{{ upcoming_meetup }}</a></h1>
         </div>
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
                         <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}&amp;sensor=false" class="map" alt="Mapa">
                     </a>
                 </div>
-                <a href="{% url 'meetups:meetup_detail' number=upcoming_meetup.number %}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
+                <a href="{{ upcoming_meetup.get_absolute_url }}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
             </div>
         </div>
         <div class="span5 box-users">

@@ -7,8 +7,8 @@
 <div class="margin-bottom-large meeting-list">
     <div class="row">
         <div class="span10 list-caption">
-            <a href="{% url 'meetups:meetup_detail' number=meetup.number %}"><h2 class="text-number">{{ meetup }}</h2></a>
-                <div class="pull-right"> 
+            <h2 class="text-number"><a href="{% url 'meetups:meetup_detail' number=meetup.number %}">{{ meetup }}</a></h2>
+                <div class="pull-right">
                     <div class="span2">
                         <h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4>
                     </div>
