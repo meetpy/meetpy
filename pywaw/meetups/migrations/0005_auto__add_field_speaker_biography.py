@@ -8,23 +8,25 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding field 'Speaker.biography'
+        db.add_column('meetups_speaker', 'biography',
+                      self.gf('django.db.models.fields.TextField')(default='', blank=True),
+                      keep_default=False)
 
-        # Changing field 'Talk.slides_file'
-        db.alter_column('meetups_talk', 'slides_file', self.gf('django.db.models.fields.files.FileField')(max_length=100))
 
     def backwards(self, orm):
+        # Deleting field 'Speaker.biography'
+        db.delete_column('meetups_speaker', 'biography')
 
-        # Changing field 'Talk.slides_file'
-        db.alter_column('meetups_talk', 'slides_file', self.gf('django.db.models.fields.files.FileField')(max_length=500))
 
     models = {
         'meetups.meetup': {
-            'Meta': {'ordering': "['-date']", 'object_name': 'Meetup'},
+            'Meta': {'object_name': 'Meetup', 'ordering': "['-date']"},
             'date': ('django.db.models.fields.DateTimeField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_ready': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'number': ('django.db.models.fields.PositiveIntegerField', [], {'unique': 'True'}),
-            'sponsors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['meetups.Sponsor']", 'related_name': "'sponsored_meetups'", 'blank': 'True'}),
+            'sponsors': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['meetups.Sponsor']", 'symmetrical': 'False', 'related_name': "'sponsored_meetups'", 'blank': 'True'}),
             'venue': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'to': "orm['meetups.Venue']", 'related_name': "'meetups'", 'blank': 'True'})
         },
         'meetups.photo': {
@@ -34,7 +36,8 @@ class Migration(SchemaMigration):
             'meetup': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['meetups.Meetup']", 'related_name': "'photos'"})
         },
         'meetups.speaker': {
-            'Meta': {'ordering': "['first_name', 'last_name']", 'object_name': 'Speaker'},
+            'Meta': {'object_name': 'Speaker', 'ordering': "['first_name', 'last_name']"},
+            'biography': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -44,7 +47,7 @@ class Migration(SchemaMigration):
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
         },
         'meetups.sponsor': {
-            'Meta': {'ordering': "['name']", 'object_name': 'Sponsor'},
+            'Meta': {'object_name': 'Sponsor', 'ordering': "['name']"},
             'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
@@ -52,14 +55,14 @@ class Migration(SchemaMigration):
             'website': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         },
         'meetups.talk': {
-            'Meta': {'ordering': "['order']", 'object_name': 'Talk'},
+            'Meta': {'object_name': 'Talk', 'ordering': "['order']"},
             'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'meetup': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['meetups.Meetup']", 'related_name': "'talks'"}),
             'order': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'slides_file': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'blank': 'True'}),
+            'slides_file': ('django.db.models.fields.files.FileField', [], {'max_length': '500', 'blank': 'True'}),
             'slides_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-            'speakers': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['meetups.Speaker']", 'related_name': "'talks'"}),
+            'speakers': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['meetups.Speaker']", 'related_name': "'talks'", 'symmetrical': 'False'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '1000'}),
             'video_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
         },
