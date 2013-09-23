@@ -3,6 +3,7 @@
 {% block title %}Spotkania{% endblock %}
 
 {% block subcontent %}
+<h1>Spotkania</h1>
 {% for meetup in object_list %}
 <div class="margin-bottom-large meeting-list">
     <div class="row">
@@ -16,7 +17,6 @@
                         <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a>
                     </div>
                 </div>
-
         </div>
     </div>
     <ul class="unstyled">

@@ -148,8 +148,7 @@ ul.speakers-list{list-style-type: none;}
 
 /********************** 5.4 Sponsors ************************************/
 
-.sponsors-desc{margin-bottom:35px;}
-.img-sponsors{max-height:300px; max-width: 200px; margin:0px 20px 20px 0px;}
+.img-sponsors{max-height:300px; max-width: 200px; margin-bottom:10px;}
 
 /********************** 5.5 Meeting's ************************************/
 

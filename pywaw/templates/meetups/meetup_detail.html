@@ -45,19 +45,18 @@
             <h4 class="date"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
         </div>
     </div>
-    <div class="row">
-        <div class="span10 offset2 margin-top-normal">
+    <div class="row margin-top-big">
+        <div class="span2 img-tip">
+            <img src="{% static 'img/links.png' %}" alt="Agenda">
+        </div>
+        <div class="span10">
+            <h2>Agenda</h2>
             {% for talk in meetup.talks.all %}
-            <div class="media">
-            	<div class="pull-left img-users">
-	                {% for speaker in talk.speakers.all %}
-	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
-	                {% endfor %}
-                </div>
+            <div class="media" id="talk-{{ talk.id }}">
                 <div class="media-body">
                     <h5>
                         {% for speaker in talk.speakers.all %}
-                        {% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}
+                        <a href="#speaker-{{ speaker.id }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </h5>
                     <h3>
@@ -75,10 +74,33 @@
             {% endfor %}
         </div>
     </div>
+    <div class="row margin-top-big">
+        <div class="span2 img-tip">
+            <img src="{% static 'img/links.png' %}" alt="Prelegenci">
+        </div>
+        <div class="span10">
+            <h2>Prelegenci</h2>
+            {% for talk in meetup.talks.all %}
+            {% for speaker in talk.speakers.all %}
+            <div class="media" id="speaker-{{ speaker.id }}">
+            	<div class="pull-left img-users">
+	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
+                </div>
+                <div class="media-body">
+                    <h3>
+                        {{ speaker }}{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta"></a>{% endif %}
+                    </h3>
+                    <p>{{ speaker.biography }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
     {% if object.external_links.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">
-            <img src="{% static 'img/gallery.jpg' %}" alt="Linki">
+            <img src="{% static 'img/links.png' %}" alt="Linki">
         </div>
         <div class="span10">
             <h2>Linki</h2>
@@ -97,15 +119,14 @@
         </div>
         <div class="span10">
             <h2>Sponsorzy</h2>
-            <div class="row">
-                {% for sponsor in object.sponsors.all %}
-                <div class="span10 sponsors-desc">
+            {% for sponsor in object.sponsors.all %}
+            <div class="media">
+                <div class="media-body">
                     <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                     <p>{{ sponsor.description }}</p>
-                    <p><a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a></p>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
     {% endif %}

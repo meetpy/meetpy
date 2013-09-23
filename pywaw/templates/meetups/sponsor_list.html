@@ -3,13 +3,13 @@
 {% block title %}Sponsorzy{% endblock %}
 
 {% block subcontent %}
+<h1>Sponsorzy</h1>
 {% for sponsor in object_list %}
     <div class="row-fluid sponsors-desc">
-        <div class="span10">
+        <div class="span12">
             <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
             <p>{{ sponsor.description }}</p>
             <p></p>
-            <a href="{{ sponsor.website }}" target="_blank">{{ sponsor.website }}</a>
         </div>
     </div>
 {% endfor %}
