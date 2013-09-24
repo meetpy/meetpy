@@ -82,11 +82,12 @@ header{margin:10px 0 40px}
 #top{margin:20px 0 0 0}
 
 .top-links{float:right}
-.facebook, .twitter, .youtube, .rss, .dropdown{width:30px;height:30px;display:block;float:left}
+.facebook, .twitter, .youtube, .rss, .dropdown, .mail{width:30px;height:30px;display:block;float:left}
 .facebook{background:url("../img/icon-facebook.jpg") 0 0 no-repeat}
 .twitter{background:url("../img/icon-twitter.jpg") 0 0 no-repeat}
 .youtube{background:url("../img/icon-youtube.jpg") 0 0 no-repeat}
 .rss{background:url("../img/icon-rss.jpg") 0 0 no-repeat}
+.mail{background:url("../img/icon-mail.png") 0 0 no-repeat}
 
 .pull-right .dropdown-menu{min-width:120px}
 .pull-right .dropdown-menu:after{position:absolute;top:-6px;left:auto;right:8px;display:inline-block;border-right:6px solid transparent;border-bottom:6px solid #ffffff;border-left:6px solid transparent;content:''}

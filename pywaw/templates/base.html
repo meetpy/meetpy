@@ -41,7 +41,7 @@
 						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="PyWaw" class="logo"></a>
 					</div>
 					<div id="top">
-						<div class="span8">
+						<div class="span6">
 							<ul class="menu-top">
                                 {% url 'meetups:meetup_list' as meetup_list_url %}
                                 {% url 'meetups:speaker_list' as speaker_list_url %}
@@ -51,7 +51,7 @@
                                 <li><a href="{{ sponsor_list_url }}"{% if request.path == sponsor_list_url %} class="active"{% endif %}>Sponsorzy</a></li>
 							</ul>
 						</div>
-						<div class="span2">
+						<div class="span4">
 							<div class="top-links">
 								<a href="http://facebook.com/PyWaw" class="facebook" target="_blank"></a>
 								<a href="http://twitter.com/PyWaw" class="twitter" target="_blank"></a>
@@ -63,6 +63,7 @@
 			                            <li role="presentation"><a href="{% url 'meetups:atom_feed' %}" tabindex="-1" role="menuitem" target="_blank">Atom</a></li>
 			                        </ul>
 			                    </div>
+								<a href="mailto:info@pywaw.org" class="mail" target="_blank"></a>
 							</div>
 						</div>
 					</div>
