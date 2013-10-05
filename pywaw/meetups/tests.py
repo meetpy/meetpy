@@ -48,7 +48,7 @@ class MeetupDateRedirectViewTest(TestCase):
 
         response = self.client.get(reverse('meetups:date_redirect', kwargs=data))
 
-        self.assertRedirects(response, meetup.get_absolute_url())
+        self.assertRedirects(response, meetup.get_absolute_url(), status_code=301)
 
     def test_not_found(self):
         data = {
