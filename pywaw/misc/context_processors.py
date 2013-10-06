@@ -1,5 +1,6 @@
 import django
 import platform
+from django.contrib.sites.models import get_current_site
 
 
 def system_info(request):
@@ -8,4 +9,10 @@ def system_info(request):
             'django': django.get_version(),
             'python': platform.python_version(),
         }
+    }
+
+
+def current_site(request):
+    return {
+        'site': get_current_site(request),
     }

@@ -4,6 +4,8 @@
 
 {% block title %}{{ meetup }} - {{ meetup.date|date:"d.m.Y" }}{% endblock %}
 
+{% block og_title %}{{ meetup }} - {{ meetup.date|date:"d.m.Y" }}{% endblock %}
+
 {% block css %}
 <link href="{% static 'css/bootstrap-image-gallery.css' %}" rel="stylesheet">
 {% endblock %}
