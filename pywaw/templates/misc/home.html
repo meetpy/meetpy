@@ -46,10 +46,10 @@
 	                </div>
                     {% endif %}
                 </div>
-                <div class="span4">
+                <div class="span4 link-grey">
                     <h5>
                     {% for speaker in talk.speakers.all %}
-                        <a href="{{ upcoming_meetup.get_absolute_url }}#speaker-{{ speaker.id }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+                        <a class="link-grey" href="{{ upcoming_meetup.get_absolute_url }}#speaker-{{ speaker.id }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     </h5>
                     <p class="text-smaller"><a href="{{ upcoming_meetup.get_absolute_url }}#talk-{{ talk.id }}">{{ talk.title }}</a></p>

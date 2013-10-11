@@ -24,7 +24,7 @@
     <ul class="unstyled">
         {% for talk in meetup.talks.all %}
         <li>
-            {% for speaker in talk.speakers.all %}<strong>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: {{ talk.title }}
+            {% for speaker in talk.speakers.all %}<strong><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker.id }}" target="_blank">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.id }}">{{ talk.title }}</a>
         </li>
         {% endfor %}
     </ul>

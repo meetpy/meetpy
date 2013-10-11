@@ -26,13 +26,17 @@ strong{color:#4d4d4d}
 .margin-top-big{margin-top:30px}
 .margin-bottom-large{margin-bottom:40px}
 .margin-left-large{margin-left:40px}
+.margin-bottom-30{margin-bottom: 30px;}
+.margin-bottom-40{margin-bottom: 40px;}
+
+.link-grey, .link-grey a{color: #4d4d4d;}
 
 .date, .date-small{background:#4d4d4d;color:#fff;min-height:30px;line-height:30px;display:block;margin:0;padding:0 8px;-moz-box-sizing:border-box;box-sizing:border-box}
 .date-small{text-align:center;line-height:24px}
 
 .location{margin:10px 0}
 
-.button, .button:visited{font-size:16px;font-weight:700;line-height:30px;font-family:'Merriweather Sans';min-height:30px;background:#4790c3;color:#fff}
+.button, .button:visited{font-size:16px;font-weight:700;line-height:30px;font-family:'Merriweather Sans';min-height:30px;background:#4790c3;color:#fff !important;}
 .button:hover, .button:active{background:#4790c3;color:#fff;text-decoration:none}
 .button-block{display:block;text-align:center}
 
@@ -102,7 +106,7 @@ header{margin:10px 0 40px}
 
 /********************** 4.3 Footer **********************************/
 
-footer{clear:both;height:300px;background:#2e2e2e}
+footer{clear:both;height:330px;background:#2e2e2e}
 footer .line-orange{margin-top:50px}
 footer h5{color:#ffd34a;margin-top:50px}
 footer ul{margin:10px 0 0 0;padding:0}
@@ -142,10 +146,12 @@ footer div .without-header{margin-top:66px;}
 
 /********************** 5.3 Speakers ************************************/
 ul.speakers-list{list-style-type: none;}
-.speakers-list li{margin-right:15px !important;height:auto;margin-bottom: 20px !important;float:left;line-height:18px;display:block;position:relative;text-align: center;margin:10px 0px;min-height:130px;}
+.speakers-list li{margin-right:15px !important;height:auto;margin-bottom: 20px !important;float:left;line-height:18px;display:block;position:relative;text-align: center;margin:0px 0px 10px 0px;min-height:130px;}
 .speaker-img-wrapper {display:block;height:140px;}
 .speakers-list img{margin-bottom: 10px;position: relative;width:140px;height:140px;border-radius: 1px;}
 .speakers-list a:hover{text-decoration: none;color:#ffd34a;}
+
+.speaker-link {margin-top: -5px;}
 
 /********************** 5.4 Sponsors ************************************/
 
@@ -153,4 +159,6 @@ ul.speakers-list{list-style-type: none;}
 
 /********************** 5.5 Meeting's ************************************/
 
-.meeting-list h2:hover {opacity:0.7;}
+.meeting-list h2.text-number{margin-bottom: 10px;font-size: 32px;}
+.meeting-list a{color:#4d4d4d;}
+.meeting-list h2 a{color: #4d4d4d;}

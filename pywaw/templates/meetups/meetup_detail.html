@@ -85,12 +85,12 @@
             {% for talk in meetup.talks.all %}
             {% for speaker in talk.speakers.all %}
             <div class="media" id="speaker-{{ speaker.id }}">
-            	<div class="pull-left img-users">
-	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
+            	<div class="pull-left img-users hidden-phone">
+	                <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
                 </div>
                 <div class="media-body">
                     <h3>
-                        {{ speaker }}{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta"></a>{% endif %}
+                        {{ speaker }}{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
                     </h3>
                     <p>{{ speaker.biography }}</p>
                 </div>
