@@ -9,24 +9,24 @@
 {% block subcontent %}
 <h1>Prelegenci</h1>
 <div class="row">
-
-    <ul class="speakers-list span10 margin-bottom-30">
-    {% for speaker in object_list %}
-        {% if forloop.counter0|divisibleby:"5" and forloop.counter0 != 0 %}
-            </ul>
-        </div>
-        <div class="row">
-            <ul class="speakers-list span10">
-        {% endif %}
-        <li class="span2">
-            <div class="speaker-img-wrapper">
-                <a href="{{ speaker.website }}" target="_blank">
-                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="{{ speaker }}">
-            </a>
-            </div>
-            <br>{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}
-        </li>
-    {% endfor %}
+    <div class="media speaker-list-2" id="speaker-{{ speaker.id }}">
+        <ul>
+            {% for speaker in object_list %}
+            <li>
+                <div class="pull-left img-users hidden-phone">
+                    <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
+                </div>
+                <div class="media-body">
+                    <h3>
+                     {{ speaker.first_name }} {{ speaker.last_name }}</h3><a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
+                    <p>{{ speaker.biography }}</p>
+                </div>
+                <div class="clearfix"></div>
+            </li>                    
+            {% endfor %}
+    
+        </ul>
+    </div>
     </ul>
     </div>
         <div class="margin-top-big margin-bottom-40">
