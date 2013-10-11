@@ -145,11 +145,8 @@ footer div .without-header{margin-top:66px;}
 #map-canvas img{max-width: none;}
 
 /********************** 5.3 Speakers ************************************/
-ul.speakers-list{list-style-type: none;}
-.speakers-list li{margin-right:15px !important;height:auto;margin-bottom: 20px !important;float:left;line-height:18px;display:block;position:relative;text-align: center;margin:0px 0px 10px 0px;min-height:130px;}
+
 .speaker-img-wrapper {display:block;height:140px;}
-.speakers-list img{margin-bottom: 10px;position: relative;width:140px;height:140px;border-radius: 1px;}
-.speakers-list a:hover{text-decoration: none;color:#ffd34a;}
 
 .speaker-list-2 h3{display: inline;margin-right: 10px;margin-bottom: 5px;}
 .speaker-list-2 li {margin-bottom: 15px;}
