@@ -120,7 +120,7 @@
             {% for sponsor in object.sponsors.all %}
             <div class="media">
                 <div class="media-body">
-                    <a href="{{ sponsor.website }}" target="_blank"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                    <a href="{{ sponsor.website }}" target="_blank" class="no-hover"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                     <p>{{ sponsor.description }}</p>
                 </div>
             </div>
