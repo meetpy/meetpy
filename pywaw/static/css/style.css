@@ -1,5 +1,3 @@
-/********************** AGENDA **********************************/
-
 /***
 1. BASE
 --- 1.1 Default Styles
@@ -10,15 +8,15 @@
 3. COMPONENTS
 4. STRUCTURE
 --- 4.1 Header
---- 4.2 Content
---- 4.3 Footer
+--- 4.2 Nav
+--- 4.3 Content
+--- 4.4 Footer
 5. PAGES
 --- 5.1 Home
 --- 5.2 Meetup
 --- 5.3 Speakers
 --- 5.4 Sponsors
 --- 5.5 Meeting's
-
 ***/
 
 /********************** 1. BASE **********************************/
@@ -28,13 +26,14 @@ html{height:100%}
 body{background:#fff;color:#828282;font-weight:400;font-size:14px;font-family:'Merriweather Sans', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;height:100%}
 h1,h2,h3,h4,h5,h6{color:#4d4d4d;font-weight:400;font-family:'Merriweather Sans';margin:0}
 
-h1, h2{font-size:36px;line-height:26px;margin-bottom:30px}
+h1{font-size:40px; margin-bottom:30px; margin-top:-3px}
+h2{font-size:30px; margin-bottom:20px; margin-top:-4px}
 h3{font-size:24px;line-height:24px;margin-bottom:10px}
 h4{font-weight:700;font-size:20px;line-height:18px;margin-bottom:10px}
 h5{font-weight:700;font-size:15px;line-height:16px;margin-bottom:5px}
 p{font-size:14px;line-height:24px;font-weight:400;font-family:'Merriweather Sans'}
-a, a:visited{color:#4790c3;text-decoration:none;}
-a:hover, a:active{color:#4790c3;text-decoration:underline;}
+a, a:visited{color:#4d4d4d;text-decoration:none;}
+a:hover, a:active{text-decoration:none; border-bottom:1px solid #ccc; color: #222}
 strong{color:#4d4d4d}
 
 
@@ -45,19 +44,18 @@ strong{color:#4d4d4d}
 .margin-top-small{margin-top:10px}
 .margin-top-normal{margin-top:20px}
 .margin-top-big{margin-top:30px}
+.margin-bottom-big{margin-bottom:30px}
 .margin-bottom-large{margin-bottom:40px}
 .margin-left-large{margin-left:40px}
 
-
 .link-grey, .link-grey a{color: #4d4d4d;}
-
 .date, .date-small{background:#4d4d4d;color:#fff;min-height:30px;line-height:30px;display:block;margin:0;padding:0 8px;-moz-box-sizing:border-box;box-sizing:border-box}
 .date-small{text-align:center;line-height:24px}
 
 .location{margin:10px 0;}
 
 .button, .button:visited{font-size:16px;font-weight:700;line-height:30px;font-family:'Merriweather Sans';min-height:30px;background:#4790c3;color:#fff !important;}
-.button:hover, .button:active{background:#4790c3;color:#fff;text-decoration:none}
+.button:hover, .button:active{background:#3680a2;color:#fff; border:0}
 .button-block{display:block;text-align:center;}
 
 .line-orange{background:#ffd34a;height:5px;width:80px;display:block}
@@ -82,17 +80,11 @@ strong{color:#4d4d4d}
 
 .text-smaller{line-height:18px}
 .text-number{margin:0 0 30px 0;float:left}
+header a:hover, a.no-hover:hover{border:0}
 
 /********************** 2.3 Lists ***********************************/
 
 ul li{line-height:24px}
-
-
-.menu-top{margin:0;padding:0}
-.menu-top li{float:left;list-style:none;margin:0 40px 0 0;padding:0}
-.menu-top li a, .menu-top li a:visited{font-weight:700;font-size:15px;font-family:'Merriweather Sans';line-height:30px;padding-right:10px;display:block}
-.menu-top li a:hover, .menu-top li a:active, .menu-top li.active a{color:#4d4d4d;text-decoration:none}
-.menu-top li a.active{color: #4d4d4d;}
 
 /********************** 3. COMPONENTS *******************************/
 
@@ -115,18 +107,26 @@ header{margin:10px 0 40px}
 .pull-right .dropdown-menu:after{position:absolute;top:-6px;left:auto;right:8px;display:inline-block;border-right:6px solid transparent;border-bottom:6px solid #ffffff;border-left:6px solid transparent;content:''}
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:active, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:hover > a:visited, .dropdown-submenu:focus > a, .dropdown-submenu:focus > a:visited{background:#4790C3}
 
+/********************** 4.2 Nav *********************************/
 
-/********************** 4.2 Content *********************************/
+.menu-top{margin:0;padding:0}
+.menu-top li{float:left;list-style:none;margin:0 40px 0 0;padding:0}
+.menu-top li a, .menu-top li a:visited{font-weight:700;color:#4790c3;font-size:15px;font-family:'Merriweather Sans';line-height:30px;padding-right:10px;display:block}
+.menu-top li a:hover, .menu-top li a:active, .menu-top li.active a{color:#4d4d4d;border:0}
+.menu-top li a.active{color: #4d4d4d;}
+
+/********************** 4.3 Content *********************************/
 
 #wrapper{min-height:100%;height:auto !important;height:100%;margin-bottom:-300px}
 #push{clear:both;height:300px}
 
 
-/********************** 4.3 Footer **********************************/
+/********************** 4.4 Footer **********************************/
 
 footer{clear:both;height:330px;background:#2e2e2e}
 footer .line-orange{margin-top:50px}
 footer h5{color:#ffd34a;margin-top:50px}
+footer a, footer a:visited, footer a:hover{color:#4790c3; border-color:#4790c3;}
 footer ul{margin:10px 0 0 0;padding:0}
 footer ul li{list-style:none}
 footer div .without-header{margin-top:66px;}
@@ -164,12 +164,10 @@ footer div .without-header{margin-top:66px;}
 /********************** 5.3 Speakers ************************************/
 
 .speaker-img-wrapper {display:block;height:140px;}
-
 .speaker-list h3{display: inline;margin-right: 10px;margin-bottom: 5px;}
 .speaker-list li {margin-bottom: 15px;}
 .speaker-list ul li .img-users img {width: 60px;height: 60px;}
 .speaker-list ul li:last-child{margin-bottom: 0;}
-
 .speaker-link {margin-top: -5px;}
 
 /********************** 5.4 Sponsors ************************************/
@@ -179,5 +177,3 @@ footer div .without-header{margin-top:66px;}
 /********************** 5.5 Meeting's ************************************/
 
 .meeting-list h2.text-number{margin-bottom: 10px;font-size: 32px;}
-.meeting-list a{color:#4d4d4d;}
-.meeting-list h2 a{color: #4d4d4d;}
