@@ -1,0 +1,57 @@
+{% extends "base_content.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Prelegenci{% endblock %}
+
+{% block og_title %}Prelegenci{% endblock %}
+
+{% block subcontent %}
+<h1>Prelegenci</h1>
+<div class="row">
+    <div class="media speaker-list" id="speaker-{{ speaker.id }}">
+        <ul>
+            {% for speaker in object_list %}
+            <li>
+                <div class="pull-left img-user-container hidden-phone">
+                    <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
+                </div>
+                <div class="media-body">
+                    <h3>
+                     {{ speaker.first_name }} {{ speaker.last_name }}</h3><a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
+                    <p>{{ speaker.biography }}</p>
+                </div>
+                <div class="clearfix"></div>
+            </li>                    
+            {% endfor %}
+    
+        </ul>
+    </div>
+    </ul>
+    </div>
+        <div class="margin-top-big margin-bottom-large">
+            <h2>Jak zostać prelegentem?</h2>
+            <p>W związku z szybkim rozwojem inicjatywy PyWaw oraz chęcią podtrzymania wysokiej jakości naszego wydarzenia (czyt. nie chcemy zawieść uczestników) postanowiliśmy stworzyć niniejszy <em>Poradnik prelegenta.</em> Jest to miejsce do którego powinni zajrzeć nasi prelegenci przed swoim wystąpieniem na spotkaniu PyWaw.</p>
+            <p>Każde spotkanie PyWaw posiada swój oddzielny wątek na grupie dyskusyjnej. Przyszli prelegenci zgłaszają tam swoje propozycje tematów prezentacji. Po zgłoszeniu swojej prelekcji prosimy przyszłych prelegentów o wysłanie na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> następujących informacji:</p>
+            
+            <ul>
+                <li>tytuł prezentacji,</li>
+                <li>opis prezentacji (3-4 zdania),</li>
+                <li>imię i nazwisko prelegenta,</li>
+                <li>adres swojej strony internetowej (jeżeli prelegent posiada takową),</li>
+                <li>wymagania sprzętowe (w szczególności czy prelegent potrzebuje laptopa lub dostępu do sieci, rzutnik dostępny jest zawsze),</li>
+                <li>numer kontaktowy (użyty wyłącznie w przypadku katastrofy).</li>
+            </ul>
+            <p>Każdy z prelegentów powinien pojawić się <strong>15 minut przed rozpoczęciem spotkania</strong>. Spowodowane jest to częstymi problemami w podłączaniu laptopa do rzutnika. Ten kilkunastominutowy bufor zmniejsza także prawdopodobieństwo spóźnienia się prelegenta na spotkanie. Nawet jeżeli wiesz, że twój laptop nie ma problemów z rzutnikiem, przyjdź wcześniej - zweryfikujemy to.</p>
+            <p><strong>Na każdą prezentację przeznaczone jest 18 minut</strong>. Niestety czas prezentacji jest dość mocno kontrolowany - po jego przekroczeniu prelegent będzie proszony o jak najszybsze zakończenie swojego wystąpienia. Na jednym spotkaniu PyWaw odbywają się maksimum 4 prezentacje.</p>
+            <p>Poniższe punkty są jedynie zaleceniami odnośnie treści prezentacji. Jeżeli nie wiesz jak przygotować swoją prezentację, polecamy je przeczytać:</p>
+            <ul>
+                <li>nie pokazuj zbyt dużej ilości kodu - krótka prezentacja ma jedynie zaciekawić słuchaczy danym tematem, zbyt dużo szczegółów może ich zanudzić,</li>
+                <li>przygotuj odpowiednią liczbę slajdów - 1 slajd / 1 minutę prezentacji to maksimum,</li>
+                <li>nie umieszczaj za dużo informacji na jednym slajdzie - slajdy z małą ilością tekstu lub samymi grafikami są najlepsze,</li>
+                <li>przed przygotowaniem prezentacji warto odpowiedzieć sobie na 3 pytania: kim będą słuchacze? jakie będą ich oczekiwania? jaki jest cel mojej prezentacji?</li>
+            </ul>
+            <p><strong>Prezentacje reklamujące komercyjne produkty</strong> nie są wpisywane do agendy. Wygłaszane są po głównych prezentacjach i krótkiej przerwie.</p>
+            <p>Po prezentacji prosimy przesłać na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> slajdy oraz inne materiały pokazywane podczas wystąpienia. W miarę możliwości, umieścimy wszystko na podstronie spotkania.</p>
+        </div>
+{% endblock %}

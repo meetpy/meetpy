@@ -1,0 +1,33 @@
+{% extends "base_content.html" %}
+
+{% block title %}Spotkania{% endblock %}
+
+{% block og_title %}Spotkania{% endblock %}
+
+{% block subcontent %}
+<h1>Spotkania</h1>
+{% for meetup in object_list %}
+<div class="margin-bottom-big meeting-list">
+    <div class="row">
+        <div class="span10 list-caption">
+            <h2 class="text-number"><a href="{% url 'meetups:meetup_detail' number=meetup.number %}">{{ meetup }}</a></h2>
+                <div class="pull-right">
+                    <div class="span2">
+                        <h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4>
+                    </div>
+                    <div class="span2">
+                        <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <ul class="unstyled">
+        {% for talk in meetup.talks.all %}
+        <li>
+            {% for speaker in talk.speakers.all %}<strong><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker.id }}" target="_blank">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.id }}">{{ talk.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+{% endblock %}
