@@ -45,10 +45,10 @@
 	p{font-size:13px;line-height:22px}
 	
 	.box-users .row:first-child{margin-top:20px}
-	.box-users .span1{width:60px;margin-right:10px;float:left}
+	.box-users .span1{width:60px;margin-right:10px;float:left;display:none;}
 	.box-users .span4{clear:right}
 	
-	.map{margin: 0 auto;width:70%}
+	.map{margin: 0 auto;width:100%}
 	.box-home{padding:15px 10px}
 	.img-user{display:none;}
 	.sponsors img{margin:10px 6px}
@@ -62,7 +62,7 @@
 	
 	.imageRow .span2{width:25%;float:left}
 	
-	.more{width:50%;margin:20px auto 0}
+	.more{width:100%;margin:20px auto 0}
 	
 	#wrapper{margin-bottom:0}
 	footer{padding:0 10px 15px;height:auto}
