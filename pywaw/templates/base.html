@@ -48,17 +48,19 @@
 						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="PyWaw" class="logo"></a>
 					</div>
 					<div id="top">
-						<div class="span6">
+						<div class="span7">
 							<ul class="menu-top">
                                 {% url 'meetups:meetup_list' as meetup_list_url %}
                                 {% url 'meetups:speaker_list' as speaker_list_url %}
                                 {% url 'meetups:sponsor_list' as sponsor_list_url %}
+                                {% url 'misc:home' as home_url %}
+                                <li><a href="{{ home_url }}"{% if request.path == home_url %} class="active"{% endif %}>Home</a></li>
 								<li><a href="{{ meetup_list_url }}"{% if request.path == meetup_list_url %} class="active"{% endif %}>Spotkania</a></li>
                                 <li><a href="{{ speaker_list_url }}"{% if request.path == speaker_list_url %} class="active"{% endif %}>Prelegenci</a></li>
                                 <li><a href="{{ sponsor_list_url }}"{% if request.path == sponsor_list_url %} class="active"{% endif %}>Sponsorzy</a></li>
 							</ul>
 						</div>
-						<div class="span4">
+						<div class="span3">
 							<div class="top-links">
 								<a href="http://facebook.com/PyWaw" class="facebook" target="_blank"></a>
 								<a href="http://twitter.com/PyWaw" class="twitter" target="_blank"></a>
@@ -92,6 +94,7 @@
 						<div class="span2">
 							<h5>Mapa witryny</h5>
 							<ul>
+								<li><a href="{% url 'misc:home' %}">Home</a></li>
 								<li><a href="{% url 'meetups:meetup_list' %}">Spotkania</a></li>
                                 <li><a href="{% url 'meetups:speaker_list' %}">Prelegenci</a></li>
                                 <li><a href="{% url 'meetups:sponsor_list' %}">Sponsorzy</a></li>

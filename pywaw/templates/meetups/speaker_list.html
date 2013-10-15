@@ -7,33 +7,16 @@
 {% block og_title %}Prelegenci{% endblock %}
 
 {% block subcontent %}
-<h1>Prelegenci</h1>
-<div class="row">
-    <div class="media speaker-list" id="speaker-{{ speaker.id }}">
-        <ul>
-            {% for speaker in object_list %}
-            <li>
-                <div class="pull-left img-user-container hidden-phone">
-                    <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
-                </div>
-                <div class="media-body">
-                    <h3>
-                     {{ speaker.first_name }} {{ speaker.last_name }}</h3><a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
-                    <p>{{ speaker.biography }}</p>
-                </div>
-                <div class="clearfix"></div>
-            </li>                    
-            {% endfor %}
-    
-        </ul>
-    </div>
-    </ul>
-    </div>
-        <div class="margin-top-big margin-bottom-large">
+    <div class="margin-bottom-large">
+    <h1>Prelegenci</h1>
+        <ol class="page-menu margin-bottom-large">
+            <li><a href="#be-speaker">Jak zostać prelegentem?</a></li>
+            <li><a href="#speakers-container">Nasi prelegenci</a></li>
+        </ol>
+        <div id="be-speaker">
             <h2>Jak zostać prelegentem?</h2>
             <p>W związku z szybkim rozwojem inicjatywy PyWaw oraz chęcią podtrzymania wysokiej jakości naszego wydarzenia (czyt. nie chcemy zawieść uczestników) postanowiliśmy stworzyć niniejszy <em>Poradnik prelegenta.</em> Jest to miejsce do którego powinni zajrzeć nasi prelegenci przed swoim wystąpieniem na spotkaniu PyWaw.</p>
             <p>Każde spotkanie PyWaw posiada swój oddzielny wątek na grupie dyskusyjnej. Przyszli prelegenci zgłaszają tam swoje propozycje tematów prezentacji. Po zgłoszeniu swojej prelekcji prosimy przyszłych prelegentów o wysłanie na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> następujących informacji:</p>
-            
             <ul>
                 <li>tytuł prezentacji,</li>
                 <li>opis prezentacji (3-4 zdania),</li>
@@ -54,4 +37,27 @@
             <p><strong>Prezentacje reklamujące komercyjne produkty</strong> nie są wpisywane do agendy. Wygłaszane są po głównych prezentacjach i krótkiej przerwie.</p>
             <p>Po prezentacji prosimy przesłać na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> slajdy oraz inne materiały pokazywane podczas wystąpienia. W miarę możliwości, umieścimy wszystko na podstronie spotkania.</p>
         </div>
+        <div id="speakers-container" class="margin-top-big">
+            <h2>Dotychczasowi prelegenci</h2>
+            <div class="row">
+                <div class="media speaker-list" id="speaker-{{ speaker.id }}">
+                    <ul>
+                        {% for speaker in object_list %}
+                        <li>
+                            <div class="pull-left img-user-container hidden-phone">
+                                <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
+                            </div>
+                            <div class="media-body">
+                                <h3>
+                                 {{ speaker.first_name }} {{ speaker.last_name }}</h3><a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
+                                <p>{{ speaker.biography }}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>                    
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

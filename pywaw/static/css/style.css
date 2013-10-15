@@ -6,17 +6,20 @@
 --- 2.2 Typography
 --- 2.3 Lists
 3. COMPONENTS
+--- 3.1 Page menu
 4. STRUCTURE
 --- 4.1 Header
 --- 4.2 Nav
 --- 4.3 Content
 --- 4.4 Footer
+
 5. PAGES
 --- 5.1 Home
 --- 5.2 Meetup
 --- 5.3 Speakers
 --- 5.4 Sponsors
 --- 5.5 Meeting's
+
 ***/
 
 /********************** 1. BASE **********************************/
@@ -44,13 +47,14 @@ strong{color:#4d4d4d}
 .margin-top-small{margin-top:10px}
 .margin-top-normal{margin-top:20px}
 .margin-top-big{margin-top:30px}
+.margin-bottom-small{margin-bottom: 10px;}
 .margin-bottom-big{margin-bottom:30px}
 .margin-bottom-large{margin-bottom:40px}
 .margin-left-large{margin-left:40px}
 
 .link-grey, .link-grey a{color: #4d4d4d;}
 .date, .date-small{background:#4d4d4d;color:#fff;min-height:30px;line-height:30px;display:block;margin:0;padding:0 8px;-moz-box-sizing:border-box;box-sizing:border-box}
-.date-small{text-align:center;line-height:24px}
+.date-small{text-align:center;line-height:28px}
 
 .location{margin:10px 0;}
 
@@ -87,6 +91,11 @@ header a:hover, a.no-hover:hover{border:0}
 ul li{line-height:24px}
 
 /********************** 3. COMPONENTS *******************************/
+/********************** 3.1 Page menu *******************************/
+
+.page-menu {padding-left: 20px;}
+.page-menu li {line-height: 24px;}
+.page-menu li a {color: #4790c3;}
 
 /********************** 4. STRUCTURE ********************************/
 /********************** 4.1 Header **********************************/
@@ -119,7 +128,6 @@ header{margin:10px 0 40px}
 
 #wrapper{min-height:100%;height:auto !important;height:100%;margin-bottom:-300px}
 #push{clear:both;height:300px}
-
 
 /********************** 4.4 Footer **********************************/
 
@@ -172,6 +180,7 @@ footer div .without-header{margin-top:66px;}
 
 /********************** 5.4 Sponsors ************************************/
 
+.sponsor-row a img:hover{text-decoration: none;border-bottom: none;}
 .img-sponsors{max-height:300px; max-width: 200px; margin-bottom:10px;}
 
 /********************** 5.5 Meeting's ************************************/
