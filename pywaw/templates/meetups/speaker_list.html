@@ -9,11 +9,11 @@
 {% block subcontent %}
 <h1>Prelegenci</h1>
 <div class="row">
-    <div class="media speaker-list-2" id="speaker-{{ speaker.id }}">
+    <div class="media speaker-list" id="speaker-{{ speaker.id }}">
         <ul>
             {% for speaker in object_list %}
             <li>
-                <div class="pull-left img-users hidden-phone">
+                <div class="pull-left img-user-container hidden-phone">
                     <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
                 </div>
                 <div class="media-body">
@@ -29,7 +29,7 @@
     </div>
     </ul>
     </div>
-        <div class="margin-top-big margin-bottom-40">
+        <div class="margin-top-big margin-bottom-large">
             <h2>Jak zostać prelegentem?</h2>
             <p>W związku z szybkim rozwojem inicjatywy PyWaw oraz chęcią podtrzymania wysokiej jakości naszego wydarzenia (czyt. nie chcemy zawieść uczestników) postanowiliśmy stworzyć niniejszy <em>Poradnik prelegenta.</em> Jest to miejsce do którego powinni zajrzeć nasi prelegenci przed swoim wystąpieniem na spotkaniu PyWaw.</p>
             <p>Każde spotkanie PyWaw posiada swój oddzielny wątek na grupie dyskusyjnej. Przyszli prelegenci zgłaszają tam swoje propozycje tematów prezentacji. Po zgłoszeniu swojej prelekcji prosimy przyszłych prelegentów o wysłanie na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> następujących informacji:</p>

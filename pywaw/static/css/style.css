@@ -1,4 +1,25 @@
+/********************** AGENDA **********************************/
 
+/***
+1. BASE
+--- 1.1 Default Styles
+2. CLASSES
+--- 2.1 Common
+--- 2.2 Typography
+--- 2.3 Lists
+3. COMPONENTS
+4. STRUCTURE
+--- 4.1 Header
+--- 4.2 Content
+--- 4.3 Footer
+5. PAGES
+--- 5.1 Home
+--- 5.2 Meetup
+--- 5.3 Speakers
+--- 5.4 Sponsors
+--- 5.5 Meeting's
+
+***/
 
 /********************** 1. BASE **********************************/
 /********************** 1.1 Default Styles ***********************/
@@ -26,19 +47,18 @@ strong{color:#4d4d4d}
 .margin-top-big{margin-top:30px}
 .margin-bottom-large{margin-bottom:40px}
 .margin-left-large{margin-left:40px}
-.margin-bottom-30{margin-bottom: 30px;}
-.margin-bottom-40{margin-bottom: 40px;}
+
 
 .link-grey, .link-grey a{color: #4d4d4d;}
 
 .date, .date-small{background:#4d4d4d;color:#fff;min-height:30px;line-height:30px;display:block;margin:0;padding:0 8px;-moz-box-sizing:border-box;box-sizing:border-box}
 .date-small{text-align:center;line-height:24px}
 
-.location{margin:10px 0}
+.location{margin:10px 0;}
 
 .button, .button:visited{font-size:16px;font-weight:700;line-height:30px;font-family:'Merriweather Sans';min-height:30px;background:#4790c3;color:#fff !important;}
 .button:hover, .button:active{background:#4790c3;color:#fff;text-decoration:none}
-.button-block{display:block;text-align:center}
+.button-block{display:block;text-align:center;}
 
 .line-orange{background:#ffd34a;height:5px;width:80px;display:block}
 
@@ -58,12 +78,10 @@ strong{color:#4d4d4d}
 .box-home p{color:#4d4d4d}
 .box-home strong{background:#4d4d4d;color:#fff;padding:0 1px}
 
-
 /********************** 2.2 Typography ******************************/
 
 .text-smaller{line-height:18px}
 .text-number{margin:0 0 30px 0;float:left}
-
 
 /********************** 2.3 Lists ***********************************/
 
@@ -113,7 +131,6 @@ footer ul{margin:10px 0 0 0;padding:0}
 footer ul li{list-style:none}
 footer div .without-header{margin-top:66px;}
 
-.stack{margin-left:40px}
 .statistics h5, .stack h5{color:#c9c9c9;line-height:20px;margin-top:0;margin-right:20px}
 .statistics p, .stack p{color:#737373;line-height:22px;margin:0 0 5px}
 .statistics p span{color:#c9c9c9}
@@ -129,9 +146,9 @@ footer div .without-header{margin-top:66px;}
 .sponsors img{max-height:150px;width:85%;vertical-align: middle !important;}
 .text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 15px;font-size:14px;line-height:27px;}
 
-.media .img-users{margin:0 20px 15px 0 !important;width:60px;height:60px;}
+.media .img-user-container{margin:0 20px 15px 0 !important;width:60px;height:60px;}
 .img-user{margin:0 20px 15px 0 !important;}
-.img-users .img-user{margin:0 0 15px 0 !important;}
+.img-user-container .img-user{margin:0 0 15px 0 !important;}
 
 .carousel{margin:0}
 
@@ -148,10 +165,10 @@ footer div .without-header{margin-top:66px;}
 
 .speaker-img-wrapper {display:block;height:140px;}
 
-.speaker-list-2 h3{display: inline;margin-right: 10px;margin-bottom: 5px;}
-.speaker-list-2 li {margin-bottom: 15px;}
-.speaker-list-2 ul li .img-users img {width: 60px;height: 60px;}
-.speaker-list-2 ul li:last-child{margin-bottom: 0;}
+.speaker-list h3{display: inline;margin-right: 10px;margin-bottom: 5px;}
+.speaker-list li {margin-bottom: 15px;}
+.speaker-list ul li .img-users img {width: 60px;height: 60px;}
+.speaker-list ul li:last-child{margin-bottom: 0;}
 
 .speaker-link {margin-top: -5px;}
 
