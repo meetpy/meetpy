@@ -38,7 +38,7 @@
             <p>Po prezentacji prosimy przesłać na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a> slajdy oraz inne materiały pokazywane podczas wystąpienia. W miarę możliwości, umieścimy wszystko na podstronie spotkania.</p>
         </div>
         <div id="speakers-container" class="margin-top-big">
-            <h2>Dotychczasowi prelegenci</h2>
+            <h2>Nasi prelegenci</h2>
             <div class="row">
                 <div class="media speaker-list" id="speaker-{{ speaker.id }}">
                     <ul>
@@ -48,8 +48,8 @@
                                 <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
                             </div>
                             <div class="media-body">
-                                <h3>
-                                 {{ speaker.first_name }} {{ speaker.last_name }}</h3><a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
+                                <h3>{{ speaker.first_name }} {{ speaker.last_name }}</h3>
+                                 <a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
                                 <p>{{ speaker.biography }}</p>
                             </div>
                             <div class="clearfix"></div>

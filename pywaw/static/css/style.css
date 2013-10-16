@@ -52,6 +52,8 @@ strong{color:#4d4d4d}
 .margin-bottom-large{margin-bottom:40px}
 .margin-left-large{margin-left:40px}
 
+.weight-normal{font-weight: normal;}
+
 .link-grey, .link-grey a{color: #4d4d4d;}
 .date, .date-small{background:#4d4d4d;color:#fff;min-height:30px;line-height:30px;display:block;margin:0;padding:0 8px;-moz-box-sizing:border-box;box-sizing:border-box}
 .date-small{text-align:center;line-height:28px}
@@ -152,7 +154,9 @@ footer div .without-header{margin-top:66px;}
 .sponsors ul li{float:left;list-style-type: none;border:1px solid #eee;}
 .sponsors ul li img{display:block;margin: 0 auto;max-width:200px;max-height: 50px;padding: 10px;}
 .sponsors img{max-height:150px;width:85%;vertical-align: middle !important;}
-.text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 15px;font-size:14px;line-height:27px;}
+.text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 0;font-size:14px;line-height:27px;}
+
+.home-sponsors-table img{max-width:180px;}
 
 .media .img-user-container{margin:0 20px 15px 0 !important;width:60px;height:60px;}
 .img-user{margin:0 20px 15px 0 !important;}
@@ -172,7 +176,7 @@ footer div .without-header{margin-top:66px;}
 /********************** 5.3 Speakers ************************************/
 
 .speaker-img-wrapper {display:block;height:140px;}
-.speaker-list h3{display: inline;margin-right: 10px;margin-bottom: 5px;}
+.speaker-list h3{display: inline;margin-right: 10px;margin-bottom: 5px;font-weight: normal;font-size: 20px;}
 .speaker-list li {margin-bottom: 15px;}
 .speaker-list ul li .img-users img {width: 60px;height: 60px;}
 .speaker-list ul li:last-child{margin-bottom: 0;}

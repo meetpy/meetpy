@@ -46,6 +46,9 @@
         <div class="span5 offset2">
             <h4 class="date"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
         </div>
+        <div class="pull-right">
+            <a href="{% url 'meetups:meetup_list' %}" class="button button-block span3">LISTA SPOTKAŃ</a>
+        </div>
     </div>
     <div class="row margin-top-big">
         <div class="offset2 span10">
@@ -134,7 +137,7 @@
         </div>
         <div class="span10">
             <h2>Lokalizacja</h2>
-            <h4><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> {{ object.venue.name }}, {{ object.venue.address }}</h4>
+            <h4  class="weight-normal"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> {{ object.venue.name }}, {{ object.venue.address }}</h4>
             <div class="margin-top-normal">
 	            <div id="map-canvas"></div>
             </div>

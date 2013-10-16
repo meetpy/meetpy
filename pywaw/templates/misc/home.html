@@ -73,7 +73,7 @@
                         <tr>
                             {% for sponsor in upcoming_meetup.sponsors.all %}
                             <td>
-                                <a href="{{ sponsor.website }}" target="_blank"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                                <a href="{{ sponsor.website }}" target="_blank" class="no-hover"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
                             </td>
                             {% endfor %}
                         </tr>
