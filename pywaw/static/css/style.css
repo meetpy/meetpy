@@ -185,7 +185,7 @@ footer div .without-header{margin-top:66px;}
 /********************** 5.4 Sponsors ************************************/
 
 .sponsor-row a img:hover{text-decoration: none;border-bottom: none;}
-.img-sponsors{max-height:300px; max-width: 200px; margin-bottom:10px;}
+.img-sponsors{max-height:200px; max-width: 150px; margin-bottom:15px;margin-top: 20px;}
 
 /********************** 5.5 Meeting's ************************************/
 

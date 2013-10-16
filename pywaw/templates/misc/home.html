@@ -69,11 +69,13 @@
             <div class="row-fluid">
                 <h3 class="span2 text-sponsors text-left">SPONSORZY:</h3>
                 <div class="sponsors span10">
-                    <table class="span10 row-fluid home-sponsors-table">
+                    <table class="span12 row-fluid home-sponsors-table">
                         <tr>
                             {% for sponsor in upcoming_meetup.sponsors.all %}
                             <td>
-                                <a href="{{ sponsor.website }}" target="_blank" class="no-hover"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
+                                <a href="{{ sponsor.website }}" target="_blank" class="no-hover">
+                                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                                </a>
                             </td>
                             {% endfor %}
                         </tr>
