@@ -156,7 +156,7 @@ footer div .without-header{margin-top:66px;}
 .sponsors img{max-height:150px;width:85%;vertical-align: middle !important;}
 .text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 0;font-size:14px;line-height:27px;}
 
-.home-sponsors-table img{max-width:180px;}
+.home-sponsors-table img{max-width:180px;max-height: 150px;}
 
 .media .img-user-container{margin:0 20px 15px 0 !important;width:60px;height:60px;}
 .img-user{margin:0 20px 15px 0 !important;}
@@ -177,7 +177,7 @@ footer div .without-header{margin-top:66px;}
 
 .speaker-img-wrapper {display:block;height:140px;}
 .speaker-list h3{display: inline;margin-right: 10px;margin-bottom: 5px;font-weight: normal;font-size: 20px;}
-.speaker-list li {margin-bottom: 15px;}
+.speaker-list li {margin-bottom: 20px;}
 .speaker-list ul li .img-users img {width: 60px;height: 60px;}
 .speaker-list ul li:last-child{margin-bottom: 0;}
 .speaker-link {margin-top: -5px;}
