@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block og_title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if upcoming_meetup %}
+    <div class="row">
+        <div class="span2 img-tip">
+            <div class="line-orange"></div>
+        </div>
+        <div class="span10">
+            <h1><a href="{{ upcoming_meetup.get_absolute_url }}">Następne spotkanie {{ upcoming_meetup }}</a></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5 offset2">
+            <h4 class="date"><span class="day">{{ upcoming_meetup.date|date:"l" }}, </span>{{ upcoming_meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ upcoming_meetup.date|date:"H:i" }}</span></h4>
+            {% if upcoming_meetup.venue %}
+            <h5 class="location"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location-home"> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
+            <div class="text-center">
+                <div class="clearfix">
+                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}" target="_blank">
+                        <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}&amp;sensor=false" class="map" alt="Mapa">
+                    </a>
+                </div>
+                <a href="{{ upcoming_meetup.get_absolute_url }}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="span5 box-users">
+            {% for talk in upcoming_meetup.talks.all %}
+            <div class="row">
+                <div class="span1">
+                	{% if talk.speakers.count == 1 %}
+                	<img src="{% if talk.speakers.get.photo %}{{ talk.speakers.get.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjęcie {{ speaker }}" class="img-user">
+                	{% else %}
+                	<div class="carousel slide" id="myCarousel">
+                		<div class="carousel-inner">
+	                    {% for speaker in talk.speakers.all %}
+	                    <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjęcie {{ speaker }}" class="img-user item">
+	                    {% endfor %}
+	                    </div>
+	                </div>
+                    {% endif %}
+                </div>
+                <div class="span4 link-grey">
+                    <h5>
+                    {% for speaker in talk.speakers.all %}
+                        <a class="link-grey" href="{{ upcoming_meetup.get_absolute_url }}#speaker-{{ speaker.id }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </h5>
+                    <p class="text-smaller"><a href="{{ upcoming_meetup.get_absolute_url }}#talk-{{ talk.id }}">{{ talk.title }}</a></p>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not upcoming_meetup.is_ready %}
+            <div class="more-info">
+            	<h3>agenda w przygotowaniu</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if upcoming_meetup.sponsors.exists %}
+    <div class="row">
+        <div class="span10 offset2 margin-top-normal">
+            <div class="row-fluid">
+                <h3 class="span2 text-sponsors text-left">SPONSORZY:</h3>
+                <div class="sponsors span10">
+                    <table class="span12 row-fluid home-sponsors-table">
+                        <tr>
+                            {% for sponsor in upcoming_meetup.sponsors.all %}
+                            <td>
+                                <a href="{{ sponsor.website }}" target="_blank" class="no-hover">
+                                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                                </a>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% else %}
+    <div class="more-info">
+        <h3>spotkanie w przygotowaniu</h3>
+    </div>
+    {% endif %}
+</div>
+<div class="box-home">
+    <div class="container">
+        <div class="row">
+            <div class="span2 img-tip">
+                <img src="{% static 'img/question.jpg' %}" alt="Informacje">
+            </div>
+            <div class="span10">
+                <h2>Warszawska grupa użytkowników Pythona</h2>
+                <div class="row">
+                    <div class="span5">
+                        <p><strong>PL</strong> PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic. Projekt ten skierowany jest zarówno do studentów stołecznych uczelni, profesjonalnych deweloperów oraz wszystkich tych, którzy swoją przygodę z Pythonem dopiero zaczynają. Celem naszych spotkań jest wymiana doświadczenia pomiędzy programistami, integracja pythonowego środowiska Warszawy oraz propagowanie Pythona jako uniwersalnego języka programowania. Spotkania PyWaw odbywają się w każdy drugi lub trzeci poniedziałek miesiąca.</p>
+                    </div>
+                    <div class="span5">
+                        <p><strong>EN</strong> PyWaw is a community that gathers Python hobbyists from Warsaw and its surroundings. This project is aimed at not only Computer Sciences students or professional developers, but also all of you who have just started the Python experience. Our goals are various – exchange our experiences and ideas, integration of Python people in Warsaw and spreading the fame of Python as a universal programming language. Our meetings are held every second (or third) Monday of a month. Feel free to join us anytime!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$('.carousel img:first-child').addClass('active');
+$('.carousel').carousel();
+</script>
+{% endblock %}

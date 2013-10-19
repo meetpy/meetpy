@@ -1,0 +1,152 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>PyWaw | {% block title %}{% endblock %}</title>
+    <meta name="keywords" content="PyWaw, Python, grupa użytkowników, programowanie, barcamp, spotkanie, prezentacje">
+    <meta name="description" content="PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PyWaw | {% block og_title %}{% endblock %}"/>
+    <meta property="og:description" content="PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic.">
+    <meta property="og:url" content="http://{{ site.domain }}{{ request.get_full_path }}">
+    <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo.png' %}"/>
+    <meta property="og:site_name" content="PyWaw"/>
+
+    <link href="{% static 'img/fav.png' %}" rel="shortcut icon">
+    <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.src.js' %}"></script>
+    <![endif]-->
+    {% block js %}
+    {% endblock %}
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-17174483-2');
+    ga('send', 'pageview');
+    </script>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<div class="container">
+				<div class="row">
+					<div id="logo" class="span2">
+						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="PyWaw" class="logo"></a>
+					</div>
+					<div id="top">
+						<div class="span7">
+							<ul class="menu-top">
+                                {% url 'meetups:meetup_list' as meetup_list_url %}
+                                {% url 'meetups:speaker_list' as speaker_list_url %}
+                                {% url 'meetups:sponsor_list' as sponsor_list_url %}
+                                {% url 'misc:home' as home_url %}
+                                <li><a href="{{ home_url }}"{% if request.path == home_url %} class="active"{% endif %}>Home</a></li>
+								<li><a href="{{ meetup_list_url }}"{% if request.path == meetup_list_url %} class="active"{% endif %}>Spotkania</a></li>
+                                <li><a href="{{ speaker_list_url }}"{% if request.path == speaker_list_url %} class="active"{% endif %}>Prelegenci</a></li>
+                                <li><a href="{{ sponsor_list_url }}"{% if request.path == sponsor_list_url %} class="active"{% endif %}>Sponsorzy</a></li>
+							</ul>
+						</div>
+						<div class="span3">
+							<div class="top-links">
+								<a href="http://facebook.com/PyWaw" class="facebook" target="_blank"></a>
+								<a href="http://twitter.com/PyWaw" class="twitter" target="_blank"></a>
+								<a href="http://youtube.com/PyWaw" class="youtube" target="_blank"></a>
+								<div class="dropdown pull-right">
+								    <a href="#" data-toggle="dropdown" class="dropdown-toggle rss" role="button" id="drop1"></a>
+								    <ul aria-labelledby="drop1" role="menu" class="dropdown-menu">
+			                            <li role="presentation"><a href="{% url 'meetups:rss_feed' %}" tabindex="-1" role="menuitem" target="_blank">RSS</a></li>
+			                            <li role="presentation"><a href="{% url 'meetups:atom_feed' %}" tabindex="-1" role="menuitem" target="_blank">Atom</a></li>
+			                        </ul>
+			                    </div>
+								<a href="mailto:info@pywaw.org" class="mail"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+        {% block content %}
+        {%  endblock %}
+		<div id="push"></div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="span2 img-tip">
+					<div class="line-orange"></div>
+				</div>
+				<div class="span10">
+					<div class="row margin-bottom-large">
+						<div class="span2">
+							<h5>Mapa witryny</h5>
+							<ul>
+								<li><a href="{% url 'misc:home' %}">Home</a></li>
+								<li><a href="{% url 'meetups:meetup_list' %}">Spotkania</a></li>
+                                <li><a href="{% url 'meetups:speaker_list' %}">Prelegenci</a></li>
+                                <li><a href="{% url 'meetups:sponsor_list' %}">Sponsorzy</a></li>
+							</ul>
+						</div>
+						<div class="span2">
+							<h5>Jesteśmy na</h5>
+							<ul>
+								<li><a href="http://groups.google.com/forum/#!forum/pywaw" target="_blank">Google Groups</a></li>
+								<li><a href="http://facebook.com/PyWaw" target="_blank">Facebook</a></li>
+								<li><a href="http://twitter.com/PyWaw" target="_blank">Twitter</a></li>
+								<li><a href="http://youtube.com/PyWaw" target="_blank">YouTube</a></li>
+							</ul>
+						</div>
+						<div class="span2">
+							<h5>Python w Polsce</h5>
+							<ul>
+								<li><a href="http://pl.python.org/" target="_blank">PPCG</a></li>
+								<li><a href="http://pl.pycon.org/" target="_blank">PyCon PL</a></li>
+								<li><a href="http://blog.pykonik.org/" target="_blank">Pykonik</a></li>
+								<li><a href="http://pysilesia.org/" target="_blank">PySilesia</a></li>
+								<li><a href="http://pycircle.org/" target="_blank">PyCircle</a></li>
+								<li><a href="https://plus.google.com/communities/113848425473260356105" target="_blank">PyRa</a></li>
+								<li><a href="https://www.facebook.com/WroclawPythonUserGroup" target="_blank">wroc.py</a></li>
+							</ul>
+						</div>
+						<div class="span2 powered pull-right">
+							<a href="http://sunscrapers.com" target="_blank"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS" class="pull-right"></a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span10">
+							<div class="pull-left statistics">
+								<h5 class="pull-left">Statystyki</h5>
+								<p class="pull-left">
+									Spotkania: <span>{{ meetups_stats.meetups_count }}</span>
+									&bull; Prelegenci: <span>{{ meetups_stats.speakers_count }}</span>
+									&bull; Prezentacje: <span>{{ meetups_stats.talks_count }}</span>
+								</p>
+							</div>
+							<div class="pull-left stack margin-left-large">
+								<h5 class="pull-left">Stack</h5>
+								<p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="powered-mobile hide">
+				<p>Powered by <a href="http://sunscrapers.com">SUNSCRAPERS</a></p>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

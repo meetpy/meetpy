@@ -1,0 +1,1 @@
+{{ obj.name }} - {{ obj.date|date:"H:i, l, d.m.Y"|lower }}
