@@ -6,12 +6,13 @@ env.hosts = ['pywaw@pywaw.org']
 
 env.project_name = 'pywaw'
 
-env.settings = ['staging']
+env.settings = ['staging', 'production']
 
-env.hot_settings = []
+env.hot_settings = ['production']
 
 env.branches = {
     'staging': 'default',
+    'production': 'production',
 }
 
 
