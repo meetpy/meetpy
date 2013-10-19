@@ -20,6 +20,7 @@
     <div class="row">
         <div class="span5 offset2">
             <h4 class="date"><span class="day">{{ upcoming_meetup.date|date:"l" }}, </span>{{ upcoming_meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ upcoming_meetup.date|date:"H:i" }}</span></h4>
+            {% if upcoming_meetup.venue %}
             <h5 class="location"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location-home"> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
             <div class="text-center">
                 <div class="clearfix">
@@ -29,6 +30,7 @@
                 </div>
                 <a href="{{ upcoming_meetup.get_absolute_url }}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
             </div>
+            {% endif %}
         </div>
         <div class="span5 box-users">
             {% for talk in upcoming_meetup.talks.all %}

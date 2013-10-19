@@ -95,6 +95,8 @@
                 </div>
             </div>
             {% endfor %}
+            {% empty %}
+            <p>Agenda w przygotowaniu. Masz pomysł na prezentację? Zobacz <a href="{% url 'meetups:speaker_list' %}#be-speaker">jak zostać prelegentem.</a></p>
             {% endfor %}
         </div>
     </div>
@@ -131,6 +133,7 @@
         </div>
     </div>
     {% endif %}
+    {% if object.venue %}
     <div class="row margin-top-big margin-bottom-large">
         <div class="span2 img-tip">
             <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">
@@ -143,6 +146,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 
 <div id="modal-gallery" class="modal modal-gallery hide fade" data-animation="false" tabindex="-1">
