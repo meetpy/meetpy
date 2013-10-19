@@ -1,0 +1,9 @@
+syntax: glob
+
+sqlite.db
+*.pyc
+*.swp
+upload/
+.idea
+.project
+.pydevproject
