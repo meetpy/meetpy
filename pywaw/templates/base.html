@@ -20,6 +20,8 @@
     <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="{% url 'meetups:rss_feed' %}" />
+    <link rel="alternate" type="application/atom+xml" href="{% url 'meetups:atom_feed' %}" />
     {% block css %}
     {% endblock %}
     <script src="{% static 'js/jquery.js' %}"></script>
