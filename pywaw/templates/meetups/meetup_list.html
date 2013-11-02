@@ -7,15 +7,15 @@
 {% block subcontent %}
 <h1>Spotkania</h1>
 {% for meetup in object_list %}
-<div class="margin-bottom-big meeting-list">
+<div class="margin-bottom-big meeting-list" itemscope itemtype="http://schema.org/Event">
     <div class="row">
         <div class="span10 list-caption">
             <div class="pull-right">
                 <div class="span2">
-                    <h4 class="date-small">{{ meetup.date|date:"d.m.Y" }}</h4>
+                    <h4 class="date-small" itemprop="startDate" content="{{ meetup.date|date:"c" }}">{{ meetup.date|date:"d.m.Y" }}</h4>
                 </div>
                 <div class="span2">
-                    <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a>
+                    <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block" itemprop="sameAs">SZCZEGÓŁY</a>
                 </div>
             </div>
             <h2><a href="{% url 'meetups:meetup_detail' number=meetup.number %}">{{ meetup }}</a></h2>
@@ -23,8 +23,8 @@
     </div>
     <ul class="unstyled">
         {% for talk in meetup.talks.all %}
-        <li>
-            {% for speaker in talk.speakers.all %}<strong><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker.id }}" target="_blank">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.id }}">{{ talk.title }}</a>
+        <li itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
+            {% for speaker in talk.speakers.all %}<strong itemprop="performer" itemscope itemtype="http://schema.org/Person"><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker.id }}" target="_blank" itemprop="name">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.id }}" itemprop="name">{{ talk.title }}</a>
         </li>
         {% endfor %}
     </ul>
