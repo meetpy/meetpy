@@ -138,11 +138,13 @@
         <div class="span2 img-tip">
             <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">
         </div>
-        <div class="span10">
+        <div class="span10" itemscope itemprop="location" itemtype="http://schema.org/Place">
             <h2>Lokalizacja</h2>
-            <h4 class="weight-normal"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> <span itemprop="location">{{ object.venue.name }}, {{ object.venue.address }}</span></h4>
-            <div class="margin-top-normal">
+            <h4 class="weight-normal"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> <span itemprop="name">{{ object.venue.name }}</span>, <span itemprop="address">{{ object.venue.address }}</span></h4>
+            <div class="margin-top-normal" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
 	            <div id="map-canvas"></div>
+                <meta itemprop="latitude" content="{{ object.venue.latitude }}">
+                <meta itemprop="longitude" content="{{ object.venue.longitude }}">
             </div>
         </div>
     </div>
