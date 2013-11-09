@@ -1,4 +1,4 @@
-Django==1.5.4
+Django==1.6.0
 Pillow==2.2.1
 git+https://github.com/rbarrois/factory_boy@8c1784e8c1eac65f66b4a1ecc4b8b0ddd5de9327
 South==0.8.2
