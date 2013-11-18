@@ -1,5 +1,5 @@
 <!DOCTYPE html>{% load staticfiles %}
-<html lang="en">
+<html lang="pl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="PyWaw | {% block og_title %}{% endblock %}"/>
     <meta property="og:description" content="PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic.">
     <meta property="og:url" content="http://{{ site.domain }}{{ request.get_full_path }}">
-    <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo.png' %}"/>
+    <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo-big.png' %}"/>
     <meta property="og:site_name" content="PyWaw"/>
 
     <link href="{% static 'img/fav.png' %}" rel="shortcut icon">
@@ -20,6 +20,8 @@
     <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="{% url 'meetups:rss_feed' %}" />
+    <link rel="alternate" type="application/atom+xml" href="{% url 'meetups:atom_feed' %}" />
     {% block css %}
     {% endblock %}
     <script src="{% static 'js/jquery.js' %}"></script>

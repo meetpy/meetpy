@@ -49,7 +49,7 @@
                             </div>
                             <div class="media-body">
                                 <h3>{{ speaker.first_name }} {{ speaker.last_name }}</h3>
-                                 <a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>
+                                {% if speaker.website %}<a href="{{ speaker.website }}" target="_blank" class="link-gray"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
                                 <p>{{ speaker.biography }}</p>
                             </div>
                             <div class="clearfix"></div>

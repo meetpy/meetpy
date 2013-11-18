@@ -33,18 +33,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container" itemscope itemtype="http://schema.org/Event">
     <div class="row">
         <div class="span2 img-tip">
             <div class="line-orange"></div>
         </div>
         <div class="span8">
-            <h1>{{ object }}</h1>
+            <h1 itemprop="name">{{ object }}</h1>
         </div>
     </div>
     <div class="row">
         <div class="span5 offset2">
-            <h4 class="date"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
+            <h4 class="date" itemprop="startDate" content="{{ meetup.date|date:"c" }}"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
         </div>
         <div class="pull-right">
             <a href="{% url 'meetups:meetup_list' %}" class="button button-block span3"> &laquo; LISTA SPOTKAŃ</a>
@@ -53,7 +53,7 @@
     <div class="row margin-top-big">
         <div class="offset2 span10">
             {% for talk in meetup.talks.all %}
-            <div class="media" id="talk-{{ talk.id }}">
+            <div class="media" id="talk-{{ talk.id }}" itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
                 <div class="media-body">
                     <h5>
                         {% for speaker in talk.speakers.all %}
@@ -61,7 +61,7 @@
                         {% endfor %}
                     </h5>
                     <h3>
-	                    {{ talk.title }}
+	                    <span itemprop="name">{{ talk.title }}</span>
                         {% if talk.slides_url or talk.slides_file %}
 	                    <a href="{% if talk.slides_url %}{{ talk.slides_url }}{% else %}{{ talk.slides_file.url }}{% endif %}" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
                         {% endif %}
@@ -69,7 +69,7 @@
 	                    <a href="{{ talk.video_url }}" target="_blank"><img src="{% static 'img/video.png' %}" alt="Link do wideo"></a>
 	                    {% endif %}
                     </h3>
-                    <p>{{ talk.description }}</p>
+                    <p itemprop="description">{{ talk.description }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -83,18 +83,20 @@
             <h2>Prelegenci</h2>
             {% for talk in meetup.talks.all %}
             {% for speaker in talk.speakers.all %}
-            <div class="media" id="speaker-{{ speaker.id }}">
+            <div class="media" id="speaker-{{ speaker.id }}" itemprop="performer" itemscope itemtype="http://schema.org/Person">
             	<div class="pull-left img-user-container hidden-phone">
-	                <img  src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user"><br>
+	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user" itemprop="image"><br>
                 </div>
                 <div class="media-body">
                     <h3>
-                        {{ speaker }}{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
+                        <span itemprop="name">{{ speaker }}</span>{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
                     </h3>
-                    <p>{{ speaker.biography }}</p>
+                    <p itemprop="description">{{ speaker.biography }}</p>
                 </div>
             </div>
             {% endfor %}
+            {% empty %}
+            <p>Agenda w przygotowaniu. Masz pomysł na prezentację? Zobacz <a href="{% url 'meetups:speaker_list' %}#be-speaker">jak zostać prelegentem.</a></p>
             {% endfor %}
         </div>
     </div>
@@ -119,7 +121,7 @@
             <img src="{% static 'img/sponsors.jpg' %}" alt="Sponsorzy">
         </div>
         <div class="span10">
-            <h2>Sponsorzy najblizszego spotkania</h2>
+            <h2>Sponsorzy spotkania</h2>
             {% for sponsor in object.sponsors.all %}
             <div class="media">
                 <div class="media-body">
@@ -131,18 +133,22 @@
         </div>
     </div>
     {% endif %}
+    {% if object.venue %}
     <div class="row margin-top-big margin-bottom-large">
         <div class="span2 img-tip">
             <img src="{% static 'img/location.jpg' %}" alt="Lokalizacja">
         </div>
-        <div class="span10">
+        <div class="span10" itemscope itemprop="location" itemtype="http://schema.org/Place">
             <h2>Lokalizacja</h2>
-            <h4  class="weight-normal"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> {{ object.venue.name }}, {{ object.venue.address }}</h4>
-            <div class="margin-top-normal">
+            <h4 class="weight-normal"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location"> <span itemprop="name">{{ object.venue.name }}</span>, <span itemprop="address">{{ object.venue.address }}</span></h4>
+            <div class="margin-top-normal" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
 	            <div id="map-canvas"></div>
+                <meta itemprop="latitude" content="{{ object.venue.latitude }}">
+                <meta itemprop="longitude" content="{{ object.venue.longitude }}">
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 
 <div id="modal-gallery" class="modal modal-gallery hide fade" data-animation="false" tabindex="-1">
