@@ -32,6 +32,9 @@ class MeetupsRssFeed(syndication_views.Feed):
     def items(self):
         return models.Meetup.objects.filter(is_ready=True)
 
+    def item_pubdate(self, item):
+        return item.date_modified
+
 
 class MeetupsAtomFeed(MeetupsRssFeed):
     feed_type = feedgenerator.Atom1Feed

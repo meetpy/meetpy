@@ -44,6 +44,7 @@ class Meetup(models.Model):
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
     is_ready = models.BooleanField()
+    date_modified = models.DateTimeField(auto_now=True)
 
     objects = MeetupManager()
 
