@@ -1,5 +1,6 @@
 from django.views import generic
 from meetups import models as meetups_models
+from . import models
 
 
 class HomeView(generic.TemplateView):
@@ -11,4 +12,5 @@ class HomeView(generic.TemplateView):
             context['upcoming_meetup'] = meetups_models.Meetup.objects.get_upcoming()
         except meetups_models.Meetup.DoesNotExist:
             context['upcoming_meetup'] = None
+        context['partners'] = models.Partner.objects.filter(is_public=True)
         return context

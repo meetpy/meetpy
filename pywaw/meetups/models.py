@@ -1,20 +1,8 @@
-import os
 import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.utils.text import slugify
-
-
-def slugify_upload_to(path, fields):
-
-    def upload_to(instance, filename):
-        extension = filename.split('.')[-1]
-        slug = slugify(' '.join([str(getattr(instance, field)) for field in fields]))
-        new_filename = '{0}.{1}'.format(slug, extension)
-        return os.path.join(path, new_filename)
-
-    return upload_to
+from misc.models import slugify_upload_to
 
 
 class Sponsor(models.Model):

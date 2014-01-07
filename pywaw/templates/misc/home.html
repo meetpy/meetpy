@@ -113,20 +113,24 @@
         </div>
     </div>
 </div>
+{% if partners %}
 <div class="container">
     <div class="row">
         <div class="span10 offset2 margin-top-big margin-bottom-big">
             <h2>Partnerzy</h2>
             <div class="row-fluid">
                 <div class="pull-left">
-                    <a href="http://mobilecentraleurope.com" title="Mobile Central Europe Conference" class="no-hover" target="_blank">
-                        <img class="partner-logo" src="{% static 'img/mobile-central-europe.png' %}" alt="Mobile Central Europe Conference">
+                    {% for partner in partners %}
+                    <a href="{{ partner.url }}" title="{{ partner.name }}" class="no-hover" target="_blank">
+                        <img class="partner-logo" src="{{ partner.logo.url }}" alt="{{ partner.name }}">
                     </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endif %}
 <script>
 $('.carousel img:first-child').addClass('active');
 $('.carousel').carousel();
