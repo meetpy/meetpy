@@ -15,6 +15,7 @@ class TalkInline(admin.StackedInline):
 
 class MeetupAdmin(admin.ModelAdmin):
     inlines = (TalkInline, ExternalLinkInline)
+    readonly_fields = ('date_modified',)
 
 admin.site.register(models.Meetup, MeetupAdmin)
 admin.site.register(models.Speaker)
