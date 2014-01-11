@@ -54,11 +54,11 @@
     <div class="row margin-top-big">
         <div class="offset2 span10">
             {% for talk in meetup.talks.all %}
-            <div class="media" id="talk-{{ talk.id }}" itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
+            <div class="media" id="talk-{{ talk.title|slugify }}" itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
                 <div class="media-body">
                     <h5>
                         {% for speaker in talk.speakers.all %}
-                        <a href="#speaker-{{ speaker.id }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+                        <a href="#speaker-{{ speaker|slugify }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </h5>
                     <h3>
@@ -89,7 +89,7 @@
             <h2>Prelegenci</h2>
             {% for talk in meetup.talks.all %}
             {% for speaker in talk.speakers.all %}
-            <div class="media" id="speaker-{{ speaker.id }}" itemprop="performer" itemscope itemtype="http://schema.org/Person">
+            <div class="media" id="speaker-{{ speaker|slugify }}" itemprop="performer" itemscope itemtype="http://schema.org/Person">
             	<div class="pull-left img-user-container hidden-phone">
 	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user" itemprop="image"><br>
                 </div>
