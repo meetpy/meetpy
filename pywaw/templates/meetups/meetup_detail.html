@@ -74,6 +74,11 @@
                 </div>
             </div>
             {% endfor %}
+            {% if not meetup.is_ready %}
+            <div class="more-info">
+            	<h3>agenda w przygotowaniu</h3>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row margin-top-big">

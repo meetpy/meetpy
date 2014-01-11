@@ -27,6 +27,11 @@
             {% for speaker in talk.speakers.all %}<strong itemprop="performer" itemscope itemtype="http://schema.org/Person"><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker.id }}" target="_blank" itemprop="name">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.id }}" itemprop="name">{{ talk.title }}</a>
         </li>
         {% endfor %}
+        {% if not meetup.is_ready %}
+        <div class="more-info">
+            <h3>agenda w przygotowaniu</h3>
+        </div>
+        {% endif %}
     </ul>
 </div>
 {% endfor %}
