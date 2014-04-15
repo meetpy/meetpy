@@ -79,7 +79,7 @@ class TalkProposalViewTest(TestCase):
         form_data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
-            'speaker_id': speaker.id,
+            'speaker': speaker.id,
         }
 
         self.client.post(reverse('meetups:talk_proposal'), form_data)

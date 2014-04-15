@@ -55,8 +55,8 @@ class TalkProposalView(generic.FormView):
     def form_valid(self, form):
         created_talk = models.Talk.objects.create(title=form.cleaned_data['talk_title'],
                                                   description=form.cleaned_data['talk_description'])
-        if form.cleaned_data['speaker_id']:
-            added_speaker = models.Speaker.objects.get(id=form.cleaned_data['speaker_id'])
+        if form.cleaned_data['speaker']:
+            added_speaker = form.cleaned_data['speaker']
         else:
             added_speaker = models.Speaker.objects.create(first_name=form.cleaned_data['speaker_first_name'],
                                                           last_name=form.cleaned_data['speaker_last_name'],
