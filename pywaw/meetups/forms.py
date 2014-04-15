@@ -12,3 +12,4 @@ class TalkProposalForm(forms.Form):
     speaker_phone = forms.CharField(required=False, max_length=30)
     speaker_email = forms.EmailField(required=False)
     speaker_biography = forms.CharField(required=False)
+    speaker_photo = forms.ImageField(required=False)

@@ -63,6 +63,7 @@ class TalkProposalView(generic.FormView):
                                                           website=form.cleaned_data['speaker_website'],
                                                           phone=form.cleaned_data['speaker_phone'],
                                                           email=form.cleaned_data['speaker_email'],
-                                                          biography=form.cleaned_data['speaker_biography'])
+                                                          biography=form.cleaned_data['speaker_biography'],
+                                                          photo=form.cleaned_data['speaker_photo'])
         created_talk.speakers.add(added_speaker)
         return redirect('meetups:meetup_list')

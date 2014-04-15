@@ -1,10 +1,12 @@
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponseNotFound
+from django.http import HttpResponseNotFound
+from django.test.utils import override_settings
 import factory
 from datetime import datetime
 from django.test import TestCase
 from django.conf import settings
 from . import models
+from djet import files
 
 
 class MeetupFactory(factory.DjangoModelFactory):
@@ -91,16 +93,18 @@ class TalkProposalViewTest(TestCase):
         self.assertEqual(saved_talk.speakers.count(), 1)
         self.assertEqual(saved_talk.speakers.all()[0], speaker)
 
+    @override_settings(DEFAULT_FILE_STORAGE='djet.files.InMemoryStorage')
     def test_save_talk_proposal_with_new_speaker(self):
         form_data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
-            'speaker_first_name': 'first name',
-            'speaker_last_name': 'last name',
+            'speaker_first_name': 'first',
+            'speaker_last_name': 'last',
             'speaker_website': 'http://pywaw.org/',
             'speaker_phone': '123',
             'speaker_email': 'email@pywaw.org',
             'speaker_biography': 'short bio',
+            'speaker_photo': files.create_inmemory_image('my-pic.png'),
         }
 
         self.client.post(reverse('meetups:talk_proposal'), form_data)
@@ -111,9 +115,10 @@ class TalkProposalViewTest(TestCase):
         self.assertEqual(saved_talk.description, 'some desc')
         self.assertEqual(saved_talk.speakers.count(), 1)
         saved_speaker = saved_talk.speakers.all()[0]
-        self.assertEqual(saved_speaker.first_name, 'first name')
-        self.assertEqual(saved_speaker.last_name, 'last name')
+        self.assertEqual(saved_speaker.first_name, 'first')
+        self.assertEqual(saved_speaker.last_name, 'last')
         self.assertEqual(saved_speaker.website, 'http://pywaw.org/')
         self.assertEqual(saved_speaker.phone, '123')
         self.assertEqual(saved_speaker.email, 'email@pywaw.org')
         self.assertEqual(saved_speaker.biography, 'short bio')
+        self.assertEqual(saved_speaker.photo.name.split('/')[-1], 'first-last.png')
