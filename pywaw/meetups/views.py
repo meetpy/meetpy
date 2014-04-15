@@ -51,6 +51,7 @@ class SpeakerListView(generic.ListView):
 class TalkProposalView(generic.FormView):
     form_class = forms.TalkProposalForm
     template_name = 'meetups/talk_proposal.html'
+    success_url = reverse_lazy('meetups:talk_proposal_confirmation')
 
     def form_valid(self, form):
         created_talk = models.Talk.objects.create(title=form.cleaned_data['talk_title'],
@@ -66,4 +67,8 @@ class TalkProposalView(generic.FormView):
                                                           biography=form.cleaned_data['speaker_biography'],
                                                           photo=form.cleaned_data['speaker_photo'])
         created_talk.speakers.add(added_speaker)
-        return redirect('meetups:meetup_list')
+        return super(TalkProposalView, self).form_valid(form)
+
+
+class TalkProposalConfirmationView(generic.TemplateView):
+    template_name = 'meetups/talk_proposal_confirmation.html'
