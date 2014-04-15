@@ -3,9 +3,42 @@
 {% block title %}Zgłoszenie prezentacji{% endblock %}
 
 {% block subcontent %}
-  <h1>Zgłoś swoją prelekcję</h1>
-  <p>
-    Chcesz zostać prelegentem podczas jednego z naszych spotkań? Nic prostszego! Wystarczy wypełnić poniższy formularz
-    i poczekać na naszę odpowiedź.
-  </p>
+    <div class="margin-bottom-large">
+        <h1>Zgłoś swoją prelekcję</h1>
+        <p>
+            Chcesz zostać prelegentem podczas jednego z naszych spotkań? Nic prostszego! Wystarczy wypełnić poniższy formularz
+            i poczekać na naszę odpowiedź.
+        </p>
+    </div>
+    <div class="row margin-bottom-large">
+        <div class="span6">
+            <form method="POST">
+                <h2>Prelekcja</h2>
+                <label>Tytuł</label>
+                <input type="text" class="input-block-level">
+                <label>Opis</label>
+                <textarea class="input-block-level" rows="3"></textarea>
+                <h2 class="margin-top-normal">Prelegent</h2>
+                <select class="input-block-level">
+                    <option>Wybierz</option>
+                    <option>Guido van Rossum</option>
+                </select>
+                <label>Imię</label>
+                <input type="text" class="input-block-level">
+                <label>Nazwisko</label>
+                <input type="text" class="input-block-level">
+                <label>Biogram</label>
+                <textarea class="input-block-level" rows="3"></textarea>
+                <label>Strona WWW</label>
+                <input type="text" class="input-block-level">
+                <label>Zdjęcie</label>
+                <img src="http://placehold.it/100x100" class="margin-bottom-small">
+                <label>Numer telefonu</label>
+                <input type="text" class="input-block-level">
+                <label>E-mail</label>
+                <input type="text" class="input-block-level">
+                <input type="submit" class="button button-block pull-right margin-top-normal" value="Wyślij zgłoszenie">
+            </form>
+        </div>
+    </div>
 {% endblock %}

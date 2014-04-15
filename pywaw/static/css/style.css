@@ -92,6 +92,15 @@ header a:hover, a.no-hover:hover{border:0}
 
 ul li{line-height:24px}
 
+/********************** 2.4 Forms ***********************************/
+
+label {font-weight: bold; margin-bottom: 10px;}
+label:after {content: ":"}
+input[type=text], textarea {border-radius: 0; background-color: #FAF7F7; box-shadow: none;}
+select {background-color: #FAF7F7; -webkit-appearance: none; border-radius: 0;}
+input[type=text], select {height: 40px;}
+input[type=submit] {border: 0;}
+
 /********************** 3. COMPONENTS *******************************/
 /********************** 3.1 Page menu *******************************/
 
