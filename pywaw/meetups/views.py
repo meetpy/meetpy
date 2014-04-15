@@ -46,3 +46,7 @@ class SponsorListView(generic.ListView):
 
 class SpeakerListView(generic.ListView):
     model = models.Speaker
+
+
+class TalkRequestView(generic.TemplateView):
+    template_name = 'meetups/talk_request.html'

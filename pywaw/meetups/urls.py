@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^(?P<number>\d+)/$', views.MeetupDetailView.as_view(), name='meetup_detail'),
     url(r'^sponsorzy/$', views.SponsorListView.as_view(), name='sponsor_list'),
     url(r'^prelegenci/$', views.SpeakerListView.as_view(), name='speaker_list'),
+    url(r'^zgloszenie/$', views.TalkRequestView.as_view(), name='talk_request'),
     url(r'^atom/$', views.MeetupsAtomFeed(), name='atom_feed'),
     url(r'^rss/$', views.MeetupsRssFeed(), name='rss_feed'),
 
