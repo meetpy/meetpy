@@ -1,9 +1,9 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
 from django.contrib.syndication import views as syndication_views
 from django.core.urlresolvers import reverse_lazy
 from django.utils import feedgenerator
-from . import models, constants
+from . import models, forms, constants
 
 
 class MeetupsListView(generic.ListView):
@@ -48,5 +48,21 @@ class SpeakerListView(generic.ListView):
     model = models.Speaker
 
 
-class TalkProposalView(generic.TemplateView):
+class TalkProposalView(generic.FormView):
+    form_class = forms.TalkProposalForm
     template_name = 'meetups/talk_proposal.html'
+
+    def form_valid(self, form):
+        created_talk = models.Talk.objects.create(title=form.cleaned_data['talk_title'],
+                                                  description=form.cleaned_data['talk_description'])
+        if form.cleaned_data['speaker_id']:
+            added_speaker = models.Speaker.objects.get(id=form.cleaned_data['speaker_id'])
+        else:
+            added_speaker = models.Speaker.objects.create(first_name=form.cleaned_data['speaker_first_name'],
+                                                          last_name=form.cleaned_data['speaker_last_name'],
+                                                          website=form.cleaned_data['speaker_website'],
+                                                          phone=form.cleaned_data['speaker_phone'],
+                                                          email=form.cleaned_data['speaker_email'],
+                                                          biography=form.cleaned_data['speaker_biography'])
+        created_talk.speakers.add(added_speaker)
+        return redirect('meetups:meetup_list')

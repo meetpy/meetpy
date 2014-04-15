@@ -70,3 +70,50 @@ class SlugifyUploadToTest(TestCase):
         path = upload_to(speaker, 'bdfl.png')
 
         self.assertEqual(path, settings.SPEAKER_PHOTOS_DIR + '/guido-van-rossum.png')
+
+
+class TalkProposalViewTest(TestCase):
+
+    def test_save_talk_proposal_with_existing_speaker(self):
+        speaker = SpeakerFactory(first_name='Guido', last_name='Van Rossüm')
+        form_data = {
+            'talk_title': 'some title',
+            'talk_description': 'some desc',
+            'speaker_id': speaker.id,
+        }
+
+        self.client.post(reverse('meetups:talk_proposal'), form_data)
+
+        self.assertEqual(models.Talk.objects.count(), 1)
+        saved_talk = models.Talk.objects.all()[0]
+        self.assertEqual(saved_talk.title, 'some title')
+        self.assertEqual(saved_talk.description, 'some desc')
+        self.assertEqual(saved_talk.speakers.count(), 1)
+        self.assertEqual(saved_talk.speakers.all()[0], speaker)
+
+    def test_save_talk_proposal_with_new_speaker(self):
+        form_data = {
+            'talk_title': 'some title',
+            'talk_description': 'some desc',
+            'speaker_first_name': 'first name',
+            'speaker_last_name': 'last name',
+            'speaker_website': 'http://pywaw.org/',
+            'speaker_phone': '123',
+            'speaker_email': 'email@pywaw.org',
+            'speaker_biography': 'short bio',
+        }
+
+        self.client.post(reverse('meetups:talk_proposal'), form_data)
+
+        self.assertEqual(models.Talk.objects.count(), 1)
+        saved_talk = models.Talk.objects.all()[0]
+        self.assertEqual(saved_talk.title, 'some title')
+        self.assertEqual(saved_talk.description, 'some desc')
+        self.assertEqual(saved_talk.speakers.count(), 1)
+        saved_speaker = saved_talk.speakers.all()[0]
+        self.assertEqual(saved_speaker.first_name, 'first name')
+        self.assertEqual(saved_speaker.last_name, 'last name')
+        self.assertEqual(saved_speaker.website, 'http://pywaw.org/')
+        self.assertEqual(saved_speaker.phone, '123')
+        self.assertEqual(saved_speaker.email, 'email@pywaw.org')
+        self.assertEqual(saved_speaker.biography, 'short bio')
