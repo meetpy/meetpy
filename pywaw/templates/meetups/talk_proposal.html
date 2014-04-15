@@ -12,31 +12,23 @@
     </div>
     <div class="row margin-bottom-large">
         <div class="span6">
-            <form method="POST">
+            <form method="POST" novalidate enctype="multipart/form-data">{% csrf_token %}
                 <h2>Prelekcja</h2>
-                <label>Tytuł</label>
-                <input type="text" class="input-block-level">
-                <label>Opis</label>
-                <textarea class="input-block-level" rows="3"></textarea>
+                {% include "meetups/includes/form_input.html" with field=form.talk_title label='Tytuł' %}
+                {% include "meetups/includes/form_input.html" with field=form.talk_description label='Opis' %}
                 <h2 class="margin-top-normal">Prelegent</h2>
-                <select class="input-block-level">
-                    <option>Wybierz</option>
-                    <option>Guido van Rossum</option>
-                </select>
-                <label>Imię</label>
-                <input type="text" class="input-block-level">
-                <label>Nazwisko</label>
-                <input type="text" class="input-block-level">
-                <label>Biogram</label>
-                <textarea class="input-block-level" rows="3"></textarea>
-                <label>Strona WWW</label>
-                <input type="text" class="input-block-level">
-                <label>Zdjęcie</label>
-                <img src="http://placehold.it/100x100" class="margin-bottom-small">
-                <label>Numer telefonu</label>
-                <input type="text" class="input-block-level">
-                <label>E-mail</label>
-                <input type="text" class="input-block-level">
+                <p>
+                    Jeżeli byłeś już kiedyś prelegentem na spotkaniu PyWaw wystarczy, że znajdziesz siebie na poniższej liście.
+                    W przeciwnym wypadku musisz wypełnić wszystkie pozostałe pola.
+                </p>
+                {% include "meetups/includes/form_input.html" with field=form.speaker %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_first_name label='Imię' %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_last_name label='Nazwisko' %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_biography label='Biogram' %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_website label='Strona WWW' %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_photo label='Zdjęcie' %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_phone label='Numer telefonu' %}
+                {% include "meetups/includes/form_input.html" with field=form.speaker_email label='E-mail' %}
                 <input type="submit" class="button button-block pull-right margin-top-normal" value="Wyślij zgłoszenie">
             </form>
         </div>
