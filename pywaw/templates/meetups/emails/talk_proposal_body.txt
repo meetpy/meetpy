@@ -1,0 +1,4 @@
+Tytuł: {{ talk.title }} (http://{{ site.domain }}{% url 'admin:meetups_talk_change' talk.id %})
+Prelegent: {{ talk.speakers.all.0 }} (http://{{ site.domain }}{% url 'admin:meetups_speaker_change' talk.speakers.all.0.id %})
+
+{{ talk.description }}

@@ -1,5 +1,8 @@
+from django.contrib.sites.models import Site
+from django.core import mail
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseNotFound
+from django.template.loader import render_to_string
 from django.test.utils import override_settings
 import factory
 from datetime import datetime
@@ -77,7 +80,7 @@ class SlugifyUploadToTest(TestCase):
 class TalkProposalViewTest(TestCase):
 
     def test_save_talk_proposal_with_existing_speaker(self):
-        speaker = SpeakerFactory(first_name='Guido', last_name='Van Rossüm')
+        speaker = SpeakerFactory()
         form_data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
@@ -122,3 +125,31 @@ class TalkProposalViewTest(TestCase):
         self.assertEqual(saved_speaker.email, 'email@pywaw.org')
         self.assertEqual(saved_speaker.biography, 'short bio')
         self.assertEqual(saved_speaker.photo.name.split('/')[-1], 'first-last.png')
+
+    @override_settings(TALK_PROPOSAL_RECIPIENTS=['admin1@email.com', 'admin2@email.com'])
+    def test_send_email_to_admins(self):
+        speaker = SpeakerFactory()
+        form_data = {
+            'talk_title': 'some title',
+            'talk_description': 'some desc',
+            'speaker': speaker.id,
+        }
+
+        self.client.post(reverse('meetups:talk_proposal'), form_data)
+
+        saved_talk = models.Talk.objects.all()[0]
+        context = {
+            'talk': saved_talk,
+            'site': Site(domain='testserver'),
+        }
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(
+            mail.outbox[0].subject,
+            render_to_string('meetups/emails/talk_proposal_subject.txt', context).strip(),
+        )
+        self.assertEqual(
+            mail.outbox[0].body,
+            render_to_string('meetups/emails/talk_proposal_body.txt', context),
+        )
+        self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(mail.outbox[0].to, settings.TALK_PROPOSAL_RECIPIENTS)

@@ -1,8 +1,12 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.conf import settings
+from django.contrib.sites.models import get_current_site
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.contrib.syndication import views as syndication_views
 from django.core.urlresolvers import reverse_lazy
 from django.utils import feedgenerator
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from . import models, forms, constants
 
 
@@ -54,20 +58,41 @@ class TalkProposalView(generic.FormView):
     success_url = reverse_lazy('meetups:talk_proposal_confirmation')
 
     def form_valid(self, form):
-        created_talk = models.Talk.objects.create(title=form.cleaned_data['talk_title'],
-                                                  description=form.cleaned_data['talk_description'])
-        if form.cleaned_data['speaker']:
-            added_speaker = form.cleaned_data['speaker']
+        talk = self._create_talk_and_speaker(form.cleaned_data)
+        self._send_email_to_admins(talk)
+        return super().form_valid(form)
+
+    def _create_talk_and_speaker(self, data):
+        created_talk = models.Talk.objects.create(
+            title=data['talk_title'],
+            description=data['talk_description'],
+        )
+        if data['speaker']:
+            added_speaker = data['speaker']
         else:
-            added_speaker = models.Speaker.objects.create(first_name=form.cleaned_data['speaker_first_name'],
-                                                          last_name=form.cleaned_data['speaker_last_name'],
-                                                          website=form.cleaned_data['speaker_website'],
-                                                          phone=form.cleaned_data['speaker_phone'],
-                                                          email=form.cleaned_data['speaker_email'],
-                                                          biography=form.cleaned_data['speaker_biography'],
-                                                          photo=form.cleaned_data['speaker_photo'])
+            added_speaker = models.Speaker.objects.create(
+                first_name=data['speaker_first_name'],
+                last_name=data['speaker_last_name'],
+                website=data['speaker_website'],
+                phone=data['speaker_phone'],
+                email=data['speaker_email'],
+                biography=data['speaker_biography'],
+                photo=data['speaker_photo'],
+            )
         created_talk.speakers.add(added_speaker)
-        return super(TalkProposalView, self).form_valid(form)
+        return created_talk
+
+    def _send_email_to_admins(self, talk):
+        context = {
+            'talk': talk,
+            'site': get_current_site(self.request),
+        }
+        send_mail(
+            subject=render_to_string('meetups/emails/talk_proposal_subject.txt', context).strip(),
+            message=render_to_string('meetups/emails/talk_proposal_body.txt', context),
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=settings.TALK_PROPOSAL_RECIPIENTS,
+        )
 
 
 class TalkProposalConfirmationView(generic.TemplateView):
