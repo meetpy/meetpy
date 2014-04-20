@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^sponsorzy/$', views.SponsorListView.as_view(), name='sponsor_list'),
     url(r'^prelegenci/$', views.SpeakerListView.as_view(), name='speaker_list'),
     url(r'^zgloszenie/$', views.TalkProposalView.as_view(), name='talk_proposal'),
+    url(r'^zgloszenie/potwierdzenie/$', views.TalkProposalConfirmationView.as_view(), name='talk_proposal_confirmation'),
     url(r'^atom/$', views.MeetupsAtomFeed(), name='atom_feed'),
     url(r'^rss/$', views.MeetupsRssFeed(), name='rss_feed'),
 

@@ -96,10 +96,13 @@ ul li{line-height:24px}
 
 label {font-weight: bold; margin-bottom: 10px;}
 label:after {content: ":"}
-input[type=text], textarea {border-radius: 0; background-color: #FAF7F7; box-shadow: none;}
+input[type=text], input[type=email], input[type=url], textarea {border-radius: 0; background-color: #FAF7F7; box-shadow: none; padding: 0}
 select {background-color: #FAF7F7; -webkit-appearance: none; border-radius: 0;}
-input[type=text], select {height: 40px;}
+input[type=text], input[type=email], input[type=url], select {height: 40px;}
 input[type=submit] {border: 0;}
+.control-group .controls input, .control-group .controls textarea, .control-group .controls select {display: block; width: 100%;}
+.control-group .controls .help-inline ul.errorlist {margin: 0;}
+.control-group .controls .help-inline ul.errorlist li {list-style-type: none;}
 
 /********************** 3. COMPONENTS *******************************/
 /********************** 3.1 Page menu *******************************/

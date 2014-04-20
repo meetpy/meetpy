@@ -13,7 +13,8 @@ class TalkProposalForm(forms.Form):
     speaker_website = forms.URLField(required=False)
     speaker_phone = forms.CharField(required=False, max_length=30)
     speaker_email = forms.EmailField(required=False)
-    speaker_biography = forms.CharField(required=False)
+    speaker_biography = forms.CharField(required=False, widget=forms.Textarea)
+    speaker_photo = forms.ImageField(required=False)
 
     def clean(self):
         if self.all_new_speaker_fields_empty() and self.existing_speaker_field_empty():
