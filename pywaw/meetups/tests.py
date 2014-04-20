@@ -1,15 +1,15 @@
-from django.contrib.sites.models import Site
+from django.contrib.sites.models import get_current_site
 from django.core import mail
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseNotFound
+from django.http import Http404
 from django.template.loader import render_to_string
 from django.test.utils import override_settings
 import factory
 from datetime import datetime
 from django.test import TestCase
 from django.conf import settings
-from . import models
-from djet import files
+from djet import files, testcases, assertions
+from . import models, views
 
 
 class MeetupFactory(factory.DjangoModelFactory):
@@ -41,7 +41,8 @@ class MeetupManagerTest(TestCase):
             upcoming_meetup = models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))
 
 
-class MeetupDateRedirectViewTest(TestCase):
+class MeetupDateRedirectViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertionsMixin):
+    view_class = views.MeetupDateRedirectView
 
     def test_redirect(self):
         data = {
@@ -50,10 +51,11 @@ class MeetupDateRedirectViewTest(TestCase):
             'year': '2000',
         }
         meetup = MeetupFactory(date=datetime(2000, 2, 1, 18, 30))
+        request = self.factory.get(data=data)
 
-        response = self.client.get(reverse('meetups:date_redirect', kwargs=data))
+        response = self.view(request)
 
-        self.assertRedirects(response, meetup.get_absolute_url(), status_code=301)
+        self.assert_redirect(response, meetup.get_absolute_url())
 
     def test_not_found(self):
         data = {
@@ -61,9 +63,10 @@ class MeetupDateRedirectViewTest(TestCase):
             'month': '02',
             'year': '2000',
         }
-        response = self.client.get(reverse('meetups:date_redirect', kwargs=data))
+        request = self.factory.get(data=data)
 
-        self.assertEqual(response.status_code, HttpResponseNotFound.status_code)
+        with self.assertRaises(Http404):
+            self.view(request)
 
 
 class SlugifyUploadToTest(TestCase):
@@ -77,28 +80,30 @@ class SlugifyUploadToTest(TestCase):
         self.assertEqual(path, settings.SPEAKER_PHOTOS_DIR + '/guido-van-rossum.png')
 
 
-class TalkProposalViewTest(TestCase):
+class TalkProposalViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertionsMixin):
+    view_class = views.TalkProposalView
 
     def test_save_talk_proposal_with_existing_speaker(self):
         speaker = SpeakerFactory()
-        form_data = {
+        data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
             'speaker': speaker.id,
         }
+        request = self.factory.post(data=data)
 
-        self.client.post(reverse('meetups:talk_proposal'), form_data)
+        self.view(request)
 
         self.assertEqual(models.Talk.objects.count(), 1)
         saved_talk = models.Talk.objects.all()[0]
-        self.assertEqual(saved_talk.title, 'some title')
-        self.assertEqual(saved_talk.description, 'some desc')
+        self.assertEqual(saved_talk.title, data['talk_title'])
+        self.assertEqual(saved_talk.description, data['talk_description'])
         self.assertEqual(saved_talk.speakers.count(), 1)
         self.assertEqual(saved_talk.speakers.all()[0], speaker)
 
     @override_settings(DEFAULT_FILE_STORAGE='djet.files.InMemoryStorage')
     def test_save_talk_proposal_with_new_speaker(self):
-        form_data = {
+        data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
             'speaker_first_name': 'first',
@@ -107,40 +112,42 @@ class TalkProposalViewTest(TestCase):
             'speaker_phone': '123',
             'speaker_email': 'email@pywaw.org',
             'speaker_biography': 'short bio',
-            'speaker_photo': files.create_inmemory_image('my-pic.png'),
+            'speaker_photo': files.create_inmemory_image(),
         }
+        request = self.factory.post(data=data)
 
-        self.client.post(reverse('meetups:talk_proposal'), form_data)
+        self.view(request, data=data)
 
         self.assertEqual(models.Talk.objects.count(), 1)
         saved_talk = models.Talk.objects.all()[0]
-        self.assertEqual(saved_talk.title, 'some title')
-        self.assertEqual(saved_talk.description, 'some desc')
+        self.assertEqual(saved_talk.title, data['talk_title'])
+        self.assertEqual(saved_talk.description, data['talk_description'])
         self.assertEqual(saved_talk.speakers.count(), 1)
         saved_speaker = saved_talk.speakers.all()[0]
-        self.assertEqual(saved_speaker.first_name, 'first')
-        self.assertEqual(saved_speaker.last_name, 'last')
-        self.assertEqual(saved_speaker.website, 'http://pywaw.org/')
-        self.assertEqual(saved_speaker.phone, '123')
-        self.assertEqual(saved_speaker.email, 'email@pywaw.org')
-        self.assertEqual(saved_speaker.biography, 'short bio')
-        self.assertEqual(saved_speaker.photo.name.split('/')[-1], 'first-last.png')
+        self.assertEqual(saved_speaker.first_name, data['speaker_first_name'])
+        self.assertEqual(saved_speaker.last_name, data['speaker_last_name'])
+        self.assertEqual(saved_speaker.website, data['speaker_website'])
+        self.assertEqual(saved_speaker.phone, data['speaker_phone'])
+        self.assertEqual(saved_speaker.email, data['speaker_email'])
+        self.assertEqual(saved_speaker.biography, data['speaker_biography'])
+        self.assertTrue(saved_speaker.photo)
 
     @override_settings(TALK_PROPOSAL_RECIPIENTS=['admin1@email.com', 'admin2@email.com'])
     def test_send_email_to_admins(self):
         speaker = SpeakerFactory()
-        form_data = {
+        data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
             'speaker': speaker.id,
         }
+        request = self.factory.post(data=data)
 
-        self.client.post(reverse('meetups:talk_proposal'), form_data)
+        self.view(request, data=data)
 
         saved_talk = models.Talk.objects.all()[0]
         context = {
             'talk': saved_talk,
-            'site': Site(domain='testserver'),
+            'site': get_current_site(request),
         }
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(
@@ -153,3 +160,15 @@ class TalkProposalViewTest(TestCase):
         )
         self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
         self.assertEqual(mail.outbox[0].to, settings.TALK_PROPOSAL_RECIPIENTS)
+
+    def test_redirect_to_confirmation_page(self):
+        data = {
+            'talk_title': 'some title',
+            'talk_description': 'some desc',
+            'speaker': SpeakerFactory().id,
+        }
+        request = self.factory.post(data=data)
+
+        response = self.view(request, data=data)
+
+        self.assert_redirect(response, reverse('meetups:talk_proposal_confirmation'))
