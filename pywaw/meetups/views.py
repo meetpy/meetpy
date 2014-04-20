@@ -52,39 +52,19 @@ class SpeakerListView(generic.ListView):
     model = models.Speaker
 
 
-class TalkProposalView(generic.FormView):
+class TalkProposalCreateView(generic.CreateView):
+    model = models.TalkProposal
     form_class = forms.TalkProposalForm
-    template_name = 'meetups/talk_proposal.html'
     success_url = reverse_lazy('meetups:talk_proposal_confirmation')
 
     def form_valid(self, form):
-        talk = self._create_talk_and_speaker(form.cleaned_data)
-        self._send_email_to_admins(talk)
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        self._send_email_to_admins()
+        return response
 
-    def _create_talk_and_speaker(self, data):
-        created_talk = models.Talk.objects.create(
-            title=data['talk_title'],
-            description=data['talk_description'],
-        )
-        if data['speaker']:
-            added_speaker = data['speaker']
-        else:
-            added_speaker = models.Speaker.objects.create(
-                first_name=data['speaker_first_name'],
-                last_name=data['speaker_last_name'],
-                website=data['speaker_website'],
-                phone=data['speaker_phone'],
-                email=data['speaker_email'],
-                biography=data['speaker_biography'],
-                photo=data['speaker_photo'],
-            )
-        created_talk.speakers.add(added_speaker)
-        return created_talk
-
-    def _send_email_to_admins(self, talk):
+    def _send_email_to_admins(self):
         context = {
-            'talk': talk,
+            'talk_proposal': self.object,
             'site': get_current_site(self.request),
         }
         send_mail(
@@ -96,4 +76,4 @@ class TalkProposalView(generic.FormView):
 
 
 class TalkProposalConfirmationView(generic.TemplateView):
-    template_name = 'meetups/talk_proposal_confirmation.html'
+    template_name = 'meetups/talkproposal_confirmation.html'

@@ -34,6 +34,12 @@
                 {% include "meetups/includes/form_input.html" with field=form.speaker_photo label='Zdjęcie' %}
                 {% include "meetups/includes/form_input.html" with field=form.speaker_phone label='Numer telefonu' %}
                 {% include "meetups/includes/form_input.html" with field=form.speaker_email label='E-mail' %}
+                <h2 class="margin-top-normal">Dodatkowe uwagi</h2>
+                <p>
+                    W tym polu powinny znaleźć się wszystkie dodatkowe uwagi dotyczące Twojej prelekcji, np. wymagania
+                    sprzętowe, planowana data lub numer spotkania na którym chcesz wygłosić prelekcję, etc.
+                </p>
+                {% include "meetups/includes/form_input.html" with field=form.message %}
                 <input type="submit" class="button button-block pull-right margin-top-normal" value="Wyślij zgłoszenie">
             </form>
         </div>

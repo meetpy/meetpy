@@ -95,7 +95,7 @@ class Talk(models.Model):
         ordering = ['order']
 
     def __str__(self):
-        return '{} ({})'.format(self.title, self.meetup)
+        return self.title
 
 
 class ExternalLink(models.Model):
@@ -112,3 +112,12 @@ class ExternalLink(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(self.url, self.meetup)
+
+
+class TalkProposal(models.Model):
+    talk = models.ForeignKey(Talk)
+    message = models.TextField(blank=True)
+    date_submitted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'Proposal: {}'.format(self.talk)

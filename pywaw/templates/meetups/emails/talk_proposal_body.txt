@@ -1,4 +1,11 @@
-Tytuł: {{ talk.title }} (http://{{ site.domain }}{% url 'admin:meetups_talk_change' talk.id %})
-Prelegent: {{ talk.speakers.all.0 }} (http://{{ site.domain }}{% url 'admin:meetups_speaker_change' talk.speakers.all.0.id %})
+Tytuł: {{ talk_proposal.talk.title }}
+Prelegent: {{ talk_proposal.talk.speakers.all.0 }}
+Opis:
 
-{{ talk.description }}
+{{ talk_proposal.talk.description }}
+{% if talk_proposal.message %}
+Wiadomość:
+
+{{ talk_proposal.message }}
+{% endif %}
+Admin URL: http://{{ site.domain }}{% url 'admin:meetups_talkproposal_change' talk_proposal.id %}

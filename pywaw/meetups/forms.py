@@ -4,7 +4,7 @@ from meetups.constants import EITHER_EXISTING_OR_NEW_SPEAKER_ERROR
 from . import models
 
 
-class TalkProposalForm(forms.Form):
+class TalkProposalForm(forms.ModelForm):
     talk_title = forms.CharField()
     talk_description = forms.CharField(max_length=1000, widget=forms.Textarea)
     speaker = forms.ModelChoiceField(queryset=models.Speaker.objects.all(), required=False)
@@ -24,6 +24,33 @@ class TalkProposalForm(forms.Form):
         'speaker_biography',
         'speaker_photo',
     ]
+
+    class Meta:
+        model = models.TalkProposal
+        fields = ('message',)
+
+    def save(self, *args, **kwargs):
+        talk_proposal = super().save(commit=False)
+        talk = models.Talk.objects.create(
+            title=self.cleaned_data['talk_title'],
+            description=self.cleaned_data['talk_description'],
+        )
+        if self.cleaned_data['speaker']:
+            speaker = self.cleaned_data['speaker']
+        else:
+            speaker = models.Speaker.objects.create(
+                first_name=self.cleaned_data['speaker_first_name'],
+                last_name=self.cleaned_data['speaker_last_name'],
+                website=self.cleaned_data['speaker_website'],
+                phone=self.cleaned_data['speaker_phone'],
+                email=self.cleaned_data['speaker_email'],
+                biography=self.cleaned_data['speaker_biography'],
+                photo=self.cleaned_data['speaker_photo'],
+            )
+        talk.speakers.add(speaker)
+        talk_proposal.talk = talk
+        talk_proposal.save()
+        return talk_proposal
 
     def clean(self):
         if self._existing_speaker_field_empty():

@@ -80,8 +80,8 @@ class SlugifyUploadToTest(TestCase):
         self.assertEqual(path, settings.SPEAKER_PHOTOS_DIR + '/guido-van-rossum.png')
 
 
-class TalkProposalViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertionsMixin):
-    view_class = views.TalkProposalView
+class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertionsMixin):
+    view_class = views.TalkProposalCreateView
 
     def test_save_talk_proposal_with_existing_speaker(self):
         speaker = SpeakerFactory()
@@ -89,11 +89,15 @@ class TalkProposalViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertio
             'talk_title': 'some title',
             'talk_description': 'some desc',
             'speaker': speaker.id,
+            'message': 'some comment',
         }
         request = self.factory.post(data=data)
 
         self.view(request)
 
+        self.assertEqual(models.TalkProposal.objects.count(), 1)
+        talk_proposal = models.TalkProposal.objects.get()
+        self.assertEqual(talk_proposal.message, data['message'])
         self.assertEqual(models.Talk.objects.count(), 1)
         saved_talk = models.Talk.objects.all()[0]
         self.assertEqual(saved_talk.title, data['talk_title'])
@@ -113,24 +117,27 @@ class TalkProposalViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertio
             'speaker_email': 'email@pywaw.org',
             'speaker_biography': 'short bio',
             'speaker_photo': files.create_inmemory_image(),
+            'message': 'some comment',
         }
         request = self.factory.post(data=data)
 
         self.view(request, data=data)
 
-        self.assertEqual(models.Talk.objects.count(), 1)
-        saved_talk = models.Talk.objects.all()[0]
-        self.assertEqual(saved_talk.title, data['talk_title'])
-        self.assertEqual(saved_talk.description, data['talk_description'])
-        self.assertEqual(saved_talk.speakers.count(), 1)
-        saved_speaker = saved_talk.speakers.all()[0]
-        self.assertEqual(saved_speaker.first_name, data['speaker_first_name'])
-        self.assertEqual(saved_speaker.last_name, data['speaker_last_name'])
-        self.assertEqual(saved_speaker.website, data['speaker_website'])
-        self.assertEqual(saved_speaker.phone, data['speaker_phone'])
-        self.assertEqual(saved_speaker.email, data['speaker_email'])
-        self.assertEqual(saved_speaker.biography, data['speaker_biography'])
-        self.assertTrue(saved_speaker.photo)
+        self.assertEqual(models.TalkProposal.objects.count(), 1)
+        talk_proposal = models.TalkProposal.objects.get()
+        self.assertEqual(talk_proposal.message, data['message'])
+        talk = talk_proposal.talk
+        self.assertEqual(talk.title, data['talk_title'])
+        self.assertEqual(talk.description, data['talk_description'])
+        self.assertEqual(talk.speakers.count(), 1)
+        speaker = talk.speakers.get()
+        self.assertEqual(speaker.first_name, data['speaker_first_name'])
+        self.assertEqual(speaker.last_name, data['speaker_last_name'])
+        self.assertEqual(speaker.website, data['speaker_website'])
+        self.assertEqual(speaker.phone, data['speaker_phone'])
+        self.assertEqual(speaker.email, data['speaker_email'])
+        self.assertEqual(speaker.biography, data['speaker_biography'])
+        self.assertTrue(speaker.photo)
 
     @override_settings(TALK_PROPOSAL_RECIPIENTS=['admin1@email.com', 'admin2@email.com'])
     def test_send_email_to_admins(self):
@@ -144,9 +151,9 @@ class TalkProposalViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertio
 
         self.view(request, data=data)
 
-        saved_talk = models.Talk.objects.all()[0]
+        talk = models.TalkProposal.objects.get()
         context = {
-            'talk': saved_talk,
+            'talk_proposal': talk,
             'site': get_current_site(request),
         }
         self.assertEqual(len(mail.outbox), 1)

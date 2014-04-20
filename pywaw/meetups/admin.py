@@ -17,8 +17,14 @@ class MeetupAdmin(admin.ModelAdmin):
     inlines = (TalkInline, ExternalLinkInline)
     readonly_fields = ('date_modified',)
 
+
+class TalkProposalAdmin(admin.ModelAdmin):
+    readonly_fields = ('talk', 'message', 'date_submitted')
+
+
 admin.site.register(models.Meetup, MeetupAdmin)
 admin.site.register(models.Speaker)
 admin.site.register(models.Talk)
 admin.site.register(models.Sponsor)
 admin.site.register(models.Venue)
+admin.site.register(models.TalkProposal, TalkProposalAdmin)
