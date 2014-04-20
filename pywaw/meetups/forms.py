@@ -1,7 +1,7 @@
 from django import forms
-from . import models
 from django.core.exceptions import ValidationError
 from meetups.constants import EITHER_EXISTING_OR_NEW_SPEAKER_ERROR
+from . import models
 
 
 class TalkProposalForm(forms.Form):
@@ -16,14 +16,27 @@ class TalkProposalForm(forms.Form):
     speaker_biography = forms.CharField(required=False, widget=forms.Textarea)
     speaker_photo = forms.ImageField(required=False)
 
+    REQUIRED_SPEAKER_FIELDS = [
+        'speaker_first_name',
+        'speaker_last_name',
+        'speaker_phone',
+        'speaker_email',
+        'speaker_biography',
+        'speaker_photo',
+    ]
+
     def clean(self):
-        if self.all_new_speaker_fields_empty() and self.existing_speaker_field_empty():
-            raise ValidationError(EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
+        if self._existing_speaker_field_empty():
+            if self._all_required_new_speaker_fields_empty():
+                raise ValidationError(EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
+            elif not self._all_required_new_speaker_fields_empty():
+                for field_name in self.REQUIRED_SPEAKER_FIELDS:
+                    if not self.cleaned_data[field_name]:
+                        self._errors[field_name] = self.fields[field_name].error_messages['required']
         return self.cleaned_data
 
-    def all_new_speaker_fields_empty(self):
-        is_new_speaker_field = lambda f: f.startswith('speaker_')
-        return all([not v for k, v in self.cleaned_data.items() if is_new_speaker_field(k)])
+    def _all_required_new_speaker_fields_empty(self):
+        return all(not self.cleaned_data[field_name] for field_name in self.REQUIRED_SPEAKER_FIELDS)
 
-    def existing_speaker_field_empty(self):
-        return self.cleaned_data['speaker'] is None
+    def _existing_speaker_field_empty(self):
+        return not self.cleaned_data['speaker']

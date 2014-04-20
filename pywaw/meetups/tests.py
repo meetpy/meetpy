@@ -183,23 +183,40 @@ class TalkProposalFormTest(TestCase):
             'talk_description': 'description',
             'speaker': speaker.id,
         })
-    
+
         self.assertTrue(form.is_valid())
-     
-    def test_accepts_when_some_new_speaker_fields_are_set_and_existing_speaker_is_not(self):
-        form = forms.TalkProposalForm(data={
-            'talk_title': 'title',
-            'talk_description': 'description',
-            'speaker_first_name': 'first',
-            'speaker_last_name': 'last',
-        })
-    
+
+    def test_accepts_when_all_required_new_speaker_fields_are_set_and_existing_speaker_is_not(self):
+        form = forms.TalkProposalForm(
+            data={
+                'talk_title': 'title',
+                'talk_description': 'description',
+                'speaker_first_name': 'first',
+                'speaker_last_name': 'last',
+                'speaker_phone': '123',
+                'speaker_email': 'email@email.com',
+                'speaker_biography': 'short bio',
+            },
+            files={
+                'speaker_photo': files.create_inmemory_image(),
+            },
+        )
+
         self.assertTrue(form.is_valid())
 
     def test_rejects_when_neither_speaker_id_nor_speaker_values_are_set(self):
         form = forms.TalkProposalForm(data={
             'talk_title': 'title',
             'talk_description': 'description',
+        })
+
+        self.assertFalse(form.is_valid())
+
+    def test_rejects_when_not_all_required_new_speaker_fields_are_set_and_existing_speaker_is_not(self):
+        form = forms.TalkProposalForm(data={
+            'talk_title': 'title',
+            'talk_description': 'description',
+            'speaker_first_name': 'first',
         })
 
         self.assertFalse(form.is_valid())

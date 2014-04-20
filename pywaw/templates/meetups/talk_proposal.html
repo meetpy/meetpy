@@ -21,6 +21,11 @@
                     Jeżeli byłeś już kiedyś prelegentem na spotkaniu PyWaw wystarczy, że znajdziesz siebie na poniższej liście.
                     W przeciwnym wypadku musisz wypełnić wszystkie pozostałe pola.
                 </p>
+                <div class="control-group error">
+                    <div class="controls">
+                        <span class="help-inline">{{ form.non_field_errors }}</span>
+                    </div>
+                </div>
                 {% include "meetups/includes/form_input.html" with field=form.speaker %}
                 {% include "meetups/includes/form_input.html" with field=form.speaker_first_name label='Imię' %}
                 {% include "meetups/includes/form_input.html" with field=form.speaker_last_name label='Nazwisko' %}
