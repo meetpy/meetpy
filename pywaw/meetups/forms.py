@@ -63,7 +63,7 @@ class TalkProposalForm(forms.ModelForm):
         return self.cleaned_data
 
     def _all_required_new_speaker_fields_empty(self):
-        return all(not self.cleaned_data[field_name] for field_name in self.REQUIRED_SPEAKER_FIELDS)
+        return all(self.cleaned_data.get(field_name) == '' for field_name in self.REQUIRED_SPEAKER_FIELDS)
 
     def _existing_speaker_field_empty(self):
         return not self.cleaned_data['speaker']
