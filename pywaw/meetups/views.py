@@ -52,7 +52,7 @@ class SpeakerListView(generic.ListView):
     model = models.Speaker
 
     def get_queryset(self):
-        return super().get_queryset().filter(talks__meetup__isnull=False)
+        return super().get_queryset().filter(talks__meetup__isnull=False).distinct()
 
 
 class TalkProposalCreateView(generic.CreateView):

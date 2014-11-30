@@ -8,7 +8,7 @@ class TalkProposalForm(forms.ModelForm):
     talk_title = forms.CharField()
     talk_description = forms.CharField(max_length=1000, widget=forms.Textarea)
     speaker = forms.ModelChoiceField(
-        queryset=models.Speaker.objects.filter(talks__meetup__isnull=False),
+        queryset=models.Speaker.objects.filter(talks__meetup__isnull=False).distinct(),
         required=False,
     )
     speaker_first_name = forms.CharField(required=False, max_length=30)
