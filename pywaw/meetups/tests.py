@@ -26,6 +26,12 @@ class SpeakerFactory(factory.DjangoModelFactory):
     last_name = 'Van Rossum'
 
 
+class TalkFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = models.Talk
+
+    title = 'Why Python is awesome?'
+
+
 class MeetupManagerTest(TestCase):
 
     def test_upcoming_if_exists(self):
@@ -83,12 +89,18 @@ class SlugifyUploadToTest(TestCase):
 class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertionsMixin):
     view_class = views.TalkProposalCreateView
 
+    def setUp(self):
+        self.speaker = SpeakerFactory()
+        meetup = MeetupFactory(date=datetime(2000, 1, 1))
+        talk = TalkFactory()
+        self.speaker.talks.add(talk)
+        meetup.talks.add(talk)
+
     def test_save_talk_proposal_with_existing_speaker(self):
-        speaker = SpeakerFactory()
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
-            'speaker': speaker.id,
+            'speaker': self.speaker.id,
             'message': 'some comment',
         }
         request = self.factory.post(data=data)
@@ -98,12 +110,11 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         self.assertEqual(models.TalkProposal.objects.count(), 1)
         talk_proposal = models.TalkProposal.objects.get()
         self.assertEqual(talk_proposal.message, data['message'])
-        self.assertEqual(models.Talk.objects.count(), 1)
-        saved_talk = models.Talk.objects.all()[0]
-        self.assertEqual(saved_talk.title, data['talk_title'])
+        self.assertEqual(models.Talk.objects.count(), 2)
+        saved_talk = models.Talk.objects.get(title='some title')
         self.assertEqual(saved_talk.description, data['talk_description'])
         self.assertEqual(saved_talk.speakers.count(), 1)
-        self.assertEqual(saved_talk.speakers.all()[0], speaker)
+        self.assertEqual(saved_talk.speakers.all()[0], self.speaker)
 
     @override_settings(DEFAULT_FILE_STORAGE='djet.files.InMemoryStorage')
     def test_save_talk_proposal_with_new_speaker(self):
@@ -118,7 +129,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
             'speaker_biography': 'short bio',
             'speaker_photo': files.create_inmemory_image(),
             'message': 'some comment',
-        }
+            }
         request = self.factory.post(data=data)
 
         self.view(request, data=data)
@@ -141,12 +152,11 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
 
     @override_settings(TALK_PROPOSAL_RECIPIENTS=['admin1@email.com', 'admin2@email.com'])
     def test_send_email_to_admins(self):
-        speaker = SpeakerFactory()
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
-            'speaker': speaker.id,
-        }
+            'speaker': self.speaker.id,
+            }
         request = self.factory.post(data=data)
 
         self.view(request, data=data)
@@ -155,16 +165,16 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         context = {
             'talk_proposal': talk,
             'site': get_current_site(request),
-        }
+            }
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(
             mail.outbox[0].subject,
             render_to_string('meetups/emails/talk_proposal_subject.txt', context).strip(),
-        )
+            )
         self.assertEqual(
             mail.outbox[0].body,
             render_to_string('meetups/emails/talk_proposal_body.txt', context),
-        )
+            )
         self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
         self.assertEqual(mail.outbox[0].to, settings.TALK_PROPOSAL_RECIPIENTS)
 
@@ -172,8 +182,8 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
-            'speaker': SpeakerFactory().id,
-        }
+            'speaker': self.speaker.id,
+            }
         request = self.factory.post(data=data)
 
         response = self.view(request, data=data)
@@ -185,6 +195,10 @@ class TalkProposalFormTest(TestCase):
 
     def test_accepts_when_existing_speaker_is_set_and_new_speaker_fields_are_not(self):
         speaker = SpeakerFactory()
+        meetup = MeetupFactory(date=datetime(2000, 1, 1))
+        talk = TalkFactory()
+        speaker.talks.add(talk)
+        meetup.talks.add(talk)
         form = forms.TalkProposalForm(data={
             'talk_title': 'title',
             'talk_description': 'description',
