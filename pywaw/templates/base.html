@@ -56,10 +56,12 @@
                 {% url 'meetups:speaker_list' as speaker_list_url %}
                 {% url 'meetups:sponsor_list' as sponsor_list_url %}
                 {% url 'misc:home' as home_url %}
+                {% url 'misc:faq' as faq_url %}
                 <li><a href="{{ home_url }}"{% if request.path == home_url %} class="active"{% endif %}>Home</a></li>
 								<li><a href="{{ meetup_list_url }}"{% if request.path == meetup_list_url %} class="active"{% endif %}>Spotkania</a></li>
                 <li><a href="{{ speaker_list_url }}"{% if request.path == speaker_list_url %} class="active"{% endif %}>Prelegenci</a></li>
                 <li><a href="{{ sponsor_list_url }}"{% if request.path == sponsor_list_url %} class="active"{% endif %}>Sponsorzy</a></li>
+                <li><a href="{{ faq_url }}"{% if request.path == faq_url %} class="active"{% endif %}>FAQ</a></li>
 							</ul>
 						</div>
 						<div class="span3">
@@ -107,11 +109,11 @@
 						<div class="span2">
 							<h5>Jesteśmy na</h5>
 							<ul>
-								<li><a href="http://groups.google.com/forum/#!forum/pywaw" target="_blank">Google Groups</a></li>
+								<li><a href="http://www.meetup.com/PyWaw-Python-Warsaw-User-Group/" target="_blank">Meetup</a></li>
 								<li><a href="http://facebook.com/PyWaw" target="_blank">Facebook</a></li>
 								<li><a href="http://twitter.com/PyWaw" target="_blank">Twitter</a></li>
 								<li><a href="http://youtube.com/PyWaw" target="_blank">YouTube</a></li>
-								<li><a href="http://www.meetup.com/PyWaw-Python-Warsaw-User-Group/" target="_blank">Meetup</a></li>
+								<li><a href="http://groups.google.com/forum/#!forum/pywaw" target="_blank">Google Groups</a></li>
 							</ul>
 						</div>
 						<div class="span2">
@@ -132,8 +134,8 @@
 								<li><a href="https://www.facebook.com/WroclawPythonUserGroup" target="_blank">wroc.py</a></li>
 								<li><a href="http://pyladies.pl" target="_blank">Pyladies Poland</a></li>
 								<li><a href="http://pystok.org" target="_blank">PyStok - Białystok</a></li>
-							</ul>
-						</div>
+							</ul> 
+					  </div>
 						<div class="span2 powered pull-right">
 							<a href="http://sunscrapers.com" target="_blank"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS" class="pull-right"></a>
 						</div>
