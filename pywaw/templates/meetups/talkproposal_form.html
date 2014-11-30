@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="row margin-bottom-large">
-        <div class="span6">
+        <div class="span8">
             <form method="POST" novalidate enctype="multipart/form-data">{% csrf_token %}
                 <h2>Prelekcja</h2>
                 {% include "meetups/includes/form_input.html" with field=form.talk_title label='Tytuł' %}
@@ -40,7 +40,7 @@
                     sprzętowe, planowana data lub numer spotkania na którym chcesz wygłosić prelekcję, etc.
                 </p>
                 {% include "meetups/includes/form_input.html" with field=form.message %}
-                <input type="submit" class="button button-block pull-right margin-top-normal" value="Wyślij zgłoszenie">
+                <input type="submit" class="button button-block button--submit pull-right margin-top-normal" value="Wyślij zgłoszenie">
             </form>
         </div>
     </div>

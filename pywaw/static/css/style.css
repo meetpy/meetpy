@@ -25,6 +25,10 @@
 /********************** 1. BASE **********************************/
 /********************** 1.1 Default Styles ***********************/
 
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
 html{height:100%}
 body{background:#fff;color:#828282;font-weight:400;font-size:14px;font-family:'Merriweather Sans', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;height:100%}
 h1,h2,h3,h4,h5,h6{color:#4d4d4d;font-weight:400;font-family:'Merriweather Sans';margin:0}
@@ -63,6 +67,7 @@ strong{color:#4d4d4d}
 .button, .button:visited{font-size:16px;font-weight:700;line-height:30px;font-family:'Merriweather Sans';min-height:30px;background:#4790c3;color:#fff !important;}
 .button:hover, .button:active{background:#3680a2;color:#fff; border:0}
 .button-block{display:block;text-align:center;}
+.button--submit { padding: 5px 15px; }
 
 .line-orange{background:#ffd34a;height:5px;width:80px;display:block}
 
@@ -82,6 +87,10 @@ strong{color:#4d4d4d}
 .box-home p{color:#4d4d4d}
 .box-home strong{background:#4d4d4d;color:#fff;padding:0 1px}
 
+.box-dark {
+  background: #eaeaea;
+}
+
 /********************** 2.2 Typography ******************************/
 
 .text-smaller{line-height:18px}
@@ -99,6 +108,8 @@ label:after {content: ":"}
 input[type=text], input[type=email], input[type=url], textarea {border-radius: 0; background-color: #FAF7F7; box-shadow: none; padding: 0}
 select {background-color: #FAF7F7; -webkit-appearance: none; border-radius: 0;}
 input[type=text], input[type=email], input[type=url], select {height: 40px;}
+input[type=text], input[type=email], input[type=url], select, textarea {padding: 5px 10px;}
+
 input[type=submit] {border: 0;}
 .control-group .controls input, .control-group .controls textarea, .control-group .controls select {display: block; width: 100%;}
 .control-group .controls .help-inline ul.errorlist {margin: 0;}
@@ -179,8 +190,38 @@ footer div .without-header{margin-top:66px;}
 .carousel{margin:0}
 
 .more-info{width:100%;border:3px dashed #ededed;-moz-box-sizing:border-box;box-sizing:border-box}
-.more-info h3{text-align:center;color:#e4e4e4;margin:0;font-weight:700;font-size:28px;line-height:54px}
+.more-info h3{text-align:center;color:#cdcdcd;margin:0;font-weight:700;font-size:28px;line-height:54px}
 
+.video-landing {
+  width: 800px;
+  margin: 5px auto 30px;
+  text-align: center;
+  padding-left: 20px;
+}
+
+.talk-proposal-landing {
+  text-align: center;
+  padding: 0px 0;
+  padding-left: 180px;
+}
+
+.talk-proposal-landing .talk-proposal-button {
+  display: inline-block;
+  padding: 10px 25px;
+  margin-top: 35px;
+  background: #5cb85c;
+  margin-left: 50px;
+}
+
+.talk-proposal-landing .talk-proposal-button:hover {
+  background: #4cae4c;
+}
+
+.plus-icon {
+  font-size: 21px;
+  color: #fff;
+  margin-right: 5px;
+}
 
 /********************** 5.2 Meetup ************************************/
 
@@ -204,3 +245,5 @@ footer div .without-header{margin-top:66px;}
 /********************** 5.5 Meeting's ************************************/
 
 .meeting-list h2.text-number{margin-bottom: 10px;font-size: 32px;}
+
+
