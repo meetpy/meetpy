@@ -156,7 +156,7 @@ header{margin:10px 0 40px}
 /********************** 4.2 Nav *********************************/
 
 .menu-top{margin:0;padding:0}
-.menu-top li{float:left;list-style:none;margin:0 35px 0 0;padding:0}
+.menu-top li{float:left;list-style:none;margin:0 34px 0 0;padding:0}
 .menu-top li a, .menu-top li a:visited{font-weight:700;color:#4790c3;font-size:15px;font-family:'Merriweather Sans';line-height:30px;padding-right:10px;display:block}
 .menu-top li a:hover, .menu-top li a:active, .menu-top li.active a{color:#4d4d4d;border:0}
 .menu-top li a.active{color: #4d4d4d;}
