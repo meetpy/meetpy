@@ -51,6 +51,9 @@ class SponsorListView(generic.ListView):
 class SpeakerListView(generic.ListView):
     model = models.Speaker
 
+    def get_queryset(self):
+        return super().get_queryset().filter(talks__meetup__isnull=False)
+
 
 class TalkProposalCreateView(generic.CreateView):
     model = models.TalkProposal
