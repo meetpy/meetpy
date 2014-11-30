@@ -14,3 +14,7 @@ class HomeView(generic.TemplateView):
             context['upcoming_meetup'] = None
         context['partners'] = models.Partner.objects.filter(is_public=True)
         return context
+
+
+class FaqView(generic.TemplateView):
+    template_name = 'misc/faq.html'
