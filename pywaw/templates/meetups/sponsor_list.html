@@ -7,37 +7,6 @@
 {% block subcontent %}
     <div class="margin-bottom-large">
         <h1>Sponsorzy</h1>
-        <ol class="page-menu margin-bottom-large">
-            <li><a href="#be-sponsor">Jak zostać sponsorem?</a></li>
-            <li><a href="#sponsors-container">Sponsorzy spotkań</a></li>
-        </ol>
-        <div id="be-sponsor">
-            <h2>Jak zostać sponsorem?</h2>
-            <p>PyWaw jest organizacją non-profit i jako taki nie posiada własnych funduszy. Możliwe jest jednak wsparcie naszej inicjatywy przez firmy, instytucje lub prywatne osoby.</p>
-            <p>Pieniądze pozyskane w ten sposób mogą zostać przeznaczone na jeden z poniższych celów (w zależności od potrzeb):</p>
-            <ul>
-                <li>zakup napojów/jedzenia dla uczestników PyWaw</li>
-                <li>ufundowanie drobnych podarunków (np. książki) rozlosowanych podczas spotkania,</li>
-                <li>pokrycie kosztów związanych z przejazdem i pobytem w Warszawie zaproszonego prelegenta</li>
-                <li>wynajęcie miejsca spotkań</li>
-                <li>organizację innych wydarzeń niż comiesięczne spotkania, takich jak hackatony/sprinty</li>
-                <li>utrzymywanie infrastruktury PyWaw (domena, hosting)</li>
-            </ul>
-            <p>Sponsor naszych spotkań może liczyć na:</p>
-            <ul>
-                <li>umieszczenie loga/linku sponsora oraz linku na głównej stronie PyWaw w okresie od ustalenia szczegółów sponsoringu do dnia sponsorowanego spotkania włącznie</li>
-                <li>umieszczenie loga/linku sponsora na podstronie spotkania</li>
-                <li>umieszczenie loga/linku sponsora na niniejszej stronie, w dziale "Nasi dotychczasowi sponsorzy"</li>
-                <li>wymienienie jako sponsor spotkania podczas zapowiedzi spotkania przez organizatorów</li>
-                <li>pojawienia się specjalnej notki o sponsorze spotkania w mediach społecznościowych (Facebook/Twitter)</li>
-                <li>umieszczenie swojego baneru w sali spotkania</li>
-            </ul>
-            <p>Wszystkie powyższe profity zostaną przedyskutowane indywidualnie z każdym sponsorem w zależności od zaproponowanej oferty sponsorskiej.</p>
-            <p>Zakupione przez sponsora towary lub usługi muszą być przez niego bezpośrednio opłacone - PyWaw nie dysponuje własnym kontem bankowym. Możliwy jest sponsoring jednego lub wielu spotkań PyWaw. W zależności od zapotrzebowania comiesięczne spotkanie/inne wydarzenie może być sponsorowane przez wielu sponsorów.</p>
-            <p>Wszelkie pytania w sprawie sponsorowania spotkań PyWaw należy kierować na adres <a href="mailto:info@pywaw.org">info@pywaw.org</a>.</p>
-        </div>
-        <div id="sponsors-container" class="margin-top-big">
-            <h2>Sponsorzy spotkań</h2>
             {% for sponsor in object_list %}
                 <div class="row-fluid sponsor-row margin-bottom-small">
                     <div class="span12">
@@ -47,6 +16,5 @@
                     </div>
                 </div>
             {% endfor %}
-        </div>
     </div>
 {% endblock %}
