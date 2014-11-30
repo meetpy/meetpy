@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load staticfiles embed_video_tags %}
+{% load static %}
 
 {% block title %}{{ meetup }} - {{ meetup.date|date:"d.m.Y" }}{% endblock %}
 
@@ -63,7 +64,7 @@
                     </h5>
                     <h3>
 	                    <span itemprop="name">{{ talk.title }}</span>
-	                    <span class="lang-icon"><img src="{% static 'img/languages/pl.png' %}"</span>
+	                    <span class="lang-icon"><img src="{% get_static_prefix %}img/languages/{{ talk.language }}.png"</span>
                         {% if talk.slides_url or talk.slides_file %}
 	                    <a href="{% if talk.slides_url %}{{ talk.slides_url }}{% else %}{{ talk.slides_file.url }}{% endif %}" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
                         {% endif %}

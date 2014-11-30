@@ -78,6 +78,11 @@ class Speaker(models.Model):
 
 
 class Talk(models.Model):
+    LANGUAGES = (
+        ('pl', 'Polish'),
+        ('en', 'English'),
+    )
+
     title = models.CharField(max_length=1000)
     description = models.TextField(blank=True)
     speakers = models.ManyToManyField(Speaker, related_name='talks')
@@ -90,6 +95,7 @@ class Talk(models.Model):
     )
     slides_url = models.URLField(blank=True)
     video_url = models.URLField(blank=True)
+    language = models.CharField(choices=LANGUAGES, default='pl', max_length=2)
 
     class Meta:
         ordering = ['order']
