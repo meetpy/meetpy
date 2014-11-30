@@ -56,10 +56,12 @@
                                 {% url 'meetups:speaker_list' as speaker_list_url %}
                                 {% url 'meetups:sponsor_list' as sponsor_list_url %}
                                 {% url 'misc:home' as home_url %}
+                                {% url 'misc:faq' as faq_url %}
                                 <li><a href="{{ home_url }}"{% if request.path == home_url %} class="active"{% endif %}>Home</a></li>
 								<li><a href="{{ meetup_list_url }}"{% if request.path == meetup_list_url %} class="active"{% endif %}>Spotkania</a></li>
                                 <li><a href="{{ speaker_list_url }}"{% if request.path == speaker_list_url %} class="active"{% endif %}>Prelegenci</a></li>
                                 <li><a href="{{ sponsor_list_url }}"{% if request.path == sponsor_list_url %} class="active"{% endif %}>Sponsorzy</a></li>
+                                <li><a href="{{ faq_url }}"{% if request.path == faq_url %} class="active"{% endif %}>FAQ</a></li>
 							</ul>
 						</div>
 						<div class="span3">
@@ -100,6 +102,7 @@
 								<li><a href="{% url 'meetups:meetup_list' %}">Spotkania</a></li>
                                 <li><a href="{% url 'meetups:speaker_list' %}">Prelegenci</a></li>
                                 <li><a href="{% url 'meetups:sponsor_list' %}">Sponsorzy</a></li>
+                                <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
 							</ul>
 						</div>
 						<div class="span2">
