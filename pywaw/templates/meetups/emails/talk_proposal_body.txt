@@ -1,0 +1,11 @@
+Tytuł: {{ talk_proposal.talk.title }}
+Prelegent: {{ talk_proposal.talk.speakers.all.0 }}
+Opis:
+
+{{ talk_proposal.talk.description }}
+{% if talk_proposal.message %}
+Wiadomość:
+
+{{ talk_proposal.message }}
+{% endif %}
+Admin URL: http://{{ site.domain }}{% url 'admin:meetups_talkproposal_change' talk_proposal.id %}

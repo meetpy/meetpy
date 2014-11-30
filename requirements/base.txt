@@ -1,0 +1,5 @@
+Django==1.6.1
+Pillow==2.4.0
+git+https://github.com/rbarrois/factory_boy@8c1784e8c1eac65f66b4a1ecc4b8b0ddd5de9327
+South==0.8.2
+djet==0.0.9
