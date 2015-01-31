@@ -24,6 +24,6 @@ def current_site(request):
 
 @functools.lru_cache(maxsize=1)
 def get_website_version():
-    command = 'hg tip --template {node}'
+    command = 'git rev-parse HEAD'
     process = subprocess.Popen(command.split(), stdout=subprocess.PIPE, cwd=settings.PROJECT_ROOT)
     return process.communicate()[0]
