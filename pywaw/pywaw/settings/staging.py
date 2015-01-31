@@ -3,7 +3,7 @@ from .base import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-MEDIA_ROOT = os.path.join(STATIC_ROOT, 'upload')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../media')
 
 DATABASES = {
     'default': {
