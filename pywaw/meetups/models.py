@@ -86,7 +86,7 @@ class Talk(models.Model):
     title = models.CharField(max_length=1000)
     description = models.TextField(blank=True)
     speakers = models.ManyToManyField(Speaker, related_name='talks')
-    meetup = models.ForeignKey(Meetup, related_name='talks', null=True)
+    meetup = models.ForeignKey(Meetup, related_name='talks', null=True, blank=True)
     order = models.PositiveSmallIntegerField(null=True)
     slides_file = models.FileField(
         upload_to=slugify_upload_to(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
