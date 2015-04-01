@@ -83,7 +83,7 @@ strong{color:#4d4d4d}
   			-moz-background-size: cover;
   			-o-background-sizez: cover;
   			background-size: cover;
-  			background-position: 0px -100px;}
+ }
 .box-home p{color:#4d4d4d}
 .box-home strong{background:#4d4d4d;color:#fff;padding:0 1px}
 
@@ -277,5 +277,6 @@ footer div .without-header{margin-top:66px;}
   margin-top: 25px;
 }
 
-
-
+#summit__logo-link {
+    border-bottom: none;
+}
