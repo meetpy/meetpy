@@ -1,38 +1,10 @@
 {% extends "base.html" %}
 
-{% load staticfiles embed_video_tags %}
 {% load static %}
 
-{% block title %}{{ meetup }} - {{ meetup.date|date:"d.m.Y" }}{% endblock %}
+{% block title %}{{ meetup }} promo{% endblock %}
 
-{% block og_title %}{{ meetup }} - {{ meetup.date|date:"d.m.Y" }}{% endblock %}
-
-{% block css %}
-<link href="{% static 'css/bootstrap-image-gallery.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block js %}
-<script type="text/javascript" src="{% static 'js/load-image.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap-image-gallery.js' %}"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhNca45HD9Q_OMp-g2qNlSLwmOqaKCwXs&amp;sensor=false"></script>
-<script type="text/javascript">
-    function initialize() {
-        var venue = new google.maps.LatLng({{ object.venue.latitude }}, {{ object.venue.longitude }});
-        var mapOptions = {
-            center: venue,
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scrollwheel: false
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: venue
-        });
-        marker.setMap(map);
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-{% endblock %}
+{% block og_title %}{{ meetup }} promo{% endblock %}
 
 {% block content %}
 <div class="container" itemscope itemtype="http://schema.org/Event">
@@ -141,14 +113,6 @@
     </div>
     <div class="row margin-top-big">
     </div>
-</div>
-
-<div id="modal-gallery" class="modal modal-gallery hide fade" data-animation="false" tabindex="-1">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3 class="modal-title"></h3>
-    </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
 </div>
 
 {% endblock %}
