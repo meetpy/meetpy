@@ -19,6 +19,12 @@ class MeetupDetailView(generic.DetailView):
     slug_url_kwarg = slug_field = 'number'
 
 
+class MeetupPromoView(generic.DetailView):
+    model = models.Meetup
+    slug_url_kwarg = slug_field = 'number'
+    template_name = 'meetups/meetup_promo.html'
+
+
 class MeetupDateRedirectView(generic.RedirectView):
 
     def get_redirect_url(self, **kwargs):

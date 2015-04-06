@@ -6,6 +6,7 @@ from . import views
 urlpatterns = patterns('',
     url(r'^spotkania/$', views.MeetupsListView.as_view(), name='meetup_list'),
     url(r'^(?P<number>\d+)/$', views.MeetupDetailView.as_view(), name='meetup_detail'),
+    url(r'^(?P<number>\d+)/promo/$', views.MeetupPromoView.as_view(), name='meetup_promo'),
     url(r'^sponsorzy/$', views.SponsorListView.as_view(), name='sponsor_list'),
     url(r'^prelegenci/$', views.SpeakerListView.as_view(), name='speaker_list'),
     url(r'^zgloszenie/$', views.TalkProposalCreateView.as_view(), name='talk_proposal'),
