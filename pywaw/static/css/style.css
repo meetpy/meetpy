@@ -122,17 +122,6 @@ input[type=submit] {border: 0;}
 .page-menu li {line-height: 24px;}
 .page-menu li a {color: #4790c3;}
 
-
-.summit-tab {
-  background: url("../img/pywaw-summit.jpg");
-  position: fixed;
-  width: 40px;
-  height: 247px;
-  right: 0px;
-  top: 200px;
-  display: block;
-}
-
 /********************** 4. STRUCTURE ********************************/
 /********************** 4.1 Header **********************************/
 
@@ -275,8 +264,4 @@ footer div .without-header{margin-top:66px;}
   line-height: 16px;
   margin-bottom: 10px;
   margin-top: 25px;
-}
-
-#summit__logo-link {
-    border-bottom: none;
 }
