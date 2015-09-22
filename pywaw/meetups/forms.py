@@ -61,7 +61,7 @@ class TalkProposalForm(forms.ModelForm):
                 raise ValidationError(EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
             elif not self._all_required_new_speaker_fields_empty():
                 for field_name in self.REQUIRED_SPEAKER_FIELDS:
-                    if self.cleaned_data.get(field_name) == '':
+                    if self.cleaned_data.get(field_name) in ['', None]:
                         self._errors[field_name] = self.fields[field_name].error_messages['required']
         return self.cleaned_data
 
