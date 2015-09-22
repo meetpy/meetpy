@@ -1,4 +1,4 @@
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.http import Http404
@@ -13,21 +13,27 @@ from . import models, views, forms
 
 
 class MeetupFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = models.Meetup
-    FACTORY_DJANGO_GET_OR_CREATE = ('number', 'date')
+
+    class Meta:
+        model = models.Meetup
+        django_get_or_create = ('number', 'date')
 
     number = factory.Sequence(lambda n: n)
 
 
 class SpeakerFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = models.Speaker
+
+    class Meta:
+        model = models.Speaker
 
     first_name = 'Guido'
     last_name = 'Van Rossum'
 
 
 class TalkFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = models.Talk
+
+    class Meta:
+        model = models.Talk
 
     title = 'Why Python is awesome?'
 
@@ -79,7 +85,7 @@ class SlugifyUploadToTest(TestCase):
 
     def test_filename(self):
         speaker = SpeakerFactory(first_name='Guido', last_name='Van Rossüm')
-        upload_to = models.slugify_upload_to(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name'])
+        upload_to = models.SlugifyUploadTo(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name'])
 
         path = upload_to(speaker, 'bdfl.png')
 

@@ -3,7 +3,7 @@ import subprocess
 import django
 import platform
 from django.conf import settings
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 
 
 def system_info(request):

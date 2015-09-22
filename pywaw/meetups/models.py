@@ -2,7 +2,7 @@ import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from misc.models import slugify_upload_to
+from misc.models import SlugifyUploadTo
 
 
 class Sponsor(models.Model):
@@ -63,7 +63,7 @@ class Speaker(models.Model):
     last_name = models.CharField(max_length=30)
     website = models.URLField(blank=True)
     photo = models.ImageField(
-        upload_to=slugify_upload_to(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name']),
+        upload_to=SlugifyUploadTo(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name']),
         blank=True,
     )
     phone = models.CharField(max_length=30, blank=True)
@@ -89,7 +89,7 @@ class Talk(models.Model):
     meetup = models.ForeignKey(Meetup, related_name='talks', null=True, blank=True)
     order = models.PositiveSmallIntegerField(null=True)
     slides_file = models.FileField(
-        upload_to=slugify_upload_to(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
+        upload_to=SlugifyUploadTo(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
         blank=True,
         max_length=500,
     )

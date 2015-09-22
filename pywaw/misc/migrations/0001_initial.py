@@ -1,38 +1,24 @@
 # -*- coding: utf-8 -*-
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import misc.models
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Partner'
-        db.create_table('misc_partner', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
-            ('logo', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-            ('is_public', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('misc', ['Partner'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'Partner'
-        db.delete_table('misc_partner')
-
-
-    models = {
-        'misc.partner': {
-            'Meta': {'object_name': 'Partner'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
-        }
-    }
-
-    complete_apps = ['misc']
+    operations = [
+        migrations.CreateModel(
+            name='Partner',
+            fields=[
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('name', models.CharField(max_length=200)),
+                ('url', models.URLField()),
+                ('logo', models.ImageField(upload_to=misc.models.SlugifyUploadTo('partners', ['name']))),
+                ('is_public', models.BooleanField()),
+            ],
+        ),
+    ]
