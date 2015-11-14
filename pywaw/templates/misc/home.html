@@ -83,6 +83,15 @@
                             {% endfor %}
                         </tr>
                     </table>
+                    <div class="home-sponsors-mobile">
+                        {% for sponsor in upcoming_meetup.sponsors.all %}
+                        <div>
+                            <a href="{{ sponsor.website }}" target="_blank" class="no-hover">
+                                <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -180,6 +180,7 @@ footer div .without-header{margin-top:66px;}
 .text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 0;font-size:14px;line-height:27px;}
 
 .home-sponsors-table img{max-width:180px;max-height: 140px;}
+.home-sponsors-mobile {text-align: center; display: none}
 
 .partner-logo{margin: 0 25px 20px 0; height: 60px;}
 

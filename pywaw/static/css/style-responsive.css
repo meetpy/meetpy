@@ -74,6 +74,8 @@
 	.stack{margin-left:0}
 
 	.video-landing{display: none;}
+	.home-sponsors-table {display: none !important;}
+	.home-sponsors-mobile {display: block;}
 }
 
 @media (max-width: 670px) {
