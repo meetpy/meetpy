@@ -22,9 +22,9 @@
 	.more-info h3{font-size:24px}
 	
 	.list-caption .span2{width:140px}
-	
+
 	.day{display:none}
-	
+
 	.stack{margin-left:20px}
 	.statistics h5, .stack h5{line-height:22px;margin-top:0;margin-right:10px}
 	.statistics p, .stack p{line-height:22px}
@@ -56,7 +56,7 @@
 	.list-caption .text-number{float:left;margin:0 0 20px;line-height:26px}
 	.list-caption .span2{float:left;width:auto;display:inline;margin-left:20px}
 	.list-caption .span2 .date-small, .list-caption .span2 .button{padding:0 10px}
-	
+
 	.media .pull-left, .media .pull-right{float:left}
 	.back{float:right;width:120px;margin-top:-50px;margin-bottom:20px}
 	
@@ -72,6 +72,8 @@
 	
 	.statistics, .stack{width:100%;float:none;clear:both}
 	.stack{margin-left:0}
+
+	.video-landing{display: none;}
 }
 
 @media (max-width: 670px) {
