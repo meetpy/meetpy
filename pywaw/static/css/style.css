@@ -177,7 +177,7 @@ footer div .without-header{margin-top:66px;}
 .sponsors ul li{float:left;list-style-type: none;border:1px solid #eee;}
 .sponsors ul li img{display:block;margin: 0 auto;max-width:200px;max-height: 50px;padding: 10px;}
 .sponsors img{max-height:140px;width:auto;vertical-align: middle !important; padding: 15px;}
-.text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin-top: 0;font-size:14px;line-height:27px;}
+.text-sponsors{font-family: 'Merriweather Sans', Arial, sans-serif;font-weight:bold;margin: 0;font-size:14px;line-height:27px;}
 
 .home-sponsors-table img{max-width:180px;max-height: 140px;}
 .home-sponsors-mobile {text-align: center; display: none}
