@@ -157,7 +157,7 @@ header{margin:10px 0 40px}
 
 /********************** 4.4 Footer **********************************/
 
-footer{clear:both;height:330px;background:#2e2e2e}
+footer{clear:both;background:#2e2e2e}
 footer .line-orange{margin-top:50px}
 footer h5{color:#ffd34a;margin-top:50px}
 footer a, footer a:visited, footer a:hover{color:#4790c3; border-color:#4790c3;}

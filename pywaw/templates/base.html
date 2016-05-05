@@ -136,9 +136,6 @@
 								<li><a href="http://pystok.org" target="_blank">PyStok</a></li>
 							</ul> 
 					  </div>
-						<div class="span2 powered pull-right">
-							<a href="http://sunscrapers.com" target="_blank"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS" class="pull-right"></a>
-						</div>
 					</div>
 					<div class="row">
 						<div class="span10">
@@ -155,11 +152,13 @@
 								<p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }} &bull; <a href="https://github.com/PyWaw/pywaw.org/tree/{{ system.website }}" target="_blank">@{{ system.website|slice:":5" }}</a></p>
 							</div>
 						</div>
-					</div>
+          </div>
+          <div class="row margin-bottom-small">
+            <div class="span10 margin-top-small">
+              <div class="statistics">Powered by <a href="http://sunscrapers.com" target="_blank"><img src="{% static 'img/sunscrapers.png' %}" alt="Powered by SUNSCRAPERS"></a></div>
+            </div>
+          </div>
 				</div>
-			</div>
-			<div class="powered-mobile hide">
-				<p>Powered by <a href="http://sunscrapers.com">SUNSCRAPERS</a></p>
 			</div>
 		</div>
 	</footer>
