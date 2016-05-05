@@ -168,6 +168,7 @@ footer div .without-header{margin-top:66px;}
 .statistics h5, .stack h5{color:#c9c9c9;line-height:20px;margin-top:0;margin-right:20px}
 .statistics p, .stack p{color:#737373;line-height:22px;margin:0 0 5px}
 .statistics p span{color:#c9c9c9}
+.powered a:hover {border-bottom: 0;}
 
 /********************** 5. PAGES ************************************/
 /********************** 5.1 Home ************************************/

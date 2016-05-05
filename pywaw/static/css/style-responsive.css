@@ -66,11 +66,11 @@
 	
 	#wrapper{margin-bottom:0}
 	footer{padding:0 10px 15px;height:auto}
-	footer .span2, footer .span4, footer .powered{float:left;width:25%}
+	footer .span2, footer .span4 {float:left;width:25%}
 	footer h5{margin-top:15px}
 	footer ul li a{font-size:12px}
 	
-	.statistics, .stack{width:100%;float:none;clear:both}
+	.statistics, .stack, .powered{width:100%;float:none;clear:both}
 	.stack{margin-left:0}
 
 	.video-landing{display: none;}
@@ -94,11 +94,7 @@
 	.day{display:inline}
 	footer{padding:0}
 	footer .span2, footer .span4{float:left;width:30%;margin-left:1.5%;margin-right:1.5%}
-	footer .powered{display:none}
-	footer .powered-mobile{display:block;background:#000;margin-top:15px}
-	footer .powered-mobile p{color:#fff;margin:0;padding:5px 1.5%;font-size:12px}
-	footer .powered-mobile a{color:#fff}
-	.statistics, .stack{width:97%;margin-left:1.5%;margin-right:1.5%}
+	.statistics, .stack, .powered{width:97%;margin-left:1.5%;margin-right:1.5%}
 }
 
 @media (max-width: 480px) {	
@@ -116,9 +112,8 @@
 	.back{margin-top:-95px}
 	
 	footer .span2, footer .span4{float:none;width:94%;margin-left:3%;margin-right:3%}
-	footer .powered-mobile p{padding:5px 3%}
-	
-	.statistics, .stack{width:94%;margin-left:3%;margin-right:3%}
+
+	.statistics, .stack, .powered{width:94%;margin-left:3%;margin-right:3%}
 	.statistics h5, .stack h5, .statistics p, .stack p{float:none}
 	.stack{margin-top:20px}
 }
