@@ -1,9 +1,11 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+
+from django.contrib.sitemaps.views import sitemap
 from . import views
 from .sitemaps import sitemaps
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^faq/$', views.FaqView.as_view(), name='faq'),
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-)
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
+]

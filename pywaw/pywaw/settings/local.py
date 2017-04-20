@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 MEDIA_ROOT = os.path.join(LOCAL_STATIC_ROOT, 'upload')
 
@@ -13,3 +13,5 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ALLOWED_HOSTS += ['localhost']
