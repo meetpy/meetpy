@@ -3,16 +3,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>PyWaw | {% block title %}{% endblock %}</title>
-    <meta name="keywords" content="PyWaw, Python, grupa użytkowników, programowanie, barcamp, spotkanie, prezentacje">
-    <meta name="description" content="PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic.">
+    <title>Pykonik | {% block title %}{% endblock %}</title>
+    <meta name="keywords" content="Pykonik, Python, grupa użytkowników, programowanie, barcamp, spotkanie, prezentacje">
+    <meta name="description" content="Pykonik to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="PyWaw | {% block og_title %}{% endblock %}"/>
-    <meta property="og:description" content="PyWaw to cykliczne spotkania pasjonatów języka programowania Python z Warszawy i okolic.">
+    <meta property="og:title" content="Pykonik | {% block og_title %}{% endblock %}"/>
+    <meta property="og:description" content="Pykonik to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
     <meta property="og:url" content="http://{{ site.domain }}{{ request.get_full_path }}">
     <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo-big.png' %}"/>
-    <meta property="og:site_name" content="PyWaw"/>
+    <meta property="og:site_name" content="Pykonik"/>
 
     <link href="{% static 'img/fav.png' %}" rel="shortcut icon">
     <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
 			<div class="container">
 				<div class="row">
 					<div id="logo" class="span2">
-						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="PyWaw" class="logo"></a>
+						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="Pykonik" class="logo"></a>
 					</div>
 					<div id="top">
 						<div class="span7">
@@ -66,10 +66,10 @@
 						</div>
 						<div class="span3">
 							<div class="top-links">
-								<a href="http://www.meetup.com/PyWaw-Python-Warsaw-User-Group/" class="meetup" target="_blank"></a>
-								<a href="http://facebook.com/PyWaw" class="facebook" target="_blank"></a>
-								<a href="http://twitter.com/PyWaw" class="twitter" target="_blank"></a>
-								<a href="http://youtube.com/PyWaw" class="youtube" target="_blank"></a>
+								<a href="http://www.meetup.com/Pykonik/" class="meetup" target="_blank"></a>
+								<a href="https://www.facebook.com/Pykonik-87835845639/" class="facebook" target="_blank"></a>
+								<a href="http://twitter.com/pykonik" class="twitter" target="_blank"></a>
+								<a href="http://youtube.com/pykonik" class="youtube" target="_blank"></a>
 								<div class="dropdown pull-right">
 								    <a href="#" data-toggle="dropdown" class="dropdown-toggle rss" role="button" id="drop1"></a>
 								    <ul aria-labelledby="drop1" role="menu" class="dropdown-menu">
@@ -77,7 +77,7 @@
 	                    <li role="presentation"><a href="{% url 'meetups:atom_feed' %}" tabindex="-1" role="menuitem" target="_blank">Atom</a></li>
 			              </ul>
 			          </div>
-								<a href="mailto:info@pywaw.org" class="mail"></a>
+{#								<a href="mailto:info@pywaw.org" class="mail"></a>#}
 							</div>
 						</div>
 					</div>
@@ -109,11 +109,10 @@
 						<div class="span2">
 							<h5>Jesteśmy na</h5>
 							<ul>
-								<li><a href="http://www.meetup.com/PyWaw-Python-Warsaw-User-Group/" target="_blank">Meetup</a></li>
-								<li><a href="http://facebook.com/PyWaw" target="_blank">Facebook</a></li>
-								<li><a href="http://twitter.com/PyWaw" target="_blank">Twitter</a></li>
-								<li><a href="http://youtube.com/PyWaw" target="_blank">YouTube</a></li>
-								<li><a href="http://groups.google.com/forum/#!forum/pywaw" target="_blank">Google Groups</a></li>
+								<li><a href="http://www.meetup.com/Pykonik/" class="meetup" target="_blank"></a></li>
+								<li><a href="https://www.facebook.com/Pykonik-87835845639/" class="facebook" target="_blank"></a></li>
+								<li><a href="http://twitter.com/pykonik" class="twitter" target="_blank"></a></li>
+								<li><a href="http://youtube.com/pykonik" class="youtube" target="_blank"></a></li>
 							</ul>
 						</div>
 						<div class="span2">
@@ -121,7 +120,7 @@
 							<ul>
 								<li><a href="http://pl.python.org/" target="_blank">PPCG</a></li>
 								<li><a href="http://pl.pycon.org/" target="_blank">PyCon PL</a></li>
-								<li><a href="http://blog.pykonik.org/" target="_blank">Pykonik</a></li>
+								<li><a href="http://pywaw.org/" target="_blank">PyWaw</a></li>
 								<li><a href="http://pysilesia.org/" target="_blank">PySilesia</a></li>
 								<li><a href="http://www.meetup.com/Python-%C5%81od%C5%BA/" target="_blank">Python Łódź</a></li>
 							</ul>
