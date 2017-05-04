@@ -1,27 +1,33 @@
+import json
 import os
 from django.conf import global_settings
 from django.core.exceptions import ImproperlyConfigured
 
+with open(os.path.join('./pykonik/settings/pykonik_secret_variables', 'base.json'), 'r') as f:
+    secrets = json.loads(f.read())
 
-def get_env_var(name, **kwargs):
+
+def get_secret(setting, secrets=secrets):
+    """Get the secret variable or return explicit exception."""
     try:
-        return os.environ[name]
+        return secrets[setting]
     except KeyError:
-        if 'default' in kwargs:
-            return kwargs['default']
-        raise ImproperlyConfigured('Set the {} environment variable.'.format(name))
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 
 ADMINS = (
-    ('Admin', get_env_var('ADMIN_EMAIL', default='')),
+    ('Admin', get_secret('ADMIN_EMAIL')),
 )
 
 MANAGERS = ADMINS
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['.pywaw.org', '178.62.28.109']
+# ALLOWED_HOSTS = ['.pywaw.org', '178.62.28.109']
+ALLOWED_HOSTS = get_secret("ALLOWED_HOSTS")
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -87,7 +93,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = get_env_var('SECRET_KEY', default='secret')
+SECRET_KEY = get_secret('SECRET_KEY')
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -99,10 +105,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'pywaw.urls'
+ROOT_URLCONF = 'pykonik.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'pywaw.wsgi.application'
+WSGI_APPLICATION = 'pykonik.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
