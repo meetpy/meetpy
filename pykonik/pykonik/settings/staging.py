@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = True
+DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../media')
