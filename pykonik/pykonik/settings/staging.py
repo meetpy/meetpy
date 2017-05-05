@@ -8,6 +8,8 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../media')
 with open(os.path.join('./pykonik/settings/pykonik_secret_variables', 'stage.json'), "r") as f:
     secrets.update(json.loads(f.read()))
 
+ALLOWED_HOSTS = get_secret('ALLOWED_HOSTS', secrets)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
