@@ -154,7 +154,7 @@ LOGGING = {
 
 MEETUP_NAME = 'Pykonik'
 
-TALK_PROPOSAL_RECIPIENTS = ['info@pykonik.org']
+TALK_PROPOSAL_RECIPIENTS = ['dominik.olczyk@deployed.com']
 
 
 TEMPLATES = [

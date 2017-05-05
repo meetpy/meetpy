@@ -11,10 +11,10 @@
     <meta property="og:title" content="Pykonik | {% block og_title %}{% endblock %}"/>
     <meta property="og:description" content="Pykonik to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
     <meta property="og:url" content="http://{{ site.domain }}{{ request.get_full_path }}">
-    <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo-big.png' %}"/>
+    <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo.png' %}"/>
     <meta property="og:site_name" content="Pykonik"/>
 
-    <link href="{% static 'img/fav.png' %}" rel="shortcut icon">
+
     <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
@@ -46,7 +46,7 @@
 		<header>
 			<div class="container">
 				<div class="row">
-					<div id="logo" class="span2">
+					<div id="header-logo" class="span2">
 						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="Pykonik" class="logo"></a>
 					</div>
 					<div id="top">
@@ -77,7 +77,7 @@
 	                    <li role="presentation"><a href="{% url 'meetups:atom_feed' %}" tabindex="-1" role="menuitem" target="_blank">Atom</a></li>
 			              </ul>
 			          </div>
-{#								<a href="mailto:info@pywaw.org" class="mail"></a>#}
+								<a href="mailto:hello@pykonik.org" class="mail"></a>
 							</div>
 						</div>
 					</div>
@@ -154,7 +154,7 @@
           </div>
           <div class="row margin-bottom-small">
             <div class="span10 margin-top-small">
-              <div class="powered">Powered by <a href="https://deployed.pl" target="_blank"><img src="{% static 'img/deployed.png' %}" alt="Powered by Deployed.pl"></a></div>
+              <div class="powered">Powered by <a href="https://deployed.pl" target="_blank"><img id="footer-logo" src="{% static 'img/deployed.png' %}" alt="Powered by Deployed.pl"></a> Project by <a href="http://pywaw.org/">PyWaw</a></div>
             </div>
           </div>
 				</div>
