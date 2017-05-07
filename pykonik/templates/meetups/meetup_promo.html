@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}{{ meetup }} promo{% endblock %}
+
+{% block og_title %}{{ meetup }} promo{% endblock %}
+
+{% block content %}
+<div class="container" itemscope itemtype="http://schema.org/Event">
+    <div class="row">
+        <div class="span2 img-tip">
+            <div class="line-orange"></div>
+        </div>
+        <div class="span8">
+            <h1 itemprop="name">{{ object }} promo</h1>
+        </div>
+    </div>
+    <div class="row margin-top-big">
+        <div class="offset2 span10">
+            <h2>Meetup</h2>
+            <div class="media">
+                <div class="media-body">
+                    <p>
+                        Pykonik #{{ meetup.number }} odbędzie się w {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o
+                        godz. {{ meetup.date|date:"H:i" }}
+                        w {{ meetup.venue.name }} ({{ meetup.venue.address }}). Na spotkanie zapraszamy wszystkich entuzjastów 
+                        języka Python z Krakowa i okolic. Po wysłuchaniu prezentacji zachęcamy do
+                        pozostania z nami i przedyskutowania nowo nabytej wiedzy przy piwie. Uczestnictwo 
+                        w spotkaniach Pykonik jest bezpłatne, nie jest wymagana także żadna rezerwacja.
+                    </p>
+                    <br/>
+                    <p>
+                        Agenda:
+                    </p>
+                    {% for talk in meetup.talks.all %}
+                        <p>{{ talk.title }} - {% for s in talk.speakers.all %}
+                            {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}</p>
+                    {% endfor %}
+                    <br/>
+                    <p>
+                        Sponsorzy:
+                    </p>
+                    {% for sponsor in meetup.sponsors.all %}
+                        <p>{{sponsor.name}} ({{sponsor.website}})</p>
+                    {% endfor %}
+                    <br/>
+                    <p>
+                        Strona spotkania: http://pykonik.org/{{ meetup.number}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top-big">
+        <div class="offset2 span10">
+            <h2>Facebook</h2>
+            <div class="media">
+                <div class="media-body">
+                    Pykonik #{{ meetup.number }} odbędzie się w {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o
+                    godz. {{ meetup.date|date:"H:i" }}
+                    w {{ meetup.venue.name }} ({{ meetup.venue.address }}). Na spotkanie zapraszamy wszystkich entuzjastów 
+                    języka Python z Krakowa i okolic. Po wysłuchaniu prezentacji zachęcamy do
+                    pozostania z nami i przedyskutowania nowo nabytej wiedzy przy piwie. Uczestnictwo 
+                    w spotkaniach Pykonik jest bezpłatne, nie jest wymagana także żadna rezerwacja.<br/>
+                    <br/>
+                    Agenda:<br/>
+                    {% for talk in meetup.talks.all %}
+                        - {{ talk.title }} - {% for s in talk.speakers.all %}
+                            {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        <br/>
+                    {% endfor %}
+                    <br/> 
+                    Sponsorzy:<br/>
+                    {% for sponsor in meetup.sponsors.all %}
+                        - {{sponsor.name}} ({{sponsor.website}})
+                        <br/>
+                    {% endfor %}
+                    <br/>
+                    Strona spotkania: http://pykonik.org/{{ meetup.number}}<br/>
+                    <br/>
+                    Zachęcamy do dołączania do wydarzenia na meetup.com: XXX
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top-big">
+        <div class="offset2 span10">
+            <h2>YouTube</h2>
+            {% for talk in meetup.talks.all %}
+            <div class="media">
+                <div class="media-body">
+                    <h3>Pykonik #{{ meetup.number}} - {{ talk.title }}</h3>
+                    Prelegent: {% for s in talk.speakers.all %}
+                        {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}<br/>
+                    <br/>
+                    {{ talk.description }}<br/>
+                    <br/>
+                    Prezentacja odbyła się podczas spotkania Pykonik #{{meetup.number}} ({{meetup.date|date:"d.m.Y"}}) - http://www.pykonik.org/{{meetup.number}}/<br/>
+                    <br/>
+                    Pykonik to spotkania krakowskiej społeczności Pythonistów. Głównym założeniem inicjatywy jest wymiana doświadczeń w trybie face2face i przelanie energii pasjonatów tego dynamicznego języka programowania w konkretne działania dla dobra ludzkości.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row margin-top-big">
+    </div>
+</div>
+
+{% endblock %}

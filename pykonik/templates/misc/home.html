@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block og_title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if upcoming_meetup %}
+    <div class="row">
+        <div class="span2 img-tip">
+            <div class="line-orange"></div>
+        </div>
+        <div class="span10">
+            <h1><a href="{{ upcoming_meetup.get_absolute_url }}">Następne spotkanie {{ upcoming_meetup }}</a></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5 offset2">
+            <h4 class="date"><span class="day">{{ upcoming_meetup.date|date:"l" }}, </span>{{ upcoming_meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ upcoming_meetup.date|date:"H:i" }}</span></h4>
+            {% if upcoming_meetup.venue %}
+            <h5 class="location"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location-home"> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
+            <div class="text-center">
+                <div class="clearfix">
+                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}" target="_blank">
+                        <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}&amp;sensor=false" class="map" alt="Mapa">
+                    </a>
+                </div>
+                <a href="{{ upcoming_meetup.get_absolute_url }}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="span5 box-users">
+            {% for talk in upcoming_meetup.talks.all %}
+            <div class="row">
+                <div class="span1">
+                	{% if talk.speakers.count == 1 %}
+                	<img src="{% if talk.speakers.get.photo %}{{ talk.speakers.get.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjęcie {{ speaker }}" class="img-user">
+                	{% else %}
+                	<div class="carousel slide" id="myCarousel">
+                		<div class="carousel-inner">
+	                    {% for speaker in talk.speakers.all %}
+	                    <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjęcie {{ speaker }}" class="img-user item">
+	                    {% endfor %}
+	                    </div>
+	                </div>
+                    {% endif %}
+                </div>
+                <div class="span4 link-grey">
+                    <h5>
+                    {% for speaker in talk.speakers.all %}
+                        <a class="link-grey" href="{{ upcoming_meetup.get_absolute_url }}#speaker-{{ speaker|slugify }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </h5>
+                    <p class="text-smaller"><a href="{{ upcoming_meetup.get_absolute_url }}#talk-{{ talk|slugify }}">{{ talk.title }}</a></p>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not upcoming_meetup.is_ready %}
+            <div class="more-info">
+            	<h3>agenda w przygotowaniu</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if upcoming_meetup.sponsors.exists %}
+    <div class="row">
+        <div class="span10 offset2 margin-top-normal">
+            <h3 class="span2 text-sponsors text-left">SPONSORZY:</h3>
+            <div class="row-fluid">
+                <div class="sponsors">
+                    <table class="row-fluid home-sponsors-table">
+                        <tr>
+                            {% for sponsor in upcoming_meetup.sponsors.all %}
+                            <td>
+                                <a href="{{ sponsor.website }}" target="_blank" class="no-hover">
+                                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                                </a>
+                            </td>
+                            {% if forloop.counter|divisibleby:4 %}</tr><tr>{% endif %}
+                            {% endfor %}
+                        </tr>
+                    </table>
+                    <div class="home-sponsors-mobile">
+                        {% for sponsor in upcoming_meetup.sponsors.all %}
+                        <div>
+                            <a href="{{ sponsor.website }}" target="_blank" class="no-hover">
+                                <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% else %}
+    <div class="more-info">
+        <h3>spotkanie w przygotowaniu</h3>
+    </div>
+    {% endif %}
+</div>
+<div class="container">
+    <div class="row talk-proposal-landing">
+        <p class="span6 offset2 talk-proposal-description">Chcesz wystąpić na kolejnym Pykoniku? Zgłoś się już teraz!</p>
+        <p class="span4"><a href="{% url "meetups:talk_proposal" %}" class="button button-block talk-proposal-button"><span class="plus-icon">+</span>Zgłoś prelekcję</a></p>
+    </div>
+</div>
+<div class="box-home">
+    <div class="container">
+        <div class="row">
+            <div class="span2 img-tip">
+                <img src="{% static 'img/question.jpg' %}" alt="Informacje">
+            </div>
+            <div class="span10">
+                <h2>Krakowska grupa użytkowników Pythona</h2>
+                <div class="row">
+                  <div class="video-landing">
+{#                    <iframe width="800" height="410" src="http://www.youtube.com/embed/Rrbpnrs8neM" frameborder="0" allowfullscreen></iframe>#}
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="span5">
+                        <p> Pykonik to spotkania krakowskiej społeczności Pythonistów.
+                            Głównym założeniem inicjatywy jest wymiana doświadczeń w trybie face2face i
+                            przelanie energii pasjonatów tego dynamicznego języka programowania w konkretne działania dla dobra ludzkości.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if partners %}
+<div class="container">
+    <div class="row">
+        <div class="span10 offset2 margin-top-big margin-bottom-big">
+            <h2>Partnerzy</h2>
+            <div class="row-fluid">
+                <div class="pull-left">
+                    {% for partner in partners %}
+                    <a href="{{ partner.url }}" title="{{ partner.name }}" class="no-hover" target="_blank">
+                        <img class="partner-logo" src="{{ partner.logo.url }}" alt="{{ partner.name }}">
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script>
+$('.carousel img:first-child').addClass('active');
+$('.carousel').carousel();
+</script>
+{% endblock %}

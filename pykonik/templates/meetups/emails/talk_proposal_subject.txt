@@ -1,0 +1,1 @@
+[pykonik.org] Zgłoszenie prezentacji - {{ talk_proposal.talk.title }} ({{ talk_proposal.talk.speakers.all.0 }})

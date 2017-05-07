@@ -5,3 +5,5 @@ upload/
 .idea
 .project
 .pydevproject
+.DS_Store
+pykonik_secret_variables/
