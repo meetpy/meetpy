@@ -33,11 +33,15 @@
                     <p>
                         Agenda:
                     </p>
-                    {% for talk in meetup.talks.all %}
-                        <p>{{ talk.title }} - {% for s in talk.speakers.all %}
-                            {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}</p>
-                    {% endfor %}
+                    {% if meetup.meetup_type.has_agenda %}
+                      {% for talk in meetup.talks.all %}
+                          <p>{{ talk.title }} - {% for s in talk.speakers.all %}
+                              {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                          {% endfor %}</p>
+                      {% endfor %}
+                    {% else %}
+                      <p>{{ meetup.description }}</p>
+                    {% endif %}
                     <br/>
                     <p>
                         Sponsorzy:

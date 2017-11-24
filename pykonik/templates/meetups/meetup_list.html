@@ -22,15 +22,19 @@
         </div>
     </div>
     <ul class="unstyled">
-        {% for talk in meetup.talks.all %}
-        <li itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
-            {% for speaker in talk.speakers.all %}<strong itemprop="performer" itemscope itemtype="http://schema.org/Person"><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker|slugify }}" target="_blank" itemprop="name">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.title|slugify }}" itemprop="name">{{ talk.title }}</a>
-        </li>
-        {% endfor %}
-        {% if not meetup.is_ready %}
-        <div class="more-info">
-            <h3>agenda w przygotowaniu</h3>
-        </div>
+        {% if meetup.meetup_type.has_agenda %}
+          {% for talk in meetup.talks.all %}
+          <li itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
+              {% for speaker in talk.speakers.all %}<strong itemprop="performer" itemscope itemtype="http://schema.org/Person"><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker|slugify }}" target="_blank" itemprop="name">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.title|slugify }}" itemprop="name">{{ talk.title }}</a>
+          </li>
+          {% endfor %}
+          {% if not meetup.is_ready %}
+          <div class="more-info">
+              <h3>agenda w przygotowaniu</h3>
+          </div>
+          {% endif %}
+        {% else %}
+          {{ meetup.description }}
         {% endif %}
     </ul>
 </div>
