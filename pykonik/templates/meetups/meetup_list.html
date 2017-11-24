@@ -14,6 +14,11 @@
                 <div class="span2">
                     <h4 class="date-small" itemprop="startDate" content="{{ meetup.date|date:"c" }}">{{ meetup.date|date:"d.m.Y" }}</h4>
                 </div>
+                {% if meetup.meetup_url %}
+                  <div class="span2">
+                      <a href="{{ meetup.meetup_url }}" target="_blank" class="button button-block button-meetup">Meetup</a>
+                  </div>
+                {% endif %}
                 <div class="span2">
                     <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a>
                 </div>

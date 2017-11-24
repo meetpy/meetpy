@@ -40,17 +40,22 @@
         <div class="span2 img-tip">
             <div class="line-orange"></div>
         </div>
-        <div class="span8">
+        <div class="span6">
             <h1 itemprop="name">{{ object }}</h1>
+        </div>
+        <div class="pull-right">
+            <a href="{% url 'meetups:meetup_list' %}" class="button button-block span3"> &laquo; LISTA SPOTKAŃ</a>
         </div>
     </div>
     <div class="row">
         <div class="span5 offset2">
             <h4 class="date" itemprop="startDate" content="{{ meetup.date|date:"c" }}"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
         </div>
-        <div class="pull-right">
-            <a href="{% url 'meetups:meetup_list' %}" class="button button-block span3"> &laquo; LISTA SPOTKAŃ</a>
-        </div>
+        {% if object.meetup_url %}
+          <div class="pull-right">
+              <a href="{{ object.meetup_url }}" target="_blank" class="button button-block button-meetup span3">Dołącz na Meetupie</a>
+          </div>
+        {% endif %}
     </div>
     <div class="row margin-top-big">
         <div class="offset2 span10">

@@ -55,6 +55,7 @@ class Meetup(models.Model):
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
     is_ready = models.BooleanField(default=False)
     date_modified = models.DateTimeField(auto_now=True)
+    meetup_url = models.URLField(null=True, blank=True)
 
     objects = MeetupManager()
 
