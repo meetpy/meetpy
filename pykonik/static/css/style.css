@@ -68,6 +68,7 @@ strong{color:#4d4d4d}
 .button:hover, .button:active{background:#3680a2;color:#fff; border:0}
 .button-block{display:block;text-align:center;}
 .button--submit { padding: 5px 15px; }
+.button-meetup {background: #E31F3D !important;}
 
 .line-orange{background:#ffd34a;height:5px;width:140px;display:block;width: 129px;margin-left: 5px;}
 

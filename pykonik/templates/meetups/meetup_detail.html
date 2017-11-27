@@ -40,77 +40,89 @@
         <div class="span2 img-tip">
             <div class="line-orange"></div>
         </div>
-        <div class="span8">
+        <div class="span6">
             <h1 itemprop="name">{{ object }}</h1>
+        </div>
+        <div class="pull-right">
+            <a href="{% url 'meetups:meetup_list' %}" class="button button-block span3"> &laquo; LISTA SPOTKAŃ</a>
         </div>
     </div>
     <div class="row">
         <div class="span5 offset2">
             <h4 class="date" itemprop="startDate" content="{{ meetup.date|date:"c" }}"><span class="day">{{ meetup.date|date:"l" }}, </span>{{ meetup.date|date:"d.m.Y" }} <span class="pull-right"><i class="icon-clock"></i> {{ meetup.date|date:"H:i" }}</span></h4>
         </div>
-        <div class="pull-right">
-            <a href="{% url 'meetups:meetup_list' %}" class="button button-block span3"> &laquo; LISTA SPOTKAŃ</a>
-        </div>
+        {% if object.meetup_url %}
+          <div class="pull-right">
+              <a href="{{ object.meetup_url }}" target="_blank" class="button button-block button-meetup span3">Dołącz na Meetupie</a>
+          </div>
+        {% endif %}
     </div>
     <div class="row margin-top-big">
         <div class="offset2 span10">
-            {% for talk in meetup.talks.all %}
-            <div class="media meetup-talk" id="talk-{{ talk.title|slugify }}" itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
-                <div class="media-body">
-                    <h5>
-                        {% for speaker in talk.speakers.all %}
-                        <a href="#speaker-{{ speaker|slugify }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
-                    </h5>
-                    <h3>
-	                    <span itemprop="name">{{ talk.title }}</span>
-	                    <span class="lang-icon"><img src="{% get_static_prefix %}img/languages/{{ talk.language }}.png"</span>
-                        {% if talk.slides_url or talk.slides_file %}
-	                    <a href="{% if talk.slides_url %}{{ talk.slides_url }}{% else %}{{ talk.slides_file.url }}{% endif %}" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
-                        {% endif %}
-                    </h3>
-                    <p itemprop="description">{{ talk.description }}</p>
-                </div>
-                {% if talk.video_url %}
-                  <div class="video-meetup-details">
-                    {% video talk.video_url '780x440' %}
+            <div class="media">
+              {{ meetup.description }}
+            </div>
+            {% if meetup.meetup_type.has_agenda %}
+              {% for talk in meetup.talks.all %}
+              <div class="media meetup-talk" id="talk-{{ talk.title|slugify }}" itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
+                  <div class="media-body">
+                      <h5>
+                          {% for speaker in talk.speakers.all %}
+                          <a href="#speaker-{{ speaker|slugify }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+                          {% endfor %}
+                      </h5>
+                      <h3>
+                        <span itemprop="name">{{ talk.title }}</span>
+                        <span class="lang-icon"><img src="{% get_static_prefix %}img/languages/{{ talk.language }}.png"</span>
+                          {% if talk.slides_url or talk.slides_file %}
+                        <a href="{% if talk.slides_url %}{{ talk.slides_url }}{% else %}{{ talk.slides_file.url }}{% endif %}" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
+                          {% endif %}
+                      </h3>
+                      <p itemprop="description">{{ talk.description }}</p>
                   </div>
-                {% endif %}
-                
-            </div>
-            {% endfor %}
-            {% if not meetup.is_ready %}
-            <div class="more-info">
-            	<h3>agenda w przygotowaniu</h3>
-            </div>
+                  {% if talk.video_url %}
+                    <div class="video-meetup-details">
+                      {% video talk.video_url '780x440' %}
+                    </div>
+                  {% endif %}
+
+              </div>
+              {% endfor %}
+              {% if not meetup.is_ready %}
+              <div class="more-info">
+                <h3>agenda w przygotowaniu</h3>
+              </div>
+              {% endif %}
             {% endif %}
         </div>
     </div>
-    <div class="row margin-top-big">
-        <div class="span2 img-tip">
-            <img src="{% static 'img/user.png' %}" alt="Prelegenci">
-        </div>
-        <div class="span10">
-            <h2>Prelegenci</h2>
-            {% for talk in meetup.talks.all %}
-            {% for speaker in talk.speakers.all %}
-            <div class="media" id="speaker-{{ speaker|slugify }}" itemprop="performer" itemscope itemtype="http://schema.org/Person">
-            	<div class="pull-left img-user-container hidden-phone">
-	                <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user" itemprop="image"><br>
-                </div>
-                <div class="media-body">
-                    <h3>
-                        <span itemprop="name">{{ speaker }}</span>{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
-                    </h3>
-                    <p itemprop="description">{{ speaker.biography }}</p>
-                </div>
-            </div>
-            {% endfor %}
-            {% empty %}
-            <p>Agenda w przygotowaniu. Masz pomysł na prezentację? Zobacz <a href="{% url 'meetups:speaker_list' %}#be-speaker">jak zostać prelegentem.</a></p>
-            {% endfor %}
-        </div>
-    </div>
+    {% if meetup.meetup_type.has_agenda %}
+      <div class="row margin-top-big">
+          <div class="span2 img-tip">
+              <img src="{% static 'img/user.png' %}" alt="Prelegenci">
+          </div>
+          <div class="span10">
+              <h2>Prelegenci</h2>
+              {% for talk in meetup.talks.all %}
+              {% for speaker in talk.speakers.all %}
+              <div class="media" id="speaker-{{ speaker|slugify }}" itemprop="performer" itemscope itemtype="http://schema.org/Person">
+                <div class="pull-left img-user-container hidden-phone">
+                    <img src="{% if speaker.photo %}{{ speaker.photo.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" alt="Zdjecie {{ speaker }}" class="img-user" itemprop="image"><br>
+                  </div>
+                  <div class="media-body">
+                      <h3>
+                          <span itemprop="name">{{ speaker }}</span>{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
+                      </h3>
+                      <p itemprop="description">{{ speaker.biography }}</p>
+                  </div>
+              </div>
+              {% endfor %}
+              {% empty %}
+              <p>Agenda w przygotowaniu. Masz pomysł na prezentację? Zobacz <a href="{% url 'meetups:speaker_list' %}#be-speaker">jak zostać prelegentem.</a></p>
+              {% endfor %}
+          </div>
+      </div>
+    {% endif %}
     {% if object.external_links.exists %}
     <div class="row margin-top-big">
         <div class="span2 img-tip">

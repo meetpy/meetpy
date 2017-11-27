@@ -38,13 +38,24 @@ class MeetupManager(models.Manager):
             raise self.model.DoesNotExist
 
 
+class MeetupType(models.Model):
+    name = models.CharField(max_length=64)
+    has_agenda = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Meetup(models.Model):
+    meetup_type = models.ForeignKey(MeetupType, null=True, blank=True)
+    description = models.TextField(blank=True)
     number = models.PositiveIntegerField(unique=True)
     date = models.DateTimeField()
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
     is_ready = models.BooleanField(default=False)
     date_modified = models.DateTimeField(auto_now=True)
+    meetup_url = models.URLField(blank=True)
 
     objects = MeetupManager()
 
@@ -52,7 +63,10 @@ class Meetup(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        return '{0} #{1}'.format(settings.MEETUP_NAME, self.number)
+        name = settings.MEETUP_NAME
+        if self.meetup_type:
+            name = self.meetup_type.name
+        return '{0} #{1}'.format(name, self.number)
 
     def get_absolute_url(self):
         return reverse('meetups:meetup_detail', kwargs={'number': self.number})

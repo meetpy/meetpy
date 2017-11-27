@@ -32,6 +32,7 @@ class TalkAdmin(admin.ModelAdmin):
     list_display = ('title', 'meetup')
 
 
+admin.site.register(models.MeetupType)
 admin.site.register(models.Meetup, MeetupAdmin)
 admin.site.register(models.Speaker)
 admin.site.register(models.Talk, TalkAdmin)
