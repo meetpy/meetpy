@@ -23,11 +23,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='meetup',
             name='description',
-            field=models.TextField(blank=True, null=True),
+            field=models.TextField(blank=True),
         ),
         migrations.AddField(
             model_name='meetup',
             name='meetup_type',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='meetups.MeetupType'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='meetups.MeetupType'),
         ),
     ]

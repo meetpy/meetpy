@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='meetup',
             name='meetup_url',
-            field=models.URLField(blank=True, null=True),
+            field=models.URLField(blank=True),
         ),
     ]

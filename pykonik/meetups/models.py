@@ -47,15 +47,15 @@ class MeetupType(models.Model):
 
 
 class Meetup(models.Model):
-    meetup_type = models.ForeignKey(MeetupType, null=True)
-    description = models.TextField(null=True, blank=True)
+    meetup_type = models.ForeignKey(MeetupType, null=True, blank=True)
+    description = models.TextField(blank=True)
     number = models.PositiveIntegerField(unique=True)
     date = models.DateTimeField()
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
     is_ready = models.BooleanField(default=False)
     date_modified = models.DateTimeField(auto_now=True)
-    meetup_url = models.URLField(null=True, blank=True)
+    meetup_url = models.URLField(blank=True)
 
     objects = MeetupManager()
 
