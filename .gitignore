@@ -1,3 +1,4 @@
+.pykonik-env
 sqlite.db
 *.pyc
 *.swp
