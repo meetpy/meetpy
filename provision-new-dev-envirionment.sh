@@ -21,10 +21,11 @@ pip install -r requirements/base.txt
 cd pykonik/
 
 title "Setup basic secrets"
-mkdir pykonik/settings/pykonik_secret_variables
+mkdir -p pykonik/settings/pykonik_secret_variables
 
 
-cat <<EOF > pykonik/settings/pykonik_secret_variables/base.json
+SECRETS_FILE="pykonik/settings/pykonik_secret_variables/base.json"
+[[ -e $SECRETS_FILE ]] || cat <<EOF > $SECRETS_FILE
 {
     "ADMIN_EMAIL": "foo@example.com",
     "SECRET_KEY": "asdf",
