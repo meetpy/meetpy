@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import mail
 from django.core.urlresolvers import reverse
