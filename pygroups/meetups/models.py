@@ -63,7 +63,7 @@ class Meetup(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        name = settings.MEETUP_NAME
+        name = settings.GROUP_NAME
         if self.meetup_type:
             name = self.meetup_type.name
         return '{0} #{1}'.format(name, self.number)

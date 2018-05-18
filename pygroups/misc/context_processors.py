@@ -6,6 +6,24 @@ from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 
 
+def group_info(request):
+    return {
+        'group': {
+            'name': settings.GROUP_NAME,
+            'logo_path': settings.LOGO_PATH,
+            'page_address': settings.GROUP_PAGE_ADDRESS_LONG,
+            'city': settings.GROUP_CITY,
+            'city_genitive': settings.GROUP_CITY_GENITIVE,
+            'city_ablative': settings.GROUP_CITY_ABLATIVE,
+            'city_adjective': settings.GROUP_CITY_ADJECTIVE,
+            'email': settings.CONTACT_EMAIL,
+            'social': settings.SOCIAL_MEDIA,
+            'github': settings.GITHUB,
+            'presentation_length': settings.PRESENTATION_LENGTH
+        }
+    }
+
+
 def system_info(request):
     return {
         'system': {

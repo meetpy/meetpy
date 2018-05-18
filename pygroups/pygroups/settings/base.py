@@ -3,8 +3,16 @@ import os
 from django.conf import global_settings
 from django.core.exceptions import ImproperlyConfigured
 
-with open(os.path.join('./pykonik/settings/pykonik_secret_variables', 'base.json'), 'r') as f:
+with open(os.path.join('./pygroups/settings/pygroups_secret_variables', 'base.json'), 'r') as f:
     secrets = json.loads(f.read())
+
+
+try:
+    from .group_constants.constants import *
+except ImportError:
+    print('WARNING - Your meetup-specific data might not be set.'
+          'Please copy pygroups/pygroups/settings/group_constants/constants.example'
+          'as constants.py and fill your group data.')
 
 
 def get_secret(setting, secrets=secrets):
@@ -105,10 +113,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'pykonik.urls'
+ROOT_URLCONF = 'pygroups.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'pykonik.wsgi.application'
+WSGI_APPLICATION = 'pygroups.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -152,9 +160,13 @@ LOGGING = {
     }
 }
 
-MEETUP_NAME = 'Pykonik'
-
-TALK_PROPOSAL_RECIPIENTS = ['hello@pykonik.org']
+try:
+    TALK_PROPOSAL_RECIPIENTS = [CONTACT_EMAIL]
+except NameError:
+    TALK_PROPOSAL_RECIPIENTS = []
+    print('WARNING - Your meetup-specific data might not be set.'
+          'Please prepare the group_constants/constants.py file '
+          'and make sure that CONCACT_EMAIL variable is set')
 
 
 TEMPLATES = [
@@ -165,6 +177,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.request',
+                'misc.context_processors.group_info',
                 'misc.context_processors.system_info',
                 'misc.context_processors.current_site',
                 'meetups.context_processors.stats'

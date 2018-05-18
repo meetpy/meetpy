@@ -1,6 +1,6 @@
 from django import forms
+from django.conf import settings
 from django.core.exceptions import ValidationError
-from meetups.constants import EITHER_EXISTING_OR_NEW_SPEAKER_ERROR
 from . import models
 
 
@@ -58,7 +58,7 @@ class TalkProposalForm(forms.ModelForm):
     def clean(self):
         if self._existing_speaker_field_empty():
             if self._all_required_new_speaker_fields_empty():
-                raise ValidationError(EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
+                raise ValidationError(settings.EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
             elif not self._all_required_new_speaker_fields_empty():
                 for field_name in self.REQUIRED_SPEAKER_FIELDS:
                     if self.cleaned_data.get(field_name) in ['', None]:

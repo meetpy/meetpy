@@ -5,7 +5,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../media')
 
-with open(os.path.join('./pykonik/settings/pykonik_secret_variables', 'stage.json'), "r") as f:
+with open(os.path.join('./pygroups/settings/pygroups_secret_variables', 'stage.json'), "r") as f:
     secrets.update(json.loads(f.read()))
 
 ALLOWED_HOSTS = get_secret('ALLOWED_HOSTS', secrets)

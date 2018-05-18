@@ -20,7 +20,7 @@
             <h3>Jak się zgłosić?</h3>
                 <p>Prosimy przesyłać propozycję prezentacji za pomocą <a href="{% url "meetups:talk_proposal" %}">formularza zgłoszeniowego</a>.</p>
             <h3>Ile czasu będzie przeznaczone na moją prezentację?</h3>
-                <p>Standardowo jedna prezentacja trwa około 18 minut. Staramy się pilnować wyznaczonego czasu i po jego przekroczeniu będziemy prosić prelegenta o jak najszybsze zakończenie wystąpienia. Na jednym spotkaniu odbywają się maksimum 3 prezentacje.</p>
+                <p>Standardowo jedna prezentacja trwa około {{ group.presentation_length }} minut. Staramy się pilnować wyznaczonego czasu i po jego przekroczeniu będziemy prosić prelegenta o jak najszybsze zakończenie wystąpienia. Na jednym spotkaniu odbywają się maksimum 3 prezentacje.</p>
             <h3>Co powinienem zrobić w dniu prezentacji?</h3>
                 <p>Prosimy prelegentów o przybycie minimum 15 minut przed rozpoczęciem spotkania, abyśmy mogli rozwiązać potencjalne problemy np. z podłączeniem laptopa do rzutnika czy internetu.</p>
             <h3>Co powinienem zrobić po prezentacji?</h3>
@@ -32,17 +32,17 @@
             <h2>Dla uczestników</h2>
             <h3>W jakim języku odbywają się spotkania?</h3>
                 <p>Większość prezentacji prowadzona jest w języku polskim, w tym języku prowadzimy też spotkanie. Zdarzają się jednak prezentacje w języku angielskim - zostają one odpowiednio oznaczone w agendzie.</p>
-            <h3>Jak wyglądają spotkania Pykonik?</h3>
+            <h3>Jak wyglądają spotkania {{ group.name }}?</h3>
                 <p>W ramach spotkań odbywają się 2-3 prezentacje związane z Pythonem i ogólnie IT. Następnie większość uczestników zostaje na networking przy piwie.</p>
         </div>
         <div id="for-sponsors" class="margin-top-big">
             <h2>Dla sponsorów</h2>
             <h3>Jak zostać sponsorem?</h3>
-                <p>Prosimy o kontakt mailowy na hello@pykonik.org gdzie omówimy szczegóły.</p>
+                <p>Prosimy o kontakt mailowy na {{ group.email }} gdzie omówimy szczegóły.</p>
             <h3>Na co mogę liczyć jako sponsor?</h3>
                 <p>Sponsor naszych spotkań może liczyć na:</p>
                 <ul>
-                    <li>umieszczenie loga sponsora na głównej stronie Pykonik obok zapowiadanego spotkania,</li>
+                    <li>umieszczenie loga sponsora na głównej stronie {{ group.name }} obok zapowiadanego spotkania,</li>
                     <li>umieszczenie loga sponsora na podstronie spotkania,</li>
                     <li>umieszczenie loga i opisu sponsora na podstronie “Sponsorzy”,</li>
                     <li>wymienienie jako sponsor spotkania podczas zapowiedzi spotkania przez organizatorów,</li>
@@ -53,57 +53,57 @@
                 <p>W zależności od rodzaju spotkania:</p>
                 <ul>
                     <li>zakup napojów i jedzenia dla uczestników spotkania,</li>
-                    <li>pokrycie kosztów związanych z przejazdem i pobytem w Krakowie zaproszonego prelegenta,</li>
+                    <li>pokrycie kosztów związanych z przejazdem i pobytem w {{ group.city_ablative }} zaproszonego prelegenta,</li>
                     <li>ufundowanie drobnych podarunków (np. książki) rozlosowanych podczas spotkania.</li>
                 </ul>
             <h3>Jak wygląda rozliczenie sponsoringu?</h3>
-                <p>Pykonik nie wystawia faktur VAT.</p>
+                <p>{{ group.name }} nie wystawia faktur VAT.</p>
         </div>
         <div id="for-partners" class="margin-top-big">
             <h2>Dla partnerów</h2>
             <h3>Kto może zostać partnerem?</h3>
-            <p>Partnerem Pykonik może zostać dowolna inicjatywa, organizacja lub firma, jednak preferowane są działalności:</p>
+            <p>Partnerem {{ group.name }} może zostać dowolna inicjatywa, organizacja lub firma, jednak preferowane są działalności:</p>
             <ul>
                 <li>niekomercyjne,</li>
                 <li>poświęcone w głównej mierze językowi Python i jego środowisku,</li>
-                <li>prowadzone w Krakowie.</li>
+                <li>prowadzone w {{ group.city_ablative }}.</li>
             </ul>
             <h3>Jak zostać partnerem?</h3>
-            <p>Prosimy o kontakt mailowy na <a href="mailto:hello@pykonik.org">hello@pykonik.org</a>. W korespondencji prosimy o zawarcie informacji o:</p>
+            <p>Prosimy o kontakt mailowy na <a href="mailto:{{ group.email }}">{{ group.email }}</a>. W korespondencji prosimy o zawarcie informacji o:</p>
             <ul>
                 <li>powiązaniu partnera z językiem Python i jego środowiskiem,</li>
                 <li>kosztach uczestnictwa (jeżeli dotyczy),</li>
                 <li>treściach marketingowych potrzebnych do promocji, np. szablon postu jaki miałby zostać opublikowany na naszych kanałach społecznościowych, logotyp inicjatywy, etc. (jeżeli dotyczy).</li>
-                <li>proponowanych profitach dla społeczności Pykonik płynących z partnerstwa.</li>
+                <li>proponowanych profitach dla społeczności {{ group.name }} płynących z partnerstwa.</li>
             </ul>
             <h3>Na co mogę liczyć jako partner?</h3>
             <p>Partner naszej inicjatywy może liczyć na:</p>
             <ul>
-                <li>umieszczenie loga partnera na głównej stronie Pykonik (sekcja partnerzy),</li>
+                <li>umieszczenie loga partnera na głównej stronie {{ group.name }} (sekcja partnerzy),</li>
                 <li>promocja wydarzeń lub produktów partnera podczas zapowiedzi spotkania przez organizatorów,</li>
                 <li>promocja wydarzeń lub produktów partnera na naszych kanałach social media.</li>
             </ul>
-            <h3>Czego oczekuje Pykonik w zamian za nawiązanie partnerstwa?</h3>
+            <h3>Czego oczekuje {{ group.name }} w zamian za nawiązanie partnerstwa?</h3>
             <p>Zależy to od rodzaju współpracy, ale najczęściej jest to:</p>
             <ul>
                 <li>umieszczenie naszego logotypu na stronie partnera,</li>
-                <li>promocja wydarzeń organizowanych przez Pykonik na kanałach społecznościowych partnera,</li>
+                <li>promocja wydarzeń organizowanych przez {{ group.name }} na kanałach społecznościowych partnera,</li>
                 <li>wejściówka na wydarzenie/egzemplarz produktu partnera/kod rabatowy dla uczestników naszych spotkań.</li>
             </ul>
-            <h3>Gdzie znajdę materiały promocyjne Pykonik?</h3>
+            <h3>Gdzie znajdę materiały promocyjne {{ group.name }}?</h3>
             <ul>
                 <li>opis - <a href="#description-pl" data-toggle="modal">PL</a>, <a href="#description-en" data-toggle="modal">EN</a></li>
-                <li>logotyp - <a href="{% static 'marketing/pykonik_logo.png' %}" target="_blank">PNG</a></li>
+                <li>logotyp - <a href="{% static group.logo %}" target="_blank">PNG</a></li>
             </ul>
 
             <div id="description-pl" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>Opis Pykonik - PL</h3>
+                    <h3>Opis {{ group.name }} - PL</h3>
                 </div>
                 <div class="modal-body">
                     <p>
-                        Pykonik to spotkania krakowskiej społeczności Pythonistów. Głównym założeniem inicjatywy jest wymiana doświadczeń w trybie face2face i przelanie energii pasjonatów tego dynamicznego języka programowania w konkretne działania dla dobra ludzkości.
+                        {{ group.name }} to spotkania krakowskiej społeczności Pythonistów. Głównym założeniem inicjatywy jest wymiana doświadczeń w trybie face2face i przelanie energii pasjonatów tego dynamicznego języka programowania w konkretne działania dla dobra ludzkości.
                     </p>
                 </div>
             </div>
@@ -111,10 +111,10 @@
             <div id="description-en" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>Opis Pykonik - EN</h3>
+                    <h3>Opis {{ group.name }} - EN</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Pykonik is a community that gathers Python hobbyists from Krakow and its surroundings.</p>
+                    <p>{{ group.name }} is a community that gathers Python hobbyists from Krakow and its surroundings.</p>
                 </div>
             </div>
 

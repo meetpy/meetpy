@@ -1,0 +1,24 @@
+# coding=utf-8
+
+GROUP_NAME = '<group_name>'  # uppercase
+GROUP_PAGE_ADDRESS_SHORT = '<group_webpage_address>'
+GROUP_PAGE_ADDRESS_LONG = 'https:/<group_webpage_address>/'
+GROUP_CITY = '<group_city>'
+GROUP_CITY_GENITIVE = '<group_city_genitive>'  # examples: Krakowa, Warszawy
+GROUP_CITY_ABLATIVE = '<group_city_ablative>'  # examples: Krakowie, Warszawie
+GROUP_CITY_ADJECTIVE = '<group_city_adjective>'  # examples: Krakowska, Warszawska
+CONTACT_EMAIL = '<group_email>'
+LOGO_PATH = 'group/group_logo.png'
+GITHUB = 'https://github.com/<group_org>/<repo_name>'
+
+# Social - leave empty if you don't have specific one
+SOCIAL_MEDIA = {
+    'meetup': '',
+    'facebook': '',
+    'twitter': '',
+    'youtube': '',
+}
+
+FEED_TITLE = '<group_name> - <group_description>'
+EITHER_EXISTING_OR_NEW_SPEAKER_ERROR = 'Wybierz prelegenta z listy lub wprowadź dane dla nowego.'
+PRESENTATION_LENGTH = 18

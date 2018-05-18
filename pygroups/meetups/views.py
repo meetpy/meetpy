@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils import feedgenerator
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from . import models, forms, constants
+from . import models, forms
 
 
 class MeetupsListView(generic.ListView):
@@ -34,7 +34,7 @@ class MeetupDateRedirectView(generic.RedirectView):
 
 
 class MeetupsRssFeed(syndication_views.Feed):
-    title = constants.FEED_TITLE
+    title = settings.FEED_TITLE
     link = reverse_lazy('meetups:meetup_list')
     title_template = models.Meetup._meta.app_label + '/feed/meetup_title.txt'
     description_template = models.Meetup._meta.app_label + '/feed/meetup_description.html'
@@ -75,6 +75,7 @@ class TalkProposalCreateView(generic.CreateView):
         context = {
             'talk_proposal': self.object,
             'site': get_current_site(self.request),
+            'page_address': settings.GROUP_PAGE_ADDRESS_SHORT,
         }
         send_mail(
             subject=render_to_string('meetups/emails/talk_proposal_subject.txt', context).strip(),

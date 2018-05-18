@@ -3,16 +3,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Pykonik | {% block title %}{% endblock %}</title>
-    <meta name="keywords" content="Pykonik, Python, grupa użytkowników, programowanie, barcamp, spotkanie, prezentacje">
-    <meta name="description" content="Pykonik to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
+    <title>{{ group.name }} | {% block title %}{% endblock %}</title>
+    <meta name="keywords" content="{{ group.name }}, Python, grupa użytkowników, programowanie, barcamp, spotkanie, prezentacje">
+    <meta name="description" content="{{ group.name }} to cykliczne spotkania pasjonatów języka programowania Python z {{ group.city_genitive }} i okolic.">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Pykonik | {% block og_title %}{% endblock %}"/>
-    <meta property="og:description" content="Pykonik to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
+    <meta property="og:title" content="{{ group.name }} | {% block og_title %}{% endblock %}"/>
+    <meta property="og:description" content="{{ group.name }} to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
     <meta property="og:url" content="http://{{ site.domain }}{{ request.get_full_path }}">
     <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo.png' %}"/>
-    <meta property="og:site_name" content="Pykonik"/>
+    <meta property="og:site_name" content="{{ group.name }}"/>
 
 
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
 			<div class="container">
 				<div class="row">
 					<div id="header-logo" class="span2">
-						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="Pykonik" class="logo"></a>
+						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="{{ group.name }}" class="logo"></a>
 					</div>
 					<div id="top">
 						<div class="span7">
@@ -66,10 +66,18 @@
 						</div>
 						<div class="span3">
 							<div class="top-links">
-								<a href="http://www.meetup.com/Pykonik/" class="meetup" target="_blank"></a>
-								<a href="https://www.facebook.com/Pykonik-87835845639/" class="facebook" target="_blank"></a>
-								<a href="http://twitter.com/pykonik" class="twitter" target="_blank"></a>
-								<a href="http://youtube.com/pykonik" class="youtube" target="_blank"></a>
+                {% if group.social.meetup %}
+  								<a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a>
+                {% endif %}
+                {% if group.social.facebook %}
+		  						<a href="{{ group.social.facebook }}" class="facebook" target="_blank"></a>
+                {% endif %}
+                {% if group.social.twitter %}
+	  							<a href="{{ group.social.twitter }}" class="twitter" target="_blank"></a>
+                {% endif %}
+                {% if group.social.youtube %}
+  								<a href="{{ group.social.youtube }}" class="youtube" target="_blank"></a>
+                {% endif %}
 								<div class="dropdown pull-right">
 								    <a href="#" data-toggle="dropdown" class="dropdown-toggle rss" role="button" id="drop1"></a>
 								    <ul aria-labelledby="drop1" role="menu" class="dropdown-menu">
@@ -77,7 +85,7 @@
 	                    <li role="presentation"><a href="{% url 'meetups:atom_feed' %}" tabindex="-1" role="menuitem" target="_blank">Atom</a></li>
 			              </ul>
 			          </div>
-								<a href="mailto:hello@pykonik.org" class="mail"></a>
+								<a href="mailto:{{ group.email }}" class="mail"></a>
 							</div>
 						</div>
 					</div>
@@ -109,10 +117,18 @@
 						<div class="span2">
 							<h5>Jesteśmy na</h5>
 							<ul>
-								<li><a href="http://www.meetup.com/Pykonik/" class="meetup" target="_blank"></a></li>
-								<li><a href="https://www.facebook.com/Pykonik-87835845639/" class="facebook" target="_blank"></a></li>
-								<li><a href="http://twitter.com/pykonik" class="twitter" target="_blank"></a></li>
-								<li><a href="http://youtube.com/pykonik" class="youtube" target="_blank"></a></li>
+                {% if group.social.meetup %}
+			  					<li><a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a></li>
+                {% endif %}
+                {% if group.social.facebook %}
+		  						<li><a href="{{ group.social.facebook }}" class="facebook" target="_blank"></a></li>
+                {% endif %}
+                {% if group.social.twitter %}
+	  							<li><a href="{{ group.social.twitter }}" class="twitter" target="_blank"></a></li>
+                {% endif %}
+                {% if group.social.youtube %}
+  								<li><a href="{{ group.social.youtube }}" class="youtube" target="_blank"></a></li>
+                {% endif %}
 							</ul>
 						</div>
 						<div class="span2">
@@ -148,7 +164,7 @@
 							</div>
 							<div class="pull-left stack margin-left-big">
 								<h5 class="pull-left">Stack</h5>
-								<p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }} &bull; <a href="https://github.com/pykonik/pykonik.org/tree/{{ system.website }}" target="_blank">@{{ system.website|slice:":5" }}</a></p>
+								<p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }} &bull; <a href="{{ group.github }}/tree/{{ system.website }}" target="_blank">@{{ system.website|slice:":5" }}</a></p>
 							</div>
 						</div>
           </div>

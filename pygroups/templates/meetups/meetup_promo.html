@@ -22,12 +22,12 @@
             <div class="media">
                 <div class="media-body">
                     <p>
-                        Pykonik #{{ meetup.number }} odbędzie się w {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o
+                        {{ group.name }} #{{ meetup.number }} odbędzie się w {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o
                         godz. {{ meetup.date|date:"H:i" }}
                         w {{ meetup.venue.name }} ({{ meetup.venue.address }}). Na spotkanie zapraszamy wszystkich entuzjastów 
-                        języka Python z Krakowa i okolic. Po wysłuchaniu prezentacji zachęcamy do
+                        języka Python z {{ group.city_genitive }} i okolic. Po wysłuchaniu prezentacji zachęcamy do
                         pozostania z nami i przedyskutowania nowo nabytej wiedzy przy piwie. Uczestnictwo 
-                        w spotkaniach Pykonik jest bezpłatne, nie jest wymagana także żadna rezerwacja.
+                        w spotkaniach {{ group.name }} jest bezpłatne, nie jest wymagana także żadna rezerwacja.
                     </p>
                     <br/>
                     <p>
@@ -51,7 +51,7 @@
                     {% endfor %}
                     <br/>
                     <p>
-                        Strona spotkania: http://pykonik.org/{{ meetup.number}}
+                        Strona spotkania: {{ group.page_address }}{{ meetup.number}}
                     </p>
                 </div>
             </div>
@@ -62,12 +62,12 @@
             <h2>Facebook</h2>
             <div class="media">
                 <div class="media-body">
-                    Pykonik #{{ meetup.number }} odbędzie się w {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o
+                    {{ group.name }} #{{ meetup.number }} odbędzie się w {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o
                     godz. {{ meetup.date|date:"H:i" }}
                     w {{ meetup.venue.name }} ({{ meetup.venue.address }}). Na spotkanie zapraszamy wszystkich entuzjastów 
-                    języka Python z Krakowa i okolic. Po wysłuchaniu prezentacji zachęcamy do
+                    języka Python z {{ group.city_genitive }} i okolic. Po wysłuchaniu prezentacji zachęcamy do
                     pozostania z nami i przedyskutowania nowo nabytej wiedzy przy piwie. Uczestnictwo 
-                    w spotkaniach Pykonik jest bezpłatne, nie jest wymagana także żadna rezerwacja.<br/>
+                    w spotkaniach {{ group.name }} jest bezpłatne, nie jest wymagana także żadna rezerwacja.<br/>
                     <br/>
                     Agenda:<br/>
                     {% for talk in meetup.talks.all %}
@@ -83,7 +83,7 @@
                         <br/>
                     {% endfor %}
                     <br/>
-                    Strona spotkania: http://pykonik.org/{{ meetup.number}}<br/>
+                    Strona spotkania: {{ group.page_address }}{{ meetup.number}}<br/>
                     <br/>
                     Zachęcamy do dołączania do wydarzenia na meetup.com: XXX
                 </div>
@@ -96,16 +96,16 @@
             {% for talk in meetup.talks.all %}
             <div class="media">
                 <div class="media-body">
-                    <h3>Pykonik #{{ meetup.number}} - {{ talk.title }}</h3>
+                    <h3>{{ group.name }} #{{ meetup.number}} - {{ talk.title }}</h3>
                     Prelegent: {% for s in talk.speakers.all %}
                         {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
                         {% endfor %}<br/>
                     <br/>
                     {{ talk.description }}<br/>
                     <br/>
-                    Prezentacja odbyła się podczas spotkania Pykonik #{{meetup.number}} ({{meetup.date|date:"d.m.Y"}}) - http://www.pykonik.org/{{meetup.number}}/<br/>
+                    Prezentacja odbyła się podczas spotkania {{ group.name }} #{{meetup.number}} ({{meetup.date|date:"d.m.Y"}}) - {{ group.page_address }}{{meetup.number}}/<br/>
                     <br/>
-                    Pykonik to spotkania krakowskiej społeczności Pythonistów. Głównym założeniem inicjatywy jest wymiana doświadczeń w trybie face2face i przelanie energii pasjonatów tego dynamicznego języka programowania w konkretne działania dla dobra ludzkości.
+                    {{ group.name }} to spotkania krakowskiej społeczności Pythonistów. Głównym założeniem inicjatywy jest wymiana doświadczeń w trybie face2face i przelanie energii pasjonatów tego dynamicznego języka programowania w konkretne działania dla dobra ludzkości.
                 </div>
             </div>
             {% endfor %}

@@ -6,7 +6,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../media')
 
 
-with open(os.path.join('./pykonik/settings/pykonik_secret_variables', 'prod.json')) as f:
+with open(os.path.join('./pygroups/settings/pygroups_secret_variables', 'prod.json')) as f:
     secrets.update(json.loads(f.read()))
 
 DATABASES = {
