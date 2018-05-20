@@ -9,7 +9,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ group.name }} | {% block og_title %}{% endblock %}"/>
-    <meta property="og:description" content="{{ group.name }} to cykliczne spotkania pasjonatów języka programowania Python z Krakowa i okolic.">
+    <meta property="og:description" content="{{ group.name }} to cykliczne spotkania pasjonatów języka programowania Python z {{ group.city_genitive }} i okolic.">
     <meta property="og:url" content="http://{{ site.domain }}{{ request.get_full_path }}">
     <meta property="og:image" content="http://{{ site.domain }}{% static 'img/logo.png' %}"/>
     <meta property="og:site_name" content="{{ group.name }}"/>
