@@ -7,6 +7,7 @@ GROUP_CITY = '<group_city>'
 GROUP_CITY_GENITIVE = '<group_city_genitive>'  # examples: Krakowa, Warszawy
 GROUP_CITY_ABLATIVE = '<group_city_ablative>'  # examples: Krakowie, Warszawie
 GROUP_CITY_ADJECTIVE = '<group_city_adjective>'  # examples: Krakowska, Warszawska
+GROUP_CITY_LOCATIVE = '<group_city_locative>'  # examples: krakowskiej, warszawskiej
 CONTACT_EMAIL = '<group_email>'
 LOGO_PATH = 'group/group_logo.png'
 GITHUB = 'https://github.com/<group_org>/<repo_name>'

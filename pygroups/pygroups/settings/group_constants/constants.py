@@ -7,6 +7,7 @@ GROUP_CITY = 'Kraków'
 GROUP_CITY_GENITIVE = 'Krakowa'  # examples: Krakowa, Warszawy
 GROUP_CITY_ABLATIVE = 'Krakowie'  # examples: Krakowie, Warszawie
 GROUP_CITY_ADJECTIVE = 'Krakowska'  # examples: Krakowska, Warszawska
+GROUP_CITY_LOCATIVE = 'krakowskiej'  # examples: krakowskiej, warszawskiej
 CONTACT_EMAIL = 'hello@pykonik.org'
 LOGO_PATH = 'group/group_logo.png'
 GITHUB = 'https://github.com/pykonik/pykonik.org'

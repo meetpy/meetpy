@@ -16,6 +16,7 @@ def group_info(request):
             'city_genitive': settings.GROUP_CITY_GENITIVE,
             'city_ablative': settings.GROUP_CITY_ABLATIVE,
             'city_adjective': settings.GROUP_CITY_ADJECTIVE,
+            'city_locative': settings.GROUP_CITY_LOCATIVE,
             'email': settings.CONTACT_EMAIL,
             'social': settings.SOCIAL_MEDIA,
             'github': settings.GITHUB,
