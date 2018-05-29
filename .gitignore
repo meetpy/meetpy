@@ -1,4 +1,4 @@
-.pykonik-env
+.meetpy-env
 sqlite.db
 *.pyc
 *.swp
@@ -7,4 +7,4 @@ upload/
 .project
 .pydevproject
 .DS_Store
-pykonik_secret_variables/
+meetpy_secret_variables/

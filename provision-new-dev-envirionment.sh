@@ -10,21 +10,21 @@ git remote add upstream git@github.com:pykonik/pykonik.org.git
 git fetch upstream
 
 title "Create virtualenv"
-virtualenv .pykonik-env
-source ./.pykonik-env/bin/activate
+virtualenv -p python3 .meetpy-env
+source ./.meetpy-env/bin/activate
 
 title "Run pip install"
 # currently there is no dev requirements file,
 # but when there is – we should add it here.
 pip install -r requirements/base.txt
 
-cd pykonik/
+cd meetpy/
 
 title "Setup basic secrets"
-mkdir -p pykonik/settings/pykonik_secret_variables
+mkdir -p meetpy/settings/meetpy_secret_variables
 
 
-SECRETS_FILE="pykonik/settings/pykonik_secret_variables/base.json"
+SECRETS_FILE="meetpy/settings/meetpy_secret_variables/base.json"
 [[ -e $SECRETS_FILE ]] || cat <<EOF > $SECRETS_FILE
 {
     "ADMIN_EMAIL": "foo@example.com",
@@ -33,7 +33,7 @@ SECRETS_FILE="pykonik/settings/pykonik_secret_variables/base.json"
 }
 EOF
 
-export DJANGO_SETTINGS_MODULE="pykonik.settings.local"
+export DJANGO_SETTINGS_MODULE="meetpy.settings.local"
 
 title "Run migrations"
 ./manage.py migrate
