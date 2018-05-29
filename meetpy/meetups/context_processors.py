@@ -1,5 +1,6 @@
-from . import models
 from datetime import datetime
+
+from . import models
 
 
 def stats(request):

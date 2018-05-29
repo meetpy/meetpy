@@ -1,9 +1,9 @@
 import json
+
 import os
-from django.conf import global_settings
 from django.core.exceptions import ImproperlyConfigured
 
-with open(os.path.join('./pygroups/settings/pygroups_secret_variables', 'base.json'), 'r') as f:
+with open(os.path.join('./meetpy/settings/meetpy_secret_variables', 'base.json'), 'r') as f:
     secrets = json.loads(f.read())
 
 
@@ -11,7 +11,7 @@ try:
     from .group_constants.constants import *
 except ImportError:
     print('WARNING - Your meetup-specific data might not be set.'
-          'Please copy pygroups/pygroups/settings/group_constants/constants.example'
+          'Please copy meetpy/meetpy/settings/group_constants/constants.example'
           'as constants.py and fill your group data.')
 
 
@@ -113,10 +113,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'pygroups.urls'
+ROOT_URLCONF = 'meetpy.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'pygroups.wsgi.application'
+WSGI_APPLICATION = 'meetpy.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.auth',

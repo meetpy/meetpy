@@ -1,4 +1,5 @@
 from django.views import generic
+
 from meetups import models as meetups_models
 from . import models
 

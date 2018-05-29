@@ -1,16 +1,18 @@
 # coding=utf-8
 
+from datetime import datetime
+
+import factory
+from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.template.loader import render_to_string
-from django.test.utils import override_settings
-import factory
-from datetime import datetime
 from django.test import TestCase
-from django.conf import settings
+from django.test.utils import override_settings
 from djet import files, testcases, assertions
+
 from . import models, views, forms
 
 

@@ -1,12 +1,13 @@
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import get_object_or_404
-from django.views import generic
 from django.contrib.syndication import views as syndication_views
-from django.core.urlresolvers import reverse_lazy
-from django.utils import feedgenerator
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
+from django.utils import feedgenerator
+from django.views import generic
+
 from . import models, forms
 
 

@@ -1,7 +1,8 @@
-import functools
-import subprocess
-import django
 import platform
+import subprocess
+
+import django
+import functools
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 
