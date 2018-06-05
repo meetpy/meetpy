@@ -1,4 +1,6 @@
 .meetpy-env
+.coverage
+.pytest_cache/
 sqlite.db
 *.pyc
 *.swp

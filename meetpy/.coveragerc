@@ -1,0 +1,5 @@
+[run]
+omit =
+    */migrations/*
+    meetpy/settings/*
+    meetpy/wsgi.py

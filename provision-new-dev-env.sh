@@ -39,7 +39,7 @@ title "Run migrations"
 ./manage.py migrate
 
 title "Run tests"
-./manage.py test
+pytest
 
 title "Create superuser"
 ./manage.py createsuperuser

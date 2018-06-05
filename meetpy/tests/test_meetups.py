@@ -13,7 +13,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from djet import files, testcases, assertions
 
-from . import models, views, forms
+from meetups import models, views, forms
 
 
 class MeetupFactory(factory.DjangoModelFactory):
