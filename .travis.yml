@@ -8,6 +8,6 @@ install:
   - pip install -r requirements/base.txt
 before_script:
   - cd meetpy
-  - ./meetpy/manage.py migrate
+  - ./manage.py migrate
 script:
-  - ./meetpy/manage.py test
+  - ./manage.py test
