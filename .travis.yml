@@ -1,0 +1,12 @@
+language: python
+python:
+  - "3.6"
+before_install:
+  - export DJANGO_SETTINGS_MODULE="meetpy.settings.local"
+install:
+  - pip install -r requirements/base.txt
+before_script:
+  - cd meetpy
+  - ./meetpy/manage.py migrate
+script:
+  - ./meetpy/manage.py test
