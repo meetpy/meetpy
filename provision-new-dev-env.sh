@@ -9,14 +9,11 @@ title "Add upstream remote"
 git remote add upstream git@github.com:pykonik/pykonik.org.git
 git fetch upstream
 
-title "Create virtualenv"
-virtualenv -p python3 .meetpy-env
-source ./.meetpy-env/bin/activate
+title "Create virtualenv via pipenv"
+pipenv --python 3.7
 
 title "Run pip install"
-# currently there is no dev requirements file,
-# but when there is – we should add it here.
-pip install -r requirements/base.txt
+pipenv install --dev
 
 cd meetpy/
 
@@ -36,13 +33,13 @@ EOF
 export DJANGO_SETTINGS_MODULE="meetpy.settings.local"
 
 title "Run migrations"
-./manage.py migrate
+pipenv run ./manage.py migrate
 
 title "Run tests"
-pytest
+pipenv run pytest
 
 title "Create superuser"
-./manage.py createsuperuser
+pipenv run ./manage.py createsuperuser
 
 title "Runserver"
-./manage.py runserver
+pipenv run ./manage.py runserver
