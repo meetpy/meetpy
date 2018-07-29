@@ -1,7 +1,7 @@
 appdirs==1.4.3
 asn1crypto==0.22.0
-cffi==1.10.0
-cryptography==1.8.1
+cffi==1.11.5
+cryptography==2.3
 Django==1.11
 django-embed-video==1.0.0
 djet==0.0.10
