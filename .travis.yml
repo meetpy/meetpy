@@ -1,13 +1,14 @@
 language: python
 cache: pip
 python:
-  - "3.6"
+  - "3.7"
 before_install:
   - export DJANGO_SETTINGS_MODULE="meetpy.settings.ci"
 install:
-  - pip install -r requirements/base.txt
+  - pipenv install
+  - pipenv install --dev
 before_script:
   - cd meetpy
-  - ./manage.py migrate
+  - pipenv run ./manage.py migrate
 script:
-  - pytest
+  - pipenv run pytest
