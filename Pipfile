@@ -7,16 +7,19 @@ name = "pypi"
 python_version = "3.7"
 
 [dev-packages]
-pytest = "==3.6.0"
-djet = "==0.0.10"
+pytest = "==3.7.1"
+djet = "==0.2.2"
 pytest-cov = "==2.5.1"
-pytest-django = "==3.2.1"
-factory-boy = "==2.5.2"
+pytest-django = "==3.4.1"
+factory-boy = "==2.11.1"
 pdbpp = "*"
-"flake8" = {git = "https://gitlab.com/pycqa/flake8", ref = "9631dac5", editable = true}
+"flake8" = {git = "https://gitlab.com/pycqa/flake8", editable = true, ref = "9631dac5"}
 pyflakes = "==2.0.0"
 
 [packages]
 Django = "==2.1"
-django-embed-video = "==1.0.0"
-pillow = "==2.9.0"
+django-embed-video = "==1.1.2"
+pillow = "==5.2.0"
+
+[pipenv]
+allow_prereleases = true

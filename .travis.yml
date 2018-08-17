@@ -13,8 +13,8 @@ matrix:
 before_install:
   - export DJANGO_SETTINGS_MODULE="meetpy.settings.ci"
 install:
-  - pipenv install --skip-lock
-  - pipenv install --dev --skip-lock
+  - pipenv install
+  - pipenv install --dev
 before_script:
   - cd meetpy
   - pipenv run ./manage.py migrate
