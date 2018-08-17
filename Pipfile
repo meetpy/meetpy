@@ -3,17 +3,20 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[requires]
+python_version = "3.7"
+
 [dev-packages]
 pytest = "==3.6.0"
 djet = "==0.0.10"
 pytest-cov = "==2.5.1"
 pytest-django = "==3.2.1"
 factory-boy = "==2.5.2"
+pdbpp = "*"
+"flake8" = {git = "https://gitlab.com/pycqa/flake8", ref = "9631dac5", editable = true}
+pyflakes = "==2.0.0"
 
 [packages]
-django = "==1.11"
+Django = "==2.1"
 django-embed-video = "==1.0.0"
 pillow = "==2.9.0"
-
-[requires]
-python_version = "3.7"
