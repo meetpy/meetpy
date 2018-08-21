@@ -1,7 +1,7 @@
 import datetime
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 
 from misc.models import SlugifyUploadTo
@@ -50,12 +50,23 @@ class MeetupType(models.Model):
 
 
 class Meetup(models.Model):
-    meetup_type = models.ForeignKey(MeetupType, null=True, blank=True)
+    meetup_type = models.ForeignKey(
+        MeetupType,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
     description = models.TextField(blank=True)
     number = models.PositiveIntegerField()
     date = models.DateTimeField()
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
-    venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
+    venue = models.ForeignKey(
+        Venue,
+        related_name='meetups',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
     is_ready = models.BooleanField(default=False)
     date_modified = models.DateTimeField(auto_now=True)
     meetup_url = models.URLField(blank=True)
@@ -106,7 +117,13 @@ class Talk(models.Model):
     title = models.CharField(max_length=1000)
     description = models.TextField(blank=True)
     speakers = models.ManyToManyField(Speaker, related_name='talks')
-    meetup = models.ForeignKey(Meetup, related_name='talks', null=True, blank=True)
+    meetup = models.ForeignKey(
+        Meetup,
+        related_name='talks',
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+    )
     order = models.PositiveSmallIntegerField(null=True)
     slides_file = models.FileField(
         upload_to=SlugifyUploadTo(settings.SLIDES_FILES_DIR, ['meetup', 'title']),
@@ -131,7 +148,11 @@ class ExternalLink(models.Model):
         ('other', 'Other'),
     )
 
-    meetup = models.ForeignKey(Meetup, related_name='external_links')
+    meetup = models.ForeignKey(
+        Meetup,
+        related_name='external_links',
+        on_delete=models.CASCADE,
+    )
     url = models.URLField()
     type = models.CharField(max_length=10, choices=EXTERNAL_LINK_TYPES)
     description = models.TextField(blank=True)
@@ -141,7 +162,7 @@ class ExternalLink(models.Model):
 
 
 class TalkProposal(models.Model):
-    talk = models.ForeignKey(Talk)
+    talk = models.ForeignKey(Talk, on_delete=models.CASCADE)
     message = models.TextField(blank=True)
     date_submitted = models.DateTimeField(auto_now_add=True)
 

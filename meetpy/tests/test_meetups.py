@@ -6,7 +6,8 @@ import factory
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
+from django.http import Http404
 from django.template.loader import render_to_string
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -43,6 +44,7 @@ class TalkFactory(factory.DjangoModelFactory):
 class MeetupManagerTest(TestCase):
 
     def test_upcoming_if_exists(self):
+        MeetupFactory(date=datetime(2000, 1, 1))
         next_meetup = MeetupFactory(date=datetime(2000, 2, 1))
 
         upcoming_meetup = models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))

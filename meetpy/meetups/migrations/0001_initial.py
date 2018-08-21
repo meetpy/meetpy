@@ -74,7 +74,13 @@ class Migration(migrations.Migration):
                 ('slides_url', models.URLField(blank=True)),
                 ('video_url', models.URLField(blank=True)),
                 ('language', models.CharField(default='pl', choices=[('pl', 'Polish'), ('en', 'English')], max_length=2)),
-                ('meetup', models.ForeignKey(null=True, to='meetups.Meetup', related_name='talks', blank=True)),
+                ('meetup', models.ForeignKey(
+                    to='meetups.Meetup',
+                    on_delete=models.CASCADE,
+                    related_name='talks',
+                    null=True,
+                    blank=True
+                )),
                 ('speakers', models.ManyToManyField(to='meetups.Speaker', related_name='talks')),
             ],
             options={
@@ -87,7 +93,10 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('message', models.TextField(blank=True)),
                 ('date_submitted', models.DateTimeField(auto_now_add=True)),
-                ('talk', models.ForeignKey(to='meetups.Talk')),
+                ('talk', models.ForeignKey(
+                    to='meetups.Talk',
+                    on_delete=models.CASCADE,
+                )),
             ],
         ),
         migrations.CreateModel(
@@ -108,11 +117,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='meetup',
             name='venue',
-            field=models.ForeignKey(null=True, to='meetups.Venue', related_name='meetups', blank=True),
+            field=models.ForeignKey(
+                null=True,
+                to='meetups.Venue',
+                related_name='meetups',
+                blank=True,
+                on_delete=models.CASCADE,
+            ),
         ),
         migrations.AddField(
             model_name='externallink',
             name='meetup',
-            field=models.ForeignKey(to='meetups.Meetup', related_name='external_links'),
+            field=models.ForeignKey(
+                to='meetups.Meetup',
+                related_name='external_links',
+                on_delete=models.CASCADE,
+            ),
         ),
     ]

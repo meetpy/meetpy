@@ -6,7 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^', include('misc.urls', namespace='misc')),
-    url(r'^', include('meetups.urls', namespace='meetups')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(('misc.urls', 'misc'), namespace='misc')),
+    url(r'^', include(('meetups.urls', 'meetups'), namespace='meetups')),
+    url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
