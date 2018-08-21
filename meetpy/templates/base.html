@@ -99,81 +99,95 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="span2 img-tip">
-					<div class="line-orange"></div>
-				</div>
-				<div class="span10">
-					<div class="row margin-bottom-large">
-						<div class="span2">
-							<h5>Mapa witryny</h5>
-							<ul>
-								<li><a href="{% url 'misc:home' %}">Home</a></li>
-								<li><a href="{% url 'meetups:meetup_list' %}">Spotkania</a></li>
-                <li><a href="{% url 'meetups:speaker_list' %}">Prelegenci</a></li>
-                <li><a href="{% url 'meetups:sponsor_list' %}">Sponsorzy</a></li>
-                <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
-							</ul>
-						</div>
-						<div class="span2">
-							<h5>Jesteśmy na</h5>
-							<ul>
-                {% if group.social.meetup %}
-			  					<li><a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a></li>
-                {% endif %}
-                {% if group.social.facebook %}
-		  						<li><a href="{{ group.social.facebook }}" class="facebook" target="_blank"></a></li>
-                {% endif %}
-                {% if group.social.twitter %}
-	  							<li><a href="{{ group.social.twitter }}" class="twitter" target="_blank"></a></li>
-                {% endif %}
-                {% if group.social.youtube %}
-  								<li><a href="{{ group.social.youtube }}" class="youtube" target="_blank"></a></li>
-                {% endif %}
-							</ul>
-						</div>
-						<div class="span2">
-							<h5>Python w Polsce</h5>
-							<ul>
-								<li><a href="http://pl.python.org/" target="_blank">PPCG</a></li>
-								<li><a href="http://pl.pycon.org/" target="_blank">PyCon PL</a></li>
-								<li><a href="http://pywaw.org/" target="_blank">PyWaw</a></li>
-								<li><a href="http://pysilesia.org/" target="_blank">PySilesia</a></li>
-								<li><a href="http://www.meetup.com/Python-%C5%81od%C5%BA/" target="_blank">Python Łódź</a></li>
-							</ul>
-						</div>
-						<div class="span2">
-							<h5>&nbsp;</h5>
-							<ul>
-								<li><a href="http://pycircle.org/" target="_blank">PyCircle</a></li>
-								<li><a href="https://plus.google.com/communities/113848425473260356105" target="_blank">PyRa</a></li>
-								<li><a href="https://www.facebook.com/WroclawPythonUserGroup" target="_blank">wroc.py</a></li>
-								<li><a href="http://pyladies.pl" target="_blank">Pyladies Poland</a></li>
-								<li><a href="http://pystok.org" target="_blank">PyStok</a></li>
-							</ul> 
-					  </div>
-					</div>
-					<div class="row">
-						<div class="span10">
-							<div class="pull-left statistics">
-								<h5 class="pull-left">Statystyki</h5>
-								<p class="pull-left">
-									Spotkania: <span>{{ meetups_stats.meetups_count }}</span>
-									&bull; Prelegenci: <span>{{ meetups_stats.speakers_count }}</span>
-									&bull; Prezentacje: <span>{{ meetups_stats.talks_count }}</span>
-								</p>
-							</div>
-							<div class="pull-left stack margin-left-big">
-								<h5 class="pull-left">Stack</h5>
-								<p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }} &bull; <a href="{{ group.github }}/tree/{{ system.website }}" target="_blank">@{{ system.website|slice:":5" }}</a></p>
-							</div>
-						</div>
-          </div>
-          <div class="row margin-bottom-small">
-            <div class="span10 margin-top-small">
-              <div class="powered">Powered by <a href="https://deployed.pl" target="_blank"><img id="footer-logo" src="{% static 'img/deployed.png' %}" alt="Powered by Deployed.pl"></a> Project by <a href="http://pywaw.org/">PyWaw</a></div>
-            </div>
-          </div>
-				</div>
+                <div class="span12">
+                    <div class="row margin-bottom-large">
+                        <div class="span2">
+                            <h5>Mapa witryny</h5>
+                            <ul>
+                                <li><a href="{% url 'misc:home' %}">Home</a></li>
+                                <li><a href="{% url 'meetups:meetup_list' %}">Spotkania</a></li>
+                                <li><a href="{% url 'meetups:speaker_list' %}">Prelegenci</a></li>
+                                <li><a href="{% url 'meetups:sponsor_list' %}">Sponsorzy</a></li>
+                                <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div class="span2">
+                            <h5>Jesteśmy na</h5>
+                            <ul>
+                                {% if group.social.meetup %}
+                                    <li><a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a></li>
+                                {% endif %}
+                                {% if group.social.facebook %}
+                                    <li><a href="{{ group.social.facebook }}" class="facebook" target="_blank"></a></li>
+                                {% endif %}
+                                {% if group.social.twitter %}
+                                    <li><a href="{{ group.social.twitter }}" class="twitter" target="_blank"></a></li>
+                                {% endif %}
+                                {% if group.social.youtube %}
+                                    <li><a href="{{ group.social.youtube }}" class="youtube" target="_blank"></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="span2">
+                            <h5>Python w Polsce</h5>
+                            <ul>
+                                <li><a href="http://pl.python.org/" target="_blank">PPCG</a></li>
+                                <li><a href="http://pl.pycon.org/" target="_blank">PyCon PL</a></li>
+                                <li><a href="http://poland.pyladies.com" target="_blank">Pyladies Poland</a></li>
+                                <li><a href="http://pywaw.org/" target="_blank">PyWaw</a></li>
+                                <li><a href="http://pykonik.org/" target="_blank">Pykonik</a></li>
+                            </ul>
+                        </div>
+                        <div class="span2">
+                            <h5>&nbsp;</h5>
+                            <ul>
+                                <li><a href='http://pylight.org'>PyLight WAW</a></li>
+                                <li><a href='https://www.facebook.com/pylightkrk/'>PyLight KRK</a></li>
+                                <li><a href="http://pystok.org" target="_blank">PyStok</a></li>
+                                <li><a href="http://pysilesia.org/" target="_blank">PySilesia</a></li>
+                                <li><a href="http://www.meetup.com/Python-%C5%81od%C5%BA/" target="_blank">Python Łódź</a></li>
+                            </ul>
+                        </div>
+                        <div class="span2">
+                            <h5>&nbsp;</h5>
+                            <ul>
+                                <li><a href="https://www.meetup.com/PyGda-pl/" target="_blank">PyGDA</a></li>
+                                <li><a href="https://www.meetup.com/PyRa-Poznan-Python-Programmers/" target="_blank">PyRa</a></li>
+                                <li><a href="https://www.facebook.com/WroclawPythonUserGroup" target="_blank">wroc.py</a></li>
+                                <li><a href="https://pylove.org" target="_blank">PyLove</a></li>
+                            </ul>
+                        </div>
+                        <div class="span2">
+                            <h5>&nbsp;</h5>
+                            <ul>
+                                <li><a href='https://www.meetup.com/PyData-Warsaw/'>PyData Warsaw</a></li>
+                                <li><a href='https://www.meetup.com/PyData-Krakow/'>PyData Kraków</a></li>
+                                <li><a href='https://www.meetup.com/PyData-Wroclaw/'>PyData Wrocław</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span10">
+                            <div class="pull-left statistics">
+                                <h5 class="pull-left">Statystyki</h5>
+                                <p class="pull-left">
+                                Spotkania: <span>{{ meetups_stats.meetups_count }}</span>
+                                &bull; Prelegenci: <span>{{ meetups_stats.speakers_count }}</span>
+                                &bull; Prezentacje: <span>{{ meetups_stats.talks_count }}</span>
+                                </p>
+                            </div>
+                            <div class="pull-left stack margin-left-big">
+                                <h5 class="pull-left">Stack</h5>
+                                <p class="pull-left">Python {{ system.python }} &bull; Django {{ system.django }} &bull; <a href="{{ group.github }}/tree/{{ system.website }}" target="_blank">@{{ system.website|slice:":5" }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-small">
+                        <div class="span10 margin-top-small">
+                            <div class="powered">Powered by <a href="https://deployed.pl" target="_blank"><img id="footer-logo" src="{% static 'img/deployed.png' %}" alt="Powered by Deployed.pl"></a> Project by <a href="http://pywaw.org/">PyWaw</a></div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</footer>
