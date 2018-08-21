@@ -3,8 +3,10 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.syndication import views as syndication_views
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+from django.http import Http404
 from django.template.loader import render_to_string
+from django.template.response import TemplateResponse
 from django.utils import feedgenerator
 from django.views import generic
 
@@ -15,9 +17,45 @@ class MeetupsListView(generic.ListView):
     model = models.Meetup
 
 
-class MeetupDetailView(generic.DetailView):
-    model = models.Meetup
-    slug_url_kwarg = slug_field = 'number'
+class MeetupRedirectOrList(generic.View):
+    """
+    Redirects if possible, if not then displays list of matching Meetups
+    """
+
+    template_name = "meetups/meetup_list.html"
+
+    def get(self, request, **kwargs):
+        number = self.kwargs['number']
+
+        meetups = models.Meetup.objects.filter(number=number)
+        if len(meetups) == 0:
+            raise Http404
+
+        if len(meetups) == 1:
+            return redirect(meetups[0].get_absolute_url())
+
+        return TemplateResponse(
+            request,
+            self.template_name,
+            {'object_list': meetups}
+        )
+
+
+class MeetupDetailView(generic.TemplateView):
+
+    template_name = 'meetups/meetup_detail.html'
+
+    def get_object(self):
+        lookup = {
+            'meetup_type__slug': self.kwargs['meetup_type'],
+            'number': self.kwargs['number'],
+        }
+        return get_object_or_404(models.Meetup, **lookup)
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        ctx['object'] = self.get_object()
+        return ctx
 
 
 class MeetupPromoView(generic.DetailView):

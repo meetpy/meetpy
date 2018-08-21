@@ -20,10 +20,10 @@
                   </div>
                 {% endif %}
                 <div class="span2">
-                    <a href="{% url 'meetups:meetup_detail' number=meetup.number %}" class="button button-block">SZCZEGÓŁY</a>
+                    <a href="{{ meetup.get_absolute_url }}" class="button button-block">SZCZEGÓŁY</a>
                 </div>
             </div>
-            <h2><a href="{% url 'meetups:meetup_detail' number=meetup.number %}" itemprop="sameAs"><span itemprop="name">{{ meetup }}</span></a></h2>
+            <h2><a href="{{ meetup.get_absolute_url }}" itemprop="sameAs"><span itemprop="name">{{ meetup }}</span></a></h2>
         </div>
     </div>
     <ul class="unstyled">

@@ -42,6 +42,7 @@ class MeetupManager(models.Manager):
 
 class MeetupType(models.Model):
     name = models.CharField(max_length=64)
+    slug = models.SlugField()
     has_agenda = models.BooleanField(default=True)
 
     def __str__(self):
@@ -51,7 +52,7 @@ class MeetupType(models.Model):
 class Meetup(models.Model):
     meetup_type = models.ForeignKey(MeetupType, null=True, blank=True)
     description = models.TextField(blank=True)
-    number = models.PositiveIntegerField(unique=True)
+    number = models.PositiveIntegerField()
     date = models.DateTimeField()
     sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
     venue = models.ForeignKey(Venue, related_name='meetups', null=True, blank=True)
@@ -71,7 +72,10 @@ class Meetup(models.Model):
         return '{0} #{1}'.format(name, self.number)
 
     def get_absolute_url(self):
-        return reverse('meetups:meetup_detail', kwargs={'number': self.number})
+        return reverse('meetups:meetup_detail', kwargs={
+            'meetup_type': self.meetup_type.slug,
+            'number': self.number
+        })
 
 
 class Speaker(models.Model):

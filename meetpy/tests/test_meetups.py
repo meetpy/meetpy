@@ -7,7 +7,6 @@ from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import mail
 from django.core.urlresolvers import reverse
-from django.http import Http404
 from django.template.loader import render_to_string
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -20,7 +19,6 @@ class MeetupFactory(factory.DjangoModelFactory):
 
     class Meta:
         model = models.Meetup
-        django_get_or_create = ('number', 'date')
 
     number = factory.Sequence(lambda n: n)
 
@@ -45,7 +43,6 @@ class TalkFactory(factory.DjangoModelFactory):
 class MeetupManagerTest(TestCase):
 
     def test_upcoming_if_exists(self):
-        previous_meetup = MeetupFactory(date=datetime(2000, 1, 1))
         next_meetup = MeetupFactory(date=datetime(2000, 2, 1))
 
         upcoming_meetup = models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))
@@ -54,35 +51,7 @@ class MeetupManagerTest(TestCase):
 
     def test_upcoming_if_not_exists(self):
         with self.assertRaises(models.Meetup.DoesNotExist):
-            upcoming_meetup = models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))
-
-
-class MeetupDateRedirectViewTest(testcases.ViewTestCase, assertions.StatusCodeAssertionsMixin):
-    view_class = views.MeetupDateRedirectView
-
-    def test_redirect(self):
-        data = {
-            'day': '01',
-            'month': '02',
-            'year': '2000',
-        }
-        meetup = MeetupFactory(date=datetime(2000, 2, 1, 18, 30))
-        request = self.factory.get(data=data)
-
-        response = self.view(request)
-
-        self.assert_redirect(response, meetup.get_absolute_url())
-
-    def test_not_found(self):
-        data = {
-            'day': '01',
-            'month': '02',
-            'year': '2000',
-        }
-        request = self.factory.get(data=data)
-
-        with self.assertRaises(Http404):
-            self.view(request)
+            models.Meetup.objects.get_upcoming(date=datetime(2000, 1, 15))
 
 
 class SlugifyUploadToTest(TestCase):
@@ -139,7 +108,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
             'speaker_biography': 'short bio',
             'speaker_photo': files.create_inmemory_image(),
             'message': 'some comment',
-            }
+        }
         request = self.factory.post(data=data)
 
         self.view(request, data=data)
@@ -166,7 +135,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
             'talk_title': 'some title',
             'talk_description': 'some desc',
             'speaker': self.speaker.id,
-            }
+        }
         request = self.factory.post(data=data)
 
         self.view(request, data=data)
@@ -176,16 +145,16 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
             'talk_proposal': talk,
             'site': get_current_site(request),
             'page_address': settings.GROUP_PAGE_ADDRESS_SHORT,
-            }
+        }
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(
             mail.outbox[0].subject,
             render_to_string('meetups/emails/talk_proposal_subject.txt', context).strip(),
-            )
+        )
         self.assertEqual(
             mail.outbox[0].body,
             render_to_string('meetups/emails/talk_proposal_body.txt', context),
-            )
+        )
         self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
         self.assertEqual(mail.outbox[0].to, settings.TALK_PROPOSAL_RECIPIENTS)
 
@@ -194,7 +163,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
             'talk_title': 'some title',
             'talk_description': 'some desc',
             'speaker': self.speaker.id,
-            }
+        }
         request = self.factory.post(data=data)
 
         response = self.view(request, data=data)
