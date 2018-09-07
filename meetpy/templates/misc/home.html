@@ -6,6 +6,10 @@
 
 {% block og_title %}Home{% endblock %}
 
+{% block js %}
+{% include 'includes/maps_api_script.html' with canvas_id='map-canvas' latitude=upcoming_meetup.venue.latitude longitude=upcoming_meetup.venue.longitude zoom=15 disable_ui=1 %}
+{% endblock %}
+
 {% block content %}
 <div class="container">
     {% if upcoming_meetup %}
@@ -24,9 +28,7 @@
             <h5 class="location"><img src="{% static 'img/location.png' %}" alt="Lokalizacja" class="icon-location-home"> {{ upcoming_meetup.venue.name }}, {{ upcoming_meetup.venue.address }}</h5>
             <div class="text-center">
                 <div class="clearfix">
-                    <a href="https://maps.google.com/maps?q={{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}" target="_blank">
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=460x189&amp;maptype=roadmap&amp;markers=color:blue%7C{{ upcoming_meetup.venue.latitude }},{{ upcoming_meetup.venue.longitude }}&amp;sensor=false" class="map" alt="Mapa">
-                    </a>
+                    <div class="map" id="map-canvas"></div>
                 </div>
                 <a href="{{ upcoming_meetup.get_absolute_url }}" class="button button-block margin-top-normal more">WIĘCEJ INFORMACJI</a>
             </div>
@@ -73,7 +75,7 @@
             {% endif %}
         </div>
     </div>
-    
+
     {% if upcoming_meetup.sponsors.exists %}
     <div class="row">
         <div class="span10 offset2 margin-top-normal">
