@@ -54,7 +54,7 @@ class MeetupDetailView(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-        ctx['object'] = self.get_object()
+        ctx['meetup'] = self.get_object()
         return ctx
 
 
