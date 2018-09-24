@@ -46,4 +46,4 @@ def current_site(request):
 def get_website_version():
     command = 'git rev-parse HEAD'
     process = subprocess.Popen(command.split(), stdout=subprocess.PIPE, cwd=settings.PROJECT_ROOT)
-    return process.communicate()[0]
+    return process.communicate()[0].decode('utf-8')

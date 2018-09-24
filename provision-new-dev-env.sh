@@ -6,7 +6,7 @@ function title {
 
 
 title "Add upstream remote"
-git remote add upstream git@github.com:pykonik/pykonik.org.git
+git remote add upstream git@github.com:meetpy/meetpy
 git fetch upstream
 
 title "Create virtualenv"
