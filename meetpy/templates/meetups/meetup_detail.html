@@ -65,7 +65,7 @@
                   </div>
                   {% if talk.video_url %}
                     <div class="video-meetup-details">
-                      {% video talk.video_url '780x440' %}
+                      {% video talk.video_url '780x440' is_secure=True %}
                     </div>
                   {% endif %}
 
