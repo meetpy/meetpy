@@ -11,7 +11,7 @@
                 <div class="row-fluid sponsor-row margin-bottom-small">
                     <div class="span12">
                         <a href="{{ sponsor.website }}" target="_blank" class="no-hover"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
-                        <p>{{ sponsor.description }}</p>
+                        <p>{{ sponsor.description|linebreaksbr }}</p>
                         <p></p>
                     </div>
                 </div>
