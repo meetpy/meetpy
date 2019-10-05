@@ -10,3 +10,4 @@ upload/
 .pydevproject
 .DS_Store
 meetpy_secret_variables/
+.env

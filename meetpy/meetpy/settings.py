@@ -1,41 +1,68 @@
-import json
-
 import os
-from django.core.exceptions import ImproperlyConfigured
 
-with open(os.path.join('./meetpy/settings/meetpy_secret_variables', 'base.json'), 'r') as f:
-    secrets = json.loads(f.read())
+import dj_database_url
+import environ
 
+env = environ.Env()
 
-try:
-    from .group_constants.constants import *
-except ImportError:
-    print('WARNING - Your meetup-specific data might not be set.'
-          'Please copy meetpy/meetpy/settings/group_constants/constants.example'
-          'as constants.py and fill your group data.')
+DEBUG = env.bool('DEBUG', default=False)
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
 
-def get_secret(setting, secrets=secrets):
-    """Get the secret variable or return explicit exception."""
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {0} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
+# Group constants
 
+GROUP_NAME = env.str('GROUP_NAME')  # uppercase
+GROUP_PAGE_ADDRESS_SHORT = env.str('GROUP_PAGE_ADDRESS_SHORT')
+GROUP_PAGE_ADDRESS_LONG = env.str('GROUP_PAGE_ADDRESS_LONG')
+GROUP_CITY = env.str('GROUP_CITY')
+GROUP_CITY_GENITIVE = env.str('GROUP_CITY_GENITIVE')
+GROUP_CITY_ABLATIVE = env.str('GROUP_CITY_ABLATIVE')
+GROUP_CITY_ADJECTIVE = env.str('GROUP_CITY_ADJECTIVE')
+GROUP_CITY_LOCATIVE = env.str('GROUP_CITY_LOCATIVE')
+CONTACT_EMAIL = env.str('CONTACT_EMAIL')
+LOGO_PATH = env.str('LOGO_PATH')
+GITHUB = env.str('GITHUB')
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+# Social - leave empty if you don't have specific one
+SOCIAL_MEDIA = {
+    'meetup': env.str('SOCIAL_MEDIA_MEETUP'),
+    'facebook': env.str('SOCIAL_MEDIA_FACEBOOK'),
+    'twitter': env.str('SOCIAL_MEDIA_TWITTER'),
+    'youtube': env.str('SOCIAL_MEDIA_YOUTUBE'),
+}
+
+FEED_TITLE = env.str('FEED_TITLE')
+EITHER_EXISTING_OR_NEW_SPEAKER_ERROR = env.str('EITHER_EXISTING_OR_NEW_SPEAKER_ERROR')
+PRESENTATION_LENGTH = env.int('PRESENTATION_LENGTH')
+
+# Django settings
 
 ADMINS = (
-    ('Admin', get_secret('ADMIN_EMAIL')),
+    ('Admin', env.str('ADMIN_EMAIL', '')),
 )
 
 MANAGERS = ADMINS
 
+DATABASES = {
+    'default': {
+        'ENGINE': env.str('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': env.str('DB_NAME', '../sqlite.db'),
+        'USER': env.str('DB_USER', ''),
+        'PASSWORD': env.str('DB_PASSWORD', ''),
+        'HOST': env.str('DB_HOST', ''),
+        'PORT': env.str('DB_PORT', ''),
+    }
+}
+
+DB_URL = env.str("DB_URL", '')
+
+if DB_URL:
+    DATABASES['default'] = dj_database_url.parse(DB_URL, conn_max_age=600)
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 # ALLOWED_HOSTS = ['.pywaw.org', '178.62.28.109']
-ALLOWED_HOSTS = get_secret("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -71,7 +98,13 @@ STATIC_URL = '/static/'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(STATIC_ROOT, 'upload')
+STORAGE_BACKEND = env.str('MEDIA_STORAGE_BACKEND', 'local')
+
+if STORAGE_BACKEND == 's3':
+    # TODO: setup s3
+    pass
+else:  # local or simply default
+    MEDIA_ROOT = os.path.join(PROJECT_ROOT, env.str('MEDIA_RELATIVE_PATH'))
 
 SPONSOR_LOGOS_DIR = 'sponsors'
 MEETUP_PHOTOS_DIR = 'meetup_photos'
@@ -101,7 +134,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
 MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
@@ -187,6 +220,17 @@ TEMPLATES = [
                 'django.template.loaders.app_directories.Loader'
                 # 'django.template.loaders.eggs.Loader',
             ],
+            'debug': DEBUG
         },
     }
 ]
+
+EMAIL_BACKEND = env.str('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT', 25)
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+SERVER_EMAIL = EMAIL_HOST_USER
+
