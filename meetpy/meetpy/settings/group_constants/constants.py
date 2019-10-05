@@ -18,6 +18,7 @@ SOCIAL_MEDIA = {
     'facebook': 'https://www.facebook.com/Pykonik-87835845639/',
     'twitter': 'http://twitter.com/pykonik',
     'youtube': 'http://youtube.com/pykonik',
+    'slack': 'https://join-slack.pykonik.org',
 }
 
 FEED_TITLE = 'Pykonik - Kraków Python Users Group'

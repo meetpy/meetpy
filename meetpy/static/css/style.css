@@ -131,13 +131,38 @@ header{margin:10px 0 30px;}
 #top{margin:20px 0 0 0}
 
 .top-links{float:right}
-.meetup, .facebook, .twitter, .youtube, .rss, .dropdown, .mail{width:30px;height:30px;display:block;float:left}
+.meetup, .facebook, .twitter, .youtube, .rss, .dropdown, .mail, .slack{width:30px;height:30px;display:block;float:left}
 .meetup{background:url("../img/icon-meetup.jpg") 0 0 no-repeat}
 .facebook{background:url("../img/icon-facebook.jpg") 0 0 no-repeat}
 .twitter{background:url("../img/icon-twitter.jpg") 0 0 no-repeat}
 .youtube{background:url("../img/icon-youtube.jpg") 0 0 no-repeat}
 .rss{background:url("../img/icon-rss.jpg") 0 0 no-repeat}
 .mail{background:url("../img/icon-mail.png") 0 0 no-repeat}
+.slack, .slack-footer i{background: #2e2e2e url("../img/icon-slack.svg") 0 0 no-repeat}
+
+.social-media-footer{height: 30px;}
+
+.slack-footer{
+  display: inline-block;
+  margin-top: 10px;
+  height: 31px;
+  text-decoration: none;
+}
+
+.slack-footer span{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 30px;
+  margin-left: 5px;
+}
+
+.slack-footer i{
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  display: block;
+  float: left;
+}
 
 .pull-right .dropdown-menu{min-width:120px}
 .pull-right .dropdown-menu:after{position:absolute;top:-6px;left:auto;right:8px;display:inline-block;border-right:6px solid transparent;border-bottom:6px solid #ffffff;border-left:6px solid transparent;content:''}
