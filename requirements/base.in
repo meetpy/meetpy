@@ -1,0 +1,10 @@
+Django==2.1
+Pillow
+django-embed-video
+django-environ
+djet
+factory-boy
+requests
+pytest
+pytest-cov
+pytest-django
