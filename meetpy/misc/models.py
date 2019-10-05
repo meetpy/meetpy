@@ -22,7 +22,7 @@ class SlugifyUploadTo(object):
 class Partner(models.Model):
     name = models.CharField(max_length=200)
     url = models.URLField()
-    logo = models.ImageField(upload_to=SlugifyUploadTo(settings.PARTNER_LOGOS_DIR, ['name']))
+    logo = models.FileField(upload_to=SlugifyUploadTo(settings.PARTNER_LOGOS_DIR, ['name']))
     is_public = models.BooleanField()
 
     def __str__(self):

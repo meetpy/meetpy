@@ -10,7 +10,7 @@ from misc.models import SlugifyUploadTo
 class Sponsor(models.Model):
     name = models.CharField(max_length=100)
     website = models.URLField()
-    logo = models.ImageField(upload_to=settings.SPONSOR_LOGOS_DIR)
+    logo = models.FileField(upload_to=settings.SPONSOR_LOGOS_DIR)
     description = models.TextField(blank=True)
 
     def __str__(self):
@@ -93,7 +93,7 @@ class Speaker(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     website = models.URLField(blank=True)
-    photo = models.ImageField(
+    photo = models.FileField(
         upload_to=SlugifyUploadTo(settings.SPEAKER_PHOTOS_DIR, ['first_name', 'last_name']),
         blank=True,
     )
