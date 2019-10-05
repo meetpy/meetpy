@@ -13,6 +13,13 @@ https://www.pythonlodz.org/
 
 You can run `provision-new-dev-envirionment.sh` on your dev environment – it will create
 everything necessary (using virutalenv) for basic development.
+
+Alternatively you can use Docker and Docker Compose:
+`docker-compose up` it will setup a container with meetpy Django app
+(available at http://localhost:8080), a Postgres database with a PhpPgAdmin
+interface (available at http://localhost:8082) and a mock of SMTP service
+(available at http://localhost:8081).
+
 For more info read the script, or ask us on slack.
 
 https://pykonik.slack.com/ or https://join-slack.pykonik.org/
