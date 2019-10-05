@@ -3,7 +3,7 @@ app_name: meetpy
 deployer_user: deployer
 deployer_group: deployer
 
-code_repository_url: "https://{{ github_user }}:{{ github_token }}@github.com/nekeal/meetpy.git"
+code_repository_url: "https://github.com/meetpy/meetpy/"
 repo_name: "{{ app_name }}"
 branch_name: "master"
 ssh_dir: ~/.ssh/id_rsa.pub
@@ -21,7 +21,6 @@ log_dir: "/var/log/gunicorn"
 
 # Http server details
 wsgi_server_port: 8000
-nginx_server_name: 206.81.27.221
 
 django_wsgi_module: "{{app_name}}.wsgi"
 django_settings_module: "{{ app_name }}.settings"
