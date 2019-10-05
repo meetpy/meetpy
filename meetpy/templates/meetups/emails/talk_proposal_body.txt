@@ -8,4 +8,4 @@ Wiadomość:
 
 {{ talk_proposal.message }}
 {% endif %}
-Admin URL: http://{{ site.domain }}{% url 'admin:meetups_talkproposal_change' talk_proposal.id %}
+Admin URL: http://{{ site.domain }}{% url 'admin:meetups_talk_change' talk_proposal.talk.id %}
