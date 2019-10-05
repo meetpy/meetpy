@@ -2,6 +2,9 @@ import os
 
 import dj_database_url
 import environ
+from dotenv import load_dotenv
+
+load_dotenv()
 
 env = environ.Env()
 
