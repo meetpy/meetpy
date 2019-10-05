@@ -15,6 +15,15 @@ class MeetupFactory(factory.DjangoModelFactory):
     date = FuzzyNaiveDateTime(start_dt=datetime.utcnow()-timedelta(days=30*6), end_dt=datetime.utcnow()+timedelta(days=30*6))
 
 
+class MeetupTypeFactory(factory.DjangoModelFactory):
+
+    class Meta:
+        model = models.MeetupType
+
+    name = 'Tech Talk'
+    slug = 'tech-talk'
+    has_agenda = True
+
 
 class SpeakerFactory(factory.DjangoModelFactory):
 
@@ -23,6 +32,7 @@ class SpeakerFactory(factory.DjangoModelFactory):
 
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
+    biography = factory.Faker('sentence', nb_words=30)
 
 
 class TalkFactory(factory.DjangoModelFactory):
@@ -31,6 +41,17 @@ class TalkFactory(factory.DjangoModelFactory):
         model = models.Talk
 
     title = factory.Faker('sentence', nb_words=6)
+    description = factory.Faker('sentence', nb_words=40)
+    order = factory.Sequence(lambda n: n)
+
+
+class SponsorFactory(factory.DjangoModelFactory):
+
+    class Meta:
+        model = models.Sponsor
+
+    name = factory.Faker('company')
+    description = factory.Faker('sentence', nb_words=40)
 
 
 class TalkProposalFactory(factory.DjangoModelFactory):
@@ -40,4 +61,3 @@ class TalkProposalFactory(factory.DjangoModelFactory):
 
     message = factory.Faker('sentence')
     date_submitted = FuzzyNaiveDateTime(start_dt=datetime.utcnow()-timedelta(days=30*6), end_dt=datetime.utcnow()+timedelta(days=30*6))
-    

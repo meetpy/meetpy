@@ -1,0 +1,70 @@
+{% load i18n %}
+
+<h2>Meetup</h2>
+{% language "en" %}
+<div class="media">
+    <div class="media-body">
+        <p>We invite you for the next meetup!</p>
+        <p>
+            {{ group.name }} is a community of those using, learning or curious of Python. Our meeting
+            details can also be found on our website, where you can sign up to give a talk at the next
+            meeting: {{ meetup_url }}.
+        </p>
+        {% if meetup.meetup_type.has_agenda %}
+            <p>This time we will host the following talks:</p>
+            {% for talk in meetup.talks.all %}
+                <p>
+                    - [{{ talk.language }}]
+                    {% for s in talk.speakers.all %}
+                        {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    - {{ talk.title }}
+                </p>
+                <p>{{ talk.description }}</p>
+            {% endfor %}
+        {% else %}
+            <p>{{ meetup.description }}</p>
+        {% endif %}
+        {% if meetup.sponsors.all %}
+            <p>The meeting sponsors are:</p>
+            {% for sponsor in meetup.sponsors.all %}
+                <p>- {{ sponsor.name }}</p>
+                <p>{{ sponsor.description }}</p>
+            {% endfor %}
+        {% endif %}
+        <p>See ya at the event!</p>
+    </div>
+</div>
+{% endlanguage %}
+----------------------------
+<div class="media">
+    <div class="media-body">
+    <p>Zapraszamy na kolejne spotkanie!</p>
+        <p>
+            Szczegóły spotkania dostępne są również na naszej nowej stronie: {{ meetup_url }} na której można dokonywać
+            zgłoszeń z tematami prezentacji, do czego gorąco zachęcamy!
+        </p>
+        {% if meetup.meetup_type.has_agenda %}
+            <p>Podczas spotkania będziecie mogli posłuchać prezentacji na następujące tematy:</p>
+            {% for talk in meetup.talks.all %}
+                <p>
+                    - [{{ talk.language }}]
+                    {% for s in talk.speakers.all %}
+                        {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    - {{ talk.title }}
+                </p>
+                <p>{{ talk.description }}</p>
+            {% endfor %}
+        {% else %}
+            {{ meetup.description }}
+        {% endif %}
+        {% if meetup.sponsors.all %}
+            <p>Sponsorami spotkania są:</p>
+            {% for sponsor in meetup.sponsors.all %}
+                <p>- {{ sponsor.name }}</p>
+            {% endfor %}
+        {% endif %}
+        <p>Do zobaczenia!</p>
+    </div>
+</div>
