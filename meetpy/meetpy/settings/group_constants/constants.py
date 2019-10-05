@@ -1,14 +1,17 @@
 # coding=utf-8
+import environ
 
-GROUP_NAME = 'Pykonik'  # uppercase
-GROUP_PAGE_ADDRESS_SHORT = 'pykonik.org'
-GROUP_PAGE_ADDRESS_LONG = 'https://pykonik.org/'
-GROUP_CITY = 'Kraków'
-GROUP_CITY_GENITIVE = 'Krakowa'  # examples: Krakowa, Warszawy
-GROUP_CITY_ABLATIVE = 'Krakowie'  # examples: Krakowie, Warszawie
-GROUP_CITY_ADJECTIVE = 'Krakowska'  # examples: Krakowska, Warszawska
-GROUP_CITY_LOCATIVE = 'krakowskiej'  # examples: krakowskiej, warszawskiej
-CONTACT_EMAIL = 'hello@pykonik.org'
+env = environ.Env()
+
+GROUP_NAME = env('GROUP_NAME')  # uppercase
+GROUP_PAGE_ADDRESS_SHORT = env('GROUP_PAGE_ADDRESS_SHORT')
+GROUP_PAGE_ADDRESS_LONG = env('GROUP_PAGE_ADDRESS_LONG')
+GROUP_CITY = env('GROUP_CITY')
+GROUP_CITY_GENITIVE = env('GROUP_CITY_GENITIVE') # examples: Krakowa, Warszawy
+GROUP_CITY_ABLATIVE = env('GROUP_CITY_ABLATIVE')  # examples: Krakowie, Warszawie
+GROUP_CITY_ADJECTIVE = env('GROUP_CITY_ADJECTIVE')  # examples: Krakowska, Warszawska
+GROUP_CITY_LOCATIVE = env('GROUP_CITY_LOCATIVE ') # examples: krakowskiej, warszawskiej
+CONTACT_EMAIL = env('CONTACT_EMAI')
 LOGO_PATH = 'group/group_logo.png'
 GITHUB = 'https://github.com/meetpy/meetpy'
 
@@ -20,6 +23,6 @@ SOCIAL_MEDIA = {
     'youtube': 'http://youtube.com/pykonik',
 }
 
-FEED_TITLE = 'Pykonik - Kraków Python Users Group'
+FEED_TITLE = env('FEED_TITLE')
 EITHER_EXISTING_OR_NEW_SPEAKER_ERROR = 'Wybierz prelegenta z listy lub wprowadź dane dla nowego.'
 PRESENTATION_LENGTH = 25
