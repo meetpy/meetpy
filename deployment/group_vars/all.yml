@@ -15,8 +15,6 @@ venv_python: '{{ venv_dir }}/bin/python'
 repo_dir: "/home/{{deployer_user}}/{{ repo_name }}"
 app_dir: "{{ repo_dir }}/meetpy"
 requirements_file: "{{ repo_dir }}/requirements/production.txt"
-static_dir: "/home/{{ deployer_user }}/static"
-media_dir: "{{ app_dir }}/media"
 log_dir: "/var/log/gunicorn"
 
 # Http server details
