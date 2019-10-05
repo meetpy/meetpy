@@ -58,10 +58,24 @@ class MeetupDetailView(generic.TemplateView):
         return ctx
 
 
-class MeetupPromoView(generic.DetailView):
+class MeetupPromoView(generic.TemplateView):
     model = models.Meetup
     slug_url_kwarg = slug_field = 'number'
     template_name = 'meetups/meetup_promo.html'
+
+    def get_object(self):
+        lookup = {
+            'meetup_type__slug': self.kwargs['meetup_type'],
+            'number': self.kwargs['number'],
+        }
+        return get_object_or_404(models.Meetup, **lookup)
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        meetup = self.get_object()
+        ctx['meetup'] = meetup
+        ctx['meetup_url'] = self.request.build_absolute_uri(meetup.get_absolute_url())
+        return ctx
 
 
 class MeetupDateRedirectView(generic.RedirectView):
