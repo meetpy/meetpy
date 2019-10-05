@@ -1,0 +1,33 @@
+- name: install requirements
+  pip:
+    requirements: "{{ requirements_file }}"
+    virtualenv: '{{ venv_dir }}'
+    virtualenv_python: python3
+
+- name: collectstatic
+  django_manage:
+    command: collectstatic
+    virtualenv: "{{ venv_dir }}"
+    app_path: "{{ app_dir }}"
+    settings: "{{ django_settings_module }}"
+
+- name: migrate db
+  django_manage:
+    command: migrate
+    virtualenv: "{{ venv_dir }}"
+    app_path: "{{ app_dir }}"
+    settings: "{{ django_settings_module }}"
+
+- name: reload supervisor
+  supervisorctl:
+    name: "{{ app_name }}"
+    state: restarted
+  become: yes
+
+- name: reread supervisor
+  supervisorctl:
+    name: "{{ app_name }}"
+    state: present
+  become: yes
+
+

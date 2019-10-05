@@ -1,0 +1,24 @@
+- name: Add user
+  user: name="{{ deployer_user }}" shell="/bin/bash"
+
+- name: Add user to sudoers
+  lineinfile: dest=/etc/sudoers
+              regexp="{{ deployer_user }} ALL"
+              line="{{ deployer_user }} ALL=(ALL) NOPASSWD:ALL"
+              state=present
+  become: yes
+
+- name: Create .ssh folder
+  file:
+    path: "/home/{{deployer_user}}/.ssh"
+    state: directory
+
+#- name: Add pub keys file
+#  file:
+#    path: "/home/{{deployer_user}}/.ssh/id_rsa.pub"
+#    state: touch
+
+- name: Add authorized keys
+  authorized_key:
+    user: "{{deployer_user}}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

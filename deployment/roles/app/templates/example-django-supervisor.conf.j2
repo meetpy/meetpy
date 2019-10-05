@@ -1,0 +1,12 @@
+[program:{{ app_name }}]
+directory={{ app_dir }}
+command=/home/{{ deployer_user }}/.virtualenvs/{{ app_name }}/bin/gunicorn --workers 3 --bind 127.0.0.1:{{ wsgi_server_port }} {{app_name}}.wsgi
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/gunicorn/{{ app_name }}.out.log
+stdout_logfile=/var/log/gunicorn/{{ app_name }}.err.log
+user={{ deployer_user }}
+group={{ deployer_user }}
+environment=LANG=en_US.UTF-8,
+            LC_ALL=en_US.UTF-8,
+            DJANGO_SETTINGS_MODULE={{ django_settings_module }}

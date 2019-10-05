@@ -1,0 +1,17 @@
+- name: Create the nginx configuration file
+  template: src=django-nginx.conf.j2
+            dest=/etc/nginx/sites-available/{{ app_name }}
+            backup=yes
+  notify: Reload nginx
+  become: yes
+  tags:
+    - nginx
+
+- name: Ensure that the application site is enabled
+  file: src=/etc/nginx/sites-available/{{ app_name }}
+    dest=/etc/nginx/sites-enabled/{{ app_name }}
+    state=link
+  notify: Reload nginx
+  become: yes
+  tags:
+    - nginx

@@ -1,0 +1,6 @@
+- name: Create deployer user and install packages
+  hosts: hosting
+  user: root
+  roles:
+    - authorization
+    - base

@@ -1,0 +1,20 @@
+
+
+- include_vars: 'group_vars/secret.yml'
+
+- include: git.yml
+  tags: deploy
+
+- name: Write env file
+  template: src=example-env.j2 dest={{ app_dir }}/.env
+
+- name: Write json file
+  template: src=prod.json.j2 dest={{ app_dir }}/meetpy/settings/meetpy_secret_variables/prod.json
+
+- name: Write supervisor conf file
+  template: src=example-django-supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ app_name }}.conf
+  become: true
+  notify:
+    - reread supervisor
+  tags:
+    - supervisor

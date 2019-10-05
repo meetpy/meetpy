@@ -1,0 +1,41 @@
+
+- name: installing core packages
+  become: yes
+  apt:
+    name:
+#      - rsync
+      - sudo
+      - supervisor
+      - git
+      - python-pip
+      - python-dev
+      - python3-pip
+      - python-apt
+      - virtualenv
+      - python-psycopg2
+      - libsqlite3-dev
+      - python3-dev
+      - libpq-dev
+      - postgresql
+      - postgresql-contrib
+#      - libmariadb-dev-compat
+#      - libmariadb-dev
+      - nginx
+#      - build-essential
+#      - axel
+      - acl #enable to enable access to tmp files for non-root users
+    state: present
+#    install_recommends: no
+    autoclean: yes
+
+- name: Creates virtualenvs directory
+  file:
+    path: /home/{{deployer_user}}/.virtualenvs
+    state: directory
+    owner: "{{ deployer_user }}"
+
+- name: Creates log directory
+  file:
+    path: "{{ log_dir }}"
+    state: directory
+    owner: "{{ deployer_user }}"

@@ -1,0 +1,10 @@
+- name: Setup local postgres db
+  hosts: hosting
+  user: "root"
+  vars_files:
+    - "group_vars/secret.yml"
+  tasks:
+    - name: debug var
+      debug:
+        var: django_admins
+
