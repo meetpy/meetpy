@@ -66,6 +66,9 @@
 						</div>
 						<div class="span3">
 							<div class="top-links">
+                {% if group.social.slack %}
+                                <a href="{{ group.social.slack }}" class="slack" target="_blank" title="Slack"></a>
+                {% endif %}
                 {% if group.social.meetup %}
   								<a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a>
                 {% endif %}
@@ -113,7 +116,7 @@
                         </div>
                         <div class="span2">
                             <h5>Jesteśmy na</h5>
-                            <ul>
+                            <ul class="social-media-footer">
                                 {% if group.social.meetup %}
                                     <li><a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a></li>
                                 {% endif %}
@@ -127,6 +130,12 @@
                                     <li><a href="{{ group.social.youtube }}" class="youtube" target="_blank"></a></li>
                                 {% endif %}
                             </ul>
+                        {% if group.social.slack %}
+                            <a href="{{ group.social.slack }}" class="slack-footer">
+                                <i class="slack-icon"></i>
+                                <span>Join Slack</span>
+                            </a>
+                        {% endif %}
                         </div>
                         <div class="span2">
                             <h5>Python w Polsce</h5>
