@@ -31,3 +31,13 @@ class TalkFactory(factory.DjangoModelFactory):
         model = models.Talk
 
     title = factory.Faker('sentence', nb_words=6)
+
+
+class TalkProposalFactory(factory.DjangoModelFactory):
+
+    class Meta:
+        model = models.TalkProposal
+
+    message = factory.Faker('sentence')
+    date_submitted = FuzzyNaiveDateTime(start_dt=datetime.utcnow()-timedelta(days=30*6), end_dt=datetime.utcnow()+timedelta(days=30*6))
+    
