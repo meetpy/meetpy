@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 
 from . import models
 
@@ -29,8 +30,29 @@ class TalkProposalAdmin(admin.ModelAdmin):
     get_meetup.short_description = 'Meetup'
 
 
+class MeetupStatusFilter(SimpleListFilter):
+
+  title = 'meetup'
+  parameter_name = 'meetup'
+
+  def lookups(self, request, model_admin):
+    return [
+        ('Yes', 'yes'),
+        ('No', 'no'),
+    ]
+
+  def queryset(self, request, queryset):
+    if self.value() == 'Yes':
+        return queryset.filter(meetup__isnull=False)
+    if self.value():
+        return queryset.filter(meetup__isnull=True)
+
+
 class TalkAdmin(admin.ModelAdmin):
-    list_display = ('title', 'meetup')
+    list_display = ('title', 'meetup', 'description')
+    list_filter = (MeetupStatusFilter,)
+
+    search_fields = ('description', 'title')
 
 
 admin.site.register(models.MeetupType)
