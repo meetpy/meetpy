@@ -1,0 +1,172 @@
+{% load i18n %}
+
+<h2>Facebook</h2>
+<h3>#1 post</h3>
+{% language "en" %}
+<div class="media">
+    <div class="media-body">
+        <p>
+            {{ group.name }} {{ meetup.meetup_type.name }} #{{ meetup.number }} will take place on
+            {{ meetup.date|date:"l" }}, {{ meetup.date|date:"d. E Y \r." }}, {{ meetup.date|date:"H:i" }}
+            at {{ meetup.venue.name }} ({{ meetup.venue.address }}). We invite all Python enthusiasts in
+            {{ group.city }}. After the presentations we invite all participants to discuss about the new knowledge and
+            to enjoy some beers during the after party.
+        </p>
+        {% if meetup.meetup_type.has_agenda %}
+            {% if meetup.talks.all %}
+                <p>Agenda:</p>
+                {% for talk in meetup.talks.all %}
+                <p>
+                    - [{{ talk.language }}]
+                    {% for s in talk.speakers.all %}
+                        {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    - {{ talk.title }}
+                </p>
+            {% endfor %}
+            {% endif %}
+        {% else %}
+            <p>{{ meetup.description }}</p>
+        {% endif %}
+        {% if meetup.sponsors.all %}
+            <p>Sponsorzy:</p>
+            {% for sponsor in meetup.sponsors.all %}
+                <p>- {{ sponsor.name }}</p>
+            {% endfor %}
+        {% endif %}
+        <p>More details on our webpage:</p>
+        <p>{{ meetup_url }}</p>
+        {% if meetup.meetup_url %}
+            <p>and non-mandatory registration on meetup:</p>
+            <p>{{ meetup.meetup_url }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endlanguage %}
+----------------------------
+<div class="media">
+    <div class="media-body">
+        <p>
+            {{ group.name }} {{ meetup.meetup_type.name }} #{{ meetup.number }} odbędzie się w
+            {{ meetup.date|date:"l" | lower }}, {{ meetup.date|date:"d. E Y \r." }}, o godz. {{ meetup.date|date:"H:i" }}
+            w {{ meetup.venue.name }} ({{ meetup.venue.address }}). Na spotkanie zapraszamy wszystkich entuzjastów
+            języka Python z {{ group.city_genitive }} i okolic. Po wysłuchaniu prezentacji zachęcamy do
+            pozostania z nami i przedyskutowania nowo nabytej wiedzy przy piwie.
+        </p>
+        {% if meetup.meetup_type.has_agenda %}
+            {% if meetup.talks.all %}
+                <p>Agenda:</p>
+                {% for talk in meetup.talks.all %}
+                <p>
+                    - [{{ talk.language }}]
+                    {% for s in talk.speakers.all %}
+                        {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    - {{ talk.title }}
+                </p>
+            {% endfor %}
+            {% endif %}
+        {% else %}
+            <p>{{ meetup.description }}</p>
+        {% endif %}
+        {% if meetup.sponsors.all %}
+            <p>Sponsorzy:</p>
+            {% for sponsor in meetup.sponsors.all %}
+                <p>- {{ sponsor.name }}</p>
+            {% endfor %}
+        {% endif %}
+        <p>Zapraszamy na naszą stronę:</p>
+        <p>{{ meetup_url }}</p>
+        {% if meetup.meetup_url %}
+            <p>oraz do zapisów na Meetupie:</p>
+            <p>{{ meetup.meetup_url }}</p>
+        {% endif %}
+    </div>
+</div>
+
+{% for talk in meetup.talks.all %}
+    <h3>Speaker #{{ forloop.counter }} post</h3>
+    {% if talk.speakers.first.photo %}
+        <img src="{{ talk.speakers.first.photo.url }}" />
+    {% endif %}
+    <div class="media">
+        <div class="media-body">
+            <p>
+                {% if forloop.first %}
+                    The first speaker
+                {% else %}
+                    The next speaker
+                {% endif %}
+                during the meetup is {{ talk.speakers.first }}.
+                {{ talk.speakers.first.first_name }} is going to introduce the topic of "{{ talk.title }}".
+            </p>
+            <p>{{ talk.description }}</p>
+            <p>{{ talk.speakers.first.biography }}</p>
+            <p>More details on our webpage:</p>
+            <p>{{ meetup_url }}</p>
+            {% if meetup.meetup_url %}
+                <p>and non-mandatory registration on meetup:</p>
+                <p>{{ meetup.meetup_url }}</p>
+            {% endif %}
+        </div>
+    </div>
+    ----------------------------
+    <div class="media">
+        <div class="media-body">
+            <p>
+                {% if forloop.first %}
+                    Pierwszym prelegentem
+                {% else %}
+                    Kolejnym prelegentem
+                {% endif %}
+                w trakcie najbliższego spotkania jest {{ talk.speakers.first.name }}.
+                Tematem jego prezentacji jest "{{ talk.title }}".
+            </p>
+            <p>{{ talk.description }}</p>
+            <p>{{ talk.speakers.first.biography }}</p>
+            <p>Zapraszamy na naszą stronę:</p>
+            <p>{{ meetup_url }}</p>
+            {% if meetup.meetup_url %}
+                <p>oraz do zapisów na Meetupie:</p>
+                <p>{{ meetup.meetup_url }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+
+{% for sponsor in meetup.sponsors.all %}
+    <h3>Sponsor #{{ forloop.counter }} post</h3>
+    {% if sponsor.logo %}
+        <img src="{{ sponsor.logo.url }}" />
+    {% endif %}
+    <div class="media">
+        <div class="media-body">
+            <p>
+                {{ sponsor.name }} is going to sponsor our next meeting. Thanks to them, you can expect ...
+            </p>
+            <p>{{ sponsor.description }}</p>
+            <p>More details on our webpage:</p>
+            <p>{{ meetup_url }}</p>
+            {% if meetup.meetup_url %}
+                <p>and non-mandatory registration on meetup:</p>
+                <p>{{ meetup.meetup_url }}</p>
+            {% endif %}
+        </div>
+    </div>
+    ----------------------------
+    <div class="media">
+        <div class="media-body">
+             <p>
+                 Sponsorem najbliższego spotkania jest {{ sponsor.name }}. Dzięki ich uprzejmości na uczestników będzie
+                 czekać ...
+            </p>
+            <p>{{ sponsor.description }}</p>
+            <p>Zapraszamy na naszą stronę:</p>
+            <p>{{ meetup_url }}</p>
+            {% if meetup.meetup_url %}
+                <p>oraz do zapisów na Meetupie:</p>
+                <p>{{ meetup.meetup_url }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

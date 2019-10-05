@@ -2,43 +2,17 @@
 
 from datetime import datetime
 
-import factory
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import mail
 from django.urls import reverse
-from django.http import Http404
 from django.template.loader import render_to_string
 from django.test import TestCase
 from django.test.utils import override_settings
 from djet import files, testcases, assertions
 
 from meetups import models, views, forms
-
-
-class MeetupFactory(factory.DjangoModelFactory):
-
-    class Meta:
-        model = models.Meetup
-
-    number = factory.Sequence(lambda n: n)
-
-
-class SpeakerFactory(factory.DjangoModelFactory):
-
-    class Meta:
-        model = models.Speaker
-
-    first_name = 'Guido'
-    last_name = 'Van Rossum'
-
-
-class TalkFactory(factory.DjangoModelFactory):
-
-    class Meta:
-        model = models.Talk
-
-    title = 'Why Python is awesome?'
+from tests.factories import MeetupFactory, SpeakerFactory, TalkFactory
 
 
 class MeetupManagerTest(TestCase):
