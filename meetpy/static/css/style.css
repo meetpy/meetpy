@@ -276,3 +276,14 @@ footer div .without-header{margin-top:66px;}
 #footer-logo {
   height: 40px;
 }
+
+.slack-banner {
+  padding: 10px;
+  text-align: center;
+  margin: 0 -20px;
+  background: #2e2e2e;
+}
+
+.slack-banner a {
+  color: white;
+}
