@@ -1,5 +1,47 @@
-POSTGRES_USER={{ db_user }}
-POSTGRES_DB={{ db_name }}
-POSTGRES_PASSWORD={{ db_password }}
+{#POSTGRES_USER={{ db_user }}#}
+{#POSTGRES_DB={{ db_name }}#}
+{#POSTGRES_PASSWORD={{ db_password }}#}
+{#DJANGO_SETTINGS_MODULE={{ django_settings_module }}#}
+{#SECRET_KEY={{ django_secret_key }}#}
+
 DJANGO_SETTINGS_MODULE={{ django_settings_module }}
+
+# Django Configuration
+DEBUG={{ django_debug }}
+ADMIN_EMAIL= {{ admin_email }}
+
+DB_ENGINE={{ db_engine }}
+DB_URL={{ db_url }}
+
+ALLOWED_HOSTS={{ allowed_hosts }}
 SECRET_KEY={{ django_secret_key }}
+EMAIL_BACKEND={{ email_backend }}
+EMAIL_HOST={{ email_host }}
+EMAIL_PORT={{ email_port }}
+EMAIL_USE_TLS= {{ email_use_tls }}
+EMAIL_HOST_USER={{ email_host_user }}
+EMAIL_HOST_PASSWORD= {{ email_host_password }}
+
+MEDIA_RELATIVE_PATH={{ media_relative_path }} # examples: upload, ../../media
+MEDIA_STORAGE_BACKEND= {{ media_storage_backend }}  # examples: local, s3
+
+# Group setup
+
+GROUP_NAME={{ group_name }}
+GROUP_PAGE_ADDRESS_SHORT={{ group_page_address_short }}
+GROUP_PAGE_ADDRESS_LONG={{ group_page_address_long }}
+GROUP_CITY={{ group_city }}
+GROUP_CITY_GENITIVE={{ group_city_genitive }}
+GROUP_CITY_ABLATIVE={{ group_city_ablative }}
+GROUP_CITY_ADJECTIVE={{ group_city_adjective }}
+GROUP_CITY_LOCATIVE={{ group_city_locative }}
+CONTACT_EMAIL={{ contact_email }}
+LOGO_PATH={{ logo_path }}
+GITHUB={{ github }}
+SOCIAL_MEDIA_MEETUP={{ social_media_meetup }}
+SOCIAL_MEDIA_FACEBOOK={{ social_media_facebook }}
+SOCIAL_MEDIA_TWITTER={{ social_media_twitter }}
+SOCIAL_MEDIA_YOUTUBE={{ social_media_youtube }}
+FEED_TITLE={{ feed_title }}
+EITHER_EXISTING_OR_NEW_SPEAKER_ERROR={{ either_existing_or_new_speaker_error }}
+PRESENTATION_LENGTH={{ presentation_length }}

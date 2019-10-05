@@ -15,10 +15,10 @@
 
 - name: Create static directory
   file:
-    path: "{{ static_dir }}"
+    path: "{{ static_dir }}/{{ }}"
     state: directory
 
 - name: Create media directory
   file:
-    path: "{{ media_dir }}"
+    path: "{{ media_dir }}/{{ media_relative_path }}"
     state: directory

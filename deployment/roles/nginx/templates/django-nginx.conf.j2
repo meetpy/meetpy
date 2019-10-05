@@ -7,7 +7,7 @@
             alias {{ static_dir }};
         }
         location /media {
-            alias {{ media_dir }};
+            alias {{ media_dir }}/{{ media_relative_path }};
         }
 
         location / {
