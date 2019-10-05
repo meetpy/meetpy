@@ -1,15 +1,16 @@
 version: '3'
 
 services:
-
   meetpy:
     image: meetpy
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
     volumes:
       - ./:/usr/src/app
     working_dir: /usr/src/app/meetpy
     ports:
-      - "8080:8000"
+      - "18000:8000"
     tty: true
     depends_on:
       - db
@@ -30,7 +31,7 @@ services:
       image: postgres:9.6
       restart: unless-stopped
       ports:
-        - "5432:5432"
+        - "15432:5432"
       environment:
         - POSTGRES_USER=usr
         - POSTGRES_PASSWORD=pass

@@ -1,14 +1,17 @@
-FROM python:3.6
+FROM python:3.7.4
 
-WORKDIR /usr/src/app
-COPY requirements/ /usr/src/app/requirements/
+RUN mkdir /opt/meetpy
 
-RUN pip install --no-cache-dir --requirement requirements/production.txt
+WORKDIR /opt/meetpy
 
-ENV DJANGO_SETTINGS_MODULE="meetpy.settings.docker"
+ADD requirements/ /opt/meetpy/requirements
 
-EXPOSE 8000
+RUN pip install --no-cache-dir --requirement requirements/base.txt
 
-COPY . /usr/src/app/
-WORKDIR meetpy
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ADD meetpy/ /opt/meetpy/meetpy
+
+RUN cd meetpy && python manage.py collectstatic --no-input
+
+WORKDIR /opt/meetpy/meetpy
+
+CMD ["gunicorn", "-t", "30", "meetpy.wsgi", "-b", "127.0.0.1:8000"]
