@@ -32,6 +32,7 @@ https://pykonik.slack.com/ or https://join-slack.pykonik.org/
 
 For docker:
  - docker-compose -f docker-compose-dev.yml up
+ - docker-compose -f docker-compose-dev.yml exec meetpy python manage.py migrate
 
 
 ## Contributing
