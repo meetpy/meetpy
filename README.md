@@ -10,6 +10,11 @@ https://www.pythonlodz.org/
 
 
 ## Local install and setup
+Before the next step, be sure the following OS libraries are installed:
+ - g++
+ - libjpeg-dev
+ - zlib-dev
+ - python-dev
 
 You can run `provision-new-dev-envirionment.sh` on your dev environment – it will create
 everything necessary (using virutalenv) for basic development.
