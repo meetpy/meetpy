@@ -10,7 +10,8 @@ https://www.pythonlodz.org/
 
 
 ## Local install and setup
-Before the next step, be sure the following OS libraries are installed:
+For linux:
+Before the next step, be sure the following OS libraries are installed.
  - g++
  - libjpeg-dev
  - zlib-dev
@@ -21,6 +22,9 @@ everything necessary (using virutalenv) for basic development.
 For more info read the script, or ask us on slack.
 
 https://pykonik.slack.com/ or https://join-slack.pykonik.org/
+
+For docker:
+ - docker-compose -f docker-compose-dev.yml up
 
 
 ## Contributing
