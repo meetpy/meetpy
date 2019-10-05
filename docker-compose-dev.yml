@@ -37,7 +37,7 @@ services:
         - POSTGRES_PASSWORD=pass
         - POSTGRES_DB=meetpy
       volumes:
-        - dbdata:/var/lib/postgresql/data/ 
+        - dbdata:/var/lib/postgresql/data/
 
   phppgadmin:
     image: dockage/phppgadmin
