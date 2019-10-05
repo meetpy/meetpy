@@ -15,7 +15,7 @@
 
 - name: Create static directory
   file:
-    path: "{{ static_dir }}/{{ }}"
+    path: "{{ static_dir }}"
     state: directory
 
 - name: Create media directory

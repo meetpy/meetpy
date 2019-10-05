@@ -1,2 +1,2 @@
 [hosting]
-localhost ansible_port=2222
+#ip address
