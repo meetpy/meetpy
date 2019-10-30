@@ -1,39 +1,55 @@
 ## Meetpy
+
 [![Build Status](https://travis-ci.org/meetpy/meetpy.svg?branch=master)](https://travis-ci.org/meetpy/meetpy)
 
 Meetpy website - this is a shared website along polish Python meetup groups.
 
 For example:
-http://pywaw.org/
-http://pykonik.org
-https://www.pythonlodz.org/
 
+ - http://pywaw.org/
+ - http://pykonik.org
+ - https://www.pythonlodz.org/
 
 ## Local install and setup
-For linux:
-Before the next step, be sure the following OS libraries are installed.
+
+### Manual installation on linux
+
+Before the next step, be sure the following OS libraries are installed:
+
  - g++
  - libjpeg-dev
  - zlib-dev
  - python-dev
 
-You can run `provision-new-dev-envirionment.sh` on your dev environment – it will create
-everything necessary (using virutalenv) for basic development.
+You can run `provision-new-dev-env.sh` on your dev environment – it will create
+everything necessary (using virtualenv) for basic development.
 
-Alternatively you can use Docker and Docker Compose:
-`docker-compose up` it will setup a container with meetpy Django app
-(available at http://localhost:8080), a Postgres database with a PhpPgAdmin
+
+### Docker
+
+Alternatively you can use Docker and Docker Compose.
+They will setup a container with meetpy Django app
+(available at http://localhost:18000), a Postgres database with a PhpPgAdmin
 interface (available at http://localhost:8082) and a mock of SMTP service
 (available at http://localhost:8081).
-
-For more info read the script, or ask us on slack.
-
-https://pykonik.slack.com/ or https://join-slack.pykonik.org/
 
 For docker:
  - docker-compose -f docker-compose-dev.yml up
  - docker-compose -f docker-compose-dev.yml exec meetpy python manage.py migrate
 
+*NOTE*
+
+Tested on:
+
+ - docker versions 18.09.7 and 19.03.2
+ - docker-compose version 1.24.1
+
+Consult https://docs.docker.com/install/ and https://docs.docker.com/compose/install/ for
+instructions how to install docker.
+
+For more info read the `provision-new-dev-env.sh`, `docker-compose-dev.yml` or ask us on slack:
+
+https://pykonik.slack.com/ or https://join-slack.pykonik.org/
 
 ## Contributing
 
