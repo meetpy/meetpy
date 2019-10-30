@@ -11,7 +11,7 @@ factory-boy==2.12.0
 gunicorn==19.7.1
 idna==2.5
 packaging==16.8
-paramiko==2.1.2
+paramiko==2.1.6
 Pillow==6.2.0
 pyasn1==0.2.3
 pycparser==2.17
