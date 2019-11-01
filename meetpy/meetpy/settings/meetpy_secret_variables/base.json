@@ -1,5 +1,0 @@
-{
-    "ADMIN_EMAIL": "foo@example.com",
-    "SECRET_KEY": "asdf",
-    "ALLOWED_HOSTS": ["*"]
-}

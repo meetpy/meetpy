@@ -3,7 +3,7 @@ cache: pip
 python:
   - "3.6"
 before_install:
-  - export DJANGO_SETTINGS_MODULE="meetpy.settings.ci"
+  - cp .env.ci .env
 install:
   - pip install -r requirements/base.txt
 before_script:
