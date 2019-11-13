@@ -6,7 +6,7 @@ WORKDIR /opt/meetpy
 
 ADD requirements/ /opt/meetpy/requirements
 
-RUN pip install --no-cache-dir --requirement requirements/base.txt
+RUN pip install --no-cache-dir --requirement requirements.txt
 
 ADD meetpy/ /opt/meetpy/meetpy
 
