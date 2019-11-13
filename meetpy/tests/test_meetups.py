@@ -120,7 +120,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         context = {
             'talk_proposal': talk,
             'site': get_current_site(request),
-            'page_address': settings.GROUP_PAGE_ADDRESS_SHORT,
+            'page_address': settings.CONSTANT['GROUP_PAGE_ADDRESS_SHORT'],
         }
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(
@@ -159,6 +159,7 @@ class TalkProposalFormTest(TestCase):
             'talk_title': 'title',
             'talk_description': 'description',
             'speaker': speaker.id,
+            'without_owner': False,
         })
 
         self.assertTrue(form.is_valid())
@@ -173,6 +174,7 @@ class TalkProposalFormTest(TestCase):
                 'speaker_phone': '123',
                 'speaker_email': 'email@email.com',
                 'speaker_biography': 'short bio',
+                'without_owner': False,
             },
             files={
                 'speaker_photo': files.create_inmemory_image(),
@@ -181,19 +183,24 @@ class TalkProposalFormTest(TestCase):
 
         self.assertTrue(form.is_valid())
 
-    def test_rejects_when_neither_speaker_id_nor_speaker_values_are_set(self):
-        form = forms.TalkProposalForm(data={
-            'talk_title': 'title',
-            'talk_description': 'description',
-        })
-
-        self.assertFalse(form.is_valid())
-
     def test_rejects_when_not_all_required_new_speaker_fields_are_set_and_existing_speaker_is_not(self):
         form = forms.TalkProposalForm(data={
             'talk_title': 'title',
             'talk_description': 'description',
             'speaker_first_name': 'first',
+            'without_owner': False,
         })
 
         self.assertFalse(form.is_valid())
+
+
+def test_talk_is_valid_without_speaker():
+    form = forms.TalkProposalForm(
+        data={
+            'talk_title': 'title',
+            'talk_description': 'description',
+            'without_owner': True,
+        }
+    )
+
+    assert form.is_valid()

@@ -90,7 +90,7 @@ class Meetup(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        name = settings.GROUP_NAME
+        name = settings.CONSTANT['GROUP_NAME']
         if self.meetup_type:
             name = self.meetup_type.name
         return '{0} #{1}'.format(name, self.number)
@@ -146,6 +146,7 @@ class Talk(models.Model):
     slides_url = models.URLField(blank=True)
     video_url = models.URLField(blank=True)
     language = models.CharField(choices=LANGUAGES, default='pl', max_length=2)
+    without_owner = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['order']

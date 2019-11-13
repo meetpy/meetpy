@@ -1,18 +1,20 @@
 import json
 
 import os
+
+import yaml
 from django.core.exceptions import ImproperlyConfigured
+
+MEETUP_NAME = os.environ.get('MEETUP_NAME', 'default')
+
 
 with open(os.path.join('./meetpy/settings/meetpy_secret_variables', 'base.json'), 'r') as f:
     secrets = json.loads(f.read())
 
 
-try:
-    from .group_constants.constants import *
-except ImportError:
-    print('WARNING - Your meetup-specific data might not be set.'
-          'Please copy meetpy/meetpy/settings/group_constants/constants.example'
-          'as constants.py and fill your group data.')
+constants_file = f'./meetpy/settings/group_constants/constants.{MEETUP_NAME}.yaml'
+with open(constants_file, 'r') as f:
+    CONSTANT = yaml.safe_load(f)
 
 
 def get_secret(setting, secrets=secrets):
@@ -161,7 +163,7 @@ LOGGING = {
 }
 
 try:
-    TALK_PROPOSAL_RECIPIENTS = [CONTACT_EMAIL]
+    TALK_PROPOSAL_RECIPIENTS = [CONSTANT['CONTACT_EMAIL']]
 except NameError:
     TALK_PROPOSAL_RECIPIENTS = []
     print('WARNING - Your meetup-specific data might not be set.'
@@ -169,10 +171,21 @@ except NameError:
           'and make sure that CONCACT_EMAIL variable is set')
 
 
+if MEETUP_NAME == 'default':
+    TEMPLATE_DIRS = [
+        os.path.join(PROJECT_ROOT, 'templates')
+    ]
+else:
+    TEMPLATE_DIRS = [
+        os.path.join(PROJECT_ROOT, f'templates/{MEETUP_NAME}'),
+        os.path.join(PROJECT_ROOT, 'templates')
+    ]
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
+        'DIRS': TEMPLATE_DIRS,
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
