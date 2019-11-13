@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^zgloszenie/potwierdzenie/$', views.TalkProposalConfirmationView.as_view(), name='talk_proposal_confirmation'),
     url(r'^atom/$', views.MeetupsAtomFeed(), name='atom_feed'),
     url(r'^rss/$', views.MeetupsRssFeed(), name='rss_feed'),
+    url(r'^search/$', views.SearchView.as_view(), name='search'),
 
     # Legacy URL's from old website
     url(r'^historia/$', generic.RedirectView.as_view(url=reverse_lazy('meetups:meetup_list'), permanent=True)),

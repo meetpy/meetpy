@@ -6,6 +6,9 @@
 
 {% block subcontent %}
 <h1>Spotkania</h1>
+<form method="GET" action='/search'>
+<input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
 {% for meetup in object_list %}
 <div class="margin-bottom-big meeting-list" itemscope itemtype="http://schema.org/Event">
     <div class="row">
