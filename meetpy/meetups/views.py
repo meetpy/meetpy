@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.syndication import views as syndication_views
@@ -121,7 +123,11 @@ class TalkProposalCreateView(generic.CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        self._send_email_to_admins()
+        try:
+            self._send_email_to_admins()
+        except Exception as e:
+            logging.error("Couldn't send email to admins about the new talk proposal", exc_info=e)
+            pass
         return response
 
     def _send_email_to_admins(self):
