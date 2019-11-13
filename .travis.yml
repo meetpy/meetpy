@@ -5,7 +5,7 @@ python:
 before_install:
   - export DJANGO_SETTINGS_MODULE="meetpy.settings.ci"
 install:
-  - pip install -r requirements/base.txt
+  - pip install -r requirements.txt
 before_script:
   - cd meetpy
   - ./manage.py migrate
