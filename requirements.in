@@ -8,3 +8,6 @@ requests
 pytest
 pytest-cov
 pytest-django
+
+# Deployment
+gunicorn

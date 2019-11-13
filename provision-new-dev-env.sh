@@ -16,7 +16,7 @@ source ./.meetpy-env/bin/activate
 title "Run pip install"
 # currently there is no dev requirements file,
 # but when there is – we should add it here.
-pip install -r requirements/base.txt
+pip install -r requirements.txt
 
 cd meetpy/
 
