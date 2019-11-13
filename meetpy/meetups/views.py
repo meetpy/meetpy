@@ -87,7 +87,7 @@ class MeetupDateRedirectView(generic.RedirectView):
 
 
 class MeetupsRssFeed(syndication_views.Feed):
-    title = settings.FEED_TITLE
+    title = settings.CONSTANT['FEED_TITLE']
     link = reverse_lazy('meetups:meetup_list')
     title_template = models.Meetup._meta.app_label + '/feed/meetup_title.txt'
     description_template = models.Meetup._meta.app_label + '/feed/meetup_description.html'
@@ -128,7 +128,7 @@ class TalkProposalCreateView(generic.CreateView):
         context = {
             'talk_proposal': self.object,
             'site': get_current_site(self.request),
-            'page_address': settings.GROUP_PAGE_ADDRESS_SHORT,
+            'page_address': settings.CONSTANT['GROUP_PAGE_ADDRESS_SHORT'],
         }
         send_mail(
             subject=render_to_string('meetups/emails/talk_proposal_subject.txt', context).strip(),

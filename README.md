@@ -59,3 +59,10 @@ https://pykonik.slack.com/ or https://join-slack.pykonik.org/
    upstream`) (`provision-new-dev-envirionment.sh` adds `meetpy/meetpy` as `upstream`)
 4. Push your changes.
 5. Create a pull request to meetpy/meetpy, targeting master.
+
+# New group
+
+1. Copy `meetpy.settings.group_constants.constants.default.yaml` to `meetpy.settings.group_constants.constants.<meetup_name>.yaml`
+2. Fill in the data for your group.
+3. In case you need different templates, create `templates/<group_name>` directory and put any templates you'd like.
+4. Execute with `MEETUP_NAME=<group_name> command`

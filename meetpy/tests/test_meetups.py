@@ -120,7 +120,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         context = {
             'talk_proposal': talk,
             'site': get_current_site(request),
-            'page_address': settings.GROUP_PAGE_ADDRESS_SHORT,
+            'page_address': settings.CONSTANT['GROUP_PAGE_ADDRESS_SHORT'],
         }
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(

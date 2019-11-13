@@ -59,7 +59,7 @@ class TalkProposalForm(forms.ModelForm):
     def clean(self):
         if self._existing_speaker_field_empty():
             if self._all_required_new_speaker_fields_empty():
-                raise ValidationError(settings.EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
+                raise ValidationError(settings.CONSTANT['EITHER_EXISTING_OR_NEW_SPEAKER_ERROR'])
             elif not self._all_required_new_speaker_fields_empty():
                 for field_name in self.REQUIRED_SPEAKER_FIELDS:
                     if self.cleaned_data.get(field_name) in ['', None]:

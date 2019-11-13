@@ -10,18 +10,18 @@ from django.contrib.sites.shortcuts import get_current_site
 def group_info(request):
     return {
         'group': {
-            'name': settings.GROUP_NAME,
-            'logo_path': settings.LOGO_PATH,
-            'page_address': settings.GROUP_PAGE_ADDRESS_LONG,
-            'city': settings.GROUP_CITY,
-            'city_genitive': settings.GROUP_CITY_GENITIVE,
-            'city_ablative': settings.GROUP_CITY_ABLATIVE,
-            'city_adjective': settings.GROUP_CITY_ADJECTIVE,
-            'city_locative': settings.GROUP_CITY_LOCATIVE,
-            'email': settings.CONTACT_EMAIL,
-            'social': settings.SOCIAL_MEDIA,
-            'github': settings.GITHUB,
-            'presentation_length': settings.PRESENTATION_LENGTH
+            'name': settings.CONSTANT['GROUP_NAME'],
+            'logo_path': settings.CONSTANT['LOGO_PATH'],
+            'page_address': settings.CONSTANT['GROUP_PAGE_ADDRESS_LONG'],
+            'city': settings.CONSTANT['GROUP_CITY'],
+            'city_genitive': settings.CONSTANT['GROUP_CITY_GENITIVE'],
+            'city_ablative': settings.CONSTANT['GROUP_CITY_ABLATIVE'],
+            'city_adjective': settings.CONSTANT['GROUP_CITY_ADJECTIVE'],
+            'city_locative': settings.CONSTANT['GROUP_CITY_LOCATIVE'],
+            'email': settings.CONSTANT['CONTACT_EMAIL'],
+            'social': settings.CONSTANT['SOCIAL_MEDIA'],
+            'github': settings.CONSTANT['GITHUB'],
+            'presentation_length': settings.CONSTANT['PRESENTATION_LENGTH']
         }
     }
 
