@@ -19,6 +19,7 @@ class TalkProposalForm(forms.ModelForm):
     speaker_email = forms.EmailField(required=False)
     speaker_biography = forms.CharField(required=False, widget=forms.Textarea)
     speaker_photo = forms.ImageField(required=False)
+    without_owner = forms.BooleanField(required=False, initial=False)
 
     REQUIRED_SPEAKER_FIELDS = [
         'speaker_first_name',
@@ -57,7 +58,7 @@ class TalkProposalForm(forms.ModelForm):
         return talk_proposal
 
     def clean(self):
-        if self._existing_speaker_field_empty():
+        if self.cleaned_data['without_owner'] is False and self._existing_speaker_field_empty():
             if self._all_required_new_speaker_fields_empty():
                 raise ValidationError(settings.EITHER_EXISTING_OR_NEW_SPEAKER_ERROR)
             elif not self._all_required_new_speaker_fields_empty():
