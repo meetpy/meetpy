@@ -133,6 +133,7 @@ class Talk(models.Model):
     slides_url = models.URLField(blank=True)
     video_url = models.URLField(blank=True)
     language = models.CharField(choices=LANGUAGES, default='pl', max_length=2)
+    without_owner = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['order']
