@@ -1,3 +1,4 @@
+
 /***
 1. BASE
 --- 1.1 Default Styles
@@ -129,6 +130,33 @@ input[type=submit] {border: 0;}
 header{margin:10px 0 30px;}
 
 #top{margin:20px 0 0 0}
+
+.search-bar button {
+  float: left;
+  width: 40px;
+  height: 28px;
+  padding: 4px;
+  background: #4790c3;
+  color: white;
+  font-size: 12px;
+  border: 1px #4790c3;
+  border-left: none;
+  display: inline-block;
+}
+
+.search-bar input {
+  margin-left: 180px;
+  height: 28px;
+  float: left;
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid grey;
+  width: 25%;
+  background: #FAF7F7;
+  font-family:'Merriweather Sans';
+}
+
+
 
 .top-links{float:right}
 .meetup, .facebook, .twitter, .youtube, .rss, .dropdown, .mail, .slack{width:30px;height:30px;display:block;float:left}
