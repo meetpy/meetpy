@@ -1,4 +1,4 @@
-Django==2.1.11
+Django==3.0.3
 Pillow
 django-embed-video
 django-environ
@@ -9,6 +9,7 @@ pytest
 pytest-cov
 pytest-django
 pyyaml
+psycopg2-binary
 
 # Deployment
 gunicorn

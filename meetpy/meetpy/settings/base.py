@@ -193,7 +193,8 @@ TEMPLATES = [
                 'misc.context_processors.group_info',
                 'misc.context_processors.system_info',
                 'misc.context_processors.current_site',
-                'meetups.context_processors.stats'
+                'meetups.context_processors.stats',
+                'django.contrib.messages.context_processors.messages',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',

@@ -1,8 +1,10 @@
+import os
 from datetime import datetime, timedelta
 
 import factory
 from factory.fuzzy import FuzzyNaiveDateTime
 
+from meetpy.settings.base import LOCAL_STATIC_ROOT
 from meetups import models
 
 
@@ -51,6 +53,7 @@ class SponsorFactory(factory.DjangoModelFactory):
         model = models.Sponsor
 
     name = factory.Faker('company')
+    logo = factory.django.ImageField(from_path=os.path.join(LOCAL_STATIC_ROOT, 'img/sponsors.jpg'))
     description = factory.Faker('sentence', nb_words=40)
 
 

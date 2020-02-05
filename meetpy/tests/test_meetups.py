@@ -9,10 +9,16 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 from django.test import TestCase
 from django.test.utils import override_settings
-from djet import files, testcases, assertions
+from djet import testcases, assertions
 
 from meetups import models, views, forms
 from tests.factories import MeetupFactory, SpeakerFactory, TalkFactory
+
+"""
+    In Django 3.0 is removed library django.utils.six required by djet.files.
+    I copied djet.files to djet_files_corrected and added importing required library.
+"""
+from tests import djet_files_corrected as files
 
 
 class MeetupManagerTest(TestCase):
@@ -71,7 +77,8 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         self.assertEqual(saved_talk.speakers.count(), 1)
         self.assertEqual(saved_talk.speakers.all()[0], self.speaker)
 
-    @override_settings(DEFAULT_FILE_STORAGE='djet.files.InMemoryStorage')
+    # @override_settings(DEFAULT_FILE_STORAGE='djet.files.InMemoryStorage')
+    @override_settings(DEFAULT_FILE_STORAGE='djet_files_corrected.InMemoryStorage')
     def test_save_talk_proposal_with_new_speaker(self):
         data = {
             'talk_title': 'some title',

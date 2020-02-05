@@ -5,7 +5,7 @@ from datetime import date
 import pytest
 
 from meetups.models import MeetupType
-from tests.test_meetups import MeetupFactory
+from tests.factories import MeetupFactory
 
 
 @pytest.fixture
