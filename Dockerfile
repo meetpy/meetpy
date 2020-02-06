@@ -4,7 +4,7 @@ RUN mkdir /opt/meetpy
 
 WORKDIR /opt/meetpy
 
-ADD requirements/ /opt/meetpy/requirements
+ADD requirements.txt /opt/meetpy/requirement.txt
 
 RUN pip install --no-cache-dir --requirement requirements.txt
 
