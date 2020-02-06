@@ -5,8 +5,10 @@ RUN mkdir /opt/meetpy
 WORKDIR /opt/meetpy
 
 ADD requirements.txt /opt/meetpy/requirements.txt
+ADD requirements-pg.txt /opt/meetpy/requirements-pg.txt
 
 RUN pip install --no-cache-dir --requirement requirements.txt
+RUN pip install --no-cache-dir --requirement requirements-pg.txt
 
 ADD meetpy/ /opt/meetpy/meetpy
 
