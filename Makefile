@@ -19,6 +19,7 @@ piptools:
 
 deps: piptools
 	pip-compile requirements.in -o requirements.txt --upgrade
+	pip-compile requirements-pg.in -o requirements-pg.txt --upgrade
 
 install: piptools
 	pip-sync requirements.txt
