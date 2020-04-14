@@ -9,10 +9,25 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 from django.test import TestCase
 from django.test.utils import override_settings
-from djet import files, testcases, assertions
+from djet import testcases, assertions
 
 from meetups import models, views, forms
 from tests.factories import MeetupFactory, SpeakerFactory, TalkFactory
+
+
+def create_test_image(file_name='test.png'):
+    from PIL import Image
+    import six
+    from django.core.files.uploadedfile import InMemoryUploadedFile
+
+    extension = file_name.split('.')[1].upper()
+    content_type = 'image/{}'.format(extension)
+    stream = six.BytesIO()
+    image = Image.new('RGBA', size=(200, 200), color=(255, 0, 0, 0))
+    image.save(stream, format=extension)
+    image_file = InMemoryUploadedFile(stream, None, file_name, content_type, stream.tell(), None)
+    image_file.seek(0)
+    return image_file
 
 
 class MeetupManagerTest(TestCase):
@@ -71,7 +86,6 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         self.assertEqual(saved_talk.speakers.count(), 1)
         self.assertEqual(saved_talk.speakers.all()[0], self.speaker)
 
-    @override_settings(DEFAULT_FILE_STORAGE='djet.files.InMemoryStorage')
     def test_save_talk_proposal_with_new_speaker(self):
         data = {
             'talk_title': 'some title',
@@ -82,7 +96,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
             'speaker_phone': '123',
             'speaker_email': 'email@pywaw.org',
             'speaker_biography': 'short bio',
-            'speaker_photo': files.create_inmemory_image(),
+            'speaker_photo': create_test_image(),
             'message': 'some comment',
         }
         request = self.factory.post(data=data)
@@ -177,7 +191,7 @@ class TalkProposalFormTest(TestCase):
                 'without_owner': False,
             },
             files={
-                'speaker_photo': files.create_inmemory_image(),
+                'speaker_photo': create_test_image()
             },
         )
 
