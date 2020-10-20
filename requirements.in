@@ -1,4 +1,4 @@
-Django==2.1.11
+Django==2.2.16
 Pillow
 django-embed-video
 django-environ
