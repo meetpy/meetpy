@@ -10,6 +10,9 @@ from django.template.response import TemplateResponse
 from django.utils import feedgenerator
 from django.views import generic
 
+from django.db.models import Q
+from itertools import chain
+
 from . import models, forms
 
 
@@ -140,3 +143,26 @@ class TalkProposalCreateView(generic.CreateView):
 
 class TalkProposalConfirmationView(generic.TemplateView):
     template_name = 'meetups/talkproposal_confirmation.html'
+
+
+class SearchView(generic.TemplateView):
+    template_name='meetups/search_results.html'
+
+    def search(self):
+        query = self.request.GET.get('q')
+        talks = models.Talk.objects.filter(Q(description__icontains=query) | Q(title__contains=query))
+        events = models.Meetup.objects.filter(Q(description__icontains=query))
+        speakers = models.Speaker.objects.filter(Q(biography__icontains=query))
+        results = chain(talks, events, speakers)
+        return results
+
+    def get_context_data(self):
+        search = self.search()
+        return {
+            'search': search,
+        }
+
+
+
+
+

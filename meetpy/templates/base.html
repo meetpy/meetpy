@@ -16,6 +16,7 @@
 
 
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
@@ -45,6 +46,15 @@
 	<div id="wrapper">
 		<header>
 			<div class="container">
+
+                                                <div class="row"> 
+                        <div class="search-bar">
+                            <form method="GET" action='/search'>
+                            <input type='text' name='q' placeholder='Szukaj...' value='{{ request.GET.q }}'/>
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                     </div>
 				<div class="row">
 					<div id="header-logo" class="span2">
 						<a href="{% url 'misc:home' %}"><img src="{% static 'img/logo.png' %}" alt="{{ group.name }}" class="logo"></a>
@@ -95,6 +105,11 @@
 				</div>
 			</div>
 		</header>
+
+
+        {% block searchresults %}
+        {% endblock %}
+
         {% block content %}
         {%  endblock %}
 		<div id="push"></div>

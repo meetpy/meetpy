@@ -1,0 +1,24 @@
+{% extends "base_content.html" %}
+
+<form method="GET" action=''>
+<input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
+
+{% block searchresults %}
+Wyniki
+{% endblock %}
+
+
+{% block content %}
+{% for s in search %}
+{% if s.title %}
+<p>{{ s.title }}</p>
+{% endif %}
+{% if s.description %}
+<p>{{ s.description }}</p>
+{% endif %}
+{% if s.biography %}
+<p>{{ s.biography }}</p>
+{% endif %}
+{% endfor %}
+{% endblock %}
