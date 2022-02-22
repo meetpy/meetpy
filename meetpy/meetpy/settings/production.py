@@ -9,6 +9,8 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, '../../media')
 with open(os.path.join('./meetpy/settings/meetpy_secret_variables', 'prod.json')) as f:
     secrets.update(json.loads(f.read()))
 
+ADMINS = get_secret('ADMINS', secrets)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
