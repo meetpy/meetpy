@@ -49,6 +49,36 @@ class MeetupType(models.Model):
         return self.name
 
 
+class MeetupSponsorThrough(models.Model):
+    class Meta:
+        db_table = "meetups_meetup_sponsors"
+        ordering = ["order"]
+
+    meetup = models.ForeignKey("Meetup", on_delete=models.CASCADE, related_name="meetup_sponsors")
+    sponsor = models.ForeignKey("Sponsor", on_delete=models.CASCADE, related_name="meetup_sponsors")
+
+    order = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.sponsor.name
+
+    @property
+    def name(self):
+        return self.sponsor.name
+
+    @property
+    def website(self):
+        return self.sponsor.website
+
+    @property
+    def logo(self):
+        return self.sponsor.logo
+
+    @property
+    def description(self):
+        return self.sponsor.description
+
+
 class Meetup(models.Model):
     meetup_type = models.ForeignKey(
         MeetupType,
@@ -59,7 +89,12 @@ class Meetup(models.Model):
     description = models.TextField(blank=True)
     number = models.PositiveIntegerField()
     date = models.DateTimeField()
-    sponsors = models.ManyToManyField(Sponsor, related_name='sponsored_meetups', blank=True)
+    sponsors = models.ManyToManyField(
+        Sponsor,
+        related_name='sponsored_meetups',
+        blank=True,
+        through=MeetupSponsorThrough
+    )
     venue = models.ForeignKey(
         Venue,
         related_name='meetups',
@@ -99,6 +134,8 @@ class Speaker(models.Model):
     )
     phone = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
+    discord_handle = models.CharField(blank=True, max_length=64)
+    slack_handle = models.CharField(blank=True, max_length=64)
     biography = models.TextField(blank=True)
 
     def __str__(self):
@@ -163,7 +200,7 @@ class ExternalLink(models.Model):
 
 
 class TalkProposal(models.Model):
-    talk = models.ForeignKey(Talk, on_delete=models.CASCADE)
+    talk = models.OneToOneField(Talk, on_delete=models.CASCADE, related_name="proposal")
     message = models.TextField(blank=True)
     date_submitted = models.DateTimeField(auto_now_add=True)
 

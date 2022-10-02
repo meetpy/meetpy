@@ -17,6 +17,8 @@ class TalkProposalForm(forms.ModelForm):
     speaker_website = forms.URLField(required=False)
     speaker_phone = forms.CharField(required=False, max_length=30)
     speaker_email = forms.EmailField(required=False)
+    speaker_discord_handle = forms.CharField(required=False, max_length=64)
+    speaker_slack_handle = forms.CharField(required=False, max_length=64)
     speaker_biography = forms.CharField(required=False, widget=forms.Textarea)
     speaker_photo = forms.ImageField(required=False)
     without_owner = forms.BooleanField(required=False, initial=False)
@@ -49,6 +51,8 @@ class TalkProposalForm(forms.ModelForm):
                 website=self.cleaned_data['speaker_website'],
                 phone=self.cleaned_data['speaker_phone'],
                 email=self.cleaned_data['speaker_email'],
+                discord_handle=self.cleaned_data['speaker_discord_handle'],
+                slack_handle=self.cleaned_data['speaker_slack_handle'],
                 biography=self.cleaned_data['speaker_biography'],
                 photo=self.cleaned_data['speaker_photo'],
             )

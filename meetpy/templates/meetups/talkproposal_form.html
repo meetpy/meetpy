@@ -35,6 +35,12 @@
                 {% include "meetups/includes/form_input.html" with field=form.speaker_photo label='Zdjęcie' %}
                 {% include "meetups/includes/form_input.html" with field=form.speaker_phone label='Numer telefonu' %}
                 {% include "meetups/includes/form_input.html" with field=form.speaker_email label='E-mail' %}
+                {% if group.social.discord %}
+                  {% include "meetups/includes/form_input.html" with field=form.speaker_discord_handle label='Nick/handle na discordzie' %}
+                {% endif %}
+                {% if group.social.slack %}
+                  {% include "meetups/includes/form_input.html" with field=form.speaker_slack_handle label='Nick/handle na slacku' %}
+                {% endif %}
 		{% include "meetups/includes/form_input.html" with field=form.without_owner label='Bez prelegenta' %}
                 </div>
                 <h2 class="margin-top-normal">Dodatkowe uwagi</h2>

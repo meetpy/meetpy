@@ -69,6 +69,9 @@
                 {% if group.social.slack %}
                                 <a href="{{ group.social.slack }}" class="slack" target="_blank" title="Slack"></a>
                 {% endif %}
+                {% if group.social.discord %}
+                  <a href="{{ group.social.discord }}" class="discord" target="_blank" title="Discord"></a>
+                {% endif %}
                 {% if group.social.meetup %}
   								<a href="{{ group.social.meetup }}" class="meetup" target="_blank"></a>
                 {% endif %}
@@ -135,6 +138,12 @@
                                 <i class="slack-icon"></i>
                                 <span>Join Slack</span>
                             </a>
+                        {% endif %}
+                        {% if group.social.discord %}
+                          <a href="{{ group.social.discord }}" class="discord-footer">
+                            <i class="discord-icon"></i>
+                            <span>Join discord</span>
+                          </a>
                         {% endif %}
                         </div>
                         <div class="span2">

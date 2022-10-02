@@ -56,7 +56,7 @@
                       </h5>
                       <h3>
                         <span itemprop="name">{{ talk.title }}</span>
-                        <span class="lang-icon"><img src="{% get_static_prefix %}img/languages/{{ talk.language }}.png"</span>
+                        <span class="lang-icon"><img src="{% get_static_prefix %}img/languages/{{ talk.language }}.png" alt="{{ talk.get_language_display }}"></span>
                           {% if talk.slides_url or talk.slides_file %}
                         <a href="{% if talk.slides_url %}{{ talk.slides_url }}{% else %}{{ talk.slides_file.url }}{% endif %}" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
                           {% endif %}
@@ -128,7 +128,7 @@
         </div>
         <div class="span10">
             <h2>Sponsorzy spotkania</h2>
-            {% for sponsor in meetup.sponsors.all %}
+            {% for sponsor in meetup.meetup_sponsors.all %}
             <div class="media">
                 <div class="media-body">
                     <a href="{{ sponsor.website }}" target="_blank" class="no-hover"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
