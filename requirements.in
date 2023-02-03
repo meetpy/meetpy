@@ -1,4 +1,4 @@
-Django~=3.2.15
+Django~=3.2.17
 Pillow
 django-embed-video
 django-environ
