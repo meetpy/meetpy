@@ -23,3 +23,22 @@ deps: piptools
 
 install: piptools
 	pip-sync requirements.txt
+
+check check/lint: check/lint/black check/lint/isort check/lint/ruff  ## Run all checks.
+
+check/lint/black:  ## Run black lint check.
+	black --check --diff .
+
+check/lint/ruff:  ## Run flake8 lint check.
+	ruff check .
+	
+check/lint/isort:  ## Run isort lint check.
+	isort --check --diff .
+
+format: format/black format/isort  ## autoformat source files.
+
+format/black:  ### autoformat source files using black only.
+	black .
+
+format/isort:  ## autoformat source files using isort only.
+	isort .  '

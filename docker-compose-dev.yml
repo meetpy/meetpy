@@ -5,7 +5,7 @@ services:
     image: meetpy
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile.dev
     volumes:
       - ./:/usr/src/app
     working_dir: /usr/src/app/meetpy
