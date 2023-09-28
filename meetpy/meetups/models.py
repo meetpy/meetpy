@@ -13,6 +13,10 @@ class Sponsor(models.Model):
     logo = models.ImageField(upload_to=settings.SPONSOR_LOGOS_DIR)
     description = models.TextField(blank=True)
 
+    @property
+    def description_md(self):
+        return mark_safe(markdown(escape(self.description)))
+
     def __str__(self):
         return self.name
 
@@ -78,6 +82,10 @@ class MeetupSponsorThrough(models.Model):
     def description(self):
         return self.sponsor.description
 
+    @property
+    def description_md(self):
+        return self.sponsor.description_md
+
 
 class Meetup(models.Model):
     meetup_type = models.ForeignKey(
@@ -111,6 +119,10 @@ class Meetup(models.Model):
     class Meta:
         ordering = ['-date']
 
+    @property
+    def description_md(self):
+        return mark_safe(markdown(self.description))
+
     def __str__(self):
         name = settings.CONSTANT['GROUP_NAME']
         if self.meetup_type:
@@ -137,6 +149,10 @@ class Speaker(models.Model):
     discord_handle = models.CharField(blank=True, max_length=64)
     slack_handle = models.CharField(blank=True, max_length=64)
     biography = models.TextField(blank=True)
+
+    @property
+    def biography_md(self):
+        return mark_safe(markdown(escape(self.biography)))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -172,6 +188,10 @@ class Talk(models.Model):
     language = models.CharField(choices=LANGUAGES, default='pl', max_length=2)
     without_owner = models.BooleanField(default=False)
 
+    @property
+    def description_md(self):
+        return mark_safe(markdown(escape(self.description)))
+
     class Meta:
         ordering = ['order']
 
@@ -203,6 +223,10 @@ class TalkProposal(models.Model):
     talk = models.OneToOneField(Talk, on_delete=models.CASCADE, related_name="proposal")
     message = models.TextField(blank=True)
     date_submitted = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def message_md(self):
+        return mark_safe(markdown(escape(self.message)))
 
     def __str__(self):
         return 'Proposal: {}'.format(self.talk)

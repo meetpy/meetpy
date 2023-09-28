@@ -7,7 +7,7 @@
             {{s.first_name}} {{s.last_name}}{% if not forloop.last %}, {% endif %}
             {% endfor %}<br/>
         <br/>
-        {{ talk.description }}<br/>
+        {{ talk.description_md }}<br/>
         <br/>
         Prezentacja odbyła się podczas spotkania {{ group.name }} #{{meetup.number}} ({{meetup.date|date:"d.m.Y"}}) - {{ group.page_address }}{{meetup.number}}/<br/>
         <br/>

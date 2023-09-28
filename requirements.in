@@ -4,11 +4,14 @@ django-embed-video
 django-environ
 djet
 factory-boy
+markdown
+pyyaml
 requests
+
+# Dev / tests
 pytest
 pytest-cov
 pytest-django
-pyyaml
 
 # Deployment
 gunicorn

@@ -20,16 +20,16 @@
                     {% endfor %}
                     - {{ talk.title }}
                 </p>
-                <p>{{ talk.description }}</p>
+                <p>{{ talk.description_md }}</p>
             {% endfor %}
         {% else %}
-            <p>{{ meetup.description }}</p>
+            <p>{{ meetup.description_md }}</p>
         {% endif %}
         {% if meetup.sponsors.all %}
             <p>The meeting sponsors are:</p>
             {% for sponsor in meetup.sponsors.all %}
                 <p>- {{ sponsor.name }}</p>
-                <p>{{ sponsor.description }}</p>
+                <p>{{ sponsor.description_md }}</p>
             {% endfor %}
         {% endif %}
         <p>See ya at the event!</p>
@@ -54,10 +54,10 @@
                     {% endfor %}
                     - {{ talk.title }}
                 </p>
-                <p>{{ talk.description }}</p>
+                <p>{{ talk.description_md }}</p>
             {% endfor %}
         {% else %}
-            {{ meetup.description }}
+            {{ meetup.description_md }}
         {% endif %}
         {% if meetup.sponsors.all %}
             <p>Sponsorami spotkania są:</p>
