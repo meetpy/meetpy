@@ -12,6 +12,22 @@ For example:
 
 ## Local install and setup
 
+### Using Poetry
+
+Requires:
+
+- [poetry](https://python-poetry.org/docs/)
+
+```bash
+poetry install
+mkdir -p meetpy/settings/meetpy_secret_variables
+export SECRETS_FILE="meetpy/settings/meetpy_secret_variables/base.json"
+export DJANGO_SETTINGS_MODULE="meetpy.settings.local
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
 ### Manual installation on linux
 
 Before the next step, be sure the following OS libraries are installed:

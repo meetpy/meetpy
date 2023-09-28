@@ -1,0 +1,29 @@
+FROM python:3.8-slim
+
+ENV POETRY_VERSION=1.6.1
+ENV POETRY_HOME=/opt/poetry
+
+ENV POETRY_CACHE_DIR=/opt/.cache
+
+# Install poetry separated from system interpreter
+RUN pip install -U pip setuptools wheel \
+	&& pip install poetry==${POETRY_VERSION}
+
+# Add `poetry` to PATH
+ENV PATH="${PATH}:${POETRY_HOME}/bin"
+
+COPY meetpy /opt/meetpy
+
+# Install dependencies
+COPY pyproject.toml README.md ./
+RUN poetry config virtualenvs.create false
+RUN poetry export --extras postgresql -f requirements.txt -o requirements.txt --without-hashes
+RUN pip install -r requirements.txt
+
+
+ENV DJANGO_SETTINGS_MODULE="meetpy.settings.docker"
+
+WORKDIR /opt/meetpy
+
+# Run meetpy
+CMD ["gunicorn", "-t", "30", "meetpy.wsgi", "-b", "0.0.0.0:8000"]
