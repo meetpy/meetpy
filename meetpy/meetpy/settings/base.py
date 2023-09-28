@@ -4,6 +4,7 @@ import os
 
 import yaml
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import gettext_lazy as _
 
 MEETUP_NAME = os.environ.get('MEETUP_NAME', 'default')
 
@@ -44,6 +45,17 @@ ALLOWED_HOSTS = get_secret("ALLOWED_HOSTS")
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
 TIME_ZONE = 'Europe/Warsaw'
+
+# List of available languages
+LANGUAGES = [
+    ('en', _('English')),
+    ('pl', _('Polish')),
+    # Add more languages as needed
+]
+
+LOCALE_PATHS = [
+        os.path.join(PROJECT_ROOT, 'locale'),
+]
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -111,6 +123,7 @@ MIDDLEWARE = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )

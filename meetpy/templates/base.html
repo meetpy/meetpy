@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>{% load static i18n %}
 <html lang="pl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,6 +44,19 @@
 <body>
 	<div id="wrapper">
 		<header>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <select name="language" onchange="this.form.submit()">
+                    {% get_current_language as current_language %}
+                    {% get_available_languages as available_languages %}
+                    {% for lang_code, lang_name in available_languages %}
+                        <option value="{{ lang_code }}" {% if lang_code == current_language %}selected{% endif %}>
+                            {{ lang_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
 			<div class="container">
 				<div class="row">
 					<div id="header-logo" class="span2">

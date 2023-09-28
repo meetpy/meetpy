@@ -1,4 +1,5 @@
 from django.views import generic
+from django.utils.translation import gettext as _
 
 from meetups import models as meetups_models
 from . import models
