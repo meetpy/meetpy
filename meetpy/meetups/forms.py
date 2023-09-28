@@ -3,11 +3,13 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 
 from . import models
+from .models import Talk
 
 
 class TalkProposalForm(forms.ModelForm):
     talk_title = forms.CharField()
     talk_description = forms.CharField(max_length=1000, widget=forms.Textarea)
+    talk_language = forms.ChoiceField(choices=Talk.LANGUAGES)
     speaker = forms.ModelChoiceField(
         queryset=models.Speaker.objects.filter(talks__meetup__isnull=False).distinct(),
         required=False,
@@ -36,11 +38,18 @@ class TalkProposalForm(forms.ModelForm):
         model = models.TalkProposal
         fields = ('message',)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["talk_description"].widget.attrs["class"] = "wysiwygEditor"
+        self.fields["speaker_biography"].widget.attrs["class"] = "wysiwygEditor"
+        self.fields["message"].widget.attrs["class"] = "wysiwygEditor"
+
     def save(self, *args, **kwargs):
         talk_proposal = super().save(commit=False)
         talk = models.Talk.objects.create(
             title=self.cleaned_data['talk_title'],
             description=self.cleaned_data['talk_description'],
+            language=self.cleaned_data["talk_language"],
         )
         if self.cleaned_data['speaker']:
             speaker = self.cleaned_data['speaker']

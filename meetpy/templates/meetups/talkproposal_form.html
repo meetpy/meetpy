@@ -1,5 +1,13 @@
 {% extends 'base_content.html' %}
+{% load static %}
 
+{% block css %}
+  <link rel="stylesheet" href="{% static "css/toastui-editor.min.css" %}" />
+{% endblock %}
+{% block js %}
+  <script src="{% static "js/toastui-editor-all.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/wysiwygEditor.js" %}"></script>
+{% endblock %}
 {% block title %}Zgłoszenie prezentacji{% endblock %}
 
 {% block subcontent %}
@@ -15,6 +23,7 @@
             <form method="POST" novalidate enctype="multipart/form-data">{% csrf_token %}
                 <h2>Prelekcja</h2>
                 {% include "meetups/includes/form_input.html" with field=form.talk_title label='Tytuł' %}
+                {% include "meetups/includes/form_input.html" with field=form.talk_language label='Język' %}
                 {% include "meetups/includes/form_input.html" with field=form.talk_description label='Opis' %}
                 <h2 class="margin-top-normal">Prelegent</h2>
                 <p>

@@ -26,7 +26,7 @@
             {% endfor %}
             {% endif %}
         {% else %}
-            <p>{{ meetup.description }}</p>
+            <p>{{ meetup.description_md }}</p>
         {% endif %}
         {% if meetup.sponsors.all %}
             <p>Sponsorzy:</p>
@@ -67,7 +67,7 @@
             {% endfor %}
             {% endif %}
         {% else %}
-            <p>{{ meetup.description }}</p>
+            <p>{{ meetup.description_md }}</p>
         {% endif %}
         {% if meetup.sponsors.all %}
             <p>Sponsorzy:</p>
@@ -100,8 +100,8 @@
                 during the meetup is {{ talk.speakers.first }}.
                 {{ talk.speakers.first.first_name }} is going to introduce the topic of "{{ talk.title }}".
             </p>
-            <p>{{ talk.description }}</p>
-            <p>{{ talk.speakers.first.biography }}</p>
+            <p>{{ talk.description_md }}</p>
+            <p>{{ talk.speakers.first.biography_md }}</p>
             <p>More details on our webpage:</p>
             <p>{{ meetup_url }}</p>
             {% if meetup.meetup_url %}
@@ -122,8 +122,8 @@
                 w trakcie najbliższego spotkania jest {{ talk.speakers.first.name }}.
                 Tematem jego prezentacji jest "{{ talk.title }}".
             </p>
-            <p>{{ talk.description }}</p>
-            <p>{{ talk.speakers.first.biography }}</p>
+            <p>{{ talk.description_md }}</p>
+            <p>{{ talk.speakers.first.biography_md }}</p>
             <p>Zapraszamy na naszą stronę:</p>
             <p>{{ meetup_url }}</p>
             {% if meetup.meetup_url %}
@@ -144,7 +144,7 @@
             <p>
                 {{ sponsor.name }} is going to sponsor our next meeting. Thanks to them, you can expect ...
             </p>
-            <p>{{ sponsor.description }}</p>
+            <p>{{ sponsor.description_md }}</p>
             <p>More details on our webpage:</p>
             <p>{{ meetup_url }}</p>
             {% if meetup.meetup_url %}
@@ -160,7 +160,7 @@
                  Sponsorem najbliższego spotkania jest {{ sponsor.name }}. Dzięki ich uprzejmości na uczestników będzie
                  czekać ...
             </p>
-            <p>{{ sponsor.description }}</p>
+            <p>{{ sponsor.description_md }}</p>
             <p>Zapraszamy na naszą stronę:</p>
             <p>{{ meetup_url }}</p>
             {% if meetup.meetup_url %}

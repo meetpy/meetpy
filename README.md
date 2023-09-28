@@ -34,8 +34,8 @@ interface (available at http://localhost:8082) and a mock of SMTP service
 (available at http://localhost:8081).
 
 For docker:
- - docker-compose -f docker-compose-dev.yml up
- - docker-compose -f docker-compose-dev.yml exec meetpy python manage.py migrate
+ - `docker-compose -f docker-compose-dev.yml up`
+ - `docker-compose -f docker-compose-dev.yml exec meetpy python manage.py migrate`
 
 *NOTE*
 
