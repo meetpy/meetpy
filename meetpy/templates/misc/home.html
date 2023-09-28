@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 
 {% block title %}Home{% endblock %}
@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
     {% if upcoming_meetup %}
     <div class="row">
@@ -110,7 +111,7 @@
     {% endif %}
     {% else %}
     <div class="more-info">
-        <h3>spotkanie w przygotowaniu</h3>
+        <h3>{% trans "spotkanie w przygotowaniu" %}</h3>
     </div>
     {% endif %}
 </div>

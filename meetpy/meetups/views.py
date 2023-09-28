@@ -11,6 +11,7 @@ from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.utils import feedgenerator
 from django.views import generic
+from django.utils.translation import gettext as _
 
 from . import models, forms
 
