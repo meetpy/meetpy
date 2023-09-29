@@ -28,15 +28,16 @@ poetry install
 
 ```bash
 export SECRETS_FILE="meetpy/settings/meetpy_secret_variables/base.json"
-export DJANGO_SETTINGS_MODULE="meetpy.settings.local
+export DJANGO_SETTINGS_MODULE="meetpy.settings.local"
 ```
 
 #### Prepare database and run local server
 
 ```bash
-python meetpy/manage.py migrate
-python meetpy/manage.py createsuperuser
-python meetpy/manage.py runserver
+cd meetpy
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
 ```
 
 ### Manual installation on linux
