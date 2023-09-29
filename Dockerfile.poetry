@@ -1,7 +1,7 @@
-FROM python:3.8-slim
+FROM python:3.8
 
 # install tools
-RUN apt-get update && apt-get install -y curl git
+RUN apt-get update && apt-get install -y curl
 
 # Install poetry
 ENV POETRY_VERSION=1.6.1
