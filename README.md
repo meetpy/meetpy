@@ -12,20 +12,31 @@ For example:
 
 ## Local install and setup
 
-### Using Poetry
+### Using Poetry on linux
 
 Requires:
 
 - [poetry](https://python-poetry.org/docs/)
 
+#### Install dependencies
+
 ```bash
 poetry install
-mkdir -p meetpy/settings/meetpy_secret_variables
+```
+
+#### Configure local instance
+
+```bash
 export SECRETS_FILE="meetpy/settings/meetpy_secret_variables/base.json"
 export DJANGO_SETTINGS_MODULE="meetpy.settings.local
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
+```
+
+#### Prepare database and run local server
+
+```bash
+python meetpy/manage.py migrate
+python meetpy/manage.py createsuperuser
+python meetpy/manage.py runserver
 ```
 
 ### Manual installation on linux
