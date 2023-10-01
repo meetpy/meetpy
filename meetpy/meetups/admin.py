@@ -55,11 +55,21 @@ class TalkInline(admin.StackedInline):
     form = TalkInlineForm
 
 
+class SponsorInlineForm(ModelForm):
+    class Meta:
+        model = models.Talk
+        widgets = {
+            "meetup_description": AdminMarkdownWidget(),
+        }
+        exclude = []
+
+
 class SponsorInline(admin.TabularInline):
     model = models.MeetupSponsorThrough
     extra = 1
     verbose_name = "sponsor"
     verbose_name_plural = "sponsors"
+    form = SponsorInlineForm
 
 
 class MeetupAdminForm(ModelForm):

@@ -21,8 +21,8 @@ window.onload = (event) => {
       previewHighlight: false,
       autofocus: false,
       theme: theme,
+      initialValue: textarea.value,
     });
-    editor.setMarkdown(textarea.value)
     editor.on('blur', function () {
       textarea.value = editor.getMarkdown();
     })
