@@ -3,6 +3,9 @@ import datetime
 from django.conf import settings
 from django.urls import reverse
 from django.db import models
+from django.utils.html import escape
+from django.utils.safestring import mark_safe
+from markdown import markdown
 
 from misc.models import SlugifyUploadTo
 
@@ -61,6 +64,8 @@ class MeetupSponsorThrough(models.Model):
     meetup = models.ForeignKey("Meetup", on_delete=models.CASCADE, related_name="meetup_sponsors")
     sponsor = models.ForeignKey("Sponsor", on_delete=models.CASCADE, related_name="meetup_sponsors")
 
+    meetup_description = models.TextField(blank=True, help_text="")
+
     order = models.PositiveIntegerField()
 
     def __str__(self):
@@ -85,6 +90,10 @@ class MeetupSponsorThrough(models.Model):
     @property
     def description_md(self):
         return self.sponsor.description_md
+
+    @property
+    def meetup_description_md(self):
+        return mark_safe(markdown(escape(self.meetup_description)))
 
 
 class Meetup(models.Model):

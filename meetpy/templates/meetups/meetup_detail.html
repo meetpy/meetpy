@@ -61,7 +61,7 @@
                         <a href="{% if talk.slides_url %}{{ talk.slides_url }}{% else %}{{ talk.slides_file.url }}{% endif %}" target="_blank"><img src="{% static 'img/download.png' %}" alt="Link do prezentacji"></a>
                           {% endif %}
                       </h3>
-                      <p itemprop="description">{{ talk.description_md }}</p>
+                      <div itemprop="description">{{ talk.description_md }}</div>
                   </div>
                   {% if talk.video_url %}
                     <div class="video-meetup-details">
@@ -96,7 +96,7 @@
                       <h3>
                           <span itemprop="name">{{ speaker }}</span>{% if speaker.website %} <a href="{{ speaker.website }}" target="_blank"><img src="{% static 'img/link.png' %}" alt="Strona prelegenta" class="speaker-link"></a>{% endif %}
                       </h3>
-                      <p itemprop="description">{{ speaker.biography_md }}</p>
+                      <div itemprop="description">{{ speaker.biography_md }}</div>
                   </div>
               </div>
               {% endfor %}
@@ -132,7 +132,8 @@
             <div class="media">
                 <div class="media-body">
                     <a href="{{ sponsor.website }}" target="_blank" class="no-hover"><img class="img-sponsors" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}"></a>
-                    <p>{{ sponsor.description_md }}</p>
+                    {{ sponsor.description_md }}
+                    {{ sponsor.meetup_description_md }}
                 </div>
             </div>
             {% endfor %}

@@ -10,7 +10,7 @@
     {% for talk in obj.talks.all %}
     <li>
         <h3>{{ talk.title }} - {% for speaker in talk.speakers.all %}{% if speaker.website %}<a href="{{ speaker.website }}" target="_blank">{{ speaker }}</a>{% else %}{{ speaker }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}</h3>
-        <p>{{ talk.description_md }}</p>
+        {{ talk.description_md }}
     </li>
     {% endfor %}
 </ul>
