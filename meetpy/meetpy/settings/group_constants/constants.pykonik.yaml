@@ -23,3 +23,5 @@ SOCIAL_MEDIA:
 FEED_TITLE: 'Pykonik - Kraków Python Users Group'
 EITHER_EXISTING_OR_NEW_SPEAKER_ERROR: 'Wybierz prelegenta z listy lub wprowadź dane dla nowego.'
 PRESENTATION_LENGTH: 25
+
+RECAPTCHA_ENABLED: True

@@ -58,6 +58,9 @@
                     sprzętowe, planowana data lub numer spotkania na którym chcesz wygłosić prelekcję, etc.
                 </p>
                 {% include "meetups/includes/form_input.html" with field=form.message %}
+                {% if form.captcha %}
+                  {% include "meetups/includes/form_input.html" with field=form.captcha %}
+                {% endif %}
                 <input type="submit" class="button button-block button--submit pull-right margin-top-normal" value="Wyślij zgłoszenie">
             </form>
         </div>
