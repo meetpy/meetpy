@@ -15,3 +15,6 @@ SECRET_KEY = env.str('SECRET_KEY')
 
 EMAIL_CONFIG = env.email_url('EMAIL_URL')
 vars().update(EMAIL_CONFIG)
+
+DISCORD_FORM_WEBHOOK_URL = env.str("DISCORD_FORM_WEBHOOK_URL")
+
