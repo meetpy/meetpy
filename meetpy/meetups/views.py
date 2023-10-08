@@ -1,10 +1,11 @@
 import logging
 
+from discord_webhook import DiscordEmbed, DiscordWebhook
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.syndication import views as syndication_views
 from django.core.mail import send_mail
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
@@ -125,8 +126,13 @@ class TalkProposalCreateView(generic.CreateView):
         response = super().form_valid(form)
         try:
             self._send_email_to_admins()
-        except Exception as e:
-            logging.error("Couldn't send email to admins about the new talk proposal", exc_info=e)
+        except Exception:
+            logging.exception("Couldn't send email to admins about the new talk proposal")
+            pass
+        try:
+            self._send_message_on_discord()
+        except Exception:
+            logging.exception("Couldn't send a message on discord")
             pass
         return response
 
@@ -142,6 +148,62 @@ class TalkProposalCreateView(generic.CreateView):
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=settings.TALK_PROPOSAL_RECIPIENTS,
         )
+
+    def _send_message_on_discord(self):
+        proposal: models.TalkProposal = self.object
+        if settings.DISCORD_FORM_WEBHOOK_URL is None:
+            return
+        webhook = DiscordWebhook(
+            username="Talk Proposal Announcer",
+            url=settings.DISCORD_FORM_WEBHOOK_URL,
+            content="A new proposal has been submitted",
+        )
+
+        language_emoji = "🇵🇱" if proposal.talk.language == "pl" else "🇬🇧"
+
+        talk_embed = DiscordEmbed(
+            title=f"{language_emoji} {proposal.talk.title}",
+            description=proposal.talk.description,
+            url=self.request.build_absolute_uri(
+                reverse("admin:meetups_talk_change", args=(proposal.talk_id,))
+            ),
+            color=0x3A76A6,
+            timestamp=proposal.date_submitted,
+        )
+        webhook.add_embed(talk_embed)
+
+        if speaker := proposal.talk.speakers.first():
+            talk_embed.set_author(
+                name=str(speaker),
+                icon_url=self.request.build_absolute_uri(speaker.photo.url),
+            )
+            speaker_embed = DiscordEmbed(
+                title="About speaker",
+                description=speaker.biography,
+                color=0xFFD847,
+                thumbnail=self.request.build_absolute_uri(speaker.photo.url),
+            )
+            if speaker.phone:
+                speaker_embed.add_embed_field(name="Phone", value=speaker.phone)
+            if speaker.website:
+                speaker_embed.add_embed_field(name="Website", value=speaker.website)
+            if speaker.email:
+                speaker_embed.add_embed_field(name="Email", value=speaker.email)
+            if speaker.discord_handle:
+                speaker_embed.add_embed_field(name="Discord", value=speaker.discord_handle)
+            if speaker.slack_handle:
+                speaker_embed.add_embed_field(name="Slack", value=speaker.slack_handle)
+            webhook.add_embed(speaker_embed)
+
+        if proposal.message:
+            message_embed = DiscordEmbed(
+                title="Additional comments",
+                description=proposal.message,
+                color=0x616161,
+            )
+            webhook.add_embed(message_embed)
+
+        webhook.execute()
 
 
 class TalkProposalConfirmationView(generic.TemplateView):
