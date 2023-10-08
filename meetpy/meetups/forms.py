@@ -1,3 +1,4 @@
+from captcha.fields import ReCaptchaField
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -24,6 +25,9 @@ class TalkProposalForm(forms.ModelForm):
     speaker_biography = forms.CharField(required=False, widget=forms.Textarea)
     speaker_photo = forms.ImageField(required=False)
     without_owner = forms.BooleanField(required=False, initial=False)
+
+    if settings.RECAPTCHA_ENABLED:
+        captcha = ReCaptchaField()
 
     REQUIRED_SPEAKER_FIELDS = [
         'speaker_first_name',
