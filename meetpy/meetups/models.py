@@ -42,7 +42,7 @@ class MeetupManager(models.Manager):
     def get_upcoming(self, date=None):
         date = date or datetime.date.today()
         try:
-            return self.filter(date__gte=date).order_by('date')[0]
+            return self.filter(date__gte=date, is_draft=False).order_by('date')[0]
         except IndexError:
             raise self.model.DoesNotExist
 
@@ -119,7 +119,15 @@ class Meetup(models.Model):
         blank=True,
         null=True,
     )
-    is_ready = models.BooleanField(default=False)
+    is_draft = models.BooleanField(
+        default=True,
+        help_text="Meeting will not be shown on main page and meetings list when checked",
+    )
+    is_ready = models.BooleanField(
+        default=False,
+        verbose_name="Is agenda ready",
+        help_text='Meeting will display "Agenda in preparation" below talks when unchecked',
+    )
     date_modified = models.DateTimeField(auto_now=True)
     meetup_url = models.URLField(blank=True)
 
