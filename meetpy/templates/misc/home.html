@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static %}
+{% load static  embed_video_tags %}
 
 {% block title %}Home{% endblock %}
 
@@ -75,6 +75,16 @@
             {% endif %}
         </div>
     </div>
+
+      {% if upcoming_meetup.video_url %}
+      <div class="row">
+        <div class="span10 offset2 margin-top-normal">
+          <div class="video-meetup-details">
+            {% video upcoming_meetup.video_url '780x440' is_secure=True %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
 
     {% if upcoming_meetup.sponsors.exists %}
     <div class="row">

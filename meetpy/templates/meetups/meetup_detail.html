@@ -45,6 +45,11 @@
             <div class="media">
               {{ meetup.description_md }}
             </div>
+          {% if meetup.video_url %}
+            <div class="video-meetup-details">
+              {% video meetup.video_url '780x440' is_secure=True %}
+            </div>
+          {% endif %}
             {% if meetup.meetup_type.has_agenda %}
               {% for talk in meetup.talks.all %}
               <div class="media meetup-talk" id="talk-{{ talk.title|slugify }}" itemprop="subEvent" itemscope itemtype="http://schema.org/Event">

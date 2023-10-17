@@ -122,6 +122,7 @@ class Meetup(models.Model):
     is_ready = models.BooleanField(default=False)
     date_modified = models.DateTimeField(auto_now=True)
     meetup_url = models.URLField(blank=True)
+    video_url = models.URLField(blank=True)
 
     objects = MeetupManager()
 
