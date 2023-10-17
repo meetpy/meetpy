@@ -7,6 +7,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 MEETUP_NAME = os.environ.get('MEETUP_NAME', 'default')
 
+_unset = object()
+
 
 with open(os.path.join('./meetpy/settings/meetpy_secret_variables', 'base.json'), 'r') as f:
     secrets = json.loads(f.read())
@@ -17,11 +19,13 @@ with open(constants_file, 'r') as f:
     CONSTANT = yaml.safe_load(f)
 
 
-def get_secret(setting, secrets=secrets):
+def get_secret(setting, secrets=secrets, default=_unset):
     """Get the secret variable or return explicit exception."""
     try:
         return secrets[setting]
     except KeyError:
+        if default is not _unset:
+            return default
         error_msg = "Set the {0} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 

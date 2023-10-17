@@ -20,3 +20,15 @@ DATABASES = {
         'PORT': get_secret('DB_PORT', secrets),
     }
 }
+
+DISCORD_FORM_WEBHOOK_URL = get_secret("DISCORD_FORM_WEBHOOK_URL", secrets, None)
+
+RECAPTCHA_ENABLED = CONSTANT.get("RECAPTCHA_ENABLED", False)
+
+if RECAPTCHA_ENABLED:
+    RECAPTCHA_PUBLIC_KEY = get_secret("RECAPTCHA_SITE_KEY", secrets)
+    RECAPTCHA_PRIVATE_KEY = get_secret("RECAPTCHA_SECRET_KEY", secrets)
+
+    INSTALLED_APPS += (
+        "captcha",
+    )

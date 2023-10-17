@@ -1,5 +1,7 @@
 {% extends "base_content.html" %}
 
+{% load embed_video_tags %}
+
 {% block title %}Spotkania{% endblock %}
 
 {% block og_title %}Spotkania{% endblock %}
@@ -24,6 +26,11 @@
                 </div>
             </div>
             <h2><a href="{{ meetup.get_absolute_url }}" itemprop="sameAs"><span itemprop="name">{{ meetup }}</span></a></h2>
+          {% if meetup.video_url %}
+            <div class="video-meetup-details">
+              {% video meetup.video_url '780x440' is_secure=True %}
+            </div>
+          {% endif %}
         </div>
     </div>
     <ul class="unstyled">
