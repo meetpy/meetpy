@@ -1,4 +1,5 @@
 import logging
+from os.path import splitext
 
 from discord_webhook import DiscordEmbed, DiscordWebhook
 from django.conf import settings
@@ -11,6 +12,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.utils import feedgenerator
+from django.utils.text import slugify
 from django.views import generic
 
 from . import models, forms
@@ -173,15 +175,18 @@ class TalkProposalCreateView(generic.CreateView):
         webhook.add_embed(talk_embed)
 
         if speaker := proposal.talk.speakers.first():
+            photo_filename = f"{slugify(speaker)}{splitext(speaker.photo.name)[1]}"
+            with speaker.photo.open() as fd:
+                webhook.add_file(fd.read(), filename=photo_filename)
             talk_embed.set_author(
                 name=str(speaker),
-                icon_url=self.request.build_absolute_uri(speaker.photo.url),
+                icon_url=f"attachment://{photo_filename}",
             )
             speaker_embed = DiscordEmbed(
                 title="About speaker",
                 description=speaker.biography,
                 color=0xFFD847,
-                thumbnail=self.request.build_absolute_uri(speaker.photo.url),
+                thumbnail={"url": f"attachment://{photo_filename}"},
             )
             if speaker.phone:
                 speaker_embed.add_embed_field(name="Phone", value=speaker.phone)
