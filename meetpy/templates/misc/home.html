@@ -172,6 +172,21 @@
     </div>
 </div>
 {% endif %}
+{% if previous_meetups %}
+<div class="container">
+    <div class="row">
+        <div class="span2 img-tip margin-top-big">
+            <div class="line-orange"></div>
+        </div>
+        <div class="span10 margin-top-big">
+          <h2>Poprzednie spotkania</h2>
+          {% for meetup in previous_meetups %}
+          {% include "meetups/includes/meetup_on_list.html" %}
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
 <script>
 $('.carousel img:first-child').addClass('active');
 $('.carousel').carousel();

@@ -9,46 +9,6 @@
 {% block subcontent %}
 <h1>Spotkania</h1>
 {% for meetup in object_list %}
-<div class="margin-bottom-big meeting-list" itemscope itemtype="http://schema.org/Event">
-    <div class="row">
-        <div class="span10 list-caption">
-            <div class="pull-right">
-                <div class="span2">
-                    <h4 class="date-small" itemprop="startDate" content="{{ meetup.date|date:"c" }}">{{ meetup.date|date:"d.m.Y" }}</h4>
-                </div>
-                {% if meetup.meetup_url %}
-                  <div class="span2">
-                      <a href="{{ meetup.meetup_url }}" target="_blank" class="button button-block button-meetup">Meetup</a>
-                  </div>
-                {% endif %}
-                <div class="span2">
-                    <a href="{{ meetup.get_absolute_url }}" class="button button-block">SZCZEGÓŁY</a>
-                </div>
-            </div>
-            <h2><a href="{{ meetup.get_absolute_url }}" itemprop="sameAs"><span itemprop="name">{{ meetup }}</span></a></h2>
-          {% if meetup.video_url %}
-            <div class="video-meetup-details">
-              {% video meetup.video_url '780x440' is_secure=True %}
-            </div>
-          {% endif %}
-        </div>
-    </div>
-    <ul class="unstyled">
-        {% if meetup.meetup_type.has_agenda %}
-          {% for talk in meetup.talks.all %}
-          <li itemprop="subEvent" itemscope itemtype="http://schema.org/Event">
-              {% for speaker in talk.speakers.all %}<strong itemprop="performer" itemscope itemtype="http://schema.org/Person"><a href="{{ meetup.get_absolute_url }}#speaker-{{ speaker|slugify }}" target="_blank" itemprop="name">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}</strong>{% endfor %}: <a href="{{ meetup.get_absolute_url }}#talk-{{ talk.title|slugify }}" itemprop="name">{{ talk.title }}</a>
-          </li>
-          {% endfor %}
-          {% if not meetup.is_ready %}
-          <div class="more-info">
-              <h3>agenda w przygotowaniu</h3>
-          </div>
-          {% endif %}
-        {% else %}
-          {{ meetup.description_md }}
-        {% endif %}
-    </ul>
-</div>
+{% include "meetups/includes/meetup_on_list.html" %}
 {% endfor %}
 {% endblock %}
