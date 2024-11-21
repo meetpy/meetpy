@@ -46,6 +46,10 @@ class MeetupManager(models.Manager):
         except IndexError:
             raise self.model.DoesNotExist
 
+    def past(self, date=None):
+        date = date or datetime.date.today()
+        return self.filter(date__lt=date).order_by('date')
+
 
 class MeetupType(models.Model):
     name = models.CharField(max_length=64)
