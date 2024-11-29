@@ -19,7 +19,7 @@ from . import models, forms
 
 
 class MeetupsListView(generic.ListView):
-    model = models.Meetup
+    queryset = models.Meetup.objects.filter(is_draft=False)
 
 
 class MeetupRedirectOrList(generic.View):
@@ -32,7 +32,7 @@ class MeetupRedirectOrList(generic.View):
     def get(self, request, **kwargs):
         number = self.kwargs['number']
 
-        meetups = models.Meetup.objects.filter(number=number)
+        meetups = models.Meetup.objects.filter(number=number, is_draft=False)
         if len(meetups) == 0:
             raise Http404
 
@@ -98,7 +98,7 @@ class MeetupsRssFeed(syndication_views.Feed):
     description_template = models.Meetup._meta.app_label + '/feed/meetup_description.html'
 
     def items(self):
-        return models.Meetup.objects.filter(is_ready=True)
+        return models.Meetup.objects.filter(is_ready=True, is_draft=False)
 
     def item_pubdate(self, item):
         return item.date_modified

@@ -21,5 +21,5 @@ class ViewSitemap(Sitemap):
 
 sitemaps = {
     'views': ViewSitemap(),
-    'meetups': GenericSitemap(info_dict={'queryset': Meetup.objects.all()}),
+    'meetups': GenericSitemap(info_dict={'queryset': Meetup.objects.filter(is_draft=False)}),
 }
