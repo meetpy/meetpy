@@ -50,11 +50,13 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         talk = TalkFactory()
         self.speaker.talks.add(talk)
         meetup.talks.add(talk)
+        self.url = reverse('meetups:talk_proposal')
 
     def test_save_talk_proposal_with_existing_speaker(self):
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
+            'talk_language': 'pl',
             'speaker': self.speaker.id,
             'message': 'some comment',
         }
@@ -76,6 +78,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
+            'talk_language': 'pl',
             'speaker_first_name': 'first',
             'speaker_last_name': 'last',
             'speaker_website': 'http://pywaw.org/',
@@ -110,6 +113,7 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
+            'talk_language': 'pl',
             'speaker': self.speaker.id,
         }
         request = self.factory.post(data=data)
@@ -134,17 +138,23 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
         self.assertEqual(mail.outbox[0].to, settings.TALK_PROPOSAL_RECIPIENTS)
 
+    @override_settings(RECAPTCHA_ENABLED=False)
     def test_redirect_to_confirmation_page(self):
+        """Test that form submission redirects to the confirmation page."""
         data = {
             'talk_title': 'some title',
             'talk_description': 'some desc',
+            'talk_language': 'pl',
             'speaker': self.speaker.id,
+            'message': '',
+            'without_owner': False,
         }
-        request = self.factory.post(data=data)
-
-        response = self.view(request, data=data)
-
-        self.assert_redirect(response, reverse('meetups:talk_proposal_confirmation'))
+        
+        response = self.client.post(self.url, data)
+        
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('meetups:talk_proposal_confirmation'))
+        self.assertEqual(models.TalkProposal.objects.count(), 1)
 
 
 class TalkProposalFormTest(TestCase):
@@ -158,6 +168,7 @@ class TalkProposalFormTest(TestCase):
         form = forms.TalkProposalForm(data={
             'talk_title': 'title',
             'talk_description': 'description',
+            'talk_language': 'pl',
             'speaker': speaker.id,
             'without_owner': False,
         })
@@ -169,6 +180,7 @@ class TalkProposalFormTest(TestCase):
             data={
                 'talk_title': 'title',
                 'talk_description': 'description',
+                'talk_language': 'pl',
                 'speaker_first_name': 'first',
                 'speaker_last_name': 'last',
                 'speaker_phone': '123',
@@ -187,6 +199,7 @@ class TalkProposalFormTest(TestCase):
         form = forms.TalkProposalForm(data={
             'talk_title': 'title',
             'talk_description': 'description',
+            'talk_language': 'pl',
             'speaker_first_name': 'first',
             'without_owner': False,
         })
@@ -199,6 +212,7 @@ def test_talk_is_valid_without_speaker():
         data={
             'talk_title': 'title',
             'talk_description': 'description',
+            'talk_language': 'pl',
             'without_owner': True,
         }
     )
