@@ -34,20 +34,20 @@ interface (available at http://localhost:8082) and a mock of SMTP service
 (available at http://localhost:8081).
 
 For docker:
- - `docker-compose -f docker-compose-dev.yml up`
- - `docker-compose -f docker-compose-dev.yml exec meetpy python manage.py migrate`
+ - `docker compose -f compose-dev.yaml up`
+ - `docker compose -f compose-dev.yaml exec meetpy python manage.py migrate`
 
 *NOTE*
 
 Tested on:
 
- - docker versions 18.09.7 and 19.03.2
- - docker-compose version 1.24.1
+ - Docker versions 28.1.1
+ - Docker Compose version v2.35.1
 
 Consult https://docs.docker.com/install/ and https://docs.docker.com/compose/install/ for
 instructions how to install docker.
 
-For more info read the `provision-new-dev-env.sh`, `docker-compose-dev.yml` or ask us on slack:
+For more info read the `provision-new-dev-env.sh`, `compose-dev.yaml` or ask us on slack:
 
 https://pykonik.slack.com/ or https://join-slack.pykonik.org/
 
