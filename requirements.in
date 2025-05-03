@@ -1,4 +1,4 @@
-Django~=4.2.20
+Django==5.2
 Pillow
 discord-webhook~=1.3.0
 django-embed-video
