@@ -30,5 +30,5 @@ if RECAPTCHA_ENABLED:
     RECAPTCHA_PRIVATE_KEY = get_secret("RECAPTCHA_SECRET_KEY", secrets)
 
     INSTALLED_APPS += (
-        "captcha",
+        "django_recaptcha",
     )

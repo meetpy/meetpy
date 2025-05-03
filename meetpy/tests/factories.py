@@ -1,12 +1,14 @@
 from datetime import datetime, timedelta
 
+
 import factory
+from factory import django as factory_django
 from factory.fuzzy import FuzzyNaiveDateTime
 
 from meetups import models
 
 
-class MeetupFactory(factory.DjangoModelFactory):
+class MeetupFactory(factory_django.DjangoModelFactory):
 
     class Meta:
         model = models.Meetup
@@ -15,7 +17,7 @@ class MeetupFactory(factory.DjangoModelFactory):
     date = FuzzyNaiveDateTime(start_dt=datetime.utcnow()-timedelta(days=30*6), end_dt=datetime.utcnow()+timedelta(days=30*6))
 
 
-class MeetupTypeFactory(factory.DjangoModelFactory):
+class MeetupTypeFactory(factory_django.DjangoModelFactory):
 
     class Meta:
         model = models.MeetupType
@@ -25,7 +27,7 @@ class MeetupTypeFactory(factory.DjangoModelFactory):
     has_agenda = True
 
 
-class SpeakerFactory(factory.DjangoModelFactory):
+class SpeakerFactory(factory_django.DjangoModelFactory):
 
     class Meta:
         model = models.Speaker
@@ -35,7 +37,7 @@ class SpeakerFactory(factory.DjangoModelFactory):
     biography = factory.Faker('sentence', nb_words=30)
 
 
-class TalkFactory(factory.DjangoModelFactory):
+class TalkFactory(factory_django.DjangoModelFactory):
 
     class Meta:
         model = models.Talk
@@ -45,7 +47,7 @@ class TalkFactory(factory.DjangoModelFactory):
     order = factory.Sequence(lambda n: n)
 
 
-class SponsorFactory(factory.DjangoModelFactory):
+class SponsorFactory(factory_django.DjangoModelFactory):
 
     class Meta:
         model = models.Sponsor
@@ -54,7 +56,7 @@ class SponsorFactory(factory.DjangoModelFactory):
     description = factory.Faker('sentence', nb_words=40)
 
 
-class TalkProposalFactory(factory.DjangoModelFactory):
+class TalkProposalFactory(factory_django.DjangoModelFactory):
 
     class Meta:
         model = models.TalkProposal

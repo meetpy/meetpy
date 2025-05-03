@@ -28,5 +28,5 @@ if RECAPTCHA_ENABLED:
     SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
     INSTALLED_APPS += (
-        "captcha",
+        "django_recaptcha",
     )
