@@ -1,6 +1,6 @@
 ## Meetpy
 
-[![Build Status](https://travis-ci.org/meetpy/meetpy.svg?branch=master)](https://travis-ci.org/meetpy/meetpy)
+[![Build Status](https://github.com/meetpy/meetpy/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/meetpy/meetpy/actions/workflows/ci.yml)
 
 Meetpy website - this is a shared website along polish Python meetup groups.
 
