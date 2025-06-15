@@ -11,3 +11,5 @@ DATABASES = {
         'NAME': '../sqlite.db',
     }
 }
+
+RECAPTCHA_ENABLED = False
