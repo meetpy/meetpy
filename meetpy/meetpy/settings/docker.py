@@ -21,11 +21,11 @@ DISCORD_FORM_WEBHOOK_URL = env.str("DISCORD_FORM_WEBHOOK_URL", None)
 RECAPTCHA_ENABLED = env.bool("RECAPTCHA_ENABLED", False)
 
 if RECAPTCHA_ENABLED:
-    from captcha.constants import TEST_PUBLIC_KEY, TEST_PRIVATE_KEY
+    from django_recaptcha.constants import TEST_PUBLIC_KEY, TEST_PRIVATE_KEY
 
     RECAPTCHA_PUBLIC_KEY = env.str("RECAPTCHA_SITE_KEY", TEST_PUBLIC_KEY)
     RECAPTCHA_PRIVATE_KEY = env.str("RECAPTCHA_SECRET_KEY", TEST_PRIVATE_KEY)
-    SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+    SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
 
     INSTALLED_APPS += (
         "django_recaptcha",
