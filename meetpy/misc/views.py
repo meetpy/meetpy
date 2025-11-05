@@ -1,6 +1,8 @@
 import datetime
 
 from django.views import generic
+from django.shortcuts import redirect
+from django.conf import settings
 
 from meetups import models as meetups_models
 from . import models
@@ -23,3 +25,7 @@ class HomeView(generic.TemplateView):
 
 class FaqView(generic.TemplateView):
     template_name = 'misc/faq.html'
+
+
+def discord_invite(request):
+    return redirect(settings.DISCORD_INVITE)
