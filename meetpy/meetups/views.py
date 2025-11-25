@@ -175,18 +175,21 @@ class TalkProposalCreateView(generic.CreateView):
         webhook.add_embed(talk_embed)
 
         if speaker := proposal.talk.speakers.first():
-            photo_filename = f"{slugify(speaker)}{splitext(speaker.photo.name)[1]}"
-            with speaker.photo.open() as fd:
-                webhook.add_file(fd.read(), filename=photo_filename)
-            talk_embed.set_author(
-                name=str(speaker),
-                icon_url=f"attachment://{photo_filename}",
-            )
+            if speaker.photo:
+                photo_filename = f"{slugify(speaker)}{splitext(speaker.photo.name)[1]}"
+                with speaker.photo.open() as fd:
+                    webhook.add_file(fd.read(), filename=photo_filename)
+                talk_embed.set_author(
+                    name=str(speaker),
+                    icon_url=f"attachment://{photo_filename}",
+                )
+            else:
+                photo_filename = None
             speaker_embed = DiscordEmbed(
                 title="About speaker",
                 description=speaker.biography,
                 color=0xFFD847,
-                thumbnail={"url": f"attachment://{photo_filename}"},
+                thumbnail={"url": f"attachment://{photo_filename}"} if photo_filename else None,
             )
             if speaker.phone:
                 speaker_embed.add_embed_field(name="Phone", value=speaker.phone)
