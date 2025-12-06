@@ -67,5 +67,5 @@ sqlparse==0.5.3
     # via django
 tzdata==2025.2
     # via faker
-urllib3==2.5.0
+urllib3==2.6.0
     # via requests
