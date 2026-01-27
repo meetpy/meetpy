@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('faq/', views.FaqView.as_view(), name='faq'),
     path('discord/', views.discord_invite, name="discord"),
+    path('feedback/', views.feedback_form, name="feedback"),
     re_path(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
 ]

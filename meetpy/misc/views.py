@@ -29,3 +29,7 @@ class FaqView(generic.TemplateView):
 
 def discord_invite(request):
     return redirect(settings.DISCORD_INVITE)
+
+
+def feedback_form(request):
+    return redirect(settings.FEEDBACK_FORM_URL)

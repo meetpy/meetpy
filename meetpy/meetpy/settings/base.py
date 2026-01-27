@@ -214,3 +214,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 DISCORD_FORM_WEBHOOK_URL = None
 
 DISCORD_INVITE = "https://discord.gg/DW6gq3Rs5u"
+FEEDBACK_FORM_URL = "https://forms.gle/5G7sCib5Qi373E5E6"
