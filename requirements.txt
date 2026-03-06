@@ -37,7 +37,7 @@ idna==3.10
     # via requests
 iniconfig==2.1.0
     # via pytest
-markdown==3.8
+markdown==3.8.1
     # via -r requirements.in
 packaging==25.0
     # via
