@@ -237,6 +237,7 @@ class TalkProposal(models.Model):
     talk = models.OneToOneField(Talk, on_delete=models.CASCADE, related_name="proposal")
     message = models.TextField(blank=True)
     date_submitted = models.DateTimeField(auto_now_add=True)
+    suspected_spam = models.BooleanField(default=False)
 
     @property
     def message_md(self):

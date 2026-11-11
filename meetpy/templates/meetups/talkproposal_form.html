@@ -22,6 +22,10 @@
         <div class="span8">
             <form method="POST" novalidate enctype="multipart/form-data">{% csrf_token %}
                 <h2>Prelekcja</h2>
+                <div class="field preferred-time" aria-hidden="true">
+                    <label for="id_preferred_time">Preferowana pora prelekcji</label>
+                    <input id="id_preferred_time" type="text" name="preferred_time" tabindex="-1">
+                </div>
                 {% include "meetups/includes/form_input.html" with field=form.talk_title label='Tytuł' %}
                 {% include "meetups/includes/form_input.html" with field=form.talk_language label='Język' %}
                 {% include "meetups/includes/form_input.html" with field=form.talk_description label='Opis' %}

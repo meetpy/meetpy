@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from datetime import datetime
+from unittest.mock import patch
 
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
@@ -155,6 +156,51 @@ class TalkProposalCreateViewTest(testcases.ViewTestCase, assertions.StatusCodeAs
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, reverse('meetups:talk_proposal_confirmation'))
         self.assertEqual(models.TalkProposal.objects.count(), 1)
+
+    @override_settings(TALK_PROPOSAL_RECIPIENTS=['admin1@email.com'])
+    def test_normal_submission_sends_notifications(self):
+        """Empty preferred_time → suspected_spam=False, both notification paths fire."""
+        data = {
+            'talk_title': 'some title',
+            'talk_description': 'some desc',
+            'talk_language': 'pl',
+            'speaker': self.speaker.id,
+            'message': '',
+            'preferred_time': '',  # empty honey-pot value
+        }
+        request = self.factory.post(data=data)
+
+        with patch.object(views.TalkProposalCreateView, '_send_email_to_admins') as send_email:
+            with patch.object(views.TalkProposalCreateView, '_send_message_on_discord') as send_discord:
+                self.view(request, data=data)
+
+        proposal = models.TalkProposal.objects.get()
+        self.assertFalse(proposal.suspected_spam)
+        send_email.assert_called_once()
+        send_discord.assert_called_once()
+
+    @override_settings(TALK_PROPOSAL_RECIPIENTS=['admin1@email.com'])
+    def test_spam_tripped_submission_saves_but_skips_notifications(self):
+        """Non-empty preferred_time → suspected_spam=True, no notifications sent."""
+        data = {
+            'talk_title': 'some title',
+            'talk_description': 'some desc',
+            'talk_language': 'pl',
+            'speaker': self.speaker.id,
+            'message': '',
+            'preferred_time': 'bot filled this',
+        }
+        request = self.factory.post(data=data)
+
+        with patch.object(views.TalkProposalCreateView, '_send_email_to_admins') as send_email:
+            with patch.object(views.TalkProposalCreateView, '_send_message_on_discord') as send_discord:
+                self.view(request, data=data)
+
+        proposal = models.TalkProposal.objects.get()
+        self.assertTrue(proposal.suspected_spam)
+        self.assertEqual(models.TalkProposal.objects.count(), 1)
+        send_email.assert_not_called()
+        send_discord.assert_not_called()
 
 
 class TalkProposalFormTest(TestCase):

@@ -124,11 +124,12 @@ class TalkAdminForm(ModelForm):
 
 
 class TalkAdmin(admin.ModelAdmin):
-    list_display = ("title", "language", "meetup", "speakers_list", "proposal_date")
+    list_display = ("title", "language", "meetup", "speakers_list", "proposal_date", "suspected_spam")
     readonly_fields = ["proposal_message", "proposal_date"]
     list_filter = [
         ("meetup", admin.EmptyFieldListFilter),
         ("proposal", admin.EmptyFieldListFilter),
+        ("proposal__suspected_spam", admin.BooleanFieldListFilter),
     ]
     form = TalkAdminForm
 
@@ -147,6 +148,13 @@ class TalkAdmin(admin.ModelAdmin):
         except IndexError:
             date = ""
         return date
+
+    @admin.display(description="Suspected spam", boolean=True)
+    def suspected_spam(self, obj):
+        try:
+            return obj.proposal.suspected_spam
+        except models.TalkProposal.DoesNotExist:
+            return None
 
     @admin.display()
     def speakers_list(self, obj: "models.Talk"):
