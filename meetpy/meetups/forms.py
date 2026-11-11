@@ -25,6 +25,7 @@ class TalkProposalForm(forms.ModelForm):
     speaker_biography = forms.CharField(required=False, widget=forms.Textarea)
     speaker_photo = forms.ImageField(required=False)
     without_owner = forms.BooleanField(required=False, initial=False)
+    preferred_time = forms.CharField(required=False)
 
     if settings.RECAPTCHA_ENABLED:
         captcha = ReCaptchaField()
@@ -71,6 +72,7 @@ class TalkProposalForm(forms.ModelForm):
             )
         talk.speakers.add(speaker)
         talk_proposal.talk = talk
+        talk_proposal.suspected_spam = bool(self.cleaned_data.get('preferred_time'))
         talk_proposal.save()
         return talk_proposal
 

@@ -115,6 +115,13 @@ input[type=submit] {border: 0;}
 .control-group .controls input, .control-group .controls textarea, .control-group .controls select {display: block; width: 100%;}
 .control-group .controls .help-inline ul.errorlist {margin: 0;}
 .control-group .controls .help-inline ul.errorlist li {list-style-type: none;}
+.preferred-time {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 
 /********************** 3. COMPONENTS *******************************/
 /********************** 3.1 Page menu *******************************/

@@ -126,6 +126,8 @@ class TalkProposalCreateView(generic.CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        if self.object.suspected_spam:
+            return response
         try:
             self._send_email_to_admins()
         except Exception:
